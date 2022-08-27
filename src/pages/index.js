@@ -8,7 +8,7 @@ export default function IndexPage({ data }) {
     slogan,
     visionStatement,
     address,
-    googlelocation,
+    googleLocation,
     childrenContentfulHomePageReviewsJsonNode,
   } = data.contentfulHomePage;
   let reviews = childrenContentfulHomePageReviewsJsonNode[0].reviews;
@@ -17,8 +17,8 @@ export default function IndexPage({ data }) {
       <div>{slogan}</div>
       <div>{visionStatement}</div>
       <div>{renderRichText(address)}</div>
-      <div>{googlelocation.lat}</div>
-      <div>{googlelocation.lon}</div>
+      <div>{googleLocation.lat}</div>
+      <div>{googleLocation.lon}</div>
       <div>
         {reviews.map((review) => (
           <li>{review.name}</li>
@@ -42,7 +42,7 @@ export const query = graphql`
       address {
         raw
       }
-      googlelocation {
+      googleLocation {
         lat
         lon
       }

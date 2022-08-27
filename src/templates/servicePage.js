@@ -5,20 +5,16 @@ import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function ServicePage({ data }) {
+  console.log("here is page data in service : ", data);
   const {
     serviceTitle,
-    faq,
+    faqRef,
     pricing,
     heroImage,
     ourApproach,
     preCare,
     postCare,
-  } = data.allContentfulServicePage.edges[0].node;
-
-  // console.log(
-  //   "here is page data: ",
-  //   data.allContentfulServicePage.edges[0].node
-  // );
+  } = data.contentfulServicePage;
 
   const dynamicImage = useContentfulImage({
     image: {
@@ -31,9 +27,10 @@ export default function ServicePage({ data }) {
   });
 
   // TODO: renderRichText article: https://www.gatsbyjs.com/blog/how-to-use-the-contentful-rich-text-field-with-gatsby/
+
   return (
     <div>
-      {data?.allContentfulServicePage?.edges?.length && (
+      {data?.contentfulServicePage && (
         <>
           <GatsbyImage image={dynamicImage} alt={heroImage.description} />
           <h1>{serviceTitle}</h1>
@@ -42,7 +39,13 @@ export default function ServicePage({ data }) {
           <div>{renderRichText(ourApproach)}</div>
           <div>{renderRichText(preCare)}</div>
           <div>{renderRichText(postCare)}</div>
-          <div>{renderRichText(faq)}</div>
+
+          {faqRef.map((faq) => (
+            <>
+              <div>{faq.question}</div>
+              <div>{renderRichText(faq.answer)}</div>
+            </>
+          ))}
         </>
       )}
     </div>
@@ -50,41 +53,40 @@ export default function ServicePage({ data }) {
 }
 
 export const pageQuery = graphql`
-  query servicePageQuery($servicePageSlug: String!) {
+  query servicePageQuery($servicePageId: String!) {
     site {
       siteMetadata {
         title
       }
     }
-    allContentfulServicePage(
-      filter: { node_locale: { eq: "en-US" }, slug: { eq: $servicePageSlug } }
-      limit: 1
-    ) {
-      edges {
-        node {
-          slug
-          heroImage {
-            gatsbyImageData(layout: FULL_WIDTH)
-            description
-          }
-          faq {
-            raw
-          }
-          ourApproach {
-            raw
-          }
-          postCare {
-            raw
-          }
-          preCare {
-            raw
-          }
-          pricing {
-            raw
-          }
-          serviceTitle
-        }
+    contentfulServicePage(id: { eq: $servicePageId }) {
+      slug
+      heroImage {
+        gatsbyImageData(layout: FULL_WIDTH)
+        description
       }
+      faqRef {
+        answer {
+          raw
+        }
+        question
+      }
+      ourApproach {
+        raw
+      }
+      postCare {
+        raw
+      }
+      preCare {
+        raw
+      }
+      pricing {
+        raw
+      }
+      serviceTitle
     }
   }
 `;
+
+// "id": "cde0765b-6fff-5a8b-9eb7-422ec0ddf15f",
+// "slug": "aesthetic-services/facial-treatments/botox"
