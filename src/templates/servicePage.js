@@ -1,29 +1,50 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { useState } from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function ServicePage({ data }) {
-  const [pageData, setPageData] = useState(
-    data.allContentfulServicePage.edges[0].node
-  );
-  console.log("here is page data: ", pageData);
+  const {
+    serviceTitle,
+    faq,
+    pricing,
+    heroImage,
+    ourApproach,
+    preCare,
+    postCare,
+  } = data.allContentfulServicePage.edges[0].node;
+
+  // console.log(
+  //   "here is page data: ",
+  //   data.allContentfulServicePage.edges[0].node
+  // );
 
   const dynamicImage = useContentfulImage({
     image: {
-      url: pageData.heroImage.gatsbyImageData.images.sources[0].srcSet,
+      url:
+        heroImage.gatsbyImageData.images.sources[0].srcSet ||
+        heroImage.gatsbyImageData.images.fallback.srcSet,
       width: 2000,
       height: 1000,
     },
   });
 
+  // TODO: renderRichText article: https://www.gatsbyjs.com/blog/how-to-use-the-contentful-rich-text-field-with-gatsby/
   return (
     <div>
-      <GatsbyImage image={dynamicImage} alt="hero image is decorative" />
-      <h1>{pageData.serviceTitle}</h1>
-      <p>{renderRichText(pageData.faq)}</p>
+      {data?.allContentfulServicePage?.edges?.length && (
+        <>
+          <GatsbyImage image={dynamicImage} alt={heroImage.description} />
+          <h1>{serviceTitle}</h1>
+          <h2>{`What Is It For?`}</h2>
+          <div>{renderRichText(pricing)}</div>
+          <div>{renderRichText(ourApproach)}</div>
+          <div>{renderRichText(preCare)}</div>
+          <div>{renderRichText(postCare)}</div>
+          <div>{renderRichText(faq)}</div>
+        </>
+      )}
     </div>
   );
 }
@@ -44,6 +65,7 @@ export const pageQuery = graphql`
           slug
           heroImage {
             gatsbyImageData(layout: FULL_WIDTH)
+            description
           }
           faq {
             raw
