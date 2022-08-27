@@ -11,6 +11,7 @@ export default function IndexPage({ data }) {
     googlelocation,
     childrenContentfulHomePageReviewsJsonNode,
   } = data.contentfulHomePage;
+  let reviews = childrenContentfulHomePageReviewsJsonNode[0].reviews;
   return (
     <div>
       <div>{slogan}</div>
@@ -19,7 +20,7 @@ export default function IndexPage({ data }) {
       <div>{googlelocation.lat}</div>
       <div>{googlelocation.lon}</div>
       <div>
-        {childrenContentfulHomePageReviewsJsonNode[0].reviews.map((review) => (
+        {reviews.map((review) => (
           <li>{review.name}</li>
         ))}
       </div>
