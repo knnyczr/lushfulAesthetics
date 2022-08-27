@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: `Lushful Aesthetics`,
     siteUrl: `https://www.lushfulaesthetics.com/`,
-    description: `Lushful Aestehtics by Injector Chris`,
+    description: `Lushful Aesthetics by Injector Chris`,
   },
   plugins: [
     {
