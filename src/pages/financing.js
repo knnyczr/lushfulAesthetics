@@ -44,7 +44,6 @@ export const pageQuery = graphql`
       reasonsWhyPatientsLoveCherry {
         raw
       }
-      slug
       whatIsCherry {
         raw
       }
