@@ -8,35 +8,35 @@ const ServicePage = (data) => {
 
 export default ServicePage;
 
-export const query = graphql`
-  query contentfulServicePageQuery {
-    allContentfulServicePage(sort: { order: ASC }) {
-      edges {
-        node {
-          contentful_id
-          faq {
-            raw
-          }
-          heroImage {
-            id
-          }
-          howDoesItWork {
-            raw
-          }
-          postCare {
-            raw
-          }
-          pricing {
-            raw
-          }
-          preCare {
-            raw
-          }
-          whatsItFor {
-            raw
-          }
-        }
-      }
-    }
-  }
-`;
+// export const query = graphql`
+//   query contentfulServicePageQuery {
+//     allContentfulServicePage(sort: { order: ASC }) {
+//       edges {
+//         node {
+//           contentful_id
+//           faq {
+//             raw
+//           }
+//           heroImage {
+//             id
+//           }
+//           howDoesItWork {
+//             raw
+//           }
+//           postCare {
+//             raw
+//           }
+//           pricing {
+//             raw
+//           }
+//           preCare {
+//             raw
+//           }
+//           whatsItFor {
+//             raw
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
