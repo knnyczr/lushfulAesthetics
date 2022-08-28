@@ -4,14 +4,9 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function IndexPage({ data }) {
   console.log(data);
-  const {
-    slogan,
-    visionStatement,
-    address,
-    googleLocation,
-    childrenContentfulHomePageReviewsJsonNode,
-  } = data.contentfulHomePage;
-  let reviews = childrenContentfulHomePageReviewsJsonNode[0].reviews;
+  const { slogan, visionStatement, address, googleLocation, reviews } =
+    data.contentfulHomePage;
+
   return (
     <div>
       <div>{slogan}</div>
@@ -21,7 +16,7 @@ export default function IndexPage({ data }) {
       <div>{googleLocation.lon}</div>
       <div>
         {reviews.map((review) => (
-          <li>{review.name}</li>
+          <li>{review.reviewerName}</li>
         ))}
       </div>
     </div>
@@ -46,14 +41,12 @@ export const query = graphql`
         lat
         lon
       }
-      childrenContentfulHomePageReviewsJsonNode {
-        reviews {
-          age
-          location
-          name
-          package
-          review
-        }
+      reviews {
+        review
+        reviewerName
+        reviewerAge
+        reviewerLocation
+        fromPackage
       }
     }
   }
