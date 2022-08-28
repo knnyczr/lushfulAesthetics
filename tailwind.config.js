@@ -7,17 +7,18 @@ module.exports = {
   theme: {
     screens: {
       sm: "480px",
-      md: "768px",
-      lg: "976px",
+      md: "800px",
+      lg: "1024px",
       xl: "1440px",
     },
     fontFamily: {
-      sans: ["Poppins", "sans-serif"],
+      sans: ["Roboto", "sans-serif"],
       serif: ["DM Serif Display", "serif"],
     },
     extend: {
       colors: {
         "main-green": "#848260",
+        "main-green-shade": "#434232",
       },
     },
   },
