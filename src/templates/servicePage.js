@@ -26,6 +26,40 @@ export default function ServicePage({ data }) {
     },
   });
 
+
+// export const query = graphql`
+//   query contentfulServicePageQuery {
+//     allContentfulServicePage(sort: { order: ASC }) {
+//       edges {
+//         node {
+//           contentful_id
+//           faq {
+//             raw
+//           }
+//           heroImage {
+//             id
+//           }
+//           howDoesItWork {
+//             raw
+//           }
+//           postCare {
+//             raw
+//           }
+//           pricing {
+//             raw
+//           }
+//           preCare {
+//             raw
+//           }
+//           whatsItFor {
+//             raw
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
+
   // TODO: renderRichText article: https://www.gatsbyjs.com/blog/how-to-use-the-contentful-rich-text-field-with-gatsby/
 
   return (
@@ -90,3 +124,4 @@ export const pageQuery = graphql`
 
 // "id": "cde0765b-6fff-5a8b-9eb7-422ec0ddf15f",
 // "slug": "aesthetic-services/facial-treatments/botox"
+
