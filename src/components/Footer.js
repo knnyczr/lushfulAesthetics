@@ -40,7 +40,11 @@ function footer() {
             </div>
           </div>
           <div className="flex flex-row items-end py-4 md:pb-16">
-            <Link to="" className="mr-4 mb-4">
+            <Link
+              to="https://twitter.com/LushfulAesth"
+              target="_blank"
+              className="mr-4 mb-4"
+            >
               <svg
                 className="w-5 h-5 md:w-6 md:h-6"
                 fill="currentColor"
@@ -51,7 +55,11 @@ function footer() {
               </svg>
               <span className="sr-only">Twitter page</span>
             </Link>
-            <Link to="" className="mr-4 mb-4">
+            <Link
+              to="https://www.instagram.com/lushfulaesthetics/?hl=en"
+              target="_blank"
+              className="mr-4 mb-4"
+            >
               <svg
                 className="w-5 h-5 md:w-6 md:h-6"
                 fill="currentColor"
