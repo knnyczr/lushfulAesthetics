@@ -1,12 +1,34 @@
 import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import Button from "./BookBtn";
-import { Link } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 
-function Nav1() {
+export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const data = useStaticQuery(graphql`
+    query NavQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+      contentfulServicesMenu {
+        aestheticServices {
+          ... on ContentfulPackagePage {
+            slug
+          }
+          ... on ContentfulServicePage {
+            slug
+          }
+        }
+        bookNowLink
+      }
+    }
+  `);
+
+  // console.log(data);
   return (
     <div>
       <nav className="bg-white">
@@ -193,4 +215,3 @@ function Nav1() {
     </div>
   );
 }
-export default Nav1;

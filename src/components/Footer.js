@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 
-function footer() {
+export default function Footer() {
   return (
     <>
       <div className="bg-main-green text-white lg:px-24 lg:pt-12 md:px-12 md:pt-12 md:pb-4 px-4 py-4">
@@ -82,14 +82,14 @@ function footer() {
         <hr className="my-6 border-white" />
         <div className="bg-main-green md:text-lg flex flex-row justify-between text-white font-serif">
           <p>
-            The information on this website, including articles authored by
+            {`The information on this website, including articles authored by
             healthcare professionals, is for general information purposes only,
             does not constitute medical advice and is not intended to be relied
             upon for medical diagnosis or treatment. If you are experiencing an
             emergency, contact 911 or contact a medical provider immediately.
             Consistent with EverBody’s website privacy policy, EverBody is not
             responsible for the privacy practices or the content found at links
-            to other websites.
+            to other websites.`}
           </p>
         </div>
         <hr className="my-6 border-white" />
@@ -110,5 +110,3 @@ function footer() {
     </>
   );
 }
-
-export default footer;

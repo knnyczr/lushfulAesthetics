@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 
-function Button() {
+export default function Button() {
   return (
     <>
       <Link to="/book">
@@ -15,5 +15,3 @@ function Button() {
     </>
   );
 }
-
-export default Button;

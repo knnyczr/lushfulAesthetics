@@ -5,7 +5,6 @@ import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function Financing({ data }) {
-  console.log(data);
   const {
     howDoesCherryWork,
     pageTitle,
@@ -13,6 +12,7 @@ export default function Financing({ data }) {
     whatIsCherry,
     heroImage,
   } = data.contentfulFinancingPage;
+
   const dynamicImage = useContentfulImage({
     image: {
       url:
@@ -22,6 +22,7 @@ export default function Financing({ data }) {
       height: 1000,
     },
   });
+
   return (
     <div>
       {data.contentfulFinancingPage && (
