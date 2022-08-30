@@ -5,13 +5,25 @@ import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function AboutUs({ data }) {
-  console.log(data);
-  const { aboutLushfulAesthetics, meetInjectorChris } = data.contentfulAboutUs;
+  const { aboutLushfulAesthetics, meetInjectorChris, heroImage } =
+    data.contentfulAboutUs;
+
+  const dynamicImage = useContentfulImage({
+    image: {
+      url:
+        heroImage.gatsbyImageData.images.sources[0].srcSet ||
+        heroImage.gatsbyImageData.images.fallback.srcSet,
+      width: 2000,
+      height: 1000,
+    },
+  });
+
   return (
     <div>
-      {data?.contentfulAboutUs ? (
+      {data.contentfulAboutUs ? (
         <>
           <h1>{`About Lushful Aesthetics`}</h1>
+          <GatsbyImage image={dynamicImage} alt={heroImage.description} />
           <div>{renderRichText(aboutLushfulAesthetics)}</div>
           <div>{renderRichText(meetInjectorChris)}</div>
         </>
@@ -25,6 +37,10 @@ export default function AboutUs({ data }) {
 export const pageQuery = graphql`
   query aboutUsQuery {
     contentfulAboutUs {
+      heroImage {
+        gatsbyImageData(layout: FULL_WIDTH)
+        description
+      }
       aboutLushfulAesthetics {
         raw
       }
