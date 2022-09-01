@@ -15,6 +15,14 @@ module.exports = {
       sans: ["Roboto", "sans-serif"],
       serif: ["Playfair Display", "serif"],
     },
+    fontWeight: {
+      light: 300,
+      normal: 400,
+      medium: 500,
+      bold: 700,
+      extrabold: 800,
+      black: 900,
+    },
     extend: {
       colors: {
         "main-green": "#848260",

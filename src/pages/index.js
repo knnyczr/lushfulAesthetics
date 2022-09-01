@@ -28,7 +28,7 @@ export default function IndexPage({ data }) {
     <div>
       <GatsbyImage image={dynamicImage} alt={heroImage.description} />
 
-      <div>{slogan}</div>
+      <div class="font-serif  md:font-extrabold">{slogan}</div>
       <div>{visionStatement}</div>
       <div>{renderRichText(address)}</div>
       <div>{googleLocation.lat}</div>

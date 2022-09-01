@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
+import CustomAccordian from "../components/CustomAccodian";
 
 export default function ServicePage({ data }) {
   console.log("here is page data in service : ", data);
@@ -40,12 +41,13 @@ export default function ServicePage({ data }) {
           <div>{renderRichText(preCare)}</div>
           <div>{renderRichText(postCare)}</div>
 
-          {faqRef.map((faq) => (
-            <>
-              <div>{faq.question}</div>
-              <div>{renderRichText(faq.answer)}</div>
-            </>
-          ))}
+          <hr />
+          <div>
+            <h2 class="font-serif md:font-extrabold">FAQs</h2>
+            {faqRef.map((faq) => (
+              <CustomAccordian question={faq.question} answer={faq.answer} />
+            ))}
+          </div>
         </>
       )}
     </div>
