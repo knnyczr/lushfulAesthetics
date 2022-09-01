@@ -23,7 +23,7 @@ export default function CustomAccordian({ question, answer }) {
                 transition
                 focus:outline-none
                 font-serif
-                md:font-extrabold
+                font-extrabold
               "
               type="button"
               data-bs-toggle="collapse"
@@ -36,7 +36,7 @@ export default function CustomAccordian({ question, answer }) {
           </h2>
           <div
             id="collapseOne"
-            class="accordion-collapse collapse show font-sans md:font-light"
+            class="accordion-collapse collapse show font-sans font-light"
             aria-labelledby="headingOne"
             data-bs-parent="#accordionExample"
           >

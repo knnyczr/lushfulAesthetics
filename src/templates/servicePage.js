@@ -43,7 +43,7 @@ export default function ServicePage({ data }) {
 
           <hr />
           <div>
-            <h2 class="font-serif md:font-extrabold">FAQs</h2>
+            <h2 class="font-serif font-extrabold text-2xl">FAQs</h2>
             {faqRef.map((faq) => (
               <CustomAccordian question={faq.question} answer={faq.answer} />
             ))}
