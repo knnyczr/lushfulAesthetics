@@ -3,6 +3,8 @@ import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
+import Map from "../components/Map";
+import ReviewComponent from "../components/ReviewComponent";
 
 export default function IndexPage({ data }) {
   const {
@@ -24,6 +26,9 @@ export default function IndexPage({ data }) {
     },
   });
 
+  console.log("reviews: ", reviews);
+  console.log("here is google location: ", googleLocation);
+
   return (
     <div>
       <GatsbyImage image={dynamicImage} alt={heroImage.description} />
@@ -31,12 +36,12 @@ export default function IndexPage({ data }) {
       <div class="font-serif  md:font-extrabold">{slogan}</div>
       <div>{visionStatement}</div>
       <div>{renderRichText(address)}</div>
-      <div>{googleLocation.lat}</div>
-      <div>{googleLocation.lon}</div>
+      <Map coordinates={googleLocation} />
       <div>
-        {reviews.map((review, index) => (
+        <ReviewComponent reviews={reviews} />
+        {/* {reviews.map((review, index) => (
           <li key={index}>{review.reviewerName}</li>
-        ))}
+        ))} */}
       </div>
     </div>
   );
