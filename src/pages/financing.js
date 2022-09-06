@@ -25,12 +25,17 @@ export default function Financing({ data }) {
     },
   });
 
+  // console.log(
+  //   "here is this: ",
+  //   renderRichText(reasonsWhyPatientsLoveCherry)[0].props.children
+  // );
+
   return (
     <div>
       {data.contentfulFinancingPage && (
         <>
           <HeroImage heroImage={heroImage} pageTitle={pageTitle} />
-          {/* className="px-4 py-4 sm:px-6 d:px-12 lg:px-24" */}
+
           <div>
             <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-start md:justify-center md:items-center ">
               <div className="max-w-screen-lg pb-8 lg:pb-16 text-lg lg:text-2xl md:text-center">
@@ -44,7 +49,20 @@ export default function Financing({ data }) {
               <h4 className="text-white pb-8 uppercase text-lg font-semibold">
                 3 Reasons Why Patients Love Cherry
               </h4>
-              <div>{renderRichText(reasonsWhyPatientsLoveCherry)}</div>
+              <div className="flex flex-col md:flex-row justify-center">
+                {renderRichText(
+                  reasonsWhyPatientsLoveCherry
+                )[0].props.children.map((prop, index) => {
+                  return (
+                    <div
+                      className="py-8 px-4 my-2 h-auto align-middle md:py-10 md:px-8 md:h-auto bg-white mx-2 rounded md:w-1/4 text-center font-serif font-medium"
+                      key={index}
+                    >
+                      {prop.props.children[0].props.children[0]}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
             {/* not sure how to seperate the data from above */}
 
