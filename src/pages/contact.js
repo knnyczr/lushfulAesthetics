@@ -9,8 +9,8 @@ export default function contact() {
   return (
     <>
       <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-center items-center">
-        <h2 className="pb-8 uppercase text-lg font-semibold">Contact</h2>
-        <div className="mb-16 lg:text-lg text-center ">
+        <h2 className="pb-8 uppercase text-2xl font-semibold ">Contact</h2>
+        <div className="mb-16 ext-lg lg:text-2xl text-center ">
           <p>
             For customer service inquireis or assistance, please email us.
             <br />
