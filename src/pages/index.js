@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import Button from "../components/BookBtn";
+import Reviews from "../components/Reviews";
 
 export default function IndexPage({ data }) {
   const {
@@ -48,16 +49,13 @@ export default function IndexPage({ data }) {
         </div>
       </div>
 
-      <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 bg-main-green flex flex-col justify-start md:justify-center md:items-center">
-        This is the review section
-        {reviews.map((review, index) => (
-          <li key={index}>{review.reviewerName}</li>
-        ))}
+      <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 bg-main-green flex flex-col items-center md:flex-row justify-center">
+        <Reviews reviews={reviews} />
       </div>
 
       <div className="px-4 py-16 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center ">
-        <div className="max-w-screen-lg border border-black py-8 px-6 lg:py-12 lg:px-12 flex flex-row">
-          <div className="mx-10 w-96 h-80 bg-slate-500">
+        <div className=" border border-black py-8 px-3 lg:py-12 lg:px-12 flex flex-col md:flex-row">
+          <div className="mx-10 w-60 max-w-md h-60 bg-slate-500">
             This is the map
             {/* https://www.gatsbyjs.com/plugins/@ccalamos/gatsby-source-googlemaps-static/ */}
             <div>{googleLocation.lat}</div>
