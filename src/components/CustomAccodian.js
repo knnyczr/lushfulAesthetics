@@ -2,13 +2,13 @@ import React from "react";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function CustomAccordion({ question, answer, index }) {
-  console.log("hre is accordion: ", index);
+  // console.log("hre is accordion: ", index);
   return (
     <>
-      <div class="accordion-item bg-white border border-gray-200">
-        <h2 class="accordion-header mb-0" id={`accordion${index}`}>
+      <div className="accordion-item bg-white border border-gray-200">
+        <h2 className="accordion-header mb-0" id={`accordion${index}`}>
           <button
-            class="
+            className="
                 accordion-button
                 relative
                 flex
@@ -36,11 +36,13 @@ export default function CustomAccordion({ question, answer, index }) {
         </h2>
         <div
           id={`collapse${index}`}
-          class="accordion-collapse collapse show font-sans font-light"
+          className="accordion-collapse collapse show font-sans font-light"
           aria-labelledby={`accordion${index}`}
           data-bs-parent={`#accordion${index}`}
         >
-          <div class="accordion-body py-4 px-5">{renderRichText(answer)}</div>
+          <div className="accordion-body py-4 px-5">
+            {renderRichText(answer)}
+          </div>
         </div>
       </div>
     </>

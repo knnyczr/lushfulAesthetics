@@ -4,13 +4,18 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import CustomAccordion from "../components/CustomAccodian";
+import HeroImage from "../components/HeroImage";
+import Button from "../components/BookBtn";
+import ServicePrice from "../components/ServicePrice";
+import PrePostCare from "../components/PrePostCare";
 
 export default function ServicePage({ data }) {
-  console.log("here is page data in service : ", data);
+  // console.log("here is page data in service : ", data);
   const {
     serviceTitle,
     faqRef,
     pricing,
+    intro,
     heroImage,
     ourApproach,
     preCare,
@@ -28,24 +33,31 @@ export default function ServicePage({ data }) {
   });
 
   // TODO: renderRichText article: https://www.gatsbyjs.com/blog/how-to-use-the-contentful-rich-text-field-with-gatsby/
+  console.log(renderRichText(intro));
 
   return (
     <div>
       {data?.contentfulServicePage && (
         <>
-          <GatsbyImage image={dynamicImage} alt={heroImage.description} />
-          <h1>{serviceTitle}</h1>
-          <h2>{`What Is It For?`}</h2>
-          <div>{renderRichText(pricing)}</div>
-          <div>{renderRichText(ourApproach)}</div>
-          <div>{renderRichText(preCare)}</div>
-          <div>{renderRichText(postCare)}</div>
+          <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
+
+          <ServicePrice
+            ourApproach={renderRichText(ourApproach)}
+            pricing={renderRichText(pricing)}
+          />
+
+          <PrePostCare
+            preCare={renderRichText(preCare)}
+            postCare={renderRichText(postCare)}
+            heroImage={heroImage}
+          />
 
           <div>
-            <h2 class="font-serif font-extrabold text-2xl">FAQs</h2>
-            <div data-accordion="collapse" class="accordion">
+            <h2 className="font-serif font-extrabold text-2xl">FAQs</h2>
+            <div data-accordion="collapse" className="accordion">
               {faqRef.map((faq, idx) => (
                 <CustomAccordion
+                  key={idx}
                   index={idx}
                   question={faq.question}
                   answer={faq.answer}
@@ -77,6 +89,9 @@ export const pageQuery = graphql`
           raw
         }
         question
+      }
+      intro {
+        raw
       }
       ourApproach {
         raw

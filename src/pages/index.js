@@ -8,6 +8,21 @@ import Reviews from "../components/Reviews";
 import Map from "../components/Map";
 import ReviewComponent from "../components/ReviewComponent";
 
+// export function HeroImageIndex({ width, height, heroImage }) {
+//   return useContentfulImage({
+//     image: {
+//       url:
+//         heroImage.gatsbyImageData.images.sources[0].srcSet ||
+//         heroImage.gatsbyImageData.images.fallback.srcSet,
+//       width: width,
+//       height: height,
+//       quality: 100,
+//       cropFocus: "top",
+//       resizingBehavior: "fill",
+//     },
+//   });
+// }
+
 export default function IndexPage({ data }) {
   const {
     slogan,
@@ -24,7 +39,7 @@ export default function IndexPage({ data }) {
         heroImage.gatsbyImageData.images.sources[0].srcSet ||
         heroImage.gatsbyImageData.images.fallback.srcSet,
       width: 3000,
-      height: 1500,
+      height: 1000,
       quality: 100,
       cropFocus: "top",
       resizingBehavior: "fill",
