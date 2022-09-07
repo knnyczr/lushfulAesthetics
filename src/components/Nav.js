@@ -28,7 +28,7 @@ export default function Nav() {
     }
   `);
 
-  // console.log(data);
+  console.log(data);
   return (
     <div>
       <nav className="bg-white">

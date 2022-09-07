@@ -48,5 +48,15 @@ module.exports = {
       },
       __key: "images",
     },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Playfair+Display:wght@700;800`,
+          `Roboto:wght@300;400;500;700;900`,
+        ],
+        display: "swap",
+      },
+    },
   ],
 };

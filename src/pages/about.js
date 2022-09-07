@@ -7,17 +7,6 @@ export default function AboutUs({ data }) {
   const { aboutLushfulAesthetics, meetInjectorChris, heroImage } =
     data.contentfulAboutUs;
 
-  console.log(data);
-  // const dynamicImage = useContentfulImage({
-  //   image: {
-  //     url:
-  //       heroImage.gatsbyImageData.images.sources[0].srcSet ||
-  //       heroImage.gatsbyImageData.images.fallback.srcSet,
-  //     width: 2000,
-  //     height: 1000,
-  //   },
-  // });
-
   return (
     <div>
       {data.contentfulAboutUs ? (

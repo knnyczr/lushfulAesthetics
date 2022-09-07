@@ -5,6 +5,8 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import Button from "../components/BookBtn";
 import Reviews from "../components/Reviews";
+import Map from "../components/Map";
+import ReviewComponent from "../components/ReviewComponent";
 
 export default function IndexPage({ data }) {
   const {
@@ -29,7 +31,7 @@ export default function IndexPage({ data }) {
     },
   });
 
-  console.log(`Here is the address:`, renderRichText(address));
+  // console.log(`Here is the address:`, renderRichText(address));
 
   return (
     <div>
@@ -52,6 +54,8 @@ export default function IndexPage({ data }) {
       <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 bg-main-green flex flex-col items-center md:flex-row justify-center">
         <Reviews reviews={reviews} />
       </div>
+
+      {/* <ReviewComponent reviews={reviews} /> */}
 
       <div className="px-4 py-16 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center ">
         <div className=" border border-black py-8 px-3 lg:py-12 lg:px-12 flex flex-col md:flex-row">
