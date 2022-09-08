@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
+<<<<<<< HEAD
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
@@ -29,8 +30,28 @@ export default function ServicePage({ data }) {
         heroImage.gatsbyImageData.images.fallback.srcSet,
       width: 2000,
       height: 1000,
+=======
+import CustomAccordion from "../components/CustomAccodian";
+import HeroImage from "../components/HeroImage";
+import ServicePrice from "../components/ServicePrice";
+import PrePostCare from "../components/PrePostCare";
+
+import RenderRichTextComponent from "../components/RenderRichText";
+
+export default function ServicePage({ data }) {
+  const {
+    contentfulServicePage: {
+      serviceTitle,
+      faqRef,
+      pricing,
+      intro,
+      heroImage,
+      ourApproach,
+      preCare,
+      postCare,
+>>>>>>> kenny/kenny/menuEdits
     },
-  });
+  } = data;
 
   // TODO: renderRichText article: https://www.gatsbyjs.com/blog/how-to-use-the-contentful-rich-text-field-with-gatsby/
   console.log(renderRichText(intro));
@@ -42,6 +63,7 @@ export default function ServicePage({ data }) {
           <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
 
           <ServicePrice
+<<<<<<< HEAD
             ourApproach={renderRichText(ourApproach)}
             pricing={renderRichText(pricing)}
           />
@@ -49,6 +71,17 @@ export default function ServicePage({ data }) {
           <PrePostCare
             preCare={renderRichText(preCare)}
             postCare={renderRichText(postCare)}
+=======
+            ourApproach={<RenderRichTextComponent richText={ourApproach} />}
+            pricing={
+              <RenderRichTextComponent richText={pricing} string={"pricing"} />
+            }
+          />
+
+          <PrePostCare
+            preCare={<RenderRichTextComponent richText={preCare} />}
+            postCare={<RenderRichTextComponent richText={postCare} />}
+>>>>>>> kenny/kenny/menuEdits
             heroImage={heroImage}
           />
 
