@@ -16,7 +16,7 @@ export default function PrePostCare({ preCare, postCare, heroImage }) {
   });
 
   // console.log(`here is the postCare:`, postCare);
-  // console.log(`here is the postCare:`, preCare);
+  console.log(`here is the image info:`, heroImage);
 
   return (
     <>
