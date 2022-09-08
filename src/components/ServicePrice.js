@@ -5,20 +5,7 @@ import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 export default function ServicePrice({ ourApproach, pricing }) {
-  console.log("pricing: ", pricing);
-
-  // const options = {
-  //   renderMark: {
-  //     [MARKS.BOLD]: (text) => (
-  //       <p className="font-bold lg:text-lg mb-1">{text}</p>
-  //     ),
-  //   },
-  //   renderNode: {
-  //     [BLOCKS.PARAGRAPH]: (node, children) => (
-  //       <p className="font-bold">{children}</p>
-  //     ),
-  //   },
-  // };
+  // console.log("pricing: ", pricing);
 
   return (
     <>
