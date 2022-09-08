@@ -28,7 +28,7 @@ export default function Nav() {
     }
   `);
 
-  // console.log(data);
+  console.log(data);
   return (
     <div>
       <nav className="bg-white">
@@ -75,8 +75,10 @@ export default function Nav() {
                 </div>
               </div>
             </div>
-            <Button />
-            <div className="-mr-2 flex md:hidden">
+            <div className="mx-4 my-4">
+              <Button />
+            </div>
+            <div className="-mr-2 flex md:hidden z-1000">
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
@@ -133,7 +135,11 @@ export default function Nav() {
           leaveTo="opacity-0 scale-95"
         >
           {(ref) => (
-            <div className="md:hidden" id="mobile-menu">
+            <div
+              className="md:hidden"
+              id="mobile-menu"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               <div
                 ref={ref}
                 className="px-2 py-16 space-y-1 sm:px-3 bg-main-green text-center flex flex-col"
@@ -168,9 +174,10 @@ export default function Nav() {
 
                 <div>
                   <div className="flex flex-row justify-center pt-12 md:pb-16 text-white">
-                    <Link
-                      to="https://twitter.com/LushfulAesth"
+                    <a
+                      href="https://twitter.com/LushfulAesth"
                       target="_blank"
+                      rel="noreferrer"
                       className="mr-4 mb-4"
                     >
                       <svg
@@ -182,10 +189,11 @@ export default function Nav() {
                         <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                       </svg>
                       <span className="sr-only">Twitter page</span>
-                    </Link>
-                    <Link
-                      to="https://www.instagram.com/lushfulaesthetics/?hl=en"
+                    </a>
+                    <a
+                      href="https://www.instagram.com/lushfulaesthetics/?hl=en"
                       target="_blank"
+                      rel="noreferrer"
                       className="mr-4 mb-4"
                     >
                       <svg
@@ -201,14 +209,15 @@ export default function Nav() {
                         />
                       </svg>
                       <span className="sr-only">Instagram page</span>
-                    </Link>
-                    <Link
-                      to="/tiktop.com"
+                    </a>
+                    <a
+                      href="/tiktop.com"
                       target="_blank"
+                      rel="noreferrer"
                       className="text-base md:text-lg mb-4"
                     >
                       TikTok
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>
