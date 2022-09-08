@@ -23,6 +23,7 @@ export default function ServicePage({ data }) {
 
   // TODO: renderRichText article: https://www.gatsbyjs.com/blog/how-to-use-the-contentful-rich-text-field-with-gatsby/
   // console.log(renderRichText(intro));
+  console.log(ourApproach, preCare, postCare, pricing);
 
   return (
     <div>
@@ -30,18 +31,23 @@ export default function ServicePage({ data }) {
         <>
           <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
 
-          <ServicePrice
-            ourApproach={<RenderRichTextComponent richText={ourApproach} />}
-            pricing={
-              <RenderRichTextComponent richText={pricing} string={"pricing"} />
-            }
-          />
+          {ourApproach && pricing && (
+            <ServicePrice
+              ourApproach={<RenderRichTextComponent richText={ourApproach} />}
+              pricing={
+                <RenderRichTextComponent
+                  richText={pricing}
+                  string={"pricing"}
+                />
+              }
+            />
+          )}
 
-          <PrePostCare
+          {/* <PrePostCare
             preCare={<RenderRichTextComponent richText={preCare} />}
             postCare={<RenderRichTextComponent richText={postCare} />}
             heroImage={heroImage}
-          />
+          /> */}
 
           <div>
             <h2 className="font-serif font-extrabold text-2xl">FAQs</h2>

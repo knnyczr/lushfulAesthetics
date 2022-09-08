@@ -39,5 +39,5 @@ export default function RenderRichTextComponent(richText, string) {
       ),
     },
   };
-  return renderRichText(richText, options);
+  // return renderRichText(richText, options);
 }
