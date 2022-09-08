@@ -23,12 +23,14 @@ export default function Nav() {
             slug
           }
         }
-        bookNowLink
+        bookNowLinkReference {
+          bookNowLink
+        }
       }
     }
   `);
 
-  console.log(data);
+  // console.log("nav console: ", data);
   return (
     <div>
       <nav className="bg-white">

@@ -1,39 +1,27 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
-import { useContentfulImage } from "gatsby-source-contentful/hooks";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
 import CustomAccordion from "../components/CustomAccodian";
 import HeroImage from "../components/HeroImage";
-import Button from "../components/BookBtn";
 import ServicePrice from "../components/ServicePrice";
 import PrePostCare from "../components/PrePostCare";
 
-export default function ServicePage({ data }) {
-  // console.log("here is page data in service : ", data);
-  const {
-    serviceTitle,
-    faqRef,
-    pricing,
-    intro,
-    heroImage,
-    ourApproach,
-    preCare,
-    postCare,
-  } = data.contentfulServicePage;
+import RenderRichTextComponent from "../components/RenderRichText";
 
-  const dynamicImage = useContentfulImage({
-    image: {
-      url:
-        heroImage.gatsbyImageData.images.sources[0].srcSet ||
-        heroImage.gatsbyImageData.images.fallback.srcSet,
-      width: 2000,
-      height: 1000,
+export default function ServicePage({ data }) {
+  const {
+    contentfulServicePage: {
+      serviceTitle,
+      faqRef,
+      pricing,
+      intro,
+      heroImage,
+      ourApproach,
+      preCare,
+      postCare,
     },
-  });
+  } = data;
 
   // TODO: renderRichText article: https://www.gatsbyjs.com/blog/how-to-use-the-contentful-rich-text-field-with-gatsby/
-  console.log(renderRichText(intro));
 
   return (
     <div>
@@ -42,13 +30,15 @@ export default function ServicePage({ data }) {
           <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
 
           <ServicePrice
-            ourApproach={renderRichText(ourApproach)}
-            pricing={renderRichText(pricing)}
+            ourApproach={<RenderRichTextComponent richText={ourApproach} />}
+            pricing={
+              <RenderRichTextComponent richText={pricing} string={"pricing"} />
+            }
           />
 
           <PrePostCare
-            preCare={renderRichText(preCare)}
-            postCare={renderRichText(postCare)}
+            preCare={<RenderRichTextComponent richText={preCare} />}
+            postCare={<RenderRichTextComponent richText={postCare} />}
             heroImage={heroImage}
           />
 

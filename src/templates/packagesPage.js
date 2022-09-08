@@ -1,11 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
-import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function PackagesPage({ data }) {
-  console.log("here is package page data: ", data);
   const { packagePageTitle, packagesList, description, includesTheseServices } =
     data.contentfulPackagePage;
   return (
