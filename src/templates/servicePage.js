@@ -62,7 +62,9 @@ export default function ServicePage({ data }) {
     <div>
       {data?.contentfulServicePage && (
         <>
-          <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
+          {heroImage.gatsbyImageData && (
+            <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
+          )}
 
           <ServicePrice
             ourApproach={renderRichText(ourApproach, options)}
