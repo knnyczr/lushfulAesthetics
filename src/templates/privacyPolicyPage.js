@@ -1,11 +1,11 @@
 import React from "react";
+import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
-
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 
-export default function RenderRichTextComponent(richText, string) {
-  if (!richText) return;
+export default function PrivacyPolicy({ data }) {
   const website_url = "https://www.lushfulaesthetics.com/";
+
   const options = {
     renderMark: {
       [MARKS.BOLD]: (text) => (
@@ -14,13 +14,10 @@ export default function RenderRichTextComponent(richText, string) {
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p
-          className={`${
-            string && string === "pricing" ? "font-sans" : "font-serif"
-          }`}
-        >
-          {children}
-        </p>
+        <p className="font-serif">{children}</p>
+      ),
+      [BLOCKS.OL_LIST]: (node, children) => (
+        <li className="font-sans text-main-green">{children}</li>
       ),
       [INLINES.HYPERLINK]: ({ data }, children) => (
         <a
@@ -35,11 +32,31 @@ export default function RenderRichTextComponent(richText, string) {
             data.uri.startsWith(website_url) ? "" : "noopener noreferrer"
           }`}
         >
-          {console.log("-------HERE IS DATA: ", data)}
           {children}
         </a>
       ),
     },
   };
-  return renderRichText(richText, options);
+  return (
+    <>
+      {renderRichText(
+        data.allContentfulPrivacyPolicyPage.edges[0].node.content,
+        options
+      )}
+    </>
+  );
 }
+
+export const pageQuery = graphql`
+  query PrivacyPolicyQuery($pageId: String!) {
+    allContentfulPrivacyPolicyPage(limit: 1, filter: { id: { eq: $pageId } }) {
+      edges {
+        node {
+          content {
+            raw
+          }
+        }
+      }
+    }
+  }
+`;
