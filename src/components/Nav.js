@@ -39,6 +39,7 @@ export default function Nav() {
     }
   `);
 
+  // console.log("nav console: ", data);
   console.log("nav console: ", aestheticServices, bookNowLink);
   return (
     <div>

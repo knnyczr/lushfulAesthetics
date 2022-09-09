@@ -4,6 +4,8 @@ import CustomAccordion from "../components/CustomAccodian";
 import HeroImage from "../components/HeroImage";
 import ServicePrice from "../components/ServicePrice";
 import PrePostCare from "../components/PrePostCare";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 
 import RenderRichTextComponent from "../components/RenderRichText";
 
@@ -25,29 +27,53 @@ export default function ServicePage({ data }) {
   // console.log(renderRichText(intro));
   console.log(ourApproach, preCare, postCare, pricing);
 
+  const website_url = "https://www.lushfulaesthetics.com/";
+
+  const options = {
+    renderMark: {
+      [MARKS.BOLD]: (text) => (
+        <span className="font-sans font-bold lg:text-lg mb-1">{text}</span>
+      ),
+    },
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) => (
+        <p className={`${"font-serif"}`}>{children}</p>
+      ),
+      [INLINES.HYPERLINK]: ({ data }, children) => (
+        <a
+          className="underline "
+          href={data.uri ? data.uri : ""}
+          target={`${
+            data.uri.startsWith(website_url || "http://localhost:8000/")
+              ? "_self"
+              : "_blank"
+          }`}
+          rel={`${
+            data.uri.startsWith(website_url) ? "" : "noopener noreferrer"
+          }`}
+        >
+          {children}
+        </a>
+      ),
+    },
+  };
+
   return (
     <div>
       {data?.contentfulServicePage && (
         <>
           <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
 
-          {ourApproach && pricing && (
-            <ServicePrice
-              ourApproach={<RenderRichTextComponent richText={ourApproach} />}
-              pricing={
-                <RenderRichTextComponent
-                  richText={pricing}
-                  string={"pricing"}
-                />
-              }
-            />
-          )}
+          <ServicePrice
+            ourApproach={renderRichText(ourApproach, options)}
+            pricing={renderRichText(pricing, options)}
+          />
 
-          {/* <PrePostCare
-            preCare={<RenderRichTextComponent richText={preCare} />}
-            postCare={<RenderRichTextComponent richText={postCare} />}
+          <PrePostCare
+            preCare={renderRichText(preCare, options)}
+            postCare={renderRichText(postCare, options)}
             heroImage={heroImage}
-          /> */}
+          />
 
           <div>
             <h2 className="font-serif font-extrabold text-2xl">FAQs</h2>
