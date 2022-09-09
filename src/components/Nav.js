@@ -6,8 +6,15 @@ import { StaticImage } from "gatsby-plugin-image";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const data = useStaticQuery(graphql`
+  // {contentfulServiceMenu:{aestheticServices}}
+  // Data.contentfulServicesMenu.aesthticServices
+  // Data.contentfulServicesMenu.bookNOwLinkReference.bookNowLink
+  const {
+    contentfulServicesMenu: {
+      aestheticServices,
+      bookNowLinkReference: { bookNowLink },
+    },
+  } = useStaticQuery(graphql`
     query NavQuery {
       site {
         siteMetadata {
@@ -17,18 +24,22 @@ export default function Nav() {
       contentfulServicesMenu {
         aestheticServices {
           ... on ContentfulPackagePage {
+            packagePageTitle
             slug
           }
           ... on ContentfulServicePage {
+            serviceTitle
             slug
           }
         }
-        bookNowLink
+        bookNowLinkReference {
+          bookNowLink
+        }
       }
     }
   `);
 
-  console.log(data);
+  console.log("nav console: ", aestheticServices, bookNowLink);
   return (
     <div>
       <nav className="bg-white">
@@ -45,12 +56,59 @@ export default function Nav() {
             <div className="flex justify-end items-center">
               <div className="hidden md:block ">
                 <div className="ml-10 flex items-baseline space-x-4 ">
-                  <Link
+                  {/* <Link
                     to="/services"
                     className=" text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
                   >
                     Services
-                  </Link>
+                  </Link> */}
+
+                  <div className="group z-50">
+                    <button className="group-hover:text-main-green px-6 py-6 rounded-md text-base md:text-lg font-medium uppercase ">
+                      Services
+                    </button>
+                    <div className="hidden group-hover:flex flex-col absolute left-0 pl-40 p-10 w-full bg-main-green text-black duration-300">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+                        <div className="flex flex-col">
+                          <h3 className="mb-4 text-xl">Category 1</h3>
+                          <a href="#" className=" hover:text-white">
+                            Sample Link 1
+                          </a>
+                          <a href="#" className=" hover:text-white">
+                            Sample Link 2
+                          </a>
+                          <a href="#" className=" hover:text-white">
+                            Sample Link 3
+                          </a>
+                          <a href="#" className=" hover:text-white">
+                            Sample Link 4
+                          </a>
+                          <a href="#" className=" hover:text-white">
+                            Sample Link 5
+                          </a>
+                        </div>
+
+                        <div className="flex flex-col">
+                          <h3 className="mb-4 text-xl">Category 2</h3>
+                          <a href="#" className=" hover:text-white">
+                            Sample Link 1
+                          </a>
+                          <a href="#" className=" hover:text-white">
+                            Sample Link 2
+                          </a>
+                          <a href="#" className=" hover:text-white">
+                            Sample Link 3
+                          </a>
+                          <a href="#" className=" hover:text-white">
+                            Sample Link 4
+                          </a>
+                          <a href="#" className=" hover:text-white">
+                            Sample Link 5
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
                   <Link
                     to="/about"
@@ -124,7 +182,6 @@ export default function Nav() {
             </div>
           </div>
         </div>
-
         <Transition
           show={isOpen}
           enter="transition ease-out duration-100 transform"
@@ -224,6 +281,57 @@ export default function Nav() {
             </div>
           )}
         </Transition>
+        {/* TESTING HOVER DROPDOWN MENU DOWNHERE!!! */}
+        {/* <div class="relative w-screen flex justify-start items-center text-black drop-shadow-md">
+          
+          <div class="group">
+            <button class="group-hover:text-main-green px-6 py-6 rounded-md text-base md:text-lg font-medium uppercase ">
+              Services &darr;
+            </button>
+            <div class="hidden group-hover:flex flex-col absolute left-0 p-10 w-full bg-main-green text-black duration-300">
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                <div class="flex flex-col">
+                  <h3 class="mb-4 text-xl">Category 1</h3>
+                  <a href="#" class=" hover:text-white">
+                    Sample Link 1
+                  </a>
+                  <a href="#" class=" hover:text-white">
+                    Sample Link 2
+                  </a>
+                  <a href="#" class=" hover:text-white">
+                    Sample Link 3
+                  </a>
+                  <a href="#" class=" hover:text-white">
+                    Sample Link 4
+                  </a>
+                  <a href="#" class=" hover:text-white">
+                    Sample Link 5
+                  </a>
+                </div>
+
+                <div class="flex flex-col">
+                  <h3 class="mb-4 text-xl">Category 2</h3>
+                  <a href="#" class=" hover:text-white">
+                    Sample Link 1
+                  </a>
+                  <a href="#" class=" hover:text-white">
+                    Sample Link 2
+                  </a>
+                  <a href="#" class=" hover:text-white">
+                    Sample Link 3
+                  </a>
+                  <a href="#" class=" hover:text-white">
+                    Sample Link 4
+                  </a>
+                  <a href="#" class=" hover:text-white">
+                    Sample Link 5
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div> */}
       </nav>
     </div>
   );
