@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import Button from "./BookBtn";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
 import Logo from "../images/logo-sm.svg";
+import _ from "lodash";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   // {contentfulServiceMenu:{aestheticServices}}
   // Data.contentfulServicesMenu.aesthticServices
   // Data.contentfulServicesMenu.bookNOwLinkReference.bookNowLink
-  console.log(Logo);
   const {
     contentfulServicesMenu: {
       aestheticServices,
+      sexualEnhancementServices,
       bookNowLinkReference: { bookNowLink },
+      slugDictionaries,
     },
   } = useStaticQuery(graphql`
     query NavQuery {
@@ -34,15 +36,105 @@ export default function Nav() {
             slug
           }
         }
+        sexualEnhancementServices {
+          serviceTitle
+          slug
+        }
         bookNowLinkReference {
           bookNowLink
+        }
+        slugDictionaries {
+          slugTitle
+          slug
         }
       }
     }
   `);
 
-  // console.log("nav console: ", data);
-  console.log("nav console: ", aestheticServices, bookNowLink);
+  useEffect(() => {
+    console.log(
+      "here is services in the useeffect",
+      aestheticServices,
+      // sexualEnhancementServices,
+      slugDictionaries
+    );
+    let nestedServices = [];
+    // prettier-ignore
+    {
+      // [
+        // { 
+          // name: 'Aesthetic Services'
+          // slug: aesthetic-services
+          // children: [
+            // { name: 'Facial Treatments, slug: 'facial-treatments', children: [{name: 'Botox', slug: 'botox'}, {name: 'Chemical Peels', slug: 'chemical-peels'}] } 
+            // { name: 'Body Treatments', slug: 'body-treatments', children: [{...}] }
+            // ]
+          // }, 
+        // {
+            // name: 'Sexual Enhancement Services'
+            // slug: 'sexual-enhancement-services'
+            // children: [{...}]
+        // }
+      // ]
+    }
+    console.log(aestheticServices);
+    let result = aestheticServices.map((service) => {
+      let arrays = service.slug.split("/");
+      console.log(arrays);
+
+      return _.reverse(arrays).reduce((obj, current) => {
+        console.log("here is current: ", current);
+        console.log("here is obj: ", obj);
+        obj = {
+          name:
+            typeof _.find(
+              slugDictionaries,
+              (slugDictionary) => slugDictionary.slug == current
+            ) === "object"
+              ? _.find(
+                  slugDictionaries,
+                  (slugDictionary) => slugDictionary.slug == current
+                ).slugTitle
+              : _.find(
+                  slugDictionaries,
+                  (slugDictionary) => slugDictionary.slug == current
+                ) ||
+                service.serviceTitle ||
+                service.packagePageTitle,
+          slug: current,
+          children: [obj],
+        };
+        return obj;
+      }, nestedServices);
+    });
+
+    console.log(result);
+    // prettier-ignore
+    {
+      // create function(arr, current)
+        // arr.length
+        // if we're at the end of the array: we have no children, add the object with the name and slug to the object
+        // else we have children: 
+          // use the first thing in the array to check the nestedServices array
+  
+      // create function(splitArray, current, [usedKey, usedKey])
+        // if current === usedKeyArray[.length - 1]: return; 
+        // else {
+            // let currentSlugObjectWithName = _.find(slugDictionaries, (slugDictionary) => slugDictionary.slug === current)
+            // for(let i = 0; i < splitArray.length - 1; i++){
+            
+            // }
+        // }
+  
+      // aestheticServices.forEach((service) => {
+      //   let serviceSplitSlug = service.slug.split("/");
+      //   console.log(nestedServices);
+      // });
+    }
+
+    return () => {};
+  }, []);
+
   return (
     <div>
       <nav className="bg-white">
