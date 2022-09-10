@@ -8,9 +8,8 @@ import _ from "lodash";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  // {contentfulServiceMenu:{aestheticServices}}
-  // Data.contentfulServicesMenu.aesthticServices
-  // Data.contentfulServicesMenu.bookNOwLinkReference.bookNowLink
+  const [menuItems, setMenuItems] = useState(null);
+
   const {
     contentfulServicesMenu: {
       aestheticServices,
@@ -52,13 +51,12 @@ export default function Nav() {
   `);
 
   useEffect(() => {
-    console.log(
-      "here is services in the useeffect",
-      aestheticServices,
-      // sexualEnhancementServices,
-      slugDictionaries
-    );
-    let nestedServices = [];
+    // console.log(
+    //   "here is services in the useeffect",
+    //   aestheticServices,
+    //   sexualEnhancementServices,
+    //   slugDictionaries
+    // );
     // prettier-ignore
     {
       // [
@@ -66,7 +64,7 @@ export default function Nav() {
           // name: 'Aesthetic Services'
           // slug: aesthetic-services
           // children: [
-            // { name: 'Facial Treatments, slug: 'facial-treatments', children: [{name: 'Botox', slug: 'botox'}, {name: 'Chemical Peels', slug: 'chemical-peels'}] } 
+            // { name: 'Facial Treatments, slug: 'facial-treatments', children: [{name: 'Botox', slug: 'botox'}] } 
             // { name: 'Body Treatments', slug: 'body-treatments', children: [{...}] }
             // ]
           // }, 
@@ -77,64 +75,66 @@ export default function Nav() {
         // }
       // ]
     }
-    console.log(aestheticServices);
-    let result = aestheticServices.map((service) => {
-      let arrays = service.slug.split("/");
-      console.log(arrays);
 
-      return _.reverse(arrays).reduce((obj, current) => {
-        console.log("here is current: ", current);
-        console.log("here is obj: ", obj);
-        obj = {
-          name:
-            typeof _.find(
-              slugDictionaries,
-              (slugDictionary) => slugDictionary.slug == current
-            ) === "object"
-              ? _.find(
-                  slugDictionaries,
-                  (slugDictionary) => slugDictionary.slug == current
-                ).slugTitle
-              : _.find(
-                  slugDictionaries,
-                  (slugDictionary) => slugDictionary.slug == current
-                ) ||
-                service.serviceTitle ||
-                service.packagePageTitle,
-          slug: current,
-          children: [obj],
-        };
-        return obj;
-      }, nestedServices);
-    });
-
-    console.log(result);
-    // prettier-ignore
-    {
-      // create function(arr, current)
-        // arr.length
-        // if we're at the end of the array: we have no children, add the object with the name and slug to the object
-        // else we have children: 
-          // use the first thing in the array to check the nestedServices array
-  
-      // create function(splitArray, current, [usedKey, usedKey])
-        // if current === usedKeyArray[.length - 1]: return; 
-        // else {
-            // let currentSlugObjectWithName = _.find(slugDictionaries, (slugDictionary) => slugDictionary.slug === current)
-            // for(let i = 0; i < splitArray.length - 1; i++){
-            
-            // }
-        // }
-  
-      // aestheticServices.forEach((service) => {
-      //   let serviceSplitSlug = service.slug.split("/");
-      //   console.log(nestedServices);
-      // });
+    class Node {
+      constructor(slug, title) {
+        this.slug = slug;
+        this.title = title;
+        this.children = [];
+      }
     }
 
-    return () => {};
+    class ServicesTree {
+      constructor() {
+        this.slug = "services";
+        this.title = "Services";
+        this.children = [];
+      }
+      get completeMenu() {
+        return this.children;
+      }
+      add(arr, service) {
+        let count = 0;
+        while (count < arr.length) {
+          let current = this;
+          for (let i = 0; i < arr.length; i++) {
+            let found = current.children.find((node) => node.slug === arr[i]);
+
+            if (!found) {
+              let slugDictionary = slugDictionaries.find(
+                (definition) => definition.slug === arr[i]
+              )?.slugTitle;
+              if (!slugDictionary) {
+                slugDictionary =
+                  service.serviceTitle || service.packagePageTitle;
+              }
+              let newNode = new Node(arr[i], slugDictionary);
+              current.children.push(newNode);
+              current = newNode;
+            } else {
+              current = found;
+            }
+
+            count++;
+          }
+        }
+      }
+    }
+
+    let menuTree = new ServicesTree();
+
+    aestheticServices
+      .map((service) => service.slug.split("/"))
+      .forEach((arr, i) => menuTree.add(arr, aestheticServices[i]));
+
+    sexualEnhancementServices
+      .map((service) => service.slug.split("/"))
+      .forEach((arr, i) => menuTree.add(arr, sexualEnhancementServices[i]));
+
+    setMenuItems(menuTree);
   }, []);
 
+  console.log(menuItems);
   return (
     <div>
       <nav className="bg-white">
