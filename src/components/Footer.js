@@ -62,7 +62,7 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-col ">
                   <Link
-                    to={`${generalFaq.slug}`}
+                    to={`/${generalFaq.slug}/`}
                     className="hover:underline mr-4 mb-4 "
                   >
                     FAQs
@@ -144,8 +144,21 @@ export default function Footer() {
               <Link to={`${hipaaPolicy.slug}`}>HIPAA Policy</Link>
             </span>
           </div>
+
           <span>
             © 2022 Lushful Aesthetics by InjectorChris. All rights reserved.
+          </span>
+        </div>
+        <div className="flex flex-col justify-center md:flex-row">
+          <span>
+            {`Designed and Built by `}{" "}
+            <a className="underline" href="https://knnyczr.com/">
+              Kenny Cruz
+            </a>
+            {` & `}{" "}
+            <a className="underline" href="https://yusong.space/">
+              Yusong Shi
+            </a>
           </span>
         </div>
       </div>

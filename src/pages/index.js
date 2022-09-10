@@ -1,6 +1,6 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import Button from "../components/BookBtn";
@@ -33,25 +33,31 @@ export default function IndexPage({ data }) {
     heroImage,
   } = data.contentfulHomePage;
 
-  const dynamicImage = useContentfulImage({
-    image: {
-      url:
-        heroImage.gatsbyImageData.images.sources[0].srcSet ||
-        heroImage.gatsbyImageData.images.fallback.srcSet,
-      width: 3000,
-      height: 1000,
-      quality: 100,
-      cropFocus: "top",
-      resizingBehavior: "fill",
-    },
-  });
+  // const dynamicImage = useContentfulImage({
+  //   image: {
+  //     url:
+  //       heroImage.gatsbyImageData.images.sources[0].srcSet ||
+  //       heroImage.gatsbyImageData.images.fallback.srcSet,
+  //     width: 3000,
+  //     height: 1000,
+  //     quality: 100,
+  //     cropFocus: "top",
+  //     resizingBehavior: "fill",
+  //   },
+  // });
+
+  const image = getImage(heroImage);
 
   // console.log(`Here is the address:`, renderRichText(address));
 
   return (
     <div>
       <div className="relative w-screen h-auto">
-        <GatsbyImage image={dynamicImage} alt={`heroImage.description`} />
+        <GatsbyImage
+          className="shrink w-full sm:h-3/4 md:h-1/2"
+          image={image}
+          alt={`${heroImage.description}`}
+        />
         <div className="absolute bottom-10 left-4 md:top-40 md:left-12 lg:top-60 lg:left-24">
           <h1 className="font-serif font-bold text-white text-lg md:text-2xl lg:text-4xl my-6">
             {slogan}
@@ -108,7 +114,7 @@ export const query = graphql`
       slogan
       visionStatement
       heroImage {
-        gatsbyImageData(layout: FULL_WIDTH)
+        gatsbyImageData(layout: CONSTRAINED, quality: 100)
       }
       address {
         raw

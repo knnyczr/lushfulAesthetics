@@ -41,6 +41,12 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
+      resolve: "gatsby-plugin-layout",
+      options: {
+        component: require.resolve(`./src/components/Layout.js`),
+      },
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
@@ -56,6 +62,14 @@ module.exports = {
           `Roboto:wght@300;400;500;700;900`,
         ],
         display: "swap",
+      },
+    },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /images/,
+        },
       },
     },
   ],
