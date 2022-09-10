@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import Button from "./BookBtn";
 import { useStaticQuery, graphql, Link } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
+import Logo from "../images/logo-sm.svg";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   // {contentfulServiceMenu:{aestheticServices}}
   // Data.contentfulServicesMenu.aesthticServices
   // Data.contentfulServicesMenu.bookNOwLinkReference.bookNowLink
+  console.log(Logo);
   const {
     contentfulServicesMenu: {
       aestheticServices,
@@ -45,14 +47,12 @@ export default function Nav() {
     <div>
       <nav className="bg-white">
         <div className="flex justify-between px-4 py-4 sm:px-6 d:px-12 lg:px-24">
-          <div className="flex-shrink-0">
+          <div className="w-20">
             <Link to="/">
-              <StaticImage
-                src="../images/logo-sm.png"
-                alt="Lushful Aesthetics Logo"
-              ></StaticImage>
+              <Logo />
             </Link>
           </div>
+
           <div className="flex items-center justify-end h-16">
             <div className="flex justify-end items-center">
               <div className="hidden md:block ">

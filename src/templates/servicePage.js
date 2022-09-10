@@ -7,7 +7,7 @@ import PrePostCare from "../components/PrePostCare";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 
-import RenderRichTextComponent from "../components/RenderRichText";
+// import RenderRichTextComponent from "../components/RenderRichText";
 
 export default function ServicePage({ data }) {
   const {
@@ -25,7 +25,6 @@ export default function ServicePage({ data }) {
 
   // TODO: renderRichText article: https://www.gatsbyjs.com/blog/how-to-use-the-contentful-rich-text-field-with-gatsby/
   // console.log(renderRichText(intro));
-  console.log(ourApproach, preCare, postCare, pricing);
 
   const website_url = "https://www.lushfulaesthetics.com/";
 
@@ -106,7 +105,7 @@ export const pageQuery = graphql`
     contentfulServicePage(id: { eq: $servicePageId }) {
       slug
       heroImage {
-        gatsbyImageData(layout: FULL_WIDTH)
+        gatsbyImageData(layout: CONSTRAINED, quality: 100)
         description
       }
       faqRef {
