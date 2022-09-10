@@ -13,11 +13,22 @@ export default function PrivacyPolicy({ data }) {
       ),
     },
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className="font-serif">{children}</p>
+      [BLOCKS.DOCUMENT]: (node, children) => (
+        <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-8 xl:py-12">
+          {children}
+        </div>
       ),
-      [BLOCKS.OL_LIST]: (node, children) => (
-        <li className="font-sans text-main-green">{children}</li>
+      [BLOCKS.HEADING_1]: (node, children) => (
+        <h1 className="font-serif font-bold text-3xl mb-6">{children}</h1>
+      ),
+      [BLOCKS.HEADING_5]: (node, children) => (
+        <h5 className="font-sans font-bold text-lg my-4">{children}</h5>
+      ),
+      [BLOCKS.PARAGRAPH]: (node, children) => (
+        <p className="font-serif py-2">{children}</p>
+      ),
+      [BLOCKS.LIST_ITEM]: (node, children) => (
+        <li className="font-sans list-none px-8">{children}</li>
       ),
       [INLINES.HYPERLINK]: ({ data }, children) => (
         <a
