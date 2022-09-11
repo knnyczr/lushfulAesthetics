@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import Button from "./BookBtn";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
 import Logo from "../images/logo-sm.svg";
+import _ from "lodash";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  // {contentfulServiceMenu:{aestheticServices}}
-  // Data.contentfulServicesMenu.aesthticServices
-  // Data.contentfulServicesMenu.bookNOwLinkReference.bookNowLink
-  console.log(Logo);
+  const [menuItems, setMenuItems] = useState(null);
+
   const {
     contentfulServicesMenu: {
       aestheticServices,
+      sexualEnhancementServices,
       bookNowLinkReference: { bookNowLink },
+      slugDictionaries,
     },
   } = useStaticQuery(graphql`
     query NavQuery {
@@ -34,15 +35,106 @@ export default function Nav() {
             slug
           }
         }
+        sexualEnhancementServices {
+          serviceTitle
+          slug
+        }
         bookNowLinkReference {
           bookNowLink
+        }
+        slugDictionaries {
+          slugTitle
+          slug
         }
       }
     }
   `);
 
-  // console.log("nav console: ", data);
-  console.log("nav console: ", aestheticServices, bookNowLink);
+  useEffect(() => {
+    // console.log(
+    //   "here is services in the useeffect",
+    //   aestheticServices,
+    //   sexualEnhancementServices,
+    //   slugDictionaries
+    // );
+    // prettier-ignore
+    {
+      // [
+        // { 
+          // name: 'Aesthetic Services'
+          // slug: aesthetic-services
+          // children: [
+            // { name: 'Facial Treatments, slug: 'facial-treatments', children: [{name: 'Botox', slug: 'botox'}] } 
+            // { name: 'Body Treatments', slug: 'body-treatments', children: [{...}] }
+            // ]
+          // }, 
+        // {
+            // name: 'Sexual Enhancement Services'
+            // slug: 'sexual-enhancement-services'
+            // children: [{...}]
+        // }
+      // ]
+    }
+
+    class Node {
+      constructor(slug, title) {
+        this.slug = slug;
+        this.title = title;
+        this.children = [];
+      }
+    }
+
+    class ServicesTree {
+      constructor() {
+        this.slug = "services";
+        this.title = "Services";
+        this.children = [];
+      }
+      get completeMenu() {
+        return this.children;
+      }
+      add(arr, service) {
+        let count = 0;
+        while (count < arr.length) {
+          let current = this;
+          for (let i = 0; i < arr.length; i++) {
+            let found = current.children.find((node) => node.slug === arr[i]);
+
+            if (!found) {
+              let slugDictionary = slugDictionaries.find(
+                (definition) => definition.slug === arr[i]
+              )?.slugTitle;
+              if (!slugDictionary) {
+                slugDictionary =
+                  service.serviceTitle || service.packagePageTitle;
+              }
+              let newNode = new Node(arr[i], slugDictionary);
+              current.children.push(newNode);
+              current = newNode;
+            } else {
+              current = found;
+            }
+
+            count++;
+          }
+        }
+      }
+    }
+
+    let menuTree = new ServicesTree();
+
+    aestheticServices
+      .map((service) => service.slug.split("/"))
+      .forEach((arr, i) => menuTree.add(arr, aestheticServices[i]));
+
+    sexualEnhancementServices
+      .map((service) => service.slug.split("/"))
+      .forEach((arr, i) => menuTree.add(arr, sexualEnhancementServices[i]));
+
+    setMenuItems(menuTree);
+  }, []);
+
+  console.log(menuItems);
   return (
     <div>
       <nav className="bg-white">
