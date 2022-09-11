@@ -138,10 +138,10 @@ export default function Footer() {
         <div className="flex flex-col justify-center text-sm md:text-base md:flex-row pb-8 md:pb-2">
           <div className="py-4 md:py-0">
             <span className="mr-4">
-              <Link to={`${privacyPolicy.slug}`}>Privacy Policy</Link>
+              <Link to={`/${privacyPolicy.slug}`}>Privacy Policy</Link>
             </span>
             <span className="mr-4">
-              <Link to={`${hipaaPolicy.slug}`}>HIPAA Policy</Link>
+              <Link to={`/${hipaaPolicy.slug}`}>HIPAA Policy</Link>
             </span>
           </div>
 

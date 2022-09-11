@@ -7,8 +7,6 @@ import PrePostCare from "../components/PrePostCare";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 
-// import RenderRichTextComponent from "../components/RenderRichText";
-
 export default function ServicePage({ data }) {
   const {
     contentfulServicePage: {
@@ -65,10 +63,12 @@ export default function ServicePage({ data }) {
             <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
           )}
 
-          <ServicePrice
-            ourApproach={renderRichText(ourApproach, options)}
-            pricing={renderRichText(pricing, options)}
-          />
+          {ourApproach && (
+            <ServicePrice
+              ourApproach={renderRichText(ourApproach, options)}
+              pricing={renderRichText(pricing, options)}
+            />
+          )}
 
           <PrePostCare
             preCare={renderRichText(preCare, options)}
@@ -79,7 +79,7 @@ export default function ServicePage({ data }) {
           <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
             <div className="mt-4 px-4  sm:px-6 lg:px-24 ">
               <h2 className="container font-serif font-bold text-3xl">FAQs</h2>
-              <hr className="container my-6 border-black " />
+              {/* <hr className="container my-6 border-black " /> */}
 
               {faqRef.map((faq, idx) => (
                 <CustomAccordion
@@ -107,7 +107,7 @@ export const pageQuery = graphql`
     contentfulServicePage(id: { eq: $servicePageId }) {
       slug
       heroImage {
-        gatsbyImageData(layout: CONSTRAINED, quality: 100)
+        gatsbyImageData(layout: CONSTRAINED, quality: 90)
         description
       }
       faqRef {
