@@ -7,19 +7,6 @@ export default function PrePostCare({ preCare, postCare, heroImage }) {
   const [pre, setPre] = useState(false);
   let image = getImage(heroImage);
 
-  // const dynamicImage = useContentfulImage({
-  //   image: {
-  //     url:
-  //       heroImage.gatsbyImageData.images.sources[0].srcSet ||
-  //       heroImage.gatsbyImageData.images.fallback.srcSet,
-  //     width: 1000,
-  //     height: 1000,
-  //   },
-  // });
-
-  // console.log(`here is the postCare:`, postCare);
-  // console.log(`here is the image info:`, heroImage);
-
   return (
     <>
       <div className="flex flex-col md:flex-row justify-between items-center bg-main-green">
@@ -29,8 +16,8 @@ export default function PrePostCare({ preCare, postCare, heroImage }) {
               onClick={() => setPre(!pre)}
               className={
                 pre
-                  ? "hover:text-main-green-shade text-3xl font-serif font-bold"
-                  : "text-white hover:text-main-green-shade text-3xl font-serif font-bold"
+                  ? "hover:cursor-pointer hover:text-main-green-shade text-3xl font-serif font-bold"
+                  : "hover:cursor-pointer text-white hover:text-main-green-shade text-3xl font-serif font-bold"
               }
             >
               PreCare {``}
@@ -39,8 +26,8 @@ export default function PrePostCare({ preCare, postCare, heroImage }) {
               onClick={() => setPre(!pre)}
               className={
                 pre
-                  ? "hover:text-main-green-shade text-3xl font-serif font-bold text-white"
-                  : "hover:text-main-green-shade text-3xl font-serif font-bold"
+                  ? "hover:cursor-pointer hover:text-main-green-shade text-3xl font-serif font-bold text-white"
+                  : "hover:cursor-pointer hover:text-main-green-shade text-3xl font-serif font-bold"
               }
             >
               PostCare

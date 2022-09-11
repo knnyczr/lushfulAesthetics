@@ -51,31 +51,6 @@ export default function Nav() {
   `);
 
   useEffect(() => {
-    // console.log(
-    //   "here is services in the useeffect",
-    //   aestheticServices,
-    //   sexualEnhancementServices,
-    //   slugDictionaries
-    // );
-    // prettier-ignore
-    {
-      // [
-        // { 
-          // name: 'Aesthetic Services'
-          // slug: aesthetic-services
-          // children: [
-            // { name: 'Facial Treatments, slug: 'facial-treatments', children: [{name: 'Botox', slug: 'botox'}] } 
-            // { name: 'Body Treatments', slug: 'body-treatments', children: [{...}] }
-            // ]
-          // }, 
-        // {
-            // name: 'Sexual Enhancement Services'
-            // slug: 'sexual-enhancement-services'
-            // children: [{...}]
-        // }
-      // ]
-    }
-
     class Node {
       constructor(slug, title) {
         this.slug = slug;
@@ -149,20 +124,80 @@ export default function Nav() {
             <div className="flex justify-end items-center">
               <div className="hidden md:block ">
                 <div className="ml-10 flex items-baseline space-x-4 ">
-                  {/* <Link
-                    to="/services"
-                    className=" text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
-                  >
-                    Services
-                  </Link> */}
-
                   <div className="group z-50">
                     <button className="group-hover:text-main-green px-6 py-6 rounded-md text-base md:text-lg font-medium uppercase ">
                       Services
                     </button>
                     <div className="hidden group-hover:flex flex-col absolute left-0 pl-40 p-10 w-full bg-main-green text-black duration-300">
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-                        <div className="flex flex-col">
+                        {menuItems &&
+                          menuItems.children.map((service) => {
+                            return (
+                              <div className="flex flex-col" key={service.slug}>
+                                <h3 className="mb-4 text-xl">
+                                  {service.title}
+                                </h3>
+                                {service.children.map((serviceCategory) => (
+                                  <>
+                                    {serviceCategory.children.length ? (
+                                      <>
+                                        <h4
+                                          className="mb-4 text-lg"
+                                          key={`${serviceCategory.slug}`}
+                                        >
+                                          {serviceCategory.title}
+                                        </h4>
+                                        {serviceCategory.children.map(
+                                          (serviceSubCategory) => (
+                                            <>
+                                              {serviceSubCategory.children
+                                                .length ? (
+                                                <>
+                                                  <h5
+                                                    className="mb-4 text-lg"
+                                                    key={`${serviceSubCategory.slug}`}
+                                                  >
+                                                    {serviceSubCategory.title}
+                                                  </h5>
+                                                  {serviceSubCategory.children.map(
+                                                    (lowestservice) => (
+                                                      <Link
+                                                        to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestservice.slug}`}
+                                                        className="hover:text-white"
+                                                      >
+                                                        {
+                                                          serviceSubCategory.title
+                                                        }
+                                                      </Link>
+                                                    )
+                                                  )}
+                                                </>
+                                              ) : (
+                                                <Link
+                                                  to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}`}
+                                                  className="hover:text-white"
+                                                >
+                                                  {serviceSubCategory.title}
+                                                </Link>
+                                              )}
+                                            </>
+                                          )
+                                        )}
+                                      </>
+                                    ) : (
+                                      <Link
+                                        to={`/${service.slug}/${serviceCategory.slug}`}
+                                        className="hover:text-white"
+                                      >
+                                        {serviceCategory.title}
+                                      </Link>
+                                    )}
+                                  </>
+                                ))}
+                              </div>
+                            );
+                          })}
+                        {/* <div className="flex flex-col">
                           <h3 className="mb-4 text-xl">Category 1</h3>
                           <a href="#" className=" hover:text-white">
                             Sample Link 1
@@ -179,26 +214,7 @@ export default function Nav() {
                           <a href="#" className=" hover:text-white">
                             Sample Link 5
                           </a>
-                        </div>
-
-                        <div className="flex flex-col">
-                          <h3 className="mb-4 text-xl">Category 2</h3>
-                          <a href="#" className=" hover:text-white">
-                            Sample Link 1
-                          </a>
-                          <a href="#" className=" hover:text-white">
-                            Sample Link 2
-                          </a>
-                          <a href="#" className=" hover:text-white">
-                            Sample Link 3
-                          </a>
-                          <a href="#" className=" hover:text-white">
-                            Sample Link 4
-                          </a>
-                          <a href="#" className=" hover:text-white">
-                            Sample Link 5
-                          </a>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
