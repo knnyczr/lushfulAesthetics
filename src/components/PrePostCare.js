@@ -1,22 +1,24 @@
 import React from "react";
 import { useState } from "react";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 
 export default function PrePostCare({ preCare, postCare, heroImage }) {
   const [pre, setPre] = useState(false);
-  const dynamicImage = useContentfulImage({
-    image: {
-      url:
-        heroImage.gatsbyImageData.images.sources[0].srcSet ||
-        heroImage.gatsbyImageData.images.fallback.srcSet,
-      width: 1000,
-      height: 1000,
-    },
-  });
+  let image = getImage(heroImage);
+
+  // const dynamicImage = useContentfulImage({
+  //   image: {
+  //     url:
+  //       heroImage.gatsbyImageData.images.sources[0].srcSet ||
+  //       heroImage.gatsbyImageData.images.fallback.srcSet,
+  //     width: 1000,
+  //     height: 1000,
+  //   },
+  // });
 
   // console.log(`here is the postCare:`, postCare);
-  console.log(`here is the image info:`, heroImage);
+  // console.log(`here is the image info:`, heroImage);
 
   return (
     <>
@@ -63,7 +65,7 @@ export default function PrePostCare({ preCare, postCare, heroImage }) {
         </div>
 
         <div className="lg:w-5/12 hidden lg:flex lg:justify-end overflow-hidden max-h-96">
-          <GatsbyImage image={dynamicImage} alt={`styling image`} />
+          <GatsbyImage image={image} alt={`styling image`} />
         </div>
       </div>
     </>
