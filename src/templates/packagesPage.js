@@ -1,24 +1,31 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
+import Package from "../components/Package";
+import Button from "../components/BookBtn";
 
 export default function PackagesPage({ data }) {
+  console.log(data);
   const { packagePageTitle, packagesList, description, includesTheseServices } =
     data.contentfulPackagePage;
   return (
     <>
-      <h1>{packagePageTitle}</h1>
-      {packagesList.length &&
-        packagesList.map((packageCard) => (
-          <>
-            <hr></hr>
-            <div>{packageCard.packageTitle}</div>
-            <div>{packageCard.packagePrice}</div>
-            <div>{renderRichText(packageCard.description)}</div>
-            <div>{renderRichText(packageCard.includesTheseServices)}</div>
-            <hr></hr>
-          </>
-        ))}
+      <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 m-auto p-auto">
+        <h1 className="font-serif text-2xl lg:text-3xl font-bold mb-6 text-center ">
+          {packagePageTitle}
+        </h1>
+        <div className="py-10">
+          {packagesList.length &&
+            packagesList.map((packageCard, idx) => (
+              <div key={idx}>
+                <Package packageCard={packageCard} />
+              </div>
+            ))}
+        </div>
+        <div className="flex justify-center">
+          <Button />
+        </div>
+      </div>
     </>
   );
 }

@@ -28,7 +28,10 @@ module.exports = {
         "main-green": "#848260",
         "main-green-shade": "#434232",
       },
+      aspectRatio: {
+        "3/4": "3 / 4",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

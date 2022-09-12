@@ -39,14 +39,16 @@ export default function PrePostCare({ preCare, postCare, heroImage }) {
               <div className="my-12 text-white">
                 {preCare[0].props.children.map((precare, idx) => {
                   return (
-                    <div className="my-4" key={idx}>
+                    <div className="my-4 font-serif text-sm" key={idx}>
                       {precare.props.children[0].props.children[0]}
                     </div>
                   );
                 })}
               </div>
             ) : (
-              <div className="my-8 text-white leading-8">{postCare}</div>
+              <div className="my-4 text-white text-sm leading-6">
+                {postCare}
+              </div>
             )}
           </div>
         </div>
