@@ -72,8 +72,10 @@ export default function IndexPage({ data }) {
         </div>
       </div>
 
-      <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 bg-main-green flex flex-col items-center md:flex-row justify-center">
-        <Reviews reviews={reviews} />
+      <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 bg-main-green">
+        <div className="grid grid-flow-col auto-cols-min overflow-x-auto ">
+          <Reviews reviews={reviews} />
+        </div>
       </div>
 
       {/* <ReviewComponent reviews={reviews} /> */}
