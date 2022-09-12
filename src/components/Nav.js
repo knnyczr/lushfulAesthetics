@@ -36,8 +36,14 @@ export default function Nav() {
           }
         }
         sexualEnhancementServices {
-          serviceTitle
-          slug
+          ... on ContentfulPackagePage {
+            slug
+            packagePageTitle
+          }
+          ... on ContentfulServicePage {
+            slug
+            serviceTitle
+          }
         }
         bookNowLinkReference {
           bookNowLink
@@ -166,9 +172,7 @@ export default function Nav() {
                                                         to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestservice.slug}`}
                                                         className="hover:text-white ml-12 "
                                                       >
-                                                        {
-                                                          serviceSubCategory.title
-                                                        }
+                                                        {lowestservice.title}
                                                       </Link>
                                                     )
                                                   )}
