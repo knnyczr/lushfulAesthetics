@@ -163,8 +163,7 @@ export default function Nav() {
                                                     className="ml-6 font-bold "
                                                     key={`${serviceSubCategory.slug}`}
                                                   >
-                                                    {`Fillers`}
-                                                    {/* {serviceSubCategory.title} */}
+                                                    {serviceSubCategory.title}
                                                   </h5>
                                                   {serviceSubCategory.children.map(
                                                     (lowestservice) => (
