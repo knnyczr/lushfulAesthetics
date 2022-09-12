@@ -172,9 +172,7 @@ export default function Nav() {
                                                         to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestservice.slug}`}
                                                         className="hover:text-white ml-12 "
                                                       >
-                                                        {
-                                                          serviceSubCategory.title
-                                                        }
+                                                        {lowestservice.title}
                                                       </Link>
                                                     )
                                                   )}
