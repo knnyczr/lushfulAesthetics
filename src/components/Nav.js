@@ -36,8 +36,14 @@ export default function Nav() {
           }
         }
         sexualEnhancementServices {
-          serviceTitle
-          slug
+          ... on ContentfulPackagePage {
+            slug
+            packagePageTitle
+          }
+          ... on ContentfulServicePage {
+            slug
+            serviceTitle
+          }
         }
         bookNowLinkReference {
           bookNowLink
