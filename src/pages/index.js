@@ -1,6 +1,6 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import Button from "../components/BookBtn";
@@ -52,7 +52,7 @@ export default function IndexPage({ data }) {
 
   return (
     <div>
-      <div className="relative w-screen h-auto">
+      <div className="relative w-full h-auto">
         <GatsbyImage
           className="shrink w-full sm:h-3/4 md:h-1/2"
           image={image}
@@ -73,20 +73,29 @@ export default function IndexPage({ data }) {
       </div>
 
       <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 bg-main-green">
-        <div className="grid grid-flow-col auto-cols-min overflow-x-auto ">
-          <Reviews reviews={reviews} />
-        </div>
+        <Reviews reviews={reviews} />
       </div>
 
       {/* <ReviewComponent reviews={reviews} /> */}
 
       <div className="px-4 py-16 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center ">
-        <div className=" border border-black py-8 px-3 lg:py-12 lg:px-12 flex flex-col md:flex-row">
-          <div className="mx-10 w-60 max-w-md h-60 bg-slate-500">
-            This is the map
+        <div className=" border border-black py-8 px-3 lg:py-12 lg:px-12 flex justify-center items-center flex-col md:flex-row">
+          <div className="mx-10 w-60 max-w-md h-60 flex justify-center items-center">
+            <a
+              href="https://goo.gl/maps/3mpJJytXMqn581Yw9"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <StaticImage src="../images/Lushful_address.png" width={600} />
+            </a>
+            {/* <img
+              className="rounded-lg"
+              src="https://flowbite.com/docs/images/blog/image-1.jpg"
+              alt=""
+            /> */}
             {/* https://www.gatsbyjs.com/plugins/@ccalamos/gatsby-source-googlemaps-static/ */}
-            <div>{googleLocation.lat}</div>
-            <div>{googleLocation.lon}</div>
+            {/* <div>{googleLocation.lat}</div>
+            <div>{googleLocation.lon}</div> */}
           </div>
 
           <div className="flex flex-col justify-center">
