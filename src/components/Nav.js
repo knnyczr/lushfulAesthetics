@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import Button from "./BookBtn";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
 import Logo from "../images/logo-sm.svg";
+import _ from "lodash";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  // {contentfulServiceMenu:{aestheticServices}}
-  // Data.contentfulServicesMenu.aesthticServices
-  // Data.contentfulServicesMenu.bookNOwLinkReference.bookNowLink
-  console.log(Logo);
+  const [menuItems, setMenuItems] = useState(null);
+
   const {
     contentfulServicesMenu: {
       aestheticServices,
+      sexualEnhancementServices,
       bookNowLinkReference: { bookNowLink },
+      slugDictionaries,
     },
   } = useStaticQuery(graphql`
     query NavQuery {
@@ -34,15 +35,81 @@ export default function Nav() {
             slug
           }
         }
+        sexualEnhancementServices {
+          serviceTitle
+          slug
+        }
         bookNowLinkReference {
           bookNowLink
+        }
+        slugDictionaries {
+          slugTitle
+          slug
         }
       }
     }
   `);
 
-  // console.log("nav console: ", data);
-  console.log("nav console: ", aestheticServices, bookNowLink);
+  useEffect(() => {
+    class Node {
+      constructor(slug, title) {
+        this.slug = slug;
+        this.title = title;
+        this.children = [];
+      }
+    }
+
+    class ServicesTree {
+      constructor() {
+        this.slug = "services";
+        this.title = "Services";
+        this.children = [];
+      }
+      get completeMenu() {
+        return this.children;
+      }
+      add(arr, service) {
+        let count = 0;
+        while (count < arr.length) {
+          let current = this;
+          for (let i = 0; i < arr.length; i++) {
+            let found = current.children.find((node) => node.slug === arr[i]);
+
+            if (!found) {
+              let slugDictionary = slugDictionaries.find(
+                (definition) => definition.slug === arr[i]
+              )?.slugTitle;
+              if (!slugDictionary) {
+                slugDictionary =
+                  service.serviceTitle || service.packagePageTitle;
+              }
+              let newNode = new Node(arr[i], slugDictionary);
+              current.children.push(newNode);
+              current = newNode;
+            } else {
+              current = found;
+            }
+
+            count++;
+          }
+        }
+      }
+    }
+
+    let menuTree = new ServicesTree();
+
+    aestheticServices
+      .map((service) => service.slug.split("/"))
+      .forEach((arr, i) => menuTree.add(arr, aestheticServices[i]));
+
+    sexualEnhancementServices
+      .map((service) => service.slug.split("/"))
+      .forEach((arr, i) => menuTree.add(arr, sexualEnhancementServices[i]));
+
+    setMenuItems(menuTree);
+  }, []);
+
+  console.log(menuItems);
   return (
     <div>
       <nav className="bg-white">
@@ -57,20 +124,80 @@ export default function Nav() {
             <div className="flex justify-end items-center">
               <div className="hidden md:block ">
                 <div className="ml-10 flex items-baseline space-x-4 ">
-                  {/* <Link
-                    to="/services"
-                    className=" text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
-                  >
-                    Services
-                  </Link> */}
-
                   <div className="group z-50">
                     <button className="group-hover:text-main-green px-6 py-6 rounded-md text-base md:text-lg font-medium uppercase ">
                       Services
                     </button>
                     <div className="hidden group-hover:flex flex-col absolute left-0 pl-40 p-10 w-full bg-main-green text-black duration-300">
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-                        <div className="flex flex-col">
+                        {menuItems &&
+                          menuItems.children.map((service) => {
+                            return (
+                              <div className="flex flex-col" key={service.slug}>
+                                <h3 className="mb-4 text-xl">
+                                  {service.title}
+                                </h3>
+                                {service.children.map((serviceCategory) => (
+                                  <>
+                                    {serviceCategory.children.length ? (
+                                      <>
+                                        <h4
+                                          className="mb-4 text-lg"
+                                          key={`${serviceCategory.slug}`}
+                                        >
+                                          {serviceCategory.title}
+                                        </h4>
+                                        {serviceCategory.children.map(
+                                          (serviceSubCategory) => (
+                                            <>
+                                              {serviceSubCategory.children
+                                                .length ? (
+                                                <>
+                                                  <h5
+                                                    className="mb-4 text-lg"
+                                                    key={`${serviceSubCategory.slug}`}
+                                                  >
+                                                    {serviceSubCategory.title}
+                                                  </h5>
+                                                  {serviceSubCategory.children.map(
+                                                    (lowestservice) => (
+                                                      <Link
+                                                        to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestservice.slug}`}
+                                                        className="hover:text-white"
+                                                      >
+                                                        {
+                                                          serviceSubCategory.title
+                                                        }
+                                                      </Link>
+                                                    )
+                                                  )}
+                                                </>
+                                              ) : (
+                                                <Link
+                                                  to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}`}
+                                                  className="hover:text-white"
+                                                >
+                                                  {serviceSubCategory.title}
+                                                </Link>
+                                              )}
+                                            </>
+                                          )
+                                        )}
+                                      </>
+                                    ) : (
+                                      <Link
+                                        to={`/${service.slug}/${serviceCategory.slug}`}
+                                        className="hover:text-white"
+                                      >
+                                        {serviceCategory.title}
+                                      </Link>
+                                    )}
+                                  </>
+                                ))}
+                              </div>
+                            );
+                          })}
+                        {/* <div className="flex flex-col">
                           <h3 className="mb-4 text-xl">Category 1</h3>
                           <a href="#" className=" hover:text-white">
                             Sample Link 1
@@ -87,26 +214,7 @@ export default function Nav() {
                           <a href="#" className=" hover:text-white">
                             Sample Link 5
                           </a>
-                        </div>
-
-                        <div className="flex flex-col">
-                          <h3 className="mb-4 text-xl">Category 2</h3>
-                          <a href="#" className=" hover:text-white">
-                            Sample Link 1
-                          </a>
-                          <a href="#" className=" hover:text-white">
-                            Sample Link 2
-                          </a>
-                          <a href="#" className=" hover:text-white">
-                            Sample Link 3
-                          </a>
-                          <a href="#" className=" hover:text-white">
-                            Sample Link 4
-                          </a>
-                          <a href="#" className=" hover:text-white">
-                            Sample Link 5
-                          </a>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>

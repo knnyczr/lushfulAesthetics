@@ -101,7 +101,7 @@ export const pageQuery = graphql`
         raw
       }
       heroImage {
-        gatsbyImageData(layout: FULL_WIDTH)
+        gatsbyImageData(layout: FULL_WIDTH, quality: 100)
         description
       }
     }

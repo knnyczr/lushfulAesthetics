@@ -129,6 +129,9 @@ export const query = graphql`
         reviewerAge
         reviewerLocation
         fromPackage
+        bgImage {
+          gatsbyImageData
+        }
       }
     }
   }

@@ -51,7 +51,7 @@ export const pageQuery = graphql`
   query aboutUsQuery {
     contentfulAboutUs {
       heroImage {
-        gatsbyImageData(layout: FULL_WIDTH)
+        gatsbyImageData(layout: FULL_WIDTH, quality: 100)
         description
       }
       aboutLushfulAesthetics {
