@@ -137,11 +137,8 @@ export const query = graphql`
       reviews {
         review
         reviewerName
-        reviewerAge
-        reviewerLocation
-        fromPackage
         bgImage {
-          gatsbyImageData
+          gatsbyImageData(quality: 100, layout: CONSTRAINED)
         }
       }
     }
