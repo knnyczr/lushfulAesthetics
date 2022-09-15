@@ -110,7 +110,7 @@ export const pageQuery = graphql`
     contentfulServicePage(id: { eq: $servicePageId }) {
       slug
       heroImage {
-        gatsbyImageData(layout: FULL_WIDTH, quality: 90, placeholder: BLURRED)
+        gatsbyImageData(layout: FULL_WIDTH, quality: 90)
         description
       }
       faqRef {

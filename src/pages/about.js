@@ -65,7 +65,7 @@ export const pageQuery = graphql`
         raw
       }
       portrait {
-        gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+        gatsbyImageData(layout: CONSTRAINED, quality: 90)
       }
     }
   }

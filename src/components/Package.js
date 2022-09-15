@@ -14,15 +14,13 @@ export default function Package({ packageCard }) {
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node, children) => (
-        <>
-          <p
-            className={`"font-serif" ${
-              children[0] === "What you get:" ? "mt-4" : ""
-            }`}
-          >
-            {children}
-          </p>
-        </>
+        <p
+          className={`"font-serif" ${
+            children[0] === "What you get:" ? "mt-4" : ""
+          }`}
+        >
+          {children}
+        </p>
       ),
       [INLINES.HYPERLINK]: ({ data }, children) => (
         <a
