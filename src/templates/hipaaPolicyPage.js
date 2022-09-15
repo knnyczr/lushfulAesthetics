@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import { Helmet } from "react-helmet";
 
 export default function HIPAAPolicy({
   data: { allContentfulHipaaPolicyPage },
@@ -52,6 +53,7 @@ export default function HIPAAPolicy({
   };
   return (
     <>
+      <Helmet title={`Lushful Aesthetics | HIPAA`} />
       {renderRichText(
         allContentfulHipaaPolicyPage.edges[0].node.content,
         options

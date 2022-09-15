@@ -1,9 +1,11 @@
 import React from "react";
 import ContactForm from "../components/ContactForm";
+import { Helmet } from "react-helmet";
 
 export default function contact() {
   return (
     <>
+      <Helmet title={`Lushful Aesthetics | Contact`} />
       <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-center items-center">
         <h2 className="pb-8 uppercase text-2xl font-semibold ">Contact</h2>
         <div className="mb-16 ext-lg lg:text-2xl text-center ">

@@ -6,6 +6,8 @@ import ServicePrice from "../components/ServicePrice";
 import PrePostCare from "../components/PrePostCare";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import OurApproach from "../components/OurApproach";
+import { Helmet } from "react-helmet";
 
 export default function ServicePage({ data }) {
   const {
@@ -57,22 +59,23 @@ export default function ServicePage({ data }) {
 
   return (
     <div>
+      <Helmet title={`Lushful Aesthetics | ${serviceTitle}`} />
       {data?.contentfulServicePage && (
         <>
           {heroImage.gatsbyImageData && (
             <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
           )}
 
-          {ourApproach && (
-            <ServicePrice
-              ourApproach={renderRichText(ourApproach, options)}
-              pricing={renderRichText(pricing, options)}
-            />
-          )}
+          <ServicePrice
+            intro={renderRichText(intro, options)}
+            pricing={renderRichText(pricing, options)}
+          />
+
+          <OurApproach ourApproach={renderRichText(ourApproach, options)} />
 
           <PrePostCare
-            preCare={renderRichText(preCare, options)}
-            postCare={renderRichText(postCare, options)}
+            preCare={preCare}
+            postCare={postCare}
             heroImage={heroImage}
           />
 
@@ -107,7 +110,7 @@ export const pageQuery = graphql`
     contentfulServicePage(id: { eq: $servicePageId }) {
       slug
       heroImage {
-        gatsbyImageData(layout: CONSTRAINED, quality: 90)
+        gatsbyImageData(layout: FULL_WIDTH, quality: 90, placeholder: BLURRED)
         description
       }
       faqRef {

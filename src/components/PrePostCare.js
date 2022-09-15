@@ -2,10 +2,58 @@ import React from "react";
 import { useState } from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 
 export default function PrePostCare({ preCare, postCare, heroImage }) {
-  const [pre, setPre] = useState(false);
-  let image = getImage(heroImage);
+  const [pre, setPre] = useState(true);
+
+  const img = getImage(heroImage);
+
+  const dynamicImage = useContentfulImage({
+    image: {
+      url:
+        heroImage.gatsbyImageData.images.sources[0].srcSet ||
+        heroImage.gatsbyImageData.images.fallback.srcSet,
+      width: 3000,
+      height: 3000,
+      backgroundPosition: "top",
+    },
+  });
+
+  const website_url = "https://www.lushfulaesthetics.com/";
+
+  const options = {
+    renderMark: {
+      [MARKS.BOLD]: (text) => (
+        <span className="font-sans font-bold lg:text-lg mb-1">{text}</span>
+      ),
+    },
+    renderNode: {
+      [BLOCKS.UL_LIST]: (node, children) => {
+        return <ul className="list-outside	list-none">{children}</ul>;
+      },
+      [BLOCKS.LIST_ITEM]: (node, children) => (
+        <li className="border-black mb-3">{children}</li>
+      ),
+      [INLINES.HYPERLINK]: ({ data }, children) => (
+        <a
+          className="underline "
+          href={data.uri ? data.uri : ""}
+          target={`${
+            data.uri.startsWith(website_url || "http://localhost:8000/")
+              ? "_self"
+              : "_blank"
+          }`}
+          rel={`${
+            data.uri.startsWith(website_url) ? "" : "noopener noreferrer"
+          }`}
+        >
+          {children}
+        </a>
+      ),
+    },
+  };
 
   return (
     <>
@@ -13,48 +61,32 @@ export default function PrePostCare({ preCare, postCare, heroImage }) {
         <div className="lg:w-7/12 px-4 py-16 sm:px-6 lg:px-24 lg:py-8 xl:py-12 flex flex-col justify-start md:justify-center">
           <div>
             <span
-              onClick={() => setPre(!pre)}
-              className={
-                pre
-                  ? "hover:cursor-pointer hover:text-main-green-shade text-3xl font-serif font-bold"
-                  : "hover:cursor-pointer text-white hover:text-main-green-shade text-3xl font-serif font-bold"
-              }
+              onClick={() => setPre(true)}
+              className={`hover:cursor-pointer text-white  hover:text-main-green-shade text-3xl font-serif font-bold text-white ${
+                pre ? "underline" : " "
+              }`}
             >
-              PreCare {``}
-            </span>
+              PreCare
+            </span>{" "}
             <span
-              onClick={() => setPre(!pre)}
-              className={
-                pre
-                  ? "hover:cursor-pointer hover:text-main-green-shade text-3xl font-serif font-bold text-white"
-                  : "hover:cursor-pointer hover:text-main-green-shade text-3xl font-serif font-bold"
-              }
+              onClick={() => setPre(false)}
+              className={`hover:cursor-pointer text-white  hover:text-main-green-shade text-3xl font-serif font-bold text-white ${
+                !pre ? "underline" : " "
+              }`}
             >
               PostCare
             </span>
           </div>
 
-          <div>
-            {pre ? (
-              <div className="my-12 text-white">
-                {preCare[0].props.children.map((precare, idx) => {
-                  return (
-                    <div className="my-4 font-serif text-sm" key={idx}>
-                      {precare.props.children[0].props.children[0]}
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="my-4 text-white text-sm leading-6">
-                {postCare}
-              </div>
-            )}
+          <div className="my-4 text-white text-md">
+            {pre
+              ? renderRichText(preCare, options)
+              : renderRichText(postCare, options)}
           </div>
         </div>
 
         <div className="lg:w-5/12 hidden lg:flex lg:justify-end overflow-hidden max-h-96">
-          <GatsbyImage image={image} alt={`styling image`} />
+          <GatsbyImage image={dynamicImage} alt={`styling image`} />
         </div>
       </div>
     </>
