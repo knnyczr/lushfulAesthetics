@@ -1,6 +1,7 @@
 import { graphql } from "gatsby";
 import React from "react";
 import CustomAccordion from "../components/CustomAccodian";
+import { Helmet } from "react-helmet";
 
 export default function GeneralFAQs({ data }) {
   const faqList = data.allContentfulGeneralFaqPage.edges[0].node.faqList;
@@ -8,6 +9,7 @@ export default function GeneralFAQs({ data }) {
 
   return (
     <>
+      <Helmet title={`Lushful Aesthetics | General FAQs`} />
       <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
         <div className="mb-10 px-4  sm:px-6 lg:px-24 container font-serif font-bold text-3xl ">
           <h1>General FAQs</h1>

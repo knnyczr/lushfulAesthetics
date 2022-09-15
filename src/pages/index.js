@@ -2,26 +2,9 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
-import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import Button from "../components/BookBtn";
 import Reviews from "../components/Reviews";
-import Map from "../components/Map";
-import ReviewComponent from "../components/ReviewComponent";
-
-// export function HeroImageIndex({ width, height, heroImage }) {
-//   return useContentfulImage({
-//     image: {
-//       url:
-//         heroImage.gatsbyImageData.images.sources[0].srcSet ||
-//         heroImage.gatsbyImageData.images.fallback.srcSet,
-//       width: width,
-//       height: height,
-//       quality: 100,
-//       cropFocus: "top",
-//       resizingBehavior: "fill",
-//     },
-//   });
-// }
+import { Helmet } from "react-helmet";
 
 export default function IndexPage({ data }) {
   const {
@@ -33,31 +16,13 @@ export default function IndexPage({ data }) {
     heroImage,
   } = data.contentfulHomePage;
 
-  // const dynamicImage = useContentfulImage({
-  //   image: {
-  //     url:
-  //       heroImage.gatsbyImageData.images.sources[0].srcSet ||
-  //       heroImage.gatsbyImageData.images.fallback.srcSet,
-  //     width: 3000,
-  //     height: 1000,
-  //     quality: 100,
-  //     cropFocus: "top",
-  //     resizingBehavior: "fill",
-  //   },
-  // });
-
   const image = getImage(heroImage);
-
-  // console.log(`Here is the address:`, renderRichText(address));
 
   return (
     <div>
-      <div className="relative w-full h-auto">
-        <GatsbyImage
-          className="shrink w-full sm:h-3/4 md:h-1/2"
-          image={image}
-          alt={`${heroImage.description}`}
-        />
+      <Helmet title={`Lushful Aesthetics | Home`} />
+      <div className="relative w-full h-3/6 overflow-hidden">
+        <GatsbyImage image={image} alt={`${heroImage.description}`} />
         <div className="absolute bottom-10 left-4 md:top-40 md:left-12 lg:top-60 lg:left-24">
           <h1 className="font-serif font-bold text-white text-lg md:text-2xl lg:text-4xl my-6">
             {slogan}

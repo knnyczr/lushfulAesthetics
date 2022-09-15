@@ -1,10 +1,9 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
-import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import HeroImage from "../components/HeroImage";
 import ApplyCherryBtn from "../components/ApplyCherryBtn";
+import { Helmet } from "react-helmet";
 
 export default function Financing({ data }) {
   const {
@@ -15,23 +14,9 @@ export default function Financing({ data }) {
     heroImage,
   } = data.contentfulFinancingPage;
 
-  const dynamicImage = useContentfulImage({
-    image: {
-      url:
-        heroImage.gatsbyImageData.images.sources[0].srcSet ||
-        heroImage.gatsbyImageData.images.fallback.srcSet,
-      width: 2000,
-      height: 1000,
-    },
-  });
-
-  // console.log(
-  //   "here is this: ",
-  //   renderRichText(reasonsWhyPatientsLoveCherry)[0].props.children
-  // );
-
   return (
     <div>
+      <Helmet title={`Lushful Aesthetics | Financing With Cherry`} />
       {data.contentfulFinancingPage && (
         <>
           <HeroImage heroImage={heroImage} pageTitle={pageTitle} />

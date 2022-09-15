@@ -3,17 +3,18 @@ import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import Package from "../components/Package";
 import Button from "../components/BookBtn";
+import HeroImage from "../components/HeroImage";
+import { Helmet } from "react-helmet";
 
 export default function PackagesPage({ data }) {
-  console.log(data);
-  const { packagePageTitle, packagesList, description, includesTheseServices } =
+  const { packagePageTitle, packagesList, heroImage } =
     data.contentfulPackagePage;
+
   return (
     <>
+      <Helmet title={`Lushful Aesthetics | ${packagePageTitle}`} />
+      <HeroImage heroImage={heroImage} pageTitle={packagePageTitle} />
       <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 m-auto p-auto">
-        <h1 className="font-serif text-2xl lg:text-3xl font-bold mb-6 text-center ">
-          {packagePageTitle}
-        </h1>
         <div className="py-10">
           {packagesList.length &&
             packagesList.map((packageCard, idx) => (
@@ -41,6 +42,10 @@ export const pageQuery = graphql`
       }
     }
     contentfulPackagePage(id: { eq: $packagePageId }) {
+      heroImage {
+        gatsbyImageData(layout: CONSTRAINED, quality: 90)
+        description
+      }
       packagePageTitle
       packagesList {
         packagePrice

@@ -6,6 +6,8 @@ import ServicePrice from "../components/ServicePrice";
 import PrePostCare from "../components/PrePostCare";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import OurApproach from "../components/OurApproach";
+import { Helmet } from "react-helmet";
 
 export default function ServicePage({ data }) {
   const {
@@ -57,42 +59,36 @@ export default function ServicePage({ data }) {
 
   return (
     <div>
-      {data?.contentfulServicePage && (
-        <>
-          {heroImage.gatsbyImageData && (
-            <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
-          )}
+      <Helmet title={`Lushful Aesthetics | ${serviceTitle}`} />
+      <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
 
-          {ourApproach && (
-            <ServicePrice
-              ourApproach={renderRichText(ourApproach, options)}
-              pricing={renderRichText(pricing, options)}
+      <ServicePrice
+        intro={renderRichText(intro, options)}
+        pricing={renderRichText(pricing, options)}
+      />
+
+      <OurApproach ourApproach={renderRichText(ourApproach, options)} />
+
+      <PrePostCare
+        preCare={preCare}
+        postCare={postCare}
+        heroImage={heroImage}
+      />
+
+      <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
+        <div className="mt-4 px-4  sm:px-6 lg:px-24 ">
+          <h2 className="container font-serif font-bold text-3xl">FAQs</h2>
+
+          {faqRef.map((faq, idx) => (
+            <CustomAccordion
+              key={idx}
+              index={idx}
+              question={faq.question}
+              answer={faq.answer}
             />
-          )}
-
-          <PrePostCare
-            preCare={renderRichText(preCare, options)}
-            postCare={renderRichText(postCare, options)}
-            heroImage={heroImage}
-          />
-
-          <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
-            <div className="mt-4 px-4  sm:px-6 lg:px-24 ">
-              <h2 className="container font-serif font-bold text-3xl">FAQs</h2>
-              {/* <hr className="container my-6 border-black " /> */}
-
-              {faqRef.map((faq, idx) => (
-                <CustomAccordion
-                  key={idx}
-                  index={idx}
-                  question={faq.question}
-                  answer={faq.answer}
-                />
-              ))}
-            </div>
-          </div>
-        </>
-      )}
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -107,7 +103,7 @@ export const pageQuery = graphql`
     contentfulServicePage(id: { eq: $servicePageId }) {
       slug
       heroImage {
-        gatsbyImageData(layout: CONSTRAINED, quality: 90)
+        gatsbyImageData(layout: FULL_WIDTH, quality: 90)
         description
       }
       faqRef {

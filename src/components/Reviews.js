@@ -10,7 +10,6 @@ export default function Reviews({ reviews }) {
           <div class="flex flex-nowrap snap-mandatory snap-x">
             {reviews.map((review, index) => (
               <div class="inline-block snap-mandatory snap-x" key={index}>
-                <StaticImage src={img} />
                 <div
                   className="w-64 h-64 max-w-xs snap-mandatory snap-x overflow-hidden rounded-lg shadow-md mr-8 hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col justify-center items-center p-6"
                   style={{

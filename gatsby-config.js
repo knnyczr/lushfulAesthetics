@@ -60,7 +60,7 @@ module.exports = {
       options: {
         fonts: [
           `Playfair+Display:wght@700;800`,
-          `Roboto:wght@300;400;500;700;900`,
+          `Roboto:ital,wght@300;400;500;700;900`,
         ],
         display: "swap",
       },
