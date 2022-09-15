@@ -60,42 +60,35 @@ export default function ServicePage({ data }) {
   return (
     <div>
       <Helmet title={`Lushful Aesthetics | ${serviceTitle}`} />
-      {data?.contentfulServicePage && (
-        <>
-          {heroImage.gatsbyImageData && (
-            <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
-          )}
+      <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
 
-          <ServicePrice
-            intro={renderRichText(intro, options)}
-            pricing={renderRichText(pricing, options)}
-          />
+      <ServicePrice
+        intro={renderRichText(intro, options)}
+        pricing={renderRichText(pricing, options)}
+      />
 
-          <OurApproach ourApproach={renderRichText(ourApproach, options)} />
+      <OurApproach ourApproach={renderRichText(ourApproach, options)} />
 
-          <PrePostCare
-            preCare={preCare}
-            postCare={postCare}
-            heroImage={heroImage}
-          />
+      <PrePostCare
+        preCare={preCare}
+        postCare={postCare}
+        heroImage={heroImage}
+      />
 
-          <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
-            <div className="mt-4 px-4  sm:px-6 lg:px-24 ">
-              <h2 className="container font-serif font-bold text-3xl">FAQs</h2>
-              {/* <hr className="container my-6 border-black " /> */}
+      <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
+        <div className="mt-4 px-4  sm:px-6 lg:px-24 ">
+          <h2 className="container font-serif font-bold text-3xl">FAQs</h2>
 
-              {faqRef.map((faq, idx) => (
-                <CustomAccordion
-                  key={idx}
-                  index={idx}
-                  question={faq.question}
-                  answer={faq.answer}
-                />
-              ))}
-            </div>
-          </div>
-        </>
-      )}
+          {faqRef.map((faq, idx) => (
+            <CustomAccordion
+              key={idx}
+              index={idx}
+              question={faq.question}
+              answer={faq.answer}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

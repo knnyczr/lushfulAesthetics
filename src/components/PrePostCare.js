@@ -1,14 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 
 export default function PrePostCare({ preCare, postCare, heroImage }) {
   const [pre, setPre] = useState(true);
-
-  const img = getImage(heroImage);
 
   const dynamicImage = useContentfulImage({
     image: {
