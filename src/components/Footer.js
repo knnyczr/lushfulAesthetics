@@ -13,7 +13,7 @@ export default function Footer() {
       privacyPolicy,
       socialInstagram,
       socialTwitter,
-      socialTikTok,
+      socialTiktok,
     },
   } = useStaticQuery(graphql`
     query FooterQuery {
@@ -29,6 +29,7 @@ export default function Footer() {
         }
         socialInstagram
         socialTwitter
+        socialTiktok
         privacyPolicy {
           slug
         }
@@ -116,9 +117,9 @@ export default function Footer() {
               </a>
             )}
 
-            {socialTikTok && socialTikTok.startsWith("https://www.") && (
+            {socialTiktok && socialTiktok.startsWith("https://www.") && (
               <a
-                href={`${socialTikTok}`}
+                href={`${socialTiktok}`}
                 target="_blank"
                 rel="noreferrer"
                 className="text-base md:text-2xl mb-4"

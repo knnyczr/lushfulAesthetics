@@ -135,7 +135,7 @@ export default function Nav() {
                     <button className="group-hover:text-main-green px-4 py-4 rounded-md text-base md:text-lg font-medium uppercase ">
                       Services
                     </button>
-                    <div className=" group-hover:flex flex-col absolute left-0 pl-20 p-10 w-full shadow-md bg-main-green text-white  duration-300">
+                    <div className=" hidden group-hover:flex flex-col absolute left-0 pl-20 p-10 w-full shadow-md bg-main-green text-black  duration-300">
                       <div className="grid grid-cols-2 gap-20">
                         {menuItems &&
                           menuItems.children.map((service) => {
@@ -164,8 +164,8 @@ export default function Nav() {
                                                     className="ml-6 font-bold "
                                                     key={`${serviceSubCategory.slug}`}
                                                   >
-                                                    {`Fillers`}
-                                                    {/* {serviceSubCategory.title} */}
+                                                    {/* {`Fillers`} */}
+                                                    {serviceSubCategory.title}
                                                   </h5>
                                                   {serviceSubCategory.children.map(
                                                     (lowestservice) => (
@@ -173,9 +173,7 @@ export default function Nav() {
                                                         to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestservice.slug}`}
                                                         className="hover:text-white ml-12 "
                                                       >
-                                                        {
-                                                          serviceSubCategory.title
-                                                        }
+                                                        {lowestservice.title}
                                                       </Link>
                                                     )
                                                   )}
