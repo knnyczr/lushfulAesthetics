@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import { Helmet } from "react-helmet";
 
 export default function PrivacyPolicy({ data }) {
   const website_url = "https://www.lushfulaesthetics.com/";
@@ -50,6 +51,7 @@ export default function PrivacyPolicy({ data }) {
   };
   return (
     <>
+      <Helmet title={`Lushful Aesthetics | Privacy Policy`} />
       {renderRichText(
         data.allContentfulPrivacyPolicyPage.edges[0].node.content,
         options

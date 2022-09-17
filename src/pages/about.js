@@ -2,13 +2,17 @@ import { graphql } from "gatsby";
 import React from "react";
 import HeroImage from "../components/HeroImage";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { Helmet } from "react-helmet";
 
 export default function AboutUs({ data }) {
-  const { aboutLushfulAesthetics, meetInjectorChris, heroImage } =
+  const { aboutLushfulAesthetics, meetInjectorChris, heroImage, portrait } =
     data.contentfulAboutUs;
-
+  console.log(portrait);
+  let image = getImage(portrait);
   return (
     <div>
+      <Helmet title={`Lushful Aesthetics | About`} />
       {data.contentfulAboutUs ? (
         <>
           {/* <GatsbyImage image={dynamicImage} alt={heroImage.description} /> */}
@@ -35,8 +39,8 @@ export default function AboutUs({ data }) {
                 {renderRichText(meetInjectorChris)}
               </div>
             </div>
-            <div className="h-96 w-96 bg-slate-400 ml-4 mb-16 sm:ml-6 sm:mb-6 md:mr-12 md:mt-12 lg:mr-24 lg:mt-24">
-              Here need a photo of Chris
+            <div className="bg-black h-60 sm:h-4 sm:w-20 w-96 bg-slate-400 ml-4 mb-16 sm:ml-6 sm:mb-6 md:mr-12 md:mt-12 lg:mr-24 lg:mt-24">
+              <GatsbyImage image={image} />
             </div>
           </div>
         </>
@@ -59,6 +63,9 @@ export const pageQuery = graphql`
       }
       meetInjectorChris {
         raw
+      }
+      portrait {
+        gatsbyImageData(layout: CONSTRAINED, quality: 90)
       }
     }
   }
