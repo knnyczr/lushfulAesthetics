@@ -76,13 +76,8 @@ export default function ServicePage({ data }) {
       />
 
       <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
-<<<<<<< HEAD
         <div className="my-4 px-4  md:px-6 lg:px-24 ">
           <h2 className="container font-serif font-bold text-3xl my-4">FAQs</h2>
-=======
-        <div className="mt-4 px-4  sm:px-6 lg:px-24 ">
-          <h2 className="container font-serif font-bold text-3xl">FAQs</h2>
->>>>>>> origin/main
 
           {faqRef.map((faq, idx) => (
             <CustomAccordion

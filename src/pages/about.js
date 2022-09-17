@@ -39,11 +39,7 @@ export default function AboutUs({ data }) {
                 {renderRichText(meetInjectorChris)}
               </div>
             </div>
-<<<<<<< HEAD
             <div className="pb-8 h-auto w-min-max lg:w-96 mx-4 my-4  md:mr-12 md:mt-12 lg:mr-24 lg:mt-24">
-=======
-            <div className="bg-black h-60 sm:h-4 sm:w-20 w-96 bg-slate-400 ml-4 mb-16 sm:ml-6 sm:mb-6 md:mr-12 md:mt-12 lg:mr-24 lg:mt-24">
->>>>>>> origin/main
               <GatsbyImage image={image} />
             </div>
           </div>
