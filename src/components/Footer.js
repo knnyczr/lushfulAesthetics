@@ -149,7 +149,7 @@ export default function Footer() {
             © 2022 Lushful Aesthetics by InjectorChris. All rights reserved.
           </span>
         </div>
-        <div className="flex flex-col justify-center md:flex-row">
+        {/* <div className="flex flex-col justify-center md:flex-row">
           <span>
             {`Designed and Built by `}{" "}
             <a className="underline" href="https://knnyczr.com/">
@@ -160,7 +160,7 @@ export default function Footer() {
               Yusong Shi
             </a>
           </span>
-        </div>
+        </div> */}
       </div>
     </>
   );
