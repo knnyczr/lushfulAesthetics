@@ -9,6 +9,7 @@ import _ from "lodash";
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [menuItems, setMenuItems] = useState(null);
+  const [menuOpen, setMenuopen] = useState(false);
 
   const {
     contentfulServicesMenu: {
@@ -134,7 +135,7 @@ export default function Nav() {
                     <button className="group-hover:text-main-green px-4 py-4 rounded-md text-base md:text-lg font-medium uppercase ">
                       Services
                     </button>
-                    <div className="hidden group-hover:flex flex-col absolute left-0 pl-20 p-10 w-full shadow-md bg-main-green text-black duration-300">
+                    <div className=" hidden group-hover:flex flex-col absolute left-0 pl-20 p-10 w-full shadow-md bg-main-green text-black  duration-300">
                       <div className="grid grid-cols-2 gap-20">
                         {menuItems &&
                           menuItems.children.map((service) => {
@@ -163,6 +164,7 @@ export default function Nav() {
                                                     className="ml-6 font-bold "
                                                     key={`${serviceSubCategory.slug}`}
                                                   >
+                                                    {/* {`Fillers`} */}
                                                     {serviceSubCategory.title}
                                                   </h5>
                                                   {serviceSubCategory.children.map(
@@ -452,55 +454,97 @@ export default function Nav() {
             </div>
           )}
         </Transition>
-        {/* TESTING HOVER DROPDOWN MENU DOWNHERE!!! */}
-        {/* <div class="relative w-screen flex justify-start items-center text-black drop-shadow-md">
-          
-          <div class="group">
-            <button class="group-hover:text-main-green px-6 py-6 rounded-md text-base md:text-lg font-medium uppercase ">
-              Services &darr;
-            </button>
-            <div class="hidden group-hover:flex flex-col absolute left-0 p-10 w-full bg-main-green text-black duration-300">
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-                <div class="flex flex-col">
-                  <h3 class="mb-4 text-xl">Category 1</h3>
-                  <a href="#" class=" hover:text-white">
-                    Sample Link 1
-                  </a>
-                  <a href="#" class=" hover:text-white">
-                    Sample Link 2
-                  </a>
-                  <a href="#" class=" hover:text-white">
-                    Sample Link 3
-                  </a>
-                  <a href="#" class=" hover:text-white">
-                    Sample Link 4
-                  </a>
-                  <a href="#" class=" hover:text-white">
-                    Sample Link 5
-                  </a>
-                </div>
 
-                <div class="flex flex-col">
-                  <h3 class="mb-4 text-xl">Category 2</h3>
-                  <a href="#" class=" hover:text-white">
-                    Sample Link 1
-                  </a>
-                  <a href="#" class=" hover:text-white">
-                    Sample Link 2
-                  </a>
-                  <a href="#" class=" hover:text-white">
-                    Sample Link 3
-                  </a>
-                  <a href="#" class=" hover:text-white">
-                    Sample Link 4
-                  </a>
-                  <a href="#" class=" hover:text-white">
-                    Sample Link 5
-                  </a>
-                </div>
-              </div>
+        {/* TESTING HOVER DROPDOWN MENU DOWNHERE!!! */}
+        {/* <div className="group z-500">
+          <button className="group-hover:text-main-green px-6 py-6 rounded-md text-base md:text-lg font-medium uppercase ">
+            Services
+          </button>
+          <div className=" hidden group-hover:flex flex-col absolute left-0 pl-20 p-10 w-full shadow-md bg-main-green text-white  duration-300">
+            <div className="grid grid-cols-2 gap-20">
+              {menuItems &&
+                menuItems.children.map((service) => {
+                  return (
+                    <div className="flex flex-col" key={service.slug}>
+                      <h3 className="mb-2 font-bold text-main-green-shade border-b-2 border-main-green-shade pb-2 uppercase tracking-wide">
+                        {service.title}
+                      </h3>
+                      {service.children.map((serviceCategory) => (
+                        <>
+                          {serviceCategory.children.length ? (
+                            <>
+                              <span
+                                className="mb-2 font-serif text-lg  cursor-pointer "
+                                key={`${serviceCategory.slug}`}
+                                onClick={() => setMenuopen(!menuOpen)}
+                              >
+                                {serviceCategory.title} {`->`}
+                              </span>
+                              <div>
+                                {menuOpen ? (
+                                  <>
+                                    {serviceCategory.children.map(
+                                      (serviceSubCategory) => (
+                                        <>
+                                          {serviceSubCategory.children
+                                            .length ? (
+                                            <>
+                                              <h5
+                                                className="ml-6 font-bold text-lg text-main-green-shade"
+                                                key={`${serviceSubCategory.slug}`}
+                                              >
+                                                {`Fillers`}
+                                              </h5>
+                                              {serviceSubCategory.children.map(
+                                                (lowestservice) => (
+                                                  <div className="flex flex-row">
+                                                    <Link
+                                                      to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestservice.slug}`}
+                                                      className="hover:text-white ml-12"
+                                                    >
+                                                      <h5>
+                                                        {
+                                                          serviceSubCategory.title
+                                                        }{" "}
+                                                      </h5>
+                                                    </Link>
+                                                  </div>
+                                                )
+                                              )}
+                                            </>
+                                          ) : (
+                                            <div>
+                                              <Link
+                                                to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}`}
+                                                className="hover:text-white ml-6 text-lg"
+                                              >
+                                                {serviceSubCategory.title}
+                                              </Link>
+                                            </div>
+                                          )}
+                                        </>
+                                      )
+                                    )}
+                                  </>
+                                ) : (
+                                  <></>
+                                )}
+                              </div>
+                            </>
+                          ) : (
+                            <Link
+                              to={`/${service.slug}/${serviceCategory.slug}`}
+                              className="hover:text-white"
+                            >
+                              {serviceCategory.title}
+                            </Link>
+                          )}
+                        </>
+                      ))}
+                    </div>
+                  );
+                })}
             </div>
-            
           </div>
         </div> */}
       </nav>

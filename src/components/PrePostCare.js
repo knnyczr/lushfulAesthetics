@@ -60,16 +60,16 @@ export default function PrePostCare({ preCare, postCare, heroImage }) {
           <div>
             <span
               onClick={() => setPre(true)}
-              className={`hover:cursor-pointer text-white  hover:text-main-green-shade text-3xl font-serif font-bold text-white ${
-                pre ? "underline" : " "
+              className={`hover:cursor-pointer text-white hover:text-main-green-shade text-3xl font-serif font-bold  ${
+                pre ? "underline text-black" : " "
               }`}
             >
               PreCare
             </span>{" "}
             <span
               onClick={() => setPre(false)}
-              className={`hover:cursor-pointer text-white  hover:text-main-green-shade text-3xl font-serif font-bold text-white ${
-                !pre ? "underline" : " "
+              className={`hover:cursor-pointer hover:text-main-green-shade text-3xl font-serif font-bold text-white ${
+                !pre ? "underline text-black" : " "
               }`}
             >
               PostCare

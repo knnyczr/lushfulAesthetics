@@ -27,6 +27,7 @@ module.exports = {
       colors: {
         "main-green": "#BABAA0",
         "main-green-shade": "#434232",
+        "main-green-light": "#BAB9A0",
       },
       aspectRatio: {
         "3/4": "3 / 4",
