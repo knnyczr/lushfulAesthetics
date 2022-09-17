@@ -2,6 +2,7 @@ import React from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
+import Logo from "../images/logo-footer.svg";
 
 export default function Footer() {
   const {
@@ -40,13 +41,12 @@ export default function Footer() {
       <div className="bg-main-green text-white lg:px-24 lg:pt-12 md:px-12 md:pt-12 md:pb-4 px-4 py-4">
         <div className="flex lg:flex-row lg:justify-between md:flex-col flex-col ">
           <div className="flex lg:flex-row lg:justify-between md:flex-col flex-col">
-            <div className="lg:pr-32 md:pr-16 md:pb-8 pr-8 py-4 ">
-              <Link to="/">
-                <StaticImage
-                  src="../images/lushful_logo.png"
-                  alt="Lushful Aesthetics Logo"
-                ></StaticImage>
-              </Link>
+            <div className="md:pb-8 pr-8 py-4 lg:pr-16 ">
+              <div className="w-80">
+                <Link to="/">
+                  <Logo />
+                </Link>
+              </div>
             </div>
 
             <div className="lg:pr-32 md:pr-16 md:pb-8 py-4">
@@ -80,10 +80,10 @@ export default function Footer() {
                 href={`${socialTwitter}`}
                 target="_blank"
                 rel="noreferrer"
-                className="mr-4 mb-4"
+                className="mr-6 mb-4"
               >
                 <svg
-                  className="w-5 h-5 md:w-6 md:h-6"
+                  className="w-8 h-8 md:w-12 md:h-12"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -101,7 +101,7 @@ export default function Footer() {
                 className="mr-4 mb-4"
               >
                 <svg
-                  className="w-5 h-5 md:w-6 md:h-6"
+                  className="w-8 h-8 md:w-12 md:h-12"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -121,7 +121,7 @@ export default function Footer() {
                 href={`${socialTikTok}`}
                 target="_blank"
                 rel="noreferrer"
-                className="text-base md:text-lg mb-4"
+                className="text-base md:text-2xl mb-4"
               >
                 TikTok
               </a>

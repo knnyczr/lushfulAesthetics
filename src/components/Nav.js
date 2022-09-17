@@ -9,6 +9,7 @@ import _ from "lodash";
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [menuItems, setMenuItems] = useState(null);
+  const [menuOpen, setMenuopen] = useState(false);
 
   const {
     contentfulServicesMenu: {
@@ -114,8 +115,6 @@ export default function Nav() {
 
     setMenuItems(menuTree);
   }, []);
-
-  const [menuOpen, setMenuopen] = useState(false);
 
   // console.log(menuItems);
   return (
@@ -459,11 +458,11 @@ export default function Nav() {
         </Transition>
 
         {/* TESTING HOVER DROPDOWN MENU DOWNHERE!!! */}
-        <div className="group z-500">
+        {/* <div className="group z-500">
           <button className="group-hover:text-main-green px-6 py-6 rounded-md text-base md:text-lg font-medium uppercase ">
             Services
           </button>
-          <div className="group-hover:flex flex-col absolute left-0 pl-20 p-10 w-full shadow-md bg-main-green text-white  duration-300">
+          <div className=" hidden group-hover:flex flex-col absolute left-0 pl-20 p-10 w-full shadow-md bg-main-green text-white  duration-300">
             <div className="grid grid-cols-2 gap-20">
               {menuItems &&
                 menuItems.children.map((service) => {
@@ -497,7 +496,6 @@ export default function Nav() {
                                                 key={`${serviceSubCategory.slug}`}
                                               >
                                                 {`Fillers`}
-                                                {/* {serviceSubCategory.title} */}
                                               </h5>
                                               {serviceSubCategory.children.map(
                                                 (lowestservice) => (
@@ -550,7 +548,7 @@ export default function Nav() {
                 })}
             </div>
           </div>
-        </div>
+        </div> */}
       </nav>
     </div>
   );

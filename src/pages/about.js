@@ -30,16 +30,16 @@ export default function AboutUs({ data }) {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row ">
-            <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 flex flex-col">
+          <div className="flex flex-col lg:justify-center lg:flex-row min-h-fit ">
+            <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 w-full lg:w-2/3 flex flex-col">
               <h3 className="font-serif font-semibold text-2xl lg:text-3xl mb-10">
                 Meet InjectorChris
               </h3>
-              <div className="max-w-screen-lg pb-8 lg:pb-16 lg:text-lg justify-center items-start ">
+              <div className="max-w-screen-lg pb-2 w-full lg:pb-16 lg:text-lg justify-center items-start ">
                 {renderRichText(meetInjectorChris)}
               </div>
             </div>
-            <div className="bg-black h-60 sm:h-4 sm:w-20 w-96 bg-slate-400 ml-4 mb-16 sm:ml-6 sm:mb-6 md:mr-12 md:mt-12 lg:mr-24 lg:mt-24">
+            <div className="pb-8 h-auto w-min-max lg:w-96 mx-4 my-4  md:mr-12 md:mt-12 lg:mr-24 lg:mt-24">
               <GatsbyImage image={image} />
             </div>
           </div>
@@ -55,7 +55,14 @@ export const pageQuery = graphql`
   query aboutUsQuery {
     contentfulAboutUs {
       heroImage {
-        gatsbyImageData(layout: FULL_WIDTH, quality: 100)
+        gatsbyImageData(
+          quality: 100
+          width: 100
+          height: 50
+          layout: FULL_WIDTH
+          cropFocus: CENTER
+          resizingBehavior: FILL
+        )
         description
       }
       aboutLushfulAesthetics {
