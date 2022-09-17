@@ -78,9 +78,9 @@ export default function IndexPage({ data }) {
 
       {/* <ReviewComponent reviews={reviews} /> */}
 
-      <div className="px-4 py-16 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center ">
-        <div className=" border border-black py-8 px-3 lg:py-12 lg:px-12 flex justify-center items-center flex-col md:flex-row">
-          <div className="mx-10 w-60 max-w-md h-60 flex justify-center items-center">
+      <div className="px-4 py-12 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center ">
+        <div className=" border border-black py-8 px-3 lg:py-10 lg:px-12 flex justify-center items-center flex-col md:flex-row">
+          <div className="mx-10 w-90 max-w-md h-80 flex justify-center items-center rounded">
             <a
               href="https://goo.gl/maps/3mpJJytXMqn581Yw9"
               target="_blank"
