@@ -3,7 +3,7 @@ import { Transition } from "@headlessui/react";
 import Button from "./BookBtn";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
-import Logo from "../images/logo-sm.svg";
+import Logo from "../images/lushful-aesthetic-logo-side.svg";
 import _ from "lodash";
 
 export default function Nav() {
@@ -120,7 +120,7 @@ export default function Nav() {
     <div>
       <nav className="bg-white">
         <div className="flex justify-between px-4 py-4 sm:px-6 d:px-12 lg:px-24">
-          <div className="w-16">
+          <div className="w-60 py-auto">
             <Link to="/">
               <Logo />
             </Link>
@@ -129,9 +129,9 @@ export default function Nav() {
           <div className="flex items-center justify-end h-16">
             <div className="flex justify-end items-center">
               <div className="hidden md:block ">
-                <div className="ml-10 flex items-baseline space-x-4 ">
+                <div className="flex items-baseline space-x-4">
                   <div className="group z-50">
-                    <button className="group-hover:text-main-green px-6 py-6 rounded-md text-base md:text-lg font-medium uppercase ">
+                    <button className="group-hover:text-main-green px-4 py-4 rounded-md text-base md:text-lg font-medium uppercase ">
                       Services
                     </button>
                     <div className="hidden group-hover:flex flex-col absolute left-0 pl-20 p-10 w-full shadow-md bg-main-green text-black duration-300">
@@ -216,7 +216,7 @@ export default function Nav() {
                     to="/contact"
                     className=" text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
                   >
-                    Contact US
+                    Contact
                   </Link>
 
                   <Link
