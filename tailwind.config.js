@@ -28,9 +28,14 @@ module.exports = {
         "main-green": "#BABAA0",
         "main-green-shade": "#434232",
         "main-green-light": "#BAB9A0",
+        "second-gold": "#EAC096",
       },
       aspectRatio: {
         "3/4": "3 / 4",
+      },
+      spacing: {
+        128: "28rem",
+        136: "36rem",
       },
     },
   },

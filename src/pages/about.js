@@ -18,7 +18,7 @@ export default function AboutUs({ data }) {
           {/* <GatsbyImage image={dynamicImage} alt={heroImage.description} /> */}
           <div className="relative">
             <HeroImage heroImage={heroImage} />
-            <h2 className="absolute whitespace-nowrap capitalize text-xl md:text-3xl lg:text-4xl xl:text-5xl text-white font-serif text-red top-20 md:top-40 xl:top-80 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <h2 className="absolute whitespace-nowrap text-4xl md:text-5xl lg:text-6xl text-white font-serif top-60 left-1/2 -translate-x-1/2 -translate-y-1/2">
               Where lifestyle meets beauty
             </h2>
           </div>
@@ -60,7 +60,7 @@ export const pageQuery = graphql`
           width: 100
           height: 50
           layout: FULL_WIDTH
-          cropFocus: CENTER
+          cropFocus: TOP
           resizingBehavior: FILL
         )
         description

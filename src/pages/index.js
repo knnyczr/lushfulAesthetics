@@ -22,17 +22,21 @@ export default function IndexPage({ data }) {
     <div>
       <Helmet title={`Lushful Aesthetics | Home`} />
       <div className="relative w-full h-3/6 overflow-hidden">
-        <GatsbyImage image={image} alt={`${heroImage.description}`} />
-        <div className="absolute bottom-10 left-4 md:top-40 md:left-12 lg:top-60 lg:left-24">
-          <h1 className="font-serif font-bold text-white text-lg md:text-2xl lg:text-4xl my-6">
+        <GatsbyImage
+          image={image}
+          alt={`${heroImage.description}`}
+          style={{ height: "600px" }}
+        />
+        <div className="absolute bottom-6 flex flex-col justify-center items-center w-screen left-1/2 -translate-x-1/2 -translate-y-1/2 md:justify-start lg:items-start lg:-translate-y-48 lg:pl-20">
+          <h1 className="font-serif font-bold text-white text-3xl md:text-4xl lg:text-5xl text-center lg:text-left py-6 lg:py-8 w-full">
             {slogan}
           </h1>
           <Button />
         </div>
       </div>
 
-      <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-start md:justify-center md:items-center">
-        <div className="max-w-screen-sm font-serif font-bold text-lg md:text-2xl lg:text-3xl text-center leading-10">
+      <div className="px-4 md:px-12 lg:px-24 py-24 lg:py-36 flex flex-col justify-start md:justify-center md:items-center">
+        <div className="max-w-screen-2xl font-serif font-bold text-black text-2xl md:text-3xl lg:text-4xl text-center leading-10">
           {visionStatement}
         </div>
       </div>
@@ -90,7 +94,14 @@ export const query = graphql`
       slogan
       visionStatement
       heroImage {
-        gatsbyImageData(layout: CONSTRAINED, quality: 100)
+        gatsbyImageData(
+          quality: 100
+          width: 100
+          height: 50
+          layout: FULL_WIDTH
+          cropFocus: TOP
+          resizingBehavior: FILL
+        )
       }
       address {
         raw

@@ -18,13 +18,19 @@ export default function HeroImage({ heroImage, pageTitle }) {
 
   return (
     <>
-      <div className="">
-        <div className="w-full h-auto">
-          <GatsbyImage image={image} alt={heroImage.description} />
-        </div>
-        <div className="absolute whitespace-nowrap text-xl md:text-3xl lg:text-4xl xl:text-5xl text-main-green font-serif top-60 md:top-80 lg:top-96 xl:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <div className="relative">
+        <GatsbyImage
+          image={image}
+          alt={heroImage.description}
+          imgStyle={{ backgroundPositionY: "top" }}
+          style={{ height: "500px" }}
+          // I'm not sure how to change the background position of the image
+          // But 500px looks good on both mobile and desktop so far
+        />
+
+        <h3 className="absolute left-1/2 text-4xl text-center md:text-5xl lg:text-6xl text-white font-serif font-semibold top-60 -translate-x-1/2 -translate-y-1/2">
           {pageTitle}
-        </div>
+        </h3>
       </div>
     </>
   );
