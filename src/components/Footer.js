@@ -93,7 +93,7 @@ export default function Footer() {
                 className="mr-6 mb-4"
               >
                 <FontAwesomeIcon
-                  className="fa-3x hover:black"
+                  className="fa-2x hover:black"
                   icon={faTwitter}
                 />
               </a>
@@ -103,10 +103,10 @@ export default function Footer() {
                 href={`${socialInstagram}`}
                 target="_blank"
                 rel="noreferrer"
-                className="mr-4 mb-4"
+                className="mr-6 mb-4"
               >
                 <FontAwesomeIcon
-                  className="fa-3x hover:black"
+                  className="fa-2x hover:black"
                   icon={faInstagram}
                 />
               </a>
@@ -117,7 +117,7 @@ export default function Footer() {
                 href={`${socialTiktok}`}
                 target="_blank"
                 rel="noreferrer"
-                className="text-base md:text-2xl mr-4 mb-4"
+                className="mr-6 mb-4"
               >
                 <FontAwesomeIcon
                   className="fa-2x hover:black"
@@ -131,7 +131,7 @@ export default function Footer() {
                 href={`${youtube}`}
                 target="_blank"
                 rel="noreferrer"
-                className="text-base md:text-2xl mb-4"
+                className="mr-6 mb-4"
               >
                 <FontAwesomeIcon
                   className="fa-2x hover:black"

@@ -9,7 +9,7 @@ import _ from "lodash";
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [menuItems, setMenuItems] = useState(null);
-  const [menuOpen, setMenuopen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const {
     contentfulServicesMenu: {
@@ -120,8 +120,8 @@ export default function Nav() {
   return (
     <div>
       <nav className="bg-white">
-        <div className="flex justify-between px-4 py-4 sm:px-6 d:px-12 lg:px-24">
-          <div className="w-60 py-auto">
+        <div className="flex justify-between items-center px-4 py-4 d:px-12 lg:px-24">
+          <div className="w-48 lg:w-60 py-auto">
             <Link to="/">
               <Logo />
             </Link>
@@ -135,71 +135,89 @@ export default function Nav() {
                     <button className="group-hover:text-main-green px-4 py-4 rounded-md text-base md:text-lg font-medium uppercase ">
                       Services
                     </button>
-                    <div className=" hidden group-hover:flex flex-col absolute left-0 pl-20 p-10 w-full shadow-md bg-main-green text-black  duration-300">
-                      <div className="grid grid-cols-2 gap-20">
+                    <div className="hidden pointer-events-auto group- group-hover:flex flex-col absolute left-0 pl-20 p-10 w-full shadow-md bg-main-green text-main-green-shade duration-300">
+                      <div className="flex flex-row gap-10 ">
                         {menuItems &&
                           menuItems.children.map((service) => {
                             return (
-                              <div className="flex flex-col" key={service.slug}>
-                                <h3 className="mb-2 text-lg border-b-2 border-black pb-2">
+                              <div
+                                className="flex flex-col ml-20"
+                                key={service.slug}
+                              >
+                                <h3 className="mb-2 text-lg font-bold ">
                                   {service.title}
                                 </h3>
-                                {service.children.map((serviceCategory) => (
-                                  <>
-                                    {serviceCategory.children.length ? (
-                                      <>
-                                        <h4
-                                          className="mb-2 text-lg "
-                                          key={`${serviceCategory.slug}`}
-                                        >
-                                          {serviceCategory.title}
-                                        </h4>
-                                        {serviceCategory.children.map(
-                                          (serviceSubCategory) => (
-                                            <>
-                                              {serviceSubCategory.children
-                                                .length ? (
+                                <div
+                                  className={`flex ${
+                                    service.slug ===
+                                      "sexual-enhancement-services" &&
+                                    "flex-col"
+                                  }`}
+                                >
+                                  {service.children.map((serviceCategory) => (
+                                    <div>
+                                      {serviceCategory.children.length ? (
+                                        <div className="flex flex-col">
+                                          <h4
+                                            className="mb-2 text-lg"
+                                            key={`${serviceCategory.slug}`}
+                                          >
+                                            {serviceCategory.title}
+                                          </h4>
+                                          <div className="flex flex-col">
+                                            {serviceCategory.children.map(
+                                              (serviceSubCategory) => (
                                                 <>
-                                                  <h5
-                                                    className="ml-6 font-bold "
-                                                    key={`${serviceSubCategory.slug}`}
-                                                  >
-                                                    {/* {`Fillers`} */}
-                                                    {serviceSubCategory.title}
-                                                  </h5>
-                                                  {serviceSubCategory.children.map(
-                                                    (lowestservice) => (
-                                                      <Link
-                                                        to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestservice.slug}`}
-                                                        className="hover:text-white ml-12 "
+                                                  {serviceSubCategory.children
+                                                    .length ? (
+                                                    <>
+                                                      <h5
+                                                        className=""
+                                                        key={`${serviceSubCategory.slug}`}
                                                       >
-                                                        {lowestservice.title}
-                                                      </Link>
-                                                    )
+                                                        {
+                                                          serviceSubCategory.title
+                                                        }
+                                                      </h5>
+                                                      {serviceSubCategory.children.map(
+                                                        (lowestservice) => (
+                                                          <Link
+                                                            to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestservice.slug}`}
+                                                            className="hover:text-white ml-6"
+                                                          >
+                                                            {
+                                                              lowestservice.title
+                                                            }
+                                                          </Link>
+                                                        )
+                                                      )}
+                                                    </>
+                                                  ) : (
+                                                    <Link
+                                                      to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}`}
+                                                      className="hover:text-white"
+                                                    >
+                                                      {serviceSubCategory.title}
+                                                    </Link>
                                                   )}
                                                 </>
-                                              ) : (
-                                                <Link
-                                                  to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}`}
-                                                  className="hover:text-white ml-6"
-                                                >
-                                                  {serviceSubCategory.title}
-                                                </Link>
-                                              )}
-                                            </>
-                                          )
-                                        )}
-                                      </>
-                                    ) : (
-                                      <Link
-                                        to={`/${service.slug}/${serviceCategory.slug}`}
-                                        className="hover:text-white"
-                                      >
-                                        {serviceCategory.title}
-                                      </Link>
-                                    )}
-                                  </>
-                                ))}
+                                              )
+                                            )}
+                                          </div>
+                                        </div>
+                                      ) : (
+                                        <Link
+                                          to={`/${service.slug}/${serviceCategory.slug}`}
+                                          className="hover:text-white "
+                                        >
+                                          <div className="flex flex-col">
+                                            {serviceCategory.title}
+                                          </div>
+                                        </Link>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
                               </div>
                             );
                           })}
@@ -244,7 +262,7 @@ export default function Nav() {
                 <span className="sr-only">Open main menu</span>
                 {!isOpen ? (
                   <svg
-                    className="block h-6 w-6"
+                    className="block h-5 w-5"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -260,7 +278,7 @@ export default function Nav() {
                   </svg>
                 ) : (
                   <svg
-                    className="block h-6 w-6"
+                    className="block h-5 w-5"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -309,7 +327,7 @@ export default function Nav() {
                   <button className="text-white group-hover:text-main-green-shade px-6 py-3 rounded-md text-base md:text-lg font-medium uppercase ">
                     Services
                   </button>
-                  <div className=" group-hover:flex flex-col left-0 pl-8 w-full bg-main-green text-black duration-300">
+                  <div className="z-1000 group-hover:flex flex-col left-0 pl-8 w-full bg-main-green text-black duration-300">
                     <div className="flex flex-col">
                       {menuItems &&
                         menuItems.children.map((service) => {

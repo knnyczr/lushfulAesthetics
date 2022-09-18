@@ -16,7 +16,7 @@ export default function Button() {
     <>
       <a href={bookNowLink} target="_blank" rel="noreferrer">
         <button
-          className="py-3 px-6 bg-main-green hover:bg-main-green-shade rounded text-white uppercase "
+          className="py-3 px-6 text-sm text-bold md:text-base bg-main-green hover:bg-main-green-shade rounded text-white uppercase whitespace-nowrap "
           type="button"
         >
           Book Now
