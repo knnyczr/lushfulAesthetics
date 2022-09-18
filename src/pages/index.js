@@ -11,7 +11,7 @@ export default function IndexPage({ data }) {
     slogan,
     visionStatement,
     address,
-    googleLocation,
+    // googleLocation,
     reviews,
     heroImage,
   } = data.contentfulHomePage;
@@ -55,7 +55,11 @@ export default function IndexPage({ data }) {
               target="_blank"
               rel="noreferrer"
             >
-              <StaticImage src="../images/Lushful_address.png" width={600} />
+              <StaticImage
+                alt="image of map, link for google maps"
+                src="../images/Lushful_address.png"
+                width={600}
+              />
             </a>
             {/* <img
               className="rounded-lg"
@@ -115,6 +119,9 @@ export const query = graphql`
         reviewerName
         bgImage {
           gatsbyImageData(quality: 100, layout: CONSTRAINED)
+          file {
+            url
+          }
         }
       }
     }
