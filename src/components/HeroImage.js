@@ -3,17 +3,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 
 export default function HeroImage({ heroImage, pageTitle }) {
-  console.log(`Heroimage page:`, heroImage);
-  // const dynamicImage = useContentfulImage({
-  //   image: {
-  //     url:
-  //       heroImage.gatsbyImageData.images.sources[0].srcSet ||
-  //       heroImage.gatsbyImageData.images.fallback.srcSet,
-  //     width: 3000,
-  //     height: 800,
-  //     // backgroundPosition: "top",
-  //   },
-  // });
   const image = getImage(heroImage.gatsbyImageData);
 
   return (
