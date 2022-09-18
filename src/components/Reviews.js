@@ -4,8 +4,6 @@ import BackgroundImage from "gatsby-background-image";
 import { convertToBgImage } from "gbimage-bridge";
 
 export default function Reviews({ reviews }) {
-  console.log(reviews);
-
   return (
     <>
       <div className="flex flex-col bg-main-green">
