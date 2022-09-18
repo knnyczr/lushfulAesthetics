@@ -1,23 +1,19 @@
 import React from "react";
+import { graphql } from "gatsby";
 import ContactForm from "../components/ContactForm";
 import { Helmet } from "react-helmet";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 
-export default function contact() {
+export default function Contact({ data }) {
+  const { disclosure, pageTitle } = data.contentfulContactPage;
+
   return (
     <>
       <Helmet title={`Lushful Aesthetics | Contact`} />
       <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-center items-center">
-        <h2 className="pb-8 uppercase text-2xl font-semibold ">Contact</h2>
+        <h2 className="pb-8 uppercase text-2xl font-semibold ">{pageTitle}</h2>
         <div className="mb-16 ext-lg lg:text-2xl text-center ">
-          <p>
-            For customer service inquireis or assistance, please email us.
-            <br />
-            You can also browse our FAQs to see if we've already answered your
-            question.
-            <br />
-            If you are experiencing a medical emergency, contact 911 or a
-            medical provider immediately.
-          </p>
+          {renderRichText(disclosure)}
         </div>
 
         <div>
@@ -27,3 +23,15 @@ export default function contact() {
     </>
   );
 }
+
+export const query = graphql`
+  # query will go here
+  query ContactPageQuery {
+    contentfulContactPage {
+      disclosure {
+        raw
+      }
+      pageTitle
+    }
+  }
+`;
