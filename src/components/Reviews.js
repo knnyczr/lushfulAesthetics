@@ -26,7 +26,7 @@ export default function Reviews({ reviews }) {
                       backgroundPosition: "-50px 0",
                     }}
                   >
-                    <div className="flex flex-col justify-center items-center backdrop-blur-sm bg-second-gold/20 rounded h-128 px-8">
+                    <div className="flex flex-col justify-center items-center backdrop-blur-md bg-main-green-shade/50 rounded h-128 px-8">
                       <h4 className=" z-10 my-6 text-white font-serif text-lg text-center">
                         {review.review}
                       </h4>
