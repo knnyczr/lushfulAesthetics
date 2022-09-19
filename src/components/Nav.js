@@ -16,7 +16,10 @@ export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [menuItems, setMenuItems] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [subMenuOpen, setSubMenuOpen] = useState(false);
+  const [subMenuOpen, setSubMenuOpen] = useState({
+    "facial-treatments": false,
+    "body-treatments": false,
+  });
 
   function closeMenu() {
     setIsOpen(false);
@@ -158,18 +161,7 @@ export default function Nav() {
                       className="group-hover:text-main-green px-4 py-4 rounded-md text-base md:text-lg font-medium uppercase"
                       onClick={() => setMenuOpen(!menuOpen)}
                     >
-                      Services{" "}
-                      {menuOpen ? (
-                        <FontAwesomeIcon
-                          className=" hover:main-green"
-                          icon={faAngleUp}
-                        />
-                      ) : (
-                        <FontAwesomeIcon
-                          className="hover:main-green"
-                          icon={faChevronDown}
-                        />
-                      )}
+                      Services
                     </button>
                     {menuOpen && (
                       <div className="pointer-events-auto flex flex-col absolute top-24 left-0 pl-20 p-10 w-full shadow-md bg-main-green text-main-green-shade duration-300">
@@ -391,12 +383,16 @@ export default function Nav() {
                                         className="text-lg font-semiBold ml-4"
                                         key={`inner-${serviceCategory.slug}`}
                                         onClick={() =>
-                                          setSubMenuOpen(!subMenuOpen)
+                                          setSubMenuOpen((prev) => ({
+                                            ...prev,
+                                            [serviceCategory.slug]:
+                                              !prev[serviceCategory.slug],
+                                          }))
                                         }
                                       >
                                         <span className="flex flex-row justify-between">
                                           {serviceCategory.title}
-                                          {subMenuOpen ? (
+                                          {subMenuOpen[serviceCategory.slug] ? (
                                             <FontAwesomeIcon
                                               className="hover:cursor-pointer"
                                               icon={faAngleUp}
@@ -409,7 +405,7 @@ export default function Nav() {
                                           )}
                                         </span>
                                       </h4>
-                                      {subMenuOpen && (
+                                      {subMenuOpen[serviceCategory.slug] && (
                                         <>
                                           {serviceCategory.children.map(
                                             (serviceSubCategory) => (
