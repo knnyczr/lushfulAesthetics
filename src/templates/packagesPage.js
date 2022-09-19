@@ -23,7 +23,7 @@ export default function PackagesPage({ data }) {
               </div>
             ))}
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center pt-8 lg:pt-16">
           <Button />
         </div>
       </div>
