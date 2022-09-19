@@ -474,6 +474,7 @@ export default function Nav() {
                 </div>
 
                 <Link
+                  onClick={() => closeMenu()}
                   to="/about"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
@@ -481,6 +482,7 @@ export default function Nav() {
                 </Link>
 
                 <Link
+                  onClick={() => closeMenu()}
                   to="/contact"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
@@ -488,6 +490,7 @@ export default function Nav() {
                 </Link>
 
                 <Link
+                  onClick={() => closeMenu()}
                   to="/financing"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
