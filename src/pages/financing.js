@@ -4,6 +4,7 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import HeroImage from "../components/HeroImage";
 import ApplyCherryBtn from "../components/ApplyCherryBtn";
 import { Helmet } from "react-helmet";
+import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 
 export default function Financing({ data }) {
   const {
@@ -13,6 +14,25 @@ export default function Financing({ data }) {
     whatIsCherry,
     heroImage,
   } = data.contentfulFinancingPage;
+
+  const options = {
+    renderMark: {
+      [MARKS.BOLD]: (text) => (
+        <span className="font-sans font-bold lg:text-lg mb-1">{text}</span>
+      ),
+    },
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) => <p>{children}</p>,
+      [BLOCKS.UL_LIST]: (node, children) => (
+        <ul className="flex flex-col md:flex-row justify-center">{children}</ul>
+      ),
+      [BLOCKS.LIST_ITEM]: (node, children) => (
+        <li className="py-8 px-4 my-2 h-auto align-middle md:py-10 md:px-8 md:h-auto bg-white mx-2 rounded md:w-1/4 text-center font-serif font-medium">
+          {children}
+        </li>
+      ),
+    },
+  };
 
   return (
     <div>
@@ -34,22 +54,8 @@ export default function Financing({ data }) {
               <h4 className="text-white pb-8 uppercase text-lg font-semibold">
                 3 Reasons Why Patients Love Cherry
               </h4>
-              <div className="flex flex-col md:flex-row justify-center">
-                {renderRichText(
-                  reasonsWhyPatientsLoveCherry
-                )[0].props.children.map((prop, index) => {
-                  return (
-                    <div
-                      className="py-8 px-4 my-2 h-auto align-middle md:py-10 md:px-8 md:h-auto bg-white mx-2 rounded md:w-1/4 text-center font-serif font-medium"
-                      key={index}
-                    >
-                      {prop.props.children[0].props.children[0]}
-                    </div>
-                  );
-                })}
-              </div>
+              {renderRichText(reasonsWhyPatientsLoveCherry, options)}
             </div>
-            {/* not sure how to seperate the data from above */}
 
             <div className="px-4 py-16 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center ">
               <div className="max-w-screen-lg border border-black py-8 px-6 lg:py-12 lg:px-12">
