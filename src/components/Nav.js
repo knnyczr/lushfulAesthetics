@@ -4,6 +4,7 @@ import { Transition } from "@headlessui/react";
 import Button from "./BookBtn";
 import Logo from "../images/lushful-aesthetic-logo-side.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import {
   faTiktok,
   faInstagram,
@@ -14,6 +15,13 @@ import {
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [menuItems, setMenuItems] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
+
+  function closeMenu() {
+    setIsOpen(false);
+    setSubMenuOpen(!subMenuOpen);
+  }
 
   const {
     contentfulServicesMenu: {
@@ -146,103 +154,122 @@ export default function Nav() {
               <div className="hidden md:block ">
                 <div className="flex items-baseline space-x-4">
                   <div className="group z-50">
-                    <button className="group-hover:text-main-green px-4 py-4 rounded-md text-base md:text-lg font-medium uppercase ">
-                      Services
+                    <button
+                      className="group-hover:text-main-green px-4 py-4 rounded-md text-base md:text-lg font-medium uppercase"
+                      onClick={() => setMenuOpen(!menuOpen)}
+                    >
+                      Services{" "}
+                      {menuOpen ? (
+                        <FontAwesomeIcon
+                          className=" hover:main-green"
+                          icon={faAngleUp}
+                        />
+                      ) : (
+                        <FontAwesomeIcon
+                          className="hover:main-green"
+                          icon={faChevronDown}
+                        />
+                      )}
                     </button>
-                    <div className="hidden pointer-events-auto group- group-hover:flex flex-col absolute left-0 pl-20 p-10 w-full shadow-md bg-main-green text-main-green-shade duration-300">
-                      <div className="flex flex-row gap-10 ">
-                        {menuItems &&
-                          menuItems.children.map((service) => {
-                            return (
-                              <div
-                                className="flex flex-col ml-20"
-                                key={service.slug}
-                              >
-                                <h3 className="mb-2 text-lg font-bold ">
-                                  {service.title}
-                                </h3>
+                    {menuOpen && (
+                      <div className="pointer-events-auto flex flex-col absolute top-24 left-0 pl-20 p-10 w-full shadow-md bg-main-green text-main-green-shade duration-300">
+                        <div
+                          className="flex flex-row gap-10 "
+                          onClick={() => setMenuOpen(!menuOpen)}
+                        >
+                          {menuItems &&
+                            menuItems.children.map((service) => {
+                              return (
                                 <div
-                                  className={`flex ${
-                                    service.slug ===
-                                      "sexual-enhancement-services" &&
-                                    "flex-col"
-                                  }`}
+                                  className="flex flex-col ml-20"
+                                  key={service.slug}
                                 >
-                                  {service.children.map((serviceCategory) => {
-                                    return (
-                                      <>
-                                        {serviceCategory.children.length ? (
-                                          <div
-                                            className="flex flex-col"
-                                            key={`DIV-${serviceCategory.slug}`}
-                                          >
-                                            <h4 className="mb-2 text-lg">
-                                              {serviceCategory.title}
-                                            </h4>
-                                            <div className="flex flex-col">
-                                              {serviceCategory.children.map(
-                                                (serviceSubCategory) => (
-                                                  <>
-                                                    {serviceSubCategory.children
-                                                      .length ? (
-                                                      <>
-                                                        <h5
-                                                          key={`${serviceSubCategory.slug}`}
+                                  <h3 className="mb-2 text-lg font-bold ">
+                                    {service.title}
+                                  </h3>
+                                  <div
+                                    className={`flex ${
+                                      service.slug ===
+                                        "sexual-enhancement-services" &&
+                                      "flex-col"
+                                    }`}
+                                  >
+                                    {service.children.map((serviceCategory) => {
+                                      return (
+                                        <>
+                                          {serviceCategory.children.length ? (
+                                            <div
+                                              className="flex flex-col"
+                                              key={`DIV-${serviceCategory.slug}`}
+                                            >
+                                              <h4 className="mb-2 text-lg">
+                                                {serviceCategory.title}
+                                              </h4>
+                                              <div className="flex flex-col">
+                                                {serviceCategory.children.map(
+                                                  (serviceSubCategory) => (
+                                                    <>
+                                                      {serviceSubCategory
+                                                        .children.length ? (
+                                                        <>
+                                                          <h5
+                                                            key={`${serviceSubCategory.slug}`}
+                                                          >
+                                                            {
+                                                              serviceSubCategory.title
+                                                            }
+                                                          </h5>
+                                                          {serviceSubCategory.children.map(
+                                                            (lowestService) => (
+                                                              <Link
+                                                                key={`Link-${serviceSubCategory.slug}${lowestService.slug}`}
+                                                                to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestService.slug}`}
+                                                                className="hover:text-white ml-6"
+                                                              >
+                                                                {
+                                                                  lowestService.title
+                                                                }
+                                                              </Link>
+                                                            )
+                                                          )}
+                                                        </>
+                                                      ) : (
+                                                        <Link
+                                                          key={`Link-${serviceCategory.slug}`}
+                                                          to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}`}
+                                                          className="hover:text-white"
                                                         >
                                                           {
                                                             serviceSubCategory.title
                                                           }
-                                                        </h5>
-                                                        {serviceSubCategory.children.map(
-                                                          (lowestService) => (
-                                                            <Link
-                                                              key={`Link-${serviceSubCategory.slug}${lowestService.slug}`}
-                                                              to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestService.slug}`}
-                                                              className="hover:text-white ml-6"
-                                                            >
-                                                              {
-                                                                lowestService.title
-                                                              }
-                                                            </Link>
-                                                          )
-                                                        )}
-                                                      </>
-                                                    ) : (
-                                                      <Link
-                                                        key={`Link-${serviceCategory.slug}`}
-                                                        to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}`}
-                                                        className="hover:text-white"
-                                                      >
-                                                        {
-                                                          serviceSubCategory.title
-                                                        }
-                                                      </Link>
-                                                    )}
-                                                  </>
-                                                )
-                                              )}
+                                                        </Link>
+                                                      )}
+                                                    </>
+                                                  )
+                                                )}
+                                              </div>
                                             </div>
-                                          </div>
-                                        ) : (
-                                          <Link
-                                            key={`LINK-${serviceCategory.slug}`}
-                                            to={`/${service.slug}/${serviceCategory.slug}`}
-                                            className="hover:text-white "
-                                          >
-                                            <div className="flex flex-col">
-                                              {serviceCategory.title}
-                                            </div>
-                                          </Link>
-                                        )}
-                                      </>
-                                    );
-                                  })}
+                                          ) : (
+                                            <Link
+                                              key={`LINK-${serviceCategory.slug}`}
+                                              to={`/${service.slug}/${serviceCategory.slug}`}
+                                              className="hover:text-white "
+                                            >
+                                              <div className="flex flex-col">
+                                                {serviceCategory.title}
+                                              </div>
+                                            </Link>
+                                          )}
+                                        </>
+                                      );
+                                    })}
+                                  </div>
                                 </div>
-                              </div>
-                            );
-                          })}
+                              );
+                            })}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
 
                   <Link
@@ -330,7 +357,7 @@ export default function Nav() {
             <div
               className="md:hidden"
               id="mobile-menu"
-              onClick={() => setIsOpen(!isOpen)}
+              // onClick={() => setIsOpen(!isOpen)}
             >
               {/* {console.log(ref)} */}
               <div
@@ -341,7 +368,7 @@ export default function Nav() {
                   <h1 className="text-white  px-6 py-3 rounded-md text-base md:text-lg font-medium uppercase ">
                     Services
                   </h1>
-                  <div className="z-1000 group-hover:flex flex-col left-0 pl-8 w-full bg-main-green text-black duration-300">
+                  <div className="z-1000 group-hover:flex flex-col left-0 px-8 w-full bg-main-green text-white duration-300">
                     <div className="flex flex-col">
                       {menuItems &&
                         menuItems.children.map((service) => {
@@ -361,53 +388,78 @@ export default function Nav() {
                                   {serviceCategory.children.length ? (
                                     <>
                                       <h4
-                                        className="text-lg font-semiBold"
+                                        className="text-lg font-semiBold ml-4"
                                         key={`inner-${serviceCategory.slug}`}
+                                        onClick={() =>
+                                          setSubMenuOpen(!subMenuOpen)
+                                        }
                                       >
-                                        {serviceCategory.title}
+                                        <span className="flex flex-row justify-between">
+                                          {serviceCategory.title}
+                                          {subMenuOpen ? (
+                                            <FontAwesomeIcon
+                                              className="hover:cursor-pointer"
+                                              icon={faAngleUp}
+                                            />
+                                          ) : (
+                                            <FontAwesomeIcon
+                                              className="hover:cursor-pointer"
+                                              icon={faChevronDown}
+                                            />
+                                          )}
+                                        </span>
                                       </h4>
-                                      {serviceCategory.children.map(
-                                        (serviceSubCategory) => (
-                                          <>
-                                            {serviceSubCategory.children
-                                              .length ? (
+                                      {subMenuOpen && (
+                                        <>
+                                          {serviceCategory.children.map(
+                                            (serviceSubCategory) => (
                                               <>
-                                                <h5
-                                                  className="ml-6 font-bold"
-                                                  key={`H5-${serviceSubCategory.slug}`}
-                                                >
-                                                  {serviceSubCategory.title}
-                                                </h5>
-                                                {serviceSubCategory.children.map(
-                                                  (lowestservice) => (
-                                                    <Link
-                                                      key={`${serviceSubCategory.slug}${lowestservice.slug}`}
-                                                      to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestservice.slug}`}
-                                                      className="hover:text-white ml-12  "
+                                                {serviceSubCategory.children
+                                                  .length ? (
+                                                  <>
+                                                    <h5
+                                                      className="ml-8 font-bold"
+                                                      key={`H5-${serviceSubCategory.slug}`}
                                                     >
-                                                      {lowestservice.title}
-                                                    </Link>
-                                                  )
+                                                      {serviceSubCategory.title}
+                                                    </h5>
+                                                    {serviceSubCategory.children.map(
+                                                      (lowestservice) => (
+                                                        <Link
+                                                          onClick={() =>
+                                                            closeMenu()
+                                                          }
+                                                          key={`${serviceSubCategory.slug}${lowestservice.slug}`}
+                                                          to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestservice.slug}`}
+                                                          className="hover:text-black ml-12  "
+                                                        >
+                                                          {lowestservice.title}
+                                                        </Link>
+                                                      )
+                                                    )}
+                                                  </>
+                                                ) : (
+                                                  <Link
+                                                    onClick={() => closeMenu()}
+                                                    key={`LINK-${serviceSubCategory.slug}`}
+                                                    to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}`}
+                                                    className="hover:text-black ml-8"
+                                                  >
+                                                    {serviceSubCategory.title}
+                                                  </Link>
                                                 )}
                                               </>
-                                            ) : (
-                                              <Link
-                                                key={`LINK-${serviceSubCategory.slug}`}
-                                                to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}`}
-                                                className="hover:text-white ml-6"
-                                              >
-                                                {serviceSubCategory.title}
-                                              </Link>
-                                            )}
-                                          </>
-                                        )
+                                            )
+                                          )}
+                                        </>
                                       )}
                                     </>
                                   ) : (
                                     <Link
+                                      onClick={() => closeMenu()}
                                       key={`outter-${serviceCategory.slug}`}
                                       to={`/${service.slug}/${serviceCategory.slug}`}
-                                      className="hover:text-white"
+                                      className="hover:text-black ml-4"
                                     >
                                       {serviceCategory.title}
                                     </Link>
@@ -442,7 +494,7 @@ export default function Nav() {
                   Financing
                 </Link>
 
-                <div>
+                <div className="pt-16">
                   <div className="flex flex-row justify-center pt-5 md:pb-16 text-white">
                     {socialTwitter && socialTwitter.startsWith("https://www.") && (
                       <a
