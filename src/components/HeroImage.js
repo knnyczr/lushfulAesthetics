@@ -17,7 +17,7 @@ export default function HeroImage({ heroImage, pageTitle }) {
           // But 500px looks good on both mobile and desktop so far
         />
 
-        <h3 className="absolute left-1/2 text-4xl text-center md:text-5xl lg:text-6xl text-white font-serif font-semibold top-60 -translate-x-1/2 -translate-y-1/2">
+        <h3 className="absolute left-1/2 text-4xl text-center md:text-5xl lg:text-6xl text-white font-serif font-semibold top-60 -translate-x-1/2 -translate-y-1/2 bg-main-green-light/50 px-4 pt-4 pb-6 rounded-md">
           {pageTitle}
         </h3>
       </div>
