@@ -36,7 +36,7 @@ export default function ServicePage({ data }) {
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className={`${"font-serif"}`}>{children}</p>
+        <p className="font-serif">{children}</p>
       ),
       [INLINES.HYPERLINK]: ({ data }, children) => (
         <a
