@@ -1,4 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+
+const Nth = require("tailwind-nth-child");
+const nth2 = new Nth("2", "2"); // Sub-elements that are multiples of 3
+
 module.exports = {
   content: [
     "./src/pages/**/*.{js,jsx,ts,tsx}",
@@ -24,6 +28,7 @@ module.exports = {
       black: 900,
     },
     extend: {
+      borderWidth: ["nth-child-2"],
       colors: {
         "main-green": "#BABAA0",
         "main-green-shade": "#434232",
@@ -39,5 +44,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwind-scrollbar-hide")],
+  plugins: [require("tailwind-scrollbar-hide"), nth2.nthChild()],
 };
