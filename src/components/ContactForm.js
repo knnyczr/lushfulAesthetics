@@ -1,85 +1,52 @@
 import React, { useRef } from "react";
-import emailjs from "@emailjs/browser";
+import Button from "../components/BookBtn";
+import { StaticImage } from "gatsby-plugin-image";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
-export default function ContactForm() {
-  const form = useRef();
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        //replace the following to enable email services from https://www.emailjs.com/
-        // "service_xpoo0vx", // "YOUR_SERVICE_ID",
-        // "template_apc4yqb", // "YOUR_TEMPLATE_ID",
-        form.current,
-        "ZHjXYxcVxVwVDSINi" // "YOUR_PUBLIC_KEY"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          console.log("message sent");
-          alert("thanks for submitting the form");
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-    e.target.reset();
-  };
-
+export default function ContactForm({ address }) {
+  console.log(`here is contact From`, address);
   return (
     <>
-      <div>
-        <form
-          ref={form}
-          onSubmit={sendEmail}
-          className="flex flex-col justify-start items-start"
-        >
-          <label className="font-semibold text-sm ">
-            Name<span>*</span>
-          </label>
-          <input
-            className="bg-main-green w-96 h-10 rounded mb-4 text-white px-3"
-            type="text"
-            name="from_name"
-            required
-          />
-          <label className="font-semibold text-sm ">
-            Email<span>*</span>
-          </label>
-          <input
-            className="bg-main-green w-96 h-10 rounded mb-4 text-white px-3"
-            type="email"
-            name="email"
-            required
-          />
-          <label className="font-semibold text-sm ">
-            Subject<span>*</span>
-          </label>
-          <input
-            className="bg-main-green w-96 h-10 rounded mb-4 text-white px-3"
-            type="text"
-            name="subject"
-            required
-          />
-          <label className="font-semibold text-sm ">
-            Message<span>*</span>
-          </label>
-          <textarea
-            className="bg-main-green w-96 h-30 rounded mb-4 text-white px-3"
-            name="message"
-            type="text"
-            required
-            rows="4"
-            cols="50"
-          />
-          <input
-            className="py-3 px-6 bg-main-green hover:bg-main-green-shade rounded text-white  uppercase"
-            type="submit"
-            value="Send!"
-          />
-        </form>
+      <div className="px-4 py-12 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center ">
+        <div className="py-8 px-3 flex justify-center items-center flex-col md:flex-row">
+          <div className="mx-4 md:mx-10 w-full max-w-md h-80 flex justify-center items-center rounded">
+            <a
+              href="https://goo.gl/maps/3mpJJytXMqn581Yw9"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <StaticImage
+                alt="image of map, link for google maps"
+                src="../images/Lushful_address.png"
+                width={600}
+              />
+            </a>
+          </div>
+
+          <div className="flex flex-col justify-center">
+            <div className="font-medium text-2xl my-8 md:my-4">
+              {renderRichText(address)}
+            </div>
+            <div className="font-medium my-4">
+              {/* <a href={`tel:${phone}`}>{renderRichText(phoneNmber)}</a> */}
+              <FontAwesomeIcon icon={faPhone} className="mr-4" />
+              <a href="tel:+4733378901">123-456-7890</a>
+            </div>
+            <div className="font-medium mb-8">
+              {" "}
+              {/* <div>{renderRichText(email)}</div>  */}
+              <FontAwesomeIcon icon={faEnvelope} className="mr-4" />
+              <a href="mailto:hello@lushfulaesthetics.com">
+                hello@lushfulaesthetics.com
+              </a>
+            </div>
+            <div>
+              <Button />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

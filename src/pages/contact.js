@@ -6,6 +6,9 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function Contact({ data }) {
   const { disclosure, pageTitle } = data.contentfulContactPage;
+  const { address } = data.contentfulHomePage;
+
+  // console.log(`here is the address`,address);
 
   return (
     <>
@@ -17,7 +20,7 @@ export default function Contact({ data }) {
         </div>
 
         <div>
-          <ContactForm />
+          <ContactForm address={address} />
         </div>
       </div>
     </>
@@ -32,6 +35,12 @@ export const query = graphql`
         raw
       }
       pageTitle
+    }
+    contentfulHomePage {
+      id
+      address {
+        raw
+      }
     }
   }
 `;
