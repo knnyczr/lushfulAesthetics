@@ -10,7 +10,7 @@ export default function IndexPage({ data }) {
   const {
     slogan,
     visionStatement,
-    address,
+    // address,
     // googleLocation,
     reviews,
     heroImage,
@@ -75,7 +75,7 @@ export default function IndexPage({ data }) {
             <div className="font-serif text-2xl font-semibold my-4">
               Lushful Aesthetics™ by InjectorChris
             </div>
-            <div className="font-medium my-4">{renderRichText(address)}</div>
+            {/* <div className="font-medium my-4">{renderRichText(address)}</div> */}
             <div>
               <Button />
             </div>
@@ -107,13 +107,13 @@ export const query = graphql`
           resizingBehavior: FILL
         )
       }
-      address {
-        raw
-      }
-      googleLocation {
-        lat
-        lon
-      }
+      # address {
+      #   raw
+      # }
+      # googleLocation {
+      #   lat
+      #   lon
+      # }
       reviews {
         review
         reviewerName

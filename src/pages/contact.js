@@ -5,11 +5,10 @@ import { Helmet } from "react-helmet";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function Contact({ data }) {
-  const { disclosure, pageTitle } = data.contentfulContactPage;
-  const { address } = data.contentfulHomePage;
+  const { disclosure, pageTitle, googleLocation, address, phoneNumber, email } =
+    data.contentfulContactPage;
 
-  // console.log(`here is the address`,address);
-
+  console.log(address, googleLocation, phoneNumber);
   return (
     <>
       <Helmet title={`Lushful Aesthetics | Contact`} />
@@ -20,7 +19,12 @@ export default function Contact({ data }) {
         </div>
 
         <div>
-          <ContactForm address={address} />
+          <ContactForm
+            address={address}
+            phoneNumber={phoneNumber}
+            email={email}
+            googleLocation={googleLocation}
+          />
         </div>
       </div>
     </>
@@ -35,12 +39,10 @@ export const query = graphql`
         raw
       }
       pageTitle
-    }
-    contentfulHomePage {
-      id
-      address {
-        raw
-      }
+      googleLocation
+      address
+      phoneNumber
+      email
     }
   }
 `;
