@@ -28,8 +28,10 @@ export default function Nav() {
 
   const {
     contentfulServicesMenu: {
-      aestheticServices,
+      // aestheticServices,
       sexualEnhancementServices,
+      bodyAestheticServices,
+      facialAestheticServices,
       slugDictionaries,
     },
     contentfulFooterContent: {
@@ -46,15 +48,33 @@ export default function Nav() {
         }
       }
       contentfulServicesMenu {
-        aestheticServices {
-          ... on ContentfulPackagePage {
-            packagePageTitle
-            slug
-          }
+        # aestheticServices {
+        #   ... on ContentfulPackagePage {
+        #     packagePageTitle
+        #     slug
+        #   }
+        #   ... on ContentfulServicePage {
+        #     serviceTitle
+        #     slug
+        #   }
+        # }
+        bodyAestheticServices {
           ... on ContentfulServicePage {
-            serviceTitle
             slug
+            serviceTitle
           }
+          ... on ContentfulPackagePage {
+            slug
+            pac
+        }
+        facialAestheticServices {
+          ... on ContentfulServicePage {
+            slug
+            serviceTitle
+          }
+          ... on ContentfulPackagePage {
+            slug
+            pac
         }
         sexualEnhancementServices {
           ... on ContentfulPackagePage {
@@ -131,16 +151,24 @@ export default function Nav() {
 
     let menuTree = new ServicesTree();
 
-    aestheticServices
+    // aestheticServices
+    //   .map((service) => service.slug.split("/"))
+    //   .forEach((arr, i) => menuTree.add(arr, aestheticServices[i]));
+
+    facialAestheticServices
       .map((service) => service.slug.split("/"))
-      .forEach((arr, i) => menuTree.add(arr, aestheticServices[i]));
+      .forEach((arr, i) => menuTree.add(arr, facialAestheticServices[i]));
+
+    bodyAestheticServices
+      .map((service) => service.slug.split("/"))
+      .forEach((arr, i) => menuTree.add(arr, bodyAestheticServices[i]));
 
     sexualEnhancementServices
       .map((service) => service.slug.split("/"))
       .forEach((arr, i) => menuTree.add(arr, sexualEnhancementServices[i]));
 
     setMenuItems(menuTree);
-  }, [aestheticServices, sexualEnhancementServices, slugDictionaries]);
+  }, [sexualEnhancementServices, slugDictionaries]);
 
   return (
     <div>
@@ -200,13 +228,13 @@ export default function Nav() {
                                               <div className="flex flex-col">
                                                 {serviceCategory.children.map(
                                                   (serviceSubCategory) => (
-                                                    <>
+                                                    <div>
                                                       {serviceSubCategory
                                                         .children.length ? (
-                                                        <>
-                                                          <h5
-                                                            key={`${serviceSubCategory.slug}`}
-                                                          >
+                                                        <div
+                                                          key={`${serviceSubCategory.slug}`}
+                                                        >
+                                                          <h5>
                                                             {
                                                               serviceSubCategory.title
                                                             }
@@ -224,10 +252,10 @@ export default function Nav() {
                                                               </Link>
                                                             )
                                                           )}
-                                                        </>
+                                                        </div>
                                                       ) : (
                                                         <Link
-                                                          key={`Link-${serviceCategory.slug}`}
+                                                          // key={`Link-${serviceCategory.slug}`}
                                                           to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}`}
                                                           className="hover:text-white"
                                                         >
@@ -236,7 +264,7 @@ export default function Nav() {
                                                           }
                                                         </Link>
                                                       )}
-                                                    </>
+                                                    </div>
                                                   )
                                                 )}
                                               </div>
@@ -555,99 +583,6 @@ export default function Nav() {
             </div>
           )}
         </Transition>
-
-        {/* TESTING HOVER DROPDOWN MENU DOWNHERE!!! */}
-        {/* <div className="group z-500">
-          <button className="group-hover:text-main-green px-6 py-6 rounded-md text-base md:text-lg font-medium uppercase ">
-            Services
-          </button>
-          <div className=" hidden group-hover:flex flex-col absolute left-0 pl-20 p-10 w-full shadow-md bg-main-green text-white  duration-300">
-            <div className="grid grid-cols-2 gap-20">
-              {menuItems &&
-                menuItems.children.map((service) => {
-                  return (
-                    <div className="flex flex-col" key={service.slug}>
-                      <h3 className="mb-2 font-bold text-main-green-shade border-b-2 border-main-green-shade pb-2 uppercase tracking-wide">
-                        {service.title}
-                      </h3>
-                      {service.children.map((serviceCategory) => (
-                        <>
-                          {serviceCategory.children.length ? (
-                            <>
-                              <span
-                                className="mb-2 font-serif text-lg  cursor-pointer "
-                                key={`${serviceCategory.slug}`}
-                                onClick={() => setMenuopen(!menuOpen)}
-                              >
-                                {serviceCategory.title} {`->`}
-                              </span>
-                              <div>
-                                {menuOpen ? (
-                                  <>
-                                    {serviceCategory.children.map(
-                                      (serviceSubCategory) => (
-                                        <>
-                                          {serviceSubCategory.children
-                                            .length ? (
-                                            <>
-                                              <h5
-                                                className="ml-6 font-bold text-lg text-main-green-shade"
-                                                key={`${serviceSubCategory.slug}`}
-                                              >
-                                                {`Fillers`}
-                                              </h5>
-                                              {serviceSubCategory.children.map(
-                                                (lowestservice) => (
-                                                  <div className="flex flex-row">
-                                                    <Link
-                                                      to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}/${lowestservice.slug}`}
-                                                      className="hover:text-white ml-12"
-                                                    >
-                                                      <h5>
-                                                        {
-                                                          serviceSubCategory.title
-                                                        }{" "}
-                                                      </h5>
-                                                    </Link>
-                                                  </div>
-                                                )
-                                              )}
-                                            </>
-                                          ) : (
-                                            <div>
-                                              <Link
-                                                to={`/${service.slug}/${serviceCategory.slug}/${serviceSubCategory.slug}`}
-                                                className="hover:text-white ml-6 text-lg"
-                                              >
-                                                {serviceSubCategory.title}
-                                              </Link>
-                                            </div>
-                                          )}
-                                        </>
-                                      )
-                                    )}
-                                  </>
-                                ) : (
-                                  <></>
-                                )}
-                              </div>
-                            </>
-                          ) : (
-                            <Link
-                              to={`/${service.slug}/${serviceCategory.slug}`}
-                              className="hover:text-white"
-                            >
-                              {serviceCategory.title}
-                            </Link>
-                          )}
-                        </>
-                      ))}
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
-        </div> */}
       </nav>
     </div>
   );
