@@ -65,7 +65,8 @@ export default function Nav() {
           }
           ... on ContentfulPackagePage {
             slug
-            pac
+            packagePageTitle
+          }
         }
         facialAestheticServices {
           ... on ContentfulServicePage {
@@ -74,7 +75,8 @@ export default function Nav() {
           }
           ... on ContentfulPackagePage {
             slug
-            pac
+            packagePageTitle
+          }
         }
         sexualEnhancementServices {
           ... on ContentfulPackagePage {
