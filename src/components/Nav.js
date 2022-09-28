@@ -354,7 +354,7 @@ export default function Nav() {
               {/* {console.log(ref)} */}
               <div
                 ref-setter={ref}
-                className="px-2 py-5 space-y-1 sm:px-3 bg-main-green flex flex-col h-screen"
+                className="px-2 py-5 space-y-1 sm:px-3 bg-main-green flex flex-col min-h-screen"
               >
                 <div className="group">
                   <h1 className="text-white  px-6 py-3 rounded-md text-base md:text-lg font-medium uppercase ">

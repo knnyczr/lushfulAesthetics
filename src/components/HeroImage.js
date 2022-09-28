@@ -13,11 +13,9 @@ export default function HeroImage({ heroImage, pageTitle }) {
           alt={heroImage.description}
           imgStyle={{ backgroundPositionY: "top" }}
           style={{ height: "500px" }}
-          // I'm not sure how to change the background position of the image
-          // But 500px looks good on both mobile and desktop so far
         />
 
-        <h3 className="absolute left-1/2 text-4xl text-center md:text-5xl lg:text-6xl text-white font-serif font-semibold top-60 -translate-x-1/2 -translate-y-1/2">
+        <h3 className="absolute mx-4 sm:mx-6 lg:mx-24 bottom-0 px-16 pt-4 text-3xl text-center md:text-4xl lg:text-5xl text-black font-serif font-semibold bg-white">
           {pageTitle}
         </h3>
       </div>
