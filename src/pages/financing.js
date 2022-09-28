@@ -63,10 +63,10 @@ export default function Financing({ data }) {
                   How does cherry work
                 </h4>
                 <hr className=" border-black" />
-                <div className="pt-4 lg:pt-8 lg:text-lg">
+                <div className="pt-4 lg:pt-8 lg:text-lg [&>*]:mb-6 nth-child-2:mb-0">
                   {renderRichText(howDoesCherryWork)}
                 </div>
-                <div className="pt-8 lg:pt-16">
+                <div className="">
                   <ApplyCherryBtn />
                 </div>
               </div>
