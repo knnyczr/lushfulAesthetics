@@ -323,10 +323,7 @@ export default function Nav() {
                           return (
                             <div key={service.slug}>
                               <button
-                                className={`flex flex-row pt-2 items-center pr-10 ${
-                                  service.slug ===
-                                    "sexual-enhancement-services" && `mb-3`
-                                }`}
+                                className={`flex flex-row pt-2 items-center pr-10`}
                                 onClick={() =>
                                   setSubMenuOpen((prev) => ({
                                     ...prev,
