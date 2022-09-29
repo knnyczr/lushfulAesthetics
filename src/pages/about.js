@@ -15,16 +15,13 @@ export default function AboutUs({ data }) {
       <Helmet title={`Lushful Aesthetics | About`} />
       {data.contentfulAboutUs ? (
         <>
-          {/* <GatsbyImage image={dynamicImage} alt={heroImage.description} /> */}
-          <div className="relative">
-            <HeroImage heroImage={heroImage} />
-            <h2 className="absolute whitespace-nowrap text-4xl md:text-5xl lg:text-6xl text-white font-serif top-60 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              Where lifestyle meets beauty
-            </h2>
-          </div>
+          <HeroImage
+            heroImage={heroImage}
+            pageTitle={`Where Lifestyle Meets Beauty`}
+          />
 
-          <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-center items-center bg-main-green">
-            <h2 className="pb-8 uppercase text-xl font-semibold">{`About Lushful Aesthetics`}</h2>
+          <div className="mt-6 px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-center items-center bg-main-green">
+            <h2 className="pb-8 text-xl font-semibold font-serif">{`About Lushful Aesthetics`}</h2>
             <div className="max-w-screen-lg pb-8 lg:pb-16 lg:text-lg md:text-center">
               {renderRichText(aboutLushfulAesthetics)}
             </div>

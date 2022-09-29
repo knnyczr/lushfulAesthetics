@@ -5,10 +5,8 @@ import { Helmet } from "react-helmet";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function Contact({ data }) {
-  const { disclosure, pageTitle } = data.contentfulContactPage;
-  const { address } = data.contentfulHomePage;
-
-  // console.log(`here is the address`,address);
+  const { disclosure, pageTitle, googleLocation, address, phoneNumber, email } =
+    data.contentfulContactPage;
 
   return (
     <>
@@ -20,7 +18,12 @@ export default function Contact({ data }) {
         </div>
 
         <div>
-          <ContactForm address={address} />
+          <ContactForm
+            address={address}
+            phoneNumber={phoneNumber}
+            email={email}
+            googleLocation={googleLocation}
+          />
         </div>
       </div>
     </>
@@ -28,19 +31,16 @@ export default function Contact({ data }) {
 }
 
 export const query = graphql`
-  # query will go here
   query ContactPageQuery {
     contentfulContactPage {
       disclosure {
         raw
       }
       pageTitle
-    }
-    contentfulHomePage {
-      id
-      address {
-        raw
-      }
+      googleLocation
+      address
+      phoneNumber
+      email
     }
   }
 `;

@@ -23,9 +23,6 @@ export default function ServicePage({ data }) {
     },
   } = data;
 
-  // TODO: renderRichText article: https://www.gatsbyjs.com/blog/how-to-use-the-contentful-rich-text-field-with-gatsby/
-  // console.log(renderRichText(intro));
-
   const website_url = "https://www.lushfulaesthetics.com/";
 
   const options = {
