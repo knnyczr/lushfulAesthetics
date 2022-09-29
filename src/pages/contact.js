@@ -8,7 +8,6 @@ export default function Contact({ data }) {
   const { disclosure, pageTitle, googleLocation, address, phoneNumber, email } =
     data.contentfulContactPage;
 
-  console.log(address, googleLocation, phoneNumber);
   return (
     <>
       <Helmet title={`Lushful Aesthetics | Contact`} />
@@ -32,7 +31,6 @@ export default function Contact({ data }) {
 }
 
 export const query = graphql`
-  # query will go here
   query ContactPageQuery {
     contentfulContactPage {
       disclosure {

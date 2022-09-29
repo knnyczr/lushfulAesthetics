@@ -26,18 +26,12 @@ export default function ContactForm({
           </div>
 
           <div className="flex flex-col justify-center">
-            <div className="font-medium text-2xl my-8 md:my-4">
-              {/* {renderRichText(address)} */}
-              {address}
-            </div>
+            <div className="font-medium text-2xl my-8 md:my-4">{address}</div>
             <div className="font-medium my-4">
-              {/* <a href={`tel:${phone}`}>{renderRichText(phoneNmber)}</a> */}
               <FontAwesomeIcon icon={faPhone} className="mr-4" />
               <a href={`tel:+1${phoneNumber}`}>{phoneNumber}</a>
             </div>
             <div className="font-medium mb-8">
-              {" "}
-              {/* <div>{renderRichText(email)}</div>  */}
               <FontAwesomeIcon icon={faEnvelope} className="mr-4" />
               <a href={`mailto:${email}`}>{email}</a>
             </div>
