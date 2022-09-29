@@ -5,8 +5,6 @@ import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 export default function ServicePrice({ intro, pricing }) {
-  // console.log("pricing: ", pricing);
-
   return (
     <>
       <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-start md:justify-center">

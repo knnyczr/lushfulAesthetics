@@ -308,7 +308,6 @@ export default function Nav() {
               id="mobile-menu"
               // onClick={() => setIsOpen(!isOpen)}
             >
-              {/* {console.log(ref)} */}
               <div
                 ref-setter={ref}
                 className="px-2 py-5 space-y-1 sm:px-3 bg-main-green flex flex-col min-h-screen"

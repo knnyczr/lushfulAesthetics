@@ -68,7 +68,6 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `);
-  // console.log(result);
   allContentfulServicePage.edges.forEach((page) => {
     createPage({
       path: `/${page.node.slug}`,

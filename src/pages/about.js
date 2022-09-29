@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 export default function AboutUs({ data }) {
   const { aboutLushfulAesthetics, meetInjectorChris, heroImage, portrait } =
     data.contentfulAboutUs;
-  console.log(portrait);
+
   let image = getImage(portrait);
   return (
     <div>

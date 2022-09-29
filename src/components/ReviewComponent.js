@@ -14,7 +14,6 @@ export function ReviewCard({
 }
 
 export default function ReviewComponent({ reviews }) {
-  console.log(reviews);
   return (
     <div>
       {reviews.map((review, idx) => (
