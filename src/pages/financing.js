@@ -18,7 +18,10 @@ export default function Financing({ data }) {
   const options = {
     renderMark: {
       [MARKS.BOLD]: (text) => (
-        <span className="font-sans font-bold lg:text-lg mb-1">{text}</span>
+        <span className="font-sans font-bold lg:text-lg pt-6">
+          <br />
+          {text}
+        </span>
       ),
     },
     renderNode: {
@@ -27,7 +30,7 @@ export default function Financing({ data }) {
         <ul className="flex flex-col md:flex-row justify-center">{children}</ul>
       ),
       [BLOCKS.LIST_ITEM]: (node, children) => (
-        <li className="py-8 px-4 my-2 h-auto align-middle md:py-10 md:px-8 md:h-auto bg-white mx-2 rounded md:w-1/4 text-center font-serif font-medium">
+        <li className="py-8 px-4 my-2 h-auto align-middle md:py-10 md:px-8 md:h-auto bg-white mx-2 rounded md:w-1/4 text-center font-serif font-medium ">
           {children}
         </li>
       ),
@@ -50,7 +53,7 @@ export default function Financing({ data }) {
                 <ApplyCherryBtn />
               </div>
             </div>
-            <div className="bg-main-green w-screen px-4 py-16 sm:px-6 d:px-12 lg:px-24 flex flex-col justify-center items-center">
+            <div className="bg-main-green w-screen px-4 py-16 sm:px-6 d:px-12 lg:px-24 flex flex-col justify-center items-center last:mt-10">
               <h4 className="text-white pb-8 uppercase text-lg font-semibold">
                 3 Reasons Why Patients Love Cherry
               </h4>

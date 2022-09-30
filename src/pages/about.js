@@ -5,11 +5,21 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Helmet } from "react-helmet";
 
+import { BLOCKS } from "@contentful/rich-text-types";
+
 export default function AboutUs({ data }) {
   const { aboutLushfulAesthetics, meetInjectorChris, heroImage, portrait } =
     data.contentfulAboutUs;
 
   let image = getImage(portrait);
+
+  const options = {
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) => (
+        <p className="mb-5">{children}</p>
+      ),
+    },
+  };
   return (
     <div>
       <Helmet title={`Lushful Aesthetics | About`} />
@@ -33,7 +43,7 @@ export default function AboutUs({ data }) {
                 Meet InjectorChris
               </h3>
               <div className="max-w-screen-lg pb-2 w-full lg:pb-16 lg:text-lg justify-center items-start ">
-                {renderRichText(meetInjectorChris)}
+                {renderRichText(meetInjectorChris, options)}
               </div>
             </div>
             <div className="pb-8 h-auto w-min-max lg:w-96 mx-4 my-4  md:mr-12 md:mt-12 lg:mr-24 lg:mt-24">

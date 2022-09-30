@@ -334,13 +334,13 @@ export default function Nav() {
                     Services
                   </h1>
                   <div className="z-1000 group-hover:flex flex-col left-0 px-8 w-full bg-main-green text-white duration-300">
-                    <div className="flex flex-col">
+                    <div className="flex flex-col ">
                       {menuItems &&
                         menuItems.children.map((service) => {
                           return (
                             <div key={service.slug} className="mb-3">
                               <button
-                                className={`flex flex-row items-center pr-10`}
+                                className={`flex flex-row items-center text-left`}
                                 onClick={() =>
                                   setSubMenuOpen((prev) => ({
                                     ...prev,

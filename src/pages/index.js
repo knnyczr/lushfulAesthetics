@@ -58,8 +58,11 @@ export default function IndexPage({ data }) {
           </div>
 
           <div className="flex flex-col justify-center">
-            <div className="font-serif text-2xl font-semibold my-4">
-              {`Lushful Aesthetics™ by InjectorChris`}
+            <div className="font-serif text-2xl font-semibold mt-5">
+              {`Lushful Aesthetics™`}
+            </div>
+            <div className="font-serif text-2xl font-semibold">
+              {` by InjectorChris`}
             </div>
             <div className="font-medium my-4">{address}</div>
             <div>
