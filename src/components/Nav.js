@@ -163,6 +163,8 @@ export default function Nav() {
     facialAestheticServices,
   ]);
 
+  console.log(menuItems);
+
   return (
     <div>
       <nav className="bg-white">
@@ -186,7 +188,7 @@ export default function Nav() {
                     </button>
                     {menuOpen && (
                       <div className="pointer-events-auto flex flex-col absolute top-24 left-0 pl-20 p-10 w-full shadow-md bg-main-green text-white duration-300">
-                        <button
+                        <div
                           className="flex flex-row gap-10 "
                           onClick={() => setMenuOpen(!menuOpen)}
                         >
@@ -203,41 +205,60 @@ export default function Nav() {
                                   <div className={`flex flex-col`}>
                                     {service.children.map((serviceCategory) => {
                                       return (
-                                        <Link
-                                          key={`LINK-${serviceCategory.slug}`}
-                                          to={`/${service.slug}/${serviceCategory.slug}`}
-                                          className="hover:text-main-green-shade text-left"
-                                        >
-                                          {serviceCategory.title}
-                                        </Link>
+                                        <div className="flex flex-col">
+                                          {serviceCategory.children.length ? (
+                                            <div className=" flex flex-col">
+                                              <h3>{serviceCategory.title}</h3>
+                                              {serviceCategory.children.map(
+                                                (serviceCategoryChild) => (
+                                                  <Link
+                                                    key={`LINK-${serviceCategoryChild.slug}`}
+                                                    to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}`}
+                                                    className="ml-6 hover:text-main-green-shade text-left"
+                                                  >
+                                                    {serviceCategoryChild.title}
+                                                  </Link>
+                                                )
+                                              )}
+                                            </div>
+                                          ) : (
+                                            <Link
+                                              key={`LINK-${serviceCategory.slug}`}
+                                              to={`/${service.slug}/${serviceCategory.slug}`}
+                                              className="hover:text-main-green-shade text-left"
+                                            >
+                                              {serviceCategory.title}
+                                            </Link>
+                                          )}
+                                        </div>
                                       );
                                     })}
                                   </div>
                                 </div>
                               );
                             })}
-                        </button>
+                        </div>
                       </div>
                     )}
                   </div>
 
                   <Link
                     to="/about"
-                    className=" text-black hover:text-main-green px-3 py-2 rounded-md text-base lg:text-lg font-medium uppercase"
+                    className="text-black hover:text-main-green px-3 py-2 rounded-md text-base lg:text-lg font-medium uppercase"
                   >
                     About
                   </Link>
 
                   <Link
                     to="/contact"
-                    className=" text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
+                    className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
                   >
                     Contact
                   </Link>
 
                   <Link
                     to="/financing"
-                    className=" text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
+                    className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
                   >
                     Financing
                   </Link>
@@ -303,11 +324,7 @@ export default function Nav() {
           leaveTo="opacity-0 scale-95"
         >
           {(ref) => (
-            <div
-              className="md:hidden"
-              id="mobile-menu"
-              // onClick={() => setIsOpen(!isOpen)}
-            >
+            <div className="md:hidden" id="mobile-menu">
               <div
                 ref-setter={ref}
                 className="px-2 py-5 space-y-1 sm:px-3 bg-main-green flex flex-col min-h-screen"
@@ -321,9 +338,9 @@ export default function Nav() {
                       {menuItems &&
                         menuItems.children.map((service) => {
                           return (
-                            <div key={service.slug}>
+                            <div key={service.slug} className="mb-3">
                               <button
-                                className={`flex flex-row pt-2 items-center pr-10`}
+                                className={`flex flex-row items-center pr-10`}
                                 onClick={() =>
                                   setSubMenuOpen((prev) => ({
                                     ...prev,
@@ -331,7 +348,7 @@ export default function Nav() {
                                   }))
                                 }
                               >
-                                <h3 className="text-lg font-medium mr-3 ">
+                                <h3 className="text-lg font-medium mr-3">
                                   {service.title}
                                 </h3>
                                 <span className="flex flex-row justify-between">
@@ -349,18 +366,36 @@ export default function Nav() {
                                 </span>
                               </button>
                               {subMenuOpen[`${service.slug}`] && (
-                                <div className="flex flex-col">
+                                <div className="flex flex-col ml-3">
                                   {service.children.map((serviceCategory) => (
-                                    <>
-                                      <Link
-                                        onClick={() => closeMenu()}
-                                        key={`outter-${serviceCategory.slug}`}
-                                        to={`/${service.slug}/${serviceCategory.slug}`}
-                                        className="hover:text-black ml-4"
-                                      >
-                                        {serviceCategory.title}
-                                      </Link>
-                                    </>
+                                    <div>
+                                      {serviceCategory.children.length ? (
+                                        <div className="flex flex-col">
+                                          <h3>{serviceCategory.title}</h3>
+                                          {serviceCategory.children.map(
+                                            (serviceCategoryChild) => (
+                                              <Link
+                                                onClick={() => closeMenu()}
+                                                key={`LINK-${serviceCategoryChild.slug}`}
+                                                to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}`}
+                                                className="ml-3 hover:text-main-green-shade text-left pb-1"
+                                              >
+                                                {serviceCategoryChild.title}
+                                              </Link>
+                                            )
+                                          )}
+                                        </div>
+                                      ) : (
+                                        <Link
+                                          onClick={() => closeMenu()}
+                                          key={`LINK-${serviceCategory.slug}`}
+                                          to={`/${service.slug}/${serviceCategory.slug}`}
+                                          className="hover:text-main-green-shade text-left pb-1"
+                                        >
+                                          {serviceCategory.title}
+                                        </Link>
+                                      )}
+                                    </div>
                                   ))}
                                 </div>
                               )}
