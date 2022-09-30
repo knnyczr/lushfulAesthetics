@@ -7,8 +7,10 @@ import Reviews from "../components/Reviews";
 import { Helmet } from "react-helmet";
 
 export default function IndexPage({ data }) {
-  const { slogan, visionStatement, reviews, heroImage } =
-    data.contentfulHomePage;
+  const {
+    contentfulHomePage: { slogan, visionStatement, reviews, heroImage },
+    contentfulContactPage: { address },
+  } = data;
 
   const image = getImage(heroImage);
 
@@ -59,6 +61,7 @@ export default function IndexPage({ data }) {
             <div className="font-serif text-2xl font-semibold my-4">
               {`Lushful Aesthetics™ by InjectorChris`}
             </div>
+            <div className="font-medium my-4">{address}</div>
             <div>
               <Button />
             </div>
@@ -99,6 +102,9 @@ export const query = graphql`
           }
         }
       }
+    }
+    contentfulContactPage {
+      address
     }
   }
 `;
