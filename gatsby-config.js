@@ -59,7 +59,7 @@ module.exports = {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          `Playfair+Display:wght@700;800`,
+          `Playfair+Display:ital,wght@700;800`,
           `Roboto:ital,wght@300;400;500;700;900`,
         ],
         display: "swap",
