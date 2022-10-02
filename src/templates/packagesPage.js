@@ -14,7 +14,7 @@ export default function PackagesPage({ data }) {
     <>
       <Helmet title={`Lushful Aesthetics | ${packagePageTitle}`} />
       <HeroImage heroImage={heroImage} pageTitle={packagePageTitle} />
-      <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 m-auto p-auto">
+      <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 m-auto p-auto">
         <div className="py-10">
           {packagesList.length &&
             packagesList.map((packageCard, idx) => (
@@ -23,7 +23,7 @@ export default function PackagesPage({ data }) {
               </div>
             ))}
         </div>
-        <div className="flex justify-center pt-8 lg:pt-16">
+        <div className="flex justify-center mt-8 lg:mt-16">
           <Button />
         </div>
       </div>

@@ -35,6 +35,13 @@ export default function ServicePage({ data }) {
       [BLOCKS.PARAGRAPH]: (node, children) => (
         <p className="font-serif">{children}</p>
       ),
+      [BLOCKS.HEADING_2]: (node, children) => (
+        <h2 className="pt-4">{children}</h2>
+      ),
+      [BLOCKS.HR]: (node) => <hr className="py-2 opacity-0" />,
+      [BLOCKS.UL_LIST]: (node, children) => (
+        <ul className="ml-4 italic">{children}</ul>
+      ),
       [INLINES.HYPERLINK]: ({ data }, children) => (
         <a
           className="underline "
@@ -73,8 +80,10 @@ export default function ServicePage({ data }) {
       />
 
       <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
-        <div className="my-4 px-4  md:px-6 lg:px-24 ">
-          <h2 className="container font-serif font-bold text-3xl my-4">FAQs</h2>
+        <div className="container my-4 px-4 md:px-6 lg:px-24 mx-auto">
+          <h2 className="container font-serif font-bold text-3xl my-4 ">
+            FAQs
+          </h2>
 
           {faqRef.map((faq, idx) => (
             <CustomAccordion

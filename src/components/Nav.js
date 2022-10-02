@@ -187,16 +187,16 @@ export default function Nav() {
                       Services
                     </button>
                     {menuOpen && (
-                      <div className="pointer-events-auto flex flex-col absolute top-24 left-0 pl-20 p-10 w-full shadow-md bg-main-green text-white duration-300">
+                      <div className="pointer-events-auto flex flex-col absolute top-24 left-0 p-10 w-full shadow-md bg-main-green text-white duration-300 ">
                         <div
-                          className="flex flex-row gap-10 "
+                          className="flex flex-row items-start gap-10  "
                           onClick={() => setMenuOpen(!menuOpen)}
                         >
                           {menuItems &&
                             menuItems.children.map((service) => {
                               return (
                                 <div
-                                  className="flex flex-col ml-20"
+                                  className="flex flex-col ml-8 md:items-left lg:ml-20"
                                   key={service.slug}
                                 >
                                   <h3 className="mb-2 text-lg font-bold ">
@@ -334,7 +334,7 @@ export default function Nav() {
                     Services
                   </h1>
                   <div className="z-1000 group-hover:flex flex-col left-0 px-8 w-full bg-main-green text-white duration-300">
-                    <div className="flex flex-col ">
+                    <div className="flex flex-col">
                       {menuItems &&
                         menuItems.children.map((service) => {
                           return (
