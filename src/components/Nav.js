@@ -208,7 +208,7 @@ export default function Nav() {
                                         <div className="flex flex-col">
                                           {serviceCategory.children.length ? (
                                             <div className="flex flex-col">
-                                              <h3 className="mt-3">
+                                              <h3 className="mt-2">
                                                 {serviceCategory.title}
                                               </h3>
                                               {serviceCategory.children.map(
@@ -220,7 +220,7 @@ export default function Nav() {
                                                   <Link
                                                     key={`LINK-${serviceCategoryChild.slug}`}
                                                     to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}`}
-                                                    className={`ml-4 hover:text-main-green-shade text-left`}
+                                                    className={`ml-8 hover:text-main-green-shade text-left`}
                                                   >
                                                     {serviceCategoryChild.title}
                                                   </Link>
@@ -231,7 +231,7 @@ export default function Nav() {
                                             <Link
                                               key={`LINK-${serviceCategory.slug}`}
                                               to={`/${service.slug}/${serviceCategory.slug}`}
-                                              className="hover:text-main-green-shade text-left mt-3"
+                                              className="hover:text-main-green-shade text-left mt-2"
                                             >
                                               {serviceCategory.title}
                                             </Link>
@@ -377,7 +377,7 @@ export default function Nav() {
                                     <div>
                                       {serviceCategory.children.length ? (
                                         <div className="flex flex-col">
-                                          <h3 className="mt-3">
+                                          <h3 className="mt-2">
                                             {serviceCategory.title}
                                           </h3>
                                           {serviceCategory.children.map(
@@ -390,7 +390,7 @@ export default function Nav() {
                                                 onClick={() => closeMenu()}
                                                 key={`LINK-${serviceCategoryChild.slug}`}
                                                 to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}`}
-                                                className={`ml-3 hover:text-main-green-shade text-left`}
+                                                className={`ml-6 hover:text-main-green-shade text-left`}
                                               >
                                                 {serviceCategoryChild.title}
                                               </Link>
@@ -398,7 +398,7 @@ export default function Nav() {
                                           )}
                                         </div>
                                       ) : (
-                                        <div className="mt-3">
+                                        <div className="mt-2">
                                           <Link
                                             onClick={() => closeMenu()}
                                             key={`LINK-${serviceCategory.slug}`}
