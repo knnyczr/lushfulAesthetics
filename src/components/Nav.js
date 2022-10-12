@@ -208,7 +208,7 @@ export default function Nav() {
                                         <div className="flex flex-col">
                                           {serviceCategory.children.length ? (
                                             <div className="flex flex-col">
-                                              <h3 className="mt-2">
+                                              <h3 className="mt-1">
                                                 {serviceCategory.title}
                                               </h3>
                                               {serviceCategory.children.map(
@@ -220,7 +220,10 @@ export default function Nav() {
                                                   <Link
                                                     key={`LINK-${serviceCategoryChild.slug}`}
                                                     to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}`}
-                                                    className={`ml-8 hover:text-main-green-shade text-left`}
+                                                    className={`ml-4 hover:text-main-green-shade text-left ${
+                                                      idx === arr.length - 1 &&
+                                                      `mb-2`
+                                                    }`}
                                                   >
                                                     {serviceCategoryChild.title}
                                                   </Link>
@@ -231,7 +234,7 @@ export default function Nav() {
                                             <Link
                                               key={`LINK-${serviceCategory.slug}`}
                                               to={`/${service.slug}/${serviceCategory.slug}`}
-                                              className="hover:text-main-green-shade text-left mt-2"
+                                              className="hover:text-main-green-shade text-left mt-1"
                                             >
                                               {serviceCategory.title}
                                             </Link>
