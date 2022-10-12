@@ -199,7 +199,7 @@ export default function Nav() {
                                   className="flex flex-col ml-20"
                                   key={service.slug}
                                 >
-                                  <h3 className="mb-2 text-lg font-bold ">
+                                  <h3 className="text-lg font-bold ">
                                     {service.title}
                                   </h3>
                                   <div className={`flex flex-col`}>
@@ -207,14 +207,20 @@ export default function Nav() {
                                       return (
                                         <div className="flex flex-col">
                                           {serviceCategory.children.length ? (
-                                            <div className=" flex flex-col">
-                                              <h3>{serviceCategory.title}</h3>
+                                            <div className="flex flex-col">
+                                              <h3 className="mt-3">
+                                                {serviceCategory.title}
+                                              </h3>
                                               {serviceCategory.children.map(
-                                                (serviceCategoryChild) => (
+                                                (
+                                                  serviceCategoryChild,
+                                                  idx,
+                                                  arr
+                                                ) => (
                                                   <Link
                                                     key={`LINK-${serviceCategoryChild.slug}`}
                                                     to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}`}
-                                                    className="ml-6 hover:text-main-green-shade text-left"
+                                                    className={`ml-4 hover:text-main-green-shade text-left`}
                                                   >
                                                     {serviceCategoryChild.title}
                                                   </Link>
@@ -225,7 +231,7 @@ export default function Nav() {
                                             <Link
                                               key={`LINK-${serviceCategory.slug}`}
                                               to={`/${service.slug}/${serviceCategory.slug}`}
-                                              className="hover:text-main-green-shade text-left"
+                                              className="hover:text-main-green-shade text-left mt-3"
                                             >
                                               {serviceCategory.title}
                                             </Link>
@@ -371,14 +377,20 @@ export default function Nav() {
                                     <div>
                                       {serviceCategory.children.length ? (
                                         <div className="flex flex-col">
-                                          <h3>{serviceCategory.title}</h3>
+                                          <h3 className="mt-3">
+                                            {serviceCategory.title}
+                                          </h3>
                                           {serviceCategory.children.map(
-                                            (serviceCategoryChild) => (
+                                            (
+                                              serviceCategoryChild,
+                                              idx,
+                                              arr
+                                            ) => (
                                               <Link
                                                 onClick={() => closeMenu()}
                                                 key={`LINK-${serviceCategoryChild.slug}`}
                                                 to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}`}
-                                                className="ml-3 hover:text-main-green-shade text-left pb-1"
+                                                className={`ml-3 hover:text-main-green-shade text-left`}
                                               >
                                                 {serviceCategoryChild.title}
                                               </Link>
@@ -386,14 +398,16 @@ export default function Nav() {
                                           )}
                                         </div>
                                       ) : (
-                                        <Link
-                                          onClick={() => closeMenu()}
-                                          key={`LINK-${serviceCategory.slug}`}
-                                          to={`/${service.slug}/${serviceCategory.slug}`}
-                                          className="hover:text-main-green-shade text-left pb-1"
-                                        >
-                                          {serviceCategory.title}
-                                        </Link>
+                                        <div className="mt-3">
+                                          <Link
+                                            onClick={() => closeMenu()}
+                                            key={`LINK-${serviceCategory.slug}`}
+                                            to={`/${service.slug}/${serviceCategory.slug}`}
+                                            className="hover:text-main-green-shade"
+                                          >
+                                            {serviceCategory.title}
+                                          </Link>
+                                        </div>
                                       )}
                                     </div>
                                   ))}
