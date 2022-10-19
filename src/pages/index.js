@@ -38,6 +38,9 @@ export default function IndexPage({ data }) {
       </div>
 
       <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 bg-main-green">
+        <h1 className="max-w-screen-2xl mb-10 font-serif font-bold text-white text-2xl md:text-3xl lg:text-4xl text-center leading-10">
+          {`What People Are Saying`}
+        </h1>
         <Reviews reviews={reviews} />
       </div>
 
