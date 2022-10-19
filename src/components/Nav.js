@@ -166,8 +166,8 @@ export default function Nav() {
   console.log(menuItems);
 
   return (
-    <div>
-      <nav className="bg-white">
+    <div className="bg-white sticky top-0 z-50 shadow-sm">
+      <nav>
         <div className="flex justify-between items-center px-4 py-4 d:px-12 lg:px-24">
           <div className="w-48 lg:w-60 py-auto">
             <Link to="/">
