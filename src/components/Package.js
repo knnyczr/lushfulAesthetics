@@ -44,7 +44,7 @@ export default function Package({ packageCard }) {
   return (
     <>
       <div className="py-2 max-w-6xl m-auto p-auto">
-        <div className="bg-main-green px-12 py-8 rounded-lg">
+        <div className="bg-main-green px-6 md:px-12 py-6 md:py-8 rounded-lg">
           <div className="flex flex-row justify-between items-baseline">
             <h2 className="font-serif font-bold text-2xl">
               {packageCard.packageTitle}
