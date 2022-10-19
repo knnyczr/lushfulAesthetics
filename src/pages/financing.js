@@ -13,6 +13,7 @@ export default function Financing({ data }) {
     reasonsWhyPatientsLoveCherry,
     whatIsCherry,
     heroImage,
+    applyForCherryLink,
   } = data.contentfulFinancingPage;
 
   const options = {
@@ -37,6 +38,7 @@ export default function Financing({ data }) {
     },
   };
 
+  console.log(data);
   return (
     <div>
       <Helmet title={`Lushful Aesthetics | Financing With Cherry`} />
@@ -50,7 +52,7 @@ export default function Financing({ data }) {
                 {renderRichText(whatIsCherry)}
               </div>
               <div>
-                <ApplyCherryBtn />
+                <ApplyCherryBtn url={applyForCherryLink} />
               </div>
             </div>
             <div className="bg-main-green w-screen px-4 py-16 sm:px-6 d:px-12 lg:px-24 flex flex-col justify-center items-center last:mt-10">
@@ -70,7 +72,7 @@ export default function Financing({ data }) {
                   {renderRichText(howDoesCherryWork)}
                 </div>
                 <div className="">
-                  <ApplyCherryBtn />
+                  <ApplyCherryBtn url={applyForCherryLink} />
                 </div>
               </div>
             </div>
@@ -84,6 +86,7 @@ export default function Financing({ data }) {
 export const pageQuery = graphql`
   query financingPageQuery {
     contentfulFinancingPage {
+      applyForCherryLink
       pageTitle
       reasonsWhyPatientsLoveCherry {
         raw

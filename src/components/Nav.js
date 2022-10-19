@@ -163,8 +163,6 @@ export default function Nav() {
     facialAestheticServices,
   ]);
 
-  console.log(menuItems);
-
   return (
     <div className="bg-white sticky top-0 z-50 shadow-sm">
       <nav>
