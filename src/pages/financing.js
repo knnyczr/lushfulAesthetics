@@ -38,7 +38,6 @@ export default function Financing({ data }) {
     },
   };
 
-  console.log(data);
   return (
     <div>
       <Helmet title={`Lushful Aesthetics | Financing With Cherry`} />
