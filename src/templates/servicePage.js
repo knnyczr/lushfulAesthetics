@@ -33,7 +33,9 @@ export default function ServicePage({ data }) {
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className="font-serif">{children}</p>
+        <div className="mb-4">
+          <p className="font-serif">{children}</p>
+        </div>
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
         <h2 className="pt-4">{children}</h2>
@@ -60,6 +62,8 @@ export default function ServicePage({ data }) {
       ),
     },
   };
+
+  console.log(pricing);
 
   return (
     <div>
