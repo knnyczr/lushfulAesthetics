@@ -6,6 +6,8 @@ import Button from "../components/BookBtn";
 import HeroImage from "../components/HeroImage";
 import { Helmet } from "react-helmet";
 
+export { Head } from "../components/Layout";
+
 export default function PackagesPage({ data }) {
   const { packagePageTitle, packagesList, heroImage } =
     data.contentfulPackagePage;

@@ -9,6 +9,8 @@ import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import OurApproach from "../components/OurApproach";
 import { Helmet } from "react-helmet";
 
+export { Head } from "../components/Layout";
+
 export default function ServicePage({ data }) {
   const {
     contentfulServicePage: {

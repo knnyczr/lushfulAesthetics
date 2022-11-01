@@ -6,6 +6,8 @@ import ApplyCherryBtn from "../components/ApplyCherryBtn";
 import { Helmet } from "react-helmet";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 
+export { Head } from "../components/Layout";
+
 export default function Financing({ data }) {
   const {
     howDoesCherryWork,

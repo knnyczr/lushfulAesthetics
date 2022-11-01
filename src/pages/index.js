@@ -6,6 +6,8 @@ import Button from "../components/BookBtn";
 import Reviews from "../components/Reviews";
 import { Helmet } from "react-helmet";
 
+export { Head } from "../components/Layout";
+
 export default function IndexPage({ data }) {
   const {
     contentfulHomePage: { slogan, visionStatement, reviews, heroImage },

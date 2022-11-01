@@ -4,6 +4,8 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { Helmet } from "react-helmet";
 
+export { Head } from "../components/Layout";
+
 export default function PrivacyPolicy({ data }) {
   const website_url = "https://www.lushfulaesthetics.com/";
 
