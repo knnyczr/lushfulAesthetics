@@ -4,6 +4,8 @@ import ContactForm from "../components/ContactForm";
 import { Helmet } from "react-helmet";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 
+export { Head } from "../components/Layout";
+
 export default function Contact({ data }) {
   const { disclosure, pageTitle, googleLocation, address, phoneNumber, email } =
     data.contentfulContactPage;

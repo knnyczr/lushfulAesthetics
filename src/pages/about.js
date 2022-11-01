@@ -7,6 +7,8 @@ import { Helmet } from "react-helmet";
 
 import { BLOCKS } from "@contentful/rich-text-types";
 
+export { Head } from "../components/Layout";
+
 export default function AboutUs({ data }) {
   const { aboutLushfulAesthetics, meetInjectorChris, heroImage, portrait } =
     data.contentfulAboutUs;
