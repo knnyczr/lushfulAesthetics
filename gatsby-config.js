@@ -74,12 +74,23 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        display: `minimal-ui`,
+        start_url: `/`,
+        name: `Lushful Aesthetics`,
+        short_name: `LushfulAesthetics`,
+        background_color: `#ffffff`,
+        icon: `src/images/lushful_aesthetic_icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         // The property ID; the tracking code won't be generated without it
         trackingId: `${process.env.GOOGLE_ANALYTICS}`,
         // Defines where to place the tracking script - `true` in the head and `false` in the body
-        head: true,
+        head: false,
         // Setting this parameter is optional
         anonymize: true,
         // Setting this parameter is also optional
@@ -99,7 +110,7 @@ module.exports = {
         // Any additional optional fields
         sampleRate: 5,
         siteSpeedSampleRate: 10,
-        // cookieDomain: "example.com",
+        cookieDomain: "https://www.lushfulaesthetics.com",
         // defaults to false
         enableWebVitalsTracking: true,
       },

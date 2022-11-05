@@ -1,11 +1,8 @@
 import * as React from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
-import { Helmet } from "react-helmet";
-// import favicon from "../images/favicon.ico";
 
 export default function Layout({ children }) {
-  // const [pageTitle, setPageTitle] = useState("Home");
   return (
     <>
       <Nav />
