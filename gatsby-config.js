@@ -81,7 +81,7 @@ module.exports = {
         name: `Lushful Aesthetics`,
         short_name: `LushfulAesthetics`,
         background_color: `#ffffff`,
-        icon: `src/images/favicon.ico`, // This path is relative to the root of the site.
+        icon: `src/images/lushful_aesthetic_icon.png`, // This path is relative to the root of the site.
       },
     },
     // {
