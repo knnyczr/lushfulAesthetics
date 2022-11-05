@@ -7,7 +7,6 @@ export { Head } from "../components/Layout";
 
 export default function GeneralFAQs({ data }) {
   const faqList = data.allContentfulGeneralFaqPage.edges[0].node.faqList;
-  // console.log(`general faqlist`, faqList);
 
   return (
     <>

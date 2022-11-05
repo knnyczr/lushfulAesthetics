@@ -65,8 +65,6 @@ export default function ServicePage({ data }) {
     },
   };
 
-  console.log(pricing);
-
   return (
     <div>
       <Helmet title={`Lushful Aesthetics | ${serviceTitle}`} />
