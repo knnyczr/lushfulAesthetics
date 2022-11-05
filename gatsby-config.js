@@ -74,12 +74,52 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        display: `minimal-ui`,
+        start_url: `/`,
+        name: `Lushful Aesthetics`,
+        short_name: `LushfulAesthetics`,
+        background_color: `#ffffff`,
+        icon: `src/images/favicon.ico`, // This path is relative to the root of the site.
+      },
+    },
+    // {
+    //   resolve: `gatsby-plugin-google-gtag`,
+    //   options: {
+    //     // You can add multiple tracking ids and a pageview event will be fired for all of them.
+    //     trackingIds: [
+    //       `${process.env.GOOGLE_ANALYTICS}`, // Google Analytics / GA
+    //       // "AW-CONVERSION_ID", // Google Ads / Adwords / AW
+    //       // "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
+    //     ],
+    //     // This object gets passed directly to the gtag config command
+    //     // This config will be shared across all trackingIds
+    //     gtagConfig: {
+    //       optimize_id: "OPT_CONTAINER_ID",
+    //       anonymize_ip: true,
+    //       cookie_expires: 0,
+    //     },
+    //     // This object is used for configuration specific to this plugin
+    //     pluginConfig: {
+    //       // Puts tracking script in the head instead of the body
+    //       head: false,
+    //       // Setting this parameter is also optional
+    //       respectDNT: true,
+    //       // Avoids sending pageview hits from custom paths
+    //       exclude: ["/preview/**", "/do-not-track/me/too/"],
+    //       // Defaults to https://www.googletagmanager.com
+    //       origin: "https://www.lushfulaesthetics.com",
+    //     },
+    //   },
+    // },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         // The property ID; the tracking code won't be generated without it
         trackingId: `${process.env.GOOGLE_ANALYTICS}`,
         // Defines where to place the tracking script - `true` in the head and `false` in the body
-        head: true,
+        head: false,
         // Setting this parameter is optional
         anonymize: true,
         // Setting this parameter is also optional
@@ -99,7 +139,7 @@ module.exports = {
         // Any additional optional fields
         sampleRate: 5,
         siteSpeedSampleRate: 10,
-        // cookieDomain: "example.com",
+        cookieDomain: "https://www.lushfulaesthetics.com",
         // defaults to false
         enableWebVitalsTracking: true,
       },
