@@ -90,7 +90,7 @@ module.exports = {
         // The property ID; the tracking code won't be generated without it
         trackingId: `G-D8QZW3KJBK`,
         // Defines where to place the tracking script - `true` in the head and `false` in the body
-        head: false,
+        head: true,
         // Setting this parameter is optional
         anonymize: true,
         // Setting this parameter is also optional
@@ -112,7 +112,7 @@ module.exports = {
         siteSpeedSampleRate: 10,
         cookieDomain: "https://www.lushfulaesthetics.com",
         // defaults to false
-        enableWebVitalsTracking: true,
+        enableWebVitalsTracking: false,
       },
     },
     {
@@ -132,19 +132,19 @@ module.exports = {
         defaultDataLayer: { platform: "gatsby" },
 
         // Specify optional GTM environment details.
-        gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING",
-        gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_PREVIEW_NAME",
-        dataLayerName: "YOUR_DATA_LAYER_NAME",
+        // gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_AUTH_STRING",
+        // gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIRONMENT_PREVIEW_NAME",
+        // dataLayerName: "YOUR_DATA_LAYER_NAME",
 
         // Name of the event that is triggered
         // on every Gatsby route change.
         //
         // Defaults to gatsby-route-change
-        routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
+        // routeChangeEventName: "YOUR_ROUTE_CHANGE_EVENT_NAME",
         // Defaults to false
-        enableWebVitalsTracking: true,
+        enableWebVitalsTracking: false,
         // Defaults to https://www.googletagmanager.com
-        selfHostedOrigin: "YOUR_SELF_HOSTED_ORIGIN",
+        // selfHostedOrigin: "YOUR_SELF_HOSTED_ORIGIN",
       },
     },
   ],
