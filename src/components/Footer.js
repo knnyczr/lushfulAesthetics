@@ -23,8 +23,16 @@ export default function Footer() {
       socialTiktok,
       youtube,
     },
+    contentfulServicesMenu: {
+      bookNowLinkReference: { bookNowLink },
+    },
   } = useStaticQuery(graphql`
     query FooterQuery {
+      contentfulServicesMenu {
+        bookNowLinkReference {
+          bookNowLink
+        }
+      }
       contentfulFooterContent {
         disclosure {
           raw
@@ -46,6 +54,7 @@ export default function Footer() {
     }
   `);
 
+  console.log(bookNowLink);
   return (
     <>
       <div className="bg-main-green text-white lg:px-24 lg:pt-12 md:px-12 md:pt-12 md:pb-4 px-4 py-4">
@@ -63,7 +72,11 @@ export default function Footer() {
               <h2 className="mb-6 text-xl font-serif uppercase">Support</h2>
               <div className="font-medium md:text-lg flex flex-row ">
                 <div className="flex flex-col mr-8">
-                  <Link to="/book" className="hover:underline mr-4 mb-4">
+                  <Link
+                    target="_blank"
+                    to={`${bookNowLink}`}
+                    className="hover:underline mr-4 mb-4"
+                  >
                     Book an appointment
                   </Link>
                   <Link to="/about" className="hover:underline mr-4 mb-4">
