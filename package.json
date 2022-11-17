@@ -27,6 +27,7 @@
     "framer-motion": "^7.3.2",
     "gatsby": "^4.24.6",
     "gatsby-background-image": "^1.6.0",
+    "gatsby-plugin-facebook-pixel": "^1.0.8",
     "gatsby-plugin-google-analytics": "^4.24.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-google-tagmanager": "^4.24.1-alpha-wordpress-image-err.27",

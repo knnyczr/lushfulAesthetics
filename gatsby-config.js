@@ -147,5 +147,11 @@ module.exports = {
         // selfHostedOrigin: "YOUR_SELF_HOSTED_ORIGIN",
       },
     },
+    {
+      resolve: `gatsby-plugin-facebook-pixel`,
+      options: {
+        pixelId: "438425791770503",
+      },
+    },
   ],
 };
