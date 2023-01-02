@@ -41,7 +41,7 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     `gatsby-plugin-lodash`,
-    "gatsby-plugin-sitemap",
+    "gatsby-plugin-advanced-sitemap",
     {
       resolve: "gatsby-plugin-layout",
       options: {
