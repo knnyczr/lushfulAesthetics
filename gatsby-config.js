@@ -42,7 +42,7 @@ module.exports = {
     "gatsby-transformer-sharp",
     `gatsby-plugin-lodash`,
     "gatsby-plugin-advanced-sitemap",
-    "gatsby-plugin-robots-txt",
+    "gatsby-plugin-merge-robots",
     {
       resolve: "gatsby-plugin-layout",
       options: {
