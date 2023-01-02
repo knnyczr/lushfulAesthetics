@@ -5,4 +5,4 @@ public
 
 .env
 .env.development
-
+.env.production
