@@ -42,6 +42,14 @@ module.exports = {
     "gatsby-transformer-sharp",
     `gatsby-plugin-lodash`,
     {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://www.lushfulaesthetics.com/",
+        sitemap: "https://www.lushfulaesthetics.com/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
+    {
       resolve: "gatsby-plugin-layout",
       options: {
         component: require.resolve(`./src/components/Layout.js`),
