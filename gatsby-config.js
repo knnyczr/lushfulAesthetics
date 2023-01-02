@@ -42,7 +42,14 @@ module.exports = {
     "gatsby-transformer-sharp",
     `gatsby-plugin-lodash`,
     "gatsby-plugin-advanced-sitemap",
-    "gatsby-plugin-merge-robots",
+    {
+      resolve: "gatsby-plugin-merge-robots",
+      options: {
+        host: "https://www.lushfulaesthetics.com",
+        sitemap: "https://www.lushfulaesthetics.com/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
     {
       resolve: "gatsby-plugin-layout",
       options: {
