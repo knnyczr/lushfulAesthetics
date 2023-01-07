@@ -12,7 +12,7 @@ export default function Layout({ children }) {
   );
 }
 
-export function Head() {
+export function Head({ children }) {
   return (
     <>
       <meta
@@ -21,6 +21,7 @@ export function Head() {
       />
 
       <meta http-equiv="content-language" content="en-us" />
+      {children}
     </>
   );
 }
