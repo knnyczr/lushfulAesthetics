@@ -43,9 +43,9 @@ module.exports = {
     `gatsby-plugin-lodash`,
     "gatsby-plugin-advanced-sitemap",
     {
-      resolve: "gatsby-plugin-merge-robots",
+      resolve: "gatsby-plugin-robots-txt",
       options: {
-        host: "https://www.lushfulaesthetics.com",
+        host: "https://www.lushfulaesthetics.com/",
         sitemap: "https://www.lushfulaesthetics.com/sitemap.xml",
         policy: [{ userAgent: "*", allow: "/" }],
       },
