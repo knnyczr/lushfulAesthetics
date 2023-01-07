@@ -5,16 +5,22 @@ import Package from "../components/Package";
 import Button from "../components/BookBtn";
 import HeroImage from "../components/HeroImage";
 import { Helmet } from "react-helmet";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 
 export { Head } from "../components/Layout";
 
 export default function PackagesPage({ data }) {
-  const { packagePageTitle, packagesList, heroImage } =
+  const { packagePageTitle, packagesList, heroImage, pageMetaDescription } =
     data.contentfulPackagePage;
 
   return (
     <>
-      <Helmet title={`Lushful Aesthetics | ${packagePageTitle}`} />
+      <Helmet>
+        <title>{`${useSiteMetadata().title} | ${packagePageTitle}`}</title>
+        {pageMetaDescription && (
+          <meta name="description" content={`${pageMetaDescription}`}></meta>
+        )}
+      </Helmet>
       <HeroImage heroImage={heroImage} pageTitle={packagePageTitle} />
       <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 m-auto p-auto">
         <div className="py-10">
@@ -59,6 +65,7 @@ export const pageQuery = graphql`
           raw
         }
       }
+      pageMetaDescription
     }
   }
 `;

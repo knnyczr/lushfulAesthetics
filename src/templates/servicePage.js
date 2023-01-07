@@ -8,6 +8,7 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import OurApproach from "../components/OurApproach";
 import { Helmet } from "react-helmet";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 
 export { Head } from "../components/Layout";
 
@@ -22,10 +23,11 @@ export default function ServicePage({ data }) {
       ourApproach,
       preCare,
       postCare,
+      pageMetaDescription,
     },
   } = data;
 
-  const website_url = "https://www.lushfulaesthetics.com/";
+  const website_url = useSiteMetadata().siteUrl;
 
   const options = {
     renderMark: {
@@ -67,7 +69,13 @@ export default function ServicePage({ data }) {
 
   return (
     <div>
-      <Helmet title={`Lushful Aesthetics | ${serviceTitle}`} />
+      <Helmet>
+        <title>{`${useSiteMetadata().title} | ${serviceTitle}`}</title>
+        {pageMetaDescription && (
+          <meta name="description" content={`${pageMetaDescription}`}></meta>
+        )}
+      </Helmet>
+
       <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
 
       <ServicePrice
@@ -137,10 +145,8 @@ export const pageQuery = graphql`
       pricing {
         raw
       }
+      pageMetaDescription
       serviceTitle
     }
   }
 `;
-
-// "id": "cde0765b-6fff-5a8b-9eb7-422ec0ddf15f",
-// "slug": "aesthetic-services/facial-treatments/botox"
