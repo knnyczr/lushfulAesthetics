@@ -27,7 +27,7 @@ export default function ServicePage({ data }) {
     },
   } = data;
 
-  const website_url = "https://www.lushfulaesthetics.com/";
+  const website_url = useSiteMetadata().siteUrl;
 
   const options = {
     renderMark: {
