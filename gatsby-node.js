@@ -144,7 +144,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allContentfulBlogPost.edges.forEach((page) => {
     createPage({
-      path: `/blog/${page.node.blog_category.slug}/${page.node.uniqueIdentifier}`,
+      path: `/blog/${page.node.blog_category[0].slug}/${page.node.uniqueIdentifier}`,
       context: { pageId: page.node.uniqueIdentifier },
       component: blogPageTemplate,
     });
