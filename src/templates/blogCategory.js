@@ -5,7 +5,7 @@ export default function BlogCategory({ data }) {
   const {
     contentfulBlogCategory: { categoryTitle, blogPosts },
   } = data;
-  console.log("blog category", data, blogPosts);
+  //   console.log("blog category", data, blogPosts);
   return (
     <>
       <h1>{categoryTitle}</h1>
