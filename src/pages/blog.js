@@ -2,7 +2,6 @@ import { graphql, Link } from "gatsby";
 import React from "react";
 
 export default function Blog({ data }) {
-  //   console.log(data);
   return (
     <>
       <h1>Blog</h1>

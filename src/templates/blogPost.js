@@ -2,7 +2,6 @@ import { graphql } from "gatsby";
 import React from "react";
 
 export default function BlogPost({ pageContext }) {
-  //   console.log(pageContext);
   return (
     <>
       <h1>hello from blog post</h1>
