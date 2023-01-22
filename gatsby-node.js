@@ -11,6 +11,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const hipaaPolicyTemplate = path.resolve(
     `./src/templates/hipaaPolicyPage.js`
   );
+  const categoryPageTemplate = path.resolve(`./src/templates/blogCategory.js`);
+  const blogPageTemplate = path.resolve(`./src/templates/blogPost.js`);
 
   const {
     data: {
@@ -19,6 +21,8 @@ exports.createPages = async ({ graphql, actions }) => {
       allContentfulGeneralFaqPage,
       allContentfulPrivacyPolicyPage,
       allContentfulHipaaPolicyPage,
+      allContentfulBlogCategory,
+      allContentfulBlogPost,
     },
   } = await graphql(`
     {
@@ -66,6 +70,24 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allContentfulBlogCategory {
+        edges {
+          node {
+            slug
+            id
+          }
+        }
+      }
+      allContentfulBlogPost {
+        edges {
+          node {
+            uniqueIdentifier
+            blog_category {
+              slug
+            }
+          }
+        }
+      }
     }
   `);
   allContentfulServicePage.edges.forEach((page) => {
@@ -109,6 +131,22 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/${page.node.slug}`,
       component: hipaaPolicyTemplate,
       context: { pageId: page.node.id },
+    });
+  });
+
+  allContentfulBlogCategory.edges.forEach((page) => {
+    createPage({
+      path: `/blog/${page.node.slug}`,
+      context: { pageId: page.node.id },
+      component: categoryPageTemplate,
+    });
+  });
+
+  allContentfulBlogPost.edges.forEach((page) => {
+    createPage({
+      path: `/blog/${page.node.blog_category[0].slug}/${page.node.uniqueIdentifier}`,
+      context: { pageId: page.node.uniqueIdentifier },
+      component: blogPageTemplate,
     });
   });
 };
