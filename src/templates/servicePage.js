@@ -151,6 +151,8 @@ export const pageQuery = graphql`
       pricing {
         raw
       }
+      subheadingOne
+      subheadingTwo
       pageMetaDescription
       serviceTitle
     }

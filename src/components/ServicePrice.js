@@ -1,8 +1,5 @@
-import { Link } from "gatsby";
 import React from "react";
 import Button from "./BookBtn";
-import { BLOCKS, MARKS } from "@contentful/rich-text-types";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 export default function ServicePrice({ intro, pricing, subheadingOne }) {
   return (
