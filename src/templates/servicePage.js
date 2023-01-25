@@ -24,6 +24,8 @@ export default function ServicePage({ data }) {
       preCare,
       postCare,
       pageMetaDescription,
+      subheadingOne,
+      subheadingTwo,
       pageMetaTitle,
     },
   } = data;
@@ -85,9 +87,13 @@ export default function ServicePage({ data }) {
       <ServicePrice
         intro={renderRichText(intro, options)}
         pricing={renderRichText(pricing, options)}
+        subheadingOne={subheadingOne}
       />
 
-      <OurApproach ourApproach={renderRichText(ourApproach, options)} />
+      <OurApproach
+        subheadingTwo={subheadingTwo}
+        ourApproach={renderRichText(ourApproach, options)}
+      />
 
       <PrePostCare
         preCare={preCare}
@@ -149,6 +155,8 @@ export const pageQuery = graphql`
       pricing {
         raw
       }
+      subheadingOne
+      subheadingTwo
       pageMetaDescription
       serviceTitle
       pageMetaTitle
