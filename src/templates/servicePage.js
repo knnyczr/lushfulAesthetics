@@ -26,10 +26,12 @@ export default function ServicePage({ data }) {
       pageMetaDescription,
       subheadingOne,
       subheadingTwo,
+      pageMetaTitle,
     },
   } = data;
 
   const website_url = useSiteMetadata().siteUrl;
+  const useSiteMetaTitle = useSiteMetadata().title;
 
   const options = {
     renderMark: {
@@ -72,7 +74,9 @@ export default function ServicePage({ data }) {
   return (
     <div>
       <Helmet>
-        <title>{`${useSiteMetadata().title} | ${serviceTitle}`}</title>
+        <title>
+          {pageMetaTitle || `${useSiteMetaTitle} | ${serviceTitle}`}
+        </title>
         {pageMetaDescription && (
           <meta name="description" content={`${pageMetaDescription}`}></meta>
         )}
@@ -155,6 +159,7 @@ export const pageQuery = graphql`
       subheadingTwo
       pageMetaDescription
       serviceTitle
+      pageMetaTitle
     }
   }
 `;
