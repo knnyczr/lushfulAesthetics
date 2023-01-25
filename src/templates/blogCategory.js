@@ -5,6 +5,9 @@ export default function BlogCategory({ data }) {
   const {
     contentfulBlogCategory: { categoryTitle, blogPosts },
   } = data;
+
+  console.log("🧱 Blog Category data ", data);
+
   return (
     <>
       <h1>{categoryTitle}</h1>
@@ -18,12 +21,30 @@ export default function BlogCategory({ data }) {
 }
 
 export const BlogCategoryQuery = graphql`
-  query blogCategoryQuery($pageId: String!) {
-    contentfulBlogCategory(id: { eq: $pageId }) {
+  query blogCategoryQuery($blogCategory: String!) {
+    contentfulBlogCategory(id: { eq: $blogCategory }) {
       categoryTitle
       blogPosts {
-        uniqueIdentifier
+        intro
+        heroImage {
+          id
+        }
         title
+        uniqueIdentifier
+      }
+      featuredPost {
+        heroImage {
+          id
+        }
+        title
+        datePosted
+      }
+      featuredServices {
+        slug
+        serviceTitle
+        heroImage {
+          id
+        }
       }
     }
   }

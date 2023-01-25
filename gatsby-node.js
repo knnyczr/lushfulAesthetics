@@ -82,7 +82,7 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             uniqueIdentifier
-            blog_category {
+            category {
               slug
             }
           }
@@ -137,14 +137,14 @@ exports.createPages = async ({ graphql, actions }) => {
   allContentfulBlogCategory.edges.forEach((page) => {
     createPage({
       path: `/blog/${page.node.slug}`,
-      context: { pageId: page.node.id },
+      context: { blogCategory: page.node.id },
       component: categoryPageTemplate,
     });
   });
 
   allContentfulBlogPost.edges.forEach((page) => {
     createPage({
-      path: `/blog/${page.node.blog_category[0].slug}/${page.node.uniqueIdentifier}`,
+      path: `/blog/${page.node.category.slug}/${page.node.uniqueIdentifier}`,
       context: { pageId: page.node.uniqueIdentifier },
       component: blogPageTemplate,
     });
