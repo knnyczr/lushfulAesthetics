@@ -1,5 +1,6 @@
 import { graphql, Link } from "gatsby";
 import React from "react";
+import SearchBar from "../components/SearchBar";
 
 export default function Blog({ data }) {
   // console.log("here is data: ", data);
@@ -24,6 +25,7 @@ export default function Blog({ data }) {
   return (
     <>
       <h1>Blog</h1>
+      <SearchBar />
       {data.allContentfulBlogCategory.edges.map((category) => {
         return (
           <div key={category}>
