@@ -1,6 +1,10 @@
 import { graphql, Link } from "gatsby";
 import React from "react";
+
 import SearchBar from "../components/SearchBar";
+
+import FeaturedPost from "../components/FeaturedPost";
+
 
 export default function Blog({ data }) {
   // console.log("here is data: ", data);
@@ -24,8 +28,12 @@ export default function Blog({ data }) {
 
   return (
     <>
+
       <h1>Blog</h1>
       <SearchBar />
+
+      <FeaturedPost featuredPost={featuredPost} />
+
       {data.allContentfulBlogCategory.edges.map((category) => {
         return (
           <div key={category}>
@@ -54,6 +62,7 @@ export const pageQuery = graphql`
         heroImage {
           id
           title
+          url
         }
         category {
           categoryTitle
@@ -61,6 +70,7 @@ export const pageQuery = graphql`
         }
         datePosted
         intro
+        title
         uniqueIdentifier
       }
 
