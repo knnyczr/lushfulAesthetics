@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryChip from "./categoryChip";
+import CategoryChip from "./CategoryChip";
 
 export default function Categories({ categories }) {
   return (
