@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "gatsby";
 
 export default function CategoryChip({ name, slug }) {
-  console.log(name, slug);
   return (
     <div>
       <Link to={`/blog/${slug}`}>
