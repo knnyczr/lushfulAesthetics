@@ -7,21 +7,18 @@ export default function BlogCards({
   bodyAesthetic,
   sexualEnhancement,
 }) {
-  //   const facicalCategory = facialAesthetic.slice(0, 3);
-  //   const bodyCategory = bodyAesthetic.slice(0, 3);
-  //   const sexualCategory = sexualEnhancement.slice(0, 3);
+  //   console.log("blogCards data:", slugs);
 
-  //   console.log("BlogCards", facicalAe, bodyAe, sexualAe);
   return (
     <>
-      <div className="bg-red-300 hidden w-full h-auto md:flex md:flex-col p-16">
+      <div className="hidden w-full h-auto md:flex md:flex-col">
         <BlogCardDesktop
           facicalCategory={facialAesthetic}
           bodyCategory={bodyAesthetic}
           sexualCategory={sexualEnhancement}
         />
       </div>
-      <div className="md:hidden flex flex-col bg-purple-600 h-auto">
+      <div className="md:hidden flex flex-col h-auto">
         <BlogCardMobile
           facicalCategory={facialAesthetic}
           bodyCategory={bodyAesthetic}
