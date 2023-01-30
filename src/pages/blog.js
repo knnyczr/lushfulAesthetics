@@ -3,8 +3,7 @@ import { graphql, Link } from "gatsby";
 
 import SearchBar from "../components/SearchBar";
 import FeaturedPost from "../components/FeaturedPost";
-import BlogCardDesktop from "../components/BlogCardDektop";
-import BlogCardMobile from "../components/BlogCardMobile";
+import BlogCards from "../components/BlogCards/BlogCards";
 import { faC, faIceCream } from "@fortawesome/free-solid-svg-icons";
 
 export default function Blog({ data }) {
@@ -31,12 +30,7 @@ export default function Blog({ data }) {
     <>
       <FeaturedPost featuredPost={featuredPost} />
       <SearchBar />
-      <BlogCardDesktop
-        facialAesthetic={facialAestheticHeroes}
-        bodyAesthetic={bodyAestheticHeroes}
-        sexualEnhancement={sexualEnhancementHeroes}
-      />
-      <BlogCardMobile
+      <BlogCards
         facialAesthetic={facialAestheticHeroes}
         bodyAesthetic={bodyAestheticHeroes}
         sexualEnhancement={sexualEnhancementHeroes}
