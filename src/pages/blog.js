@@ -1,13 +1,12 @@
-import { graphql, Link } from "gatsby";
 import React from "react";
+import { graphql, Link } from "gatsby";
 
 import SearchBar from "../components/blog/SearchBar";
 import FeaturedPost from "../components/blog/FeaturedPost";
+import BlogCards from "../components/BlogCards/BlogCards";
 import Categories from "../components/blog/Categories";
 
 export default function Blog({ data }) {
-  // console.log("here is data: ", data);
-
   const {
     contentfulBlogHomepage: {
       featuredPost,
@@ -35,7 +34,12 @@ export default function Blog({ data }) {
           <Categories categories={data.allContentfulBlogCategory.edges} />
         </div>
 
-        <div className="lg:pl-24 md:row-start-1 md:pl-12 md:pr-24 md:col-span-2 px-4 py-4">
+        <div className="lg:pl-24 md:row-start-1 md:pl-12 md:pr-12 lg:pr-24 md:col-span-2 px-4 py-4">
+          <BlogCards
+            facialAesthetic={facialAestheticHeroes}
+            bodyAesthetic={bodyAestheticHeroes}
+            sexualEnhancement={sexualEnhancementHeroes}
+          />
           {data.allContentfulBlogCategory.edges.map((category) => {
             return (
               <div key={category}>
@@ -86,8 +90,14 @@ export const pageQuery = graphql`
         intro
         heroImage {
           id
+          url
         }
+        datePosted
         title
+        category {
+          categoryTitle
+          slug
+        }
         uniqueIdentifier
       }
 
@@ -95,8 +105,14 @@ export const pageQuery = graphql`
         intro
         heroImage {
           id
+          url
         }
+        datePosted
         title
+        category {
+          categoryTitle
+          slug
+        }
         uniqueIdentifier
       }
 
@@ -104,8 +120,14 @@ export const pageQuery = graphql`
         intro
         heroImage {
           id
+          url
         }
+        datePosted
         title
+        category {
+          categoryTitle
+          slug
+        }
         uniqueIdentifier
       }
     }

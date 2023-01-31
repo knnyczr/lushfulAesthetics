@@ -3,7 +3,7 @@ import React from "react";
 // import Img from "gatsby-image";
 
 export default function FeaturedPost({ featuredPost, category }) {
-  console.log("here is the featured post", featuredPost);
+  // console.log("here is the featured post", featuredPost);
 
   //change date format
   let dateString = featuredPost.datePosted;

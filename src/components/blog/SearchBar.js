@@ -5,7 +5,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 export default function SearchBar() {
   return (
     <>
-      <div className="lg:px-24 lg:pt-12 md:px-12 md:pt-12 md:pb-4 px-4 py-4">
+      <div className="lg:px-24 lg:pt-12 md:px-12 md:pt-12 md:pb-12 px-4 py-4">
         <div className="bg-main-green w-full md:w-96 rounded ">
           <form className="flex items-center">
             <button className="text-white px-4 py-2" type="submit">
