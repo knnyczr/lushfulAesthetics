@@ -35,6 +35,10 @@ module.exports = {
         "main-green-light": "#BAB9A0",
         "second-gold": "#EAC096",
       },
+      width: {
+        blogcard: `calc(90vw - 30px)`,
+        "blogcard-sm": `calc(55vw)`,
+      },
       aspectRatio: {
         "3/4": "3 / 4",
       },

@@ -9,8 +9,8 @@ export default function BlogCardDesktop({
 }) {
   return (
     <>
-      {[facicalCategory, bodyCategory, sexualCategory].map((category) => (
-        <Link to={`${category[0].category.slug}`}>
+      {[facicalCategory, bodyCategory, sexualCategory].map((category, idx) => (
+        <Link to={`${category[0].category.slug}`} key={idx}>
           <div className="h-0.5 bg-black mb-4" />
           <h1 className="font-sans uppercase text-2xl mb-6">
             {category[0].category.categoryTitle}
@@ -57,21 +57,21 @@ const CategoryCards = ({ category, formatDate }) => {
             return (
               <Link
                 to={`${midCard[0].category.slug}/${midCard[0].uniqueIdentifier}`}
+                key={idx}
               >
                 <div className="flex flex-col items-center w-full h-[18rem] mr-2 cursor-pointer">
                   <div
-                    key={idx}
                     style={{
                       backgroundImage: `url(${midCard[0].heroImage.url})`,
                       backgroundSize: `cover`,
                       backgroundRepeat: `no-repeat`,
                       backgroundPosition: `50% 50%`,
                     }}
-                    className="bg-green-400 w-full h-full"
+                    className="w-full h-full mb-4"
                   ></div>
 
                   <div className="flex flex-col items-center">
-                    <h3>{midCard[0].title}</h3>
+                    <h3 className="text-2xl">{midCard[0].title}</h3>
                     <p>Posted on {formatDate(midCard[0].datePosted)}</p>
                   </div>
                 </div>

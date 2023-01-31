@@ -1,16 +1,12 @@
 import { graphql, Link } from "gatsby";
 import React from "react";
-// import Img from "gatsby-image";
 
-export default function FeaturedPost({ featuredPost, category }) {
-  // console.log("here is the featured post", featuredPost);
-
+export default function FeaturedPost({ featuredPost }) {
   //change date format
   let dateString = featuredPost.datePosted;
   let date = new Date(dateString);
   let options = { month: "long", day: "numeric", year: "numeric" };
   let newDateFormat = date.toLocaleString("en-US", options);
-  //console.log(newDateFormat);
 
   return (
     <>
@@ -29,7 +25,7 @@ export default function FeaturedPost({ featuredPost, category }) {
           <h5 className="text-sm lg:text-lg mb-3 lg:mb-4">
             Post on {newDateFormat}
           </h5>
-          <p className="font-serif mb-3 lg:mb-4 lg:w-9/12">
+          <p className="font-sans mb-3 lg:mb-4 lg:w-9/12">
             {featuredPost.intro}
             {featuredPost.intro}
           </p>
