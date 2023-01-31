@@ -7,7 +7,11 @@ export default function BlogCards({
   bodyAesthetic,
   sexualEnhancement,
 }) {
-  //   console.log("blogCards data:", slugs);
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { month: "long", day: "numeric", year: "numeric" };
+    return date.toLocaleString("en-US", options);
+  };
 
   return (
     <>
@@ -16,6 +20,7 @@ export default function BlogCards({
           facicalCategory={facialAesthetic}
           bodyCategory={bodyAesthetic}
           sexualCategory={sexualEnhancement}
+          formatDate={formatDate}
         />
       </div>
       <div className="md:hidden flex flex-col h-auto">
@@ -23,6 +28,7 @@ export default function BlogCards({
           facicalCategory={facialAesthetic}
           bodyCategory={bodyAesthetic}
           sexualCategory={sexualEnhancement}
+          formatDate={formatDate}
         />
       </div>
     </>

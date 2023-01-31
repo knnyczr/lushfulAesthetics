@@ -4,15 +4,16 @@ export default function BlogCardMobile({
   facicalCategory,
   bodyCategory,
   sexualCategory,
+  formatDate,
 }) {
   return (
     <>
-      <FacialCards facialCards={facicalCategory} />
+      <FacialCards facialCards={facicalCategory} formatDate={formatDate} />
     </>
   );
 }
 
-const FacialCards = ({ facialCards }) => {
+const FacialCards = ({ facialCards, formatDate }) => {
   return (
     <div>
       <div className="w-96 h-auto">
@@ -20,14 +21,6 @@ const FacialCards = ({ facialCards }) => {
         <div className="flex overflow-x-scroll">
           <div className="flex flex-nowrap snap-mandatory snap-x">
             {facialCards.map((facial, idx) => {
-              let dateString = facial.datePosted;
-              let date = new Date(dateString);
-              let options = {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              };
-              let newDateFormat = date.toLocaleString("en-US", options);
               return (
                 <>
                   <div
@@ -43,7 +36,7 @@ const FacialCards = ({ facialCards }) => {
                     <div className="text-white">
                       <h3>{facial.title}</h3>
                       <p>{facial.intro}</p>
-                      <p>Posted on {newDateFormat}</p>
+                      <p>Posted on {formatDate(facial.datePosted)}</p>
                     </div>
                   </div>
                 </>

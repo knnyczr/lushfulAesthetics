@@ -7,8 +7,6 @@ import BlogCards from "../components/BlogCards/BlogCards";
 import Categories from "../components/blog/Categories";
 
 export default function Blog({ data }) {
-  console.log("here is data: ", data);
-
   const {
     contentfulBlogHomepage: {
       featuredPost,
