@@ -40,28 +40,6 @@ export default function Blog({ data }) {
             bodyAesthetic={bodyAestheticHeroes}
             sexualEnhancement={sexualEnhancementHeroes}
           />
-          {/* I comment this out because the links are working when you click the image or the story title  */}
-          {/* {data.allContentfulBlogCategory.edges.map((category, idx) => {
-            return (
-              <div key={idx}>
-                <div className="h-0.5 bg-black mb-4" />
-                <Link
-                  className="font-sans uppercase font-medium"
-                  to={`${category.node.slug}`}
-                >
-                  {category.node.categoryTitle}
-                </Link>
-                {category.node.blogPosts.map((post, idx) => (
-                  <li key={idx}>
-                    {`=>`}{" "}
-                    <Link to={`${category.node.slug}/${post.uniqueIdentifier}`}>
-                      {post.title}
-                    </Link>
-                  </li>
-                ))}
-              </div>
-            );
-          })} */}
         </div>
       </div>
     </div>

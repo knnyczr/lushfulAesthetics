@@ -260,6 +260,12 @@ export default function Nav() {
                   >
                     Financing
                   </Link>
+                  <Link
+                    to="/blog"
+                    className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
+                  >
+                    Blog
+                  </Link>
                 </div>
               </div>
             </div>
@@ -428,21 +434,30 @@ export default function Nav() {
                   Financing
                 </Link>
 
+                <Link
+                  onClick={() => closeMenu()}
+                  to="/blog"
+                  className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
+                >
+                  Blog
+                </Link>
+
                 <div className="pt-16">
                   <div className="flex flex-row justify-center pt-5 md:pb-16 text-white">
-                    {socialTwitter && socialTwitter.startsWith("https://www.") && (
-                      <a
-                        href={`${socialTwitter}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mr-6 mb-4"
-                      >
-                        <FontAwesomeIcon
-                          className="fa-2x hover:black"
-                          icon={faTwitter}
-                        />
-                      </a>
-                    )}
+                    {socialTwitter &&
+                      socialTwitter.startsWith("https://www.") && (
+                        <a
+                          href={`${socialTwitter}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="mr-6 mb-4"
+                        >
+                          <FontAwesomeIcon
+                            className="fa-2x hover:black"
+                            icon={faTwitter}
+                          />
+                        </a>
+                      )}
                     {socialInstagram &&
                       socialInstagram.startsWith("https://www.") && (
                         <a
@@ -457,19 +472,20 @@ export default function Nav() {
                           />
                         </a>
                       )}
-                    {socialTiktok && socialTiktok.startsWith("https://www.") && (
-                      <a
-                        href={`${socialTiktok}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mr-6 mb-4"
-                      >
-                        <FontAwesomeIcon
-                          className="fa-2x hover:black"
-                          icon={faTiktok}
-                        />
-                      </a>
-                    )}
+                    {socialTiktok &&
+                      socialTiktok.startsWith("https://www.") && (
+                        <a
+                          href={`${socialTiktok}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="mr-6 mb-4"
+                        >
+                          <FontAwesomeIcon
+                            className="fa-2x hover:black"
+                            icon={faTiktok}
+                          />
+                        </a>
+                      )}
 
                     {youtube && youtube.startsWith("https://www.") && (
                       <a

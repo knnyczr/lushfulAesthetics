@@ -1,13 +1,8 @@
-import { graphql, Link } from "gatsby";
+import { Link } from "gatsby";
 import React from "react";
+import { formatDate } from "../../hooks/format-date";
 
 export default function FeaturedPost({ featuredPost }) {
-  //change date format
-  let dateString = featuredPost.datePosted;
-  let date = new Date(dateString);
-  let options = { month: "long", day: "numeric", year: "numeric" };
-  let newDateFormat = date.toLocaleString("en-US", options);
-
   return (
     <>
       <div
@@ -23,7 +18,7 @@ export default function FeaturedPost({ featuredPost }) {
             {featuredPost.title}
           </h2>
           <h5 className="text-sm lg:text-lg mb-3 lg:mb-4">
-            Post on {newDateFormat}
+            Post on {formatDate(featuredPost.datePosted)}
           </h5>
           <p className="font-sans mb-3 lg:mb-4 lg:w-9/12">
             {featuredPost.intro}
