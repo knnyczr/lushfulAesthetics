@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 
 export default function CategoryFeaturedServices({ featuredServices }) {
   return (
-    <div className="px-4 md:col-start-3">
+    <div className="px-4 md:col-start-4">
       <h1 className="uppercase font-bold font-sans text-xl mb-4">
         Featured Services
       </h1>

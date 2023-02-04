@@ -13,19 +13,17 @@ export default function BlogCategory({ data }) {
     },
   } = data;
 
-  console.log("🧱 Blog Category data ", data);
-
   return (
-    <>
-      <button className="ml-4 my-2">{`← BACK`}</button>
-      <div className="grid grid-cols-1 sm:gap-10 md:grid-cols-3 md:gap-0">
+    <div className="sm:px-0 md:px-20">
+      <button className="font-medium uppercase ml-4 my-2">{`← Back`}</button>
+      <div className="grid grid-cols-1 sm:gap-10 md:grid-cols-4 md:gap-5">
         <CategoryFeaturedPost
           categoryTitle={categoryTitle}
           featuredPost={featuredPost}
         />
         <CategoryFeaturedServices featuredServices={featuredServices} />
       </div>
-    </>
+    </div>
   );
 }
 
