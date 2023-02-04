@@ -3,7 +3,6 @@ import { Link } from "gatsby";
 import { formatDate } from "../../hooks/format-date";
 
 export default function CategoryFeaturedPost({ featuredPost, categoryTitle }) {
-  console.log("here is featured post detail: ", featuredPost);
   return (
     <div className="md:col-start-1 md:col-end-3 px-4 pb-4">
       <h1 className="uppercase font-bold mb-4 text-xl">{categoryTitle}</h1>
