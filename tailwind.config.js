@@ -6,7 +6,10 @@ const nth2 = new Nth("2", "2"); // Sub-elements that are multiples of 3
 module.exports = {
   content: [
     "./src/pages/**/*.{js,jsx,ts,tsx}",
+    "./src/templates/**/*.{js,jsx,ts,tsx}",
     "./src/components/**/*.{js,jsx,ts,tsx}",
+    "./src/components/blog/**/*.{js,jsx,ts,tsx}",
+    "./src/components/blog/BlogCards/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     screens: {

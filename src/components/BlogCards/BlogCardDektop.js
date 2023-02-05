@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "gatsby";
+import { formatDate } from "../../hooks/format-date";
 
 export default function BlogCardDesktop({
   facicalCategory,
   bodyCategory,
   sexualCategory,
-  formatDate,
 }) {
   return (
     <>
@@ -15,17 +15,14 @@ export default function BlogCardDesktop({
           <h1 className="font-sans uppercase text-2xl mb-6">
             {category[0].category.categoryTitle}
           </h1>
-          <CategoryCards
-            category={[category, category, category]}
-            formatDate={formatDate}
-          />
+          <CategoryCards category={[category, category, category]} />
         </Link>
       ))}
     </>
   );
 }
 
-const CategoryCards = ({ category, formatDate }) => {
+const CategoryCards = ({ category }) => {
   const bigCard = category.slice(0, 1);
   const midCards = category.slice(1, 3);
 
