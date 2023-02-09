@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function CategoryFeaturedServices({ featuredServices }) {
   return (
@@ -22,7 +23,7 @@ export default function CategoryFeaturedServices({ featuredServices }) {
               <h2 className="uppercase font-sans text-xl font-medium">
                 {service.serviceTitle}
               </h2>
-              <p>{service.intro.raw}</p>
+              <p>{renderRichText(service.intro)}</p>
             </Link>
           </div>
         ))}
