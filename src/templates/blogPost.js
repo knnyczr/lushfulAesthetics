@@ -1,16 +1,21 @@
 import { graphql } from "gatsby";
 import React from "react";
+import ShareButton from "../components/ShareButton";
 
 export default function BlogPost({ data }) {
   console.log("🧱 Blog Post data: ", data);
 
   const {
-    contentfulBlogPost: { title, intro },
+    contentfulBlogPost: { title, intro, category, uniqueIdentifier },
   } = data;
   return (
     <>
       <h1>hello from blog post: {title}</h1>
       <p>{intro}</p>
+      <ShareButton
+        category={category.slug}
+        uniqueIdentifier={uniqueIdentifier}
+      />
     </>
   );
 }
