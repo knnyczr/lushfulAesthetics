@@ -69,7 +69,7 @@ export default function IndexPage({ data }) {
             </h1>
             <h2 className="font-medium my-4">{address}</h2>
             <a
-              href={`tel:+${phoneNumber}`}
+              href={`tel:+1${phoneNumber}`}
               className="font-serif text-xl font-semibold mb-4"
             >
               {phoneNumber}
