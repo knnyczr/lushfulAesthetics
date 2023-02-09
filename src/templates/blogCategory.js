@@ -2,6 +2,7 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import CategoryFeaturedPost from "../components/blog/CategoryFeaturedPost";
 import CategoryFeaturedServices from "../components/blog/CategoryFeaturedServices";
+import CategoryBlogFeed from "../components/blog/CategoryBlogFeed";
 
 export default function BlogCategory({ data }) {
   const {
@@ -22,6 +23,7 @@ export default function BlogCategory({ data }) {
           featuredPost={featuredPost}
         />
         <CategoryFeaturedServices featuredServices={featuredServices} />
+        <CategoryBlogFeed blogPosts={blogPosts} />
       </div>
     </div>
   );
@@ -34,7 +36,10 @@ export const BlogCategoryQuery = graphql`
       blogPosts {
         intro
         heroImage {
-          id
+          url
+        }
+        category {
+          slug
         }
         title
         uniqueIdentifier
