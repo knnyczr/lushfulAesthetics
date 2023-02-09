@@ -11,11 +11,12 @@ export { Head } from "../components/Layout";
 export default function IndexPage({ data }) {
   const {
     contentfulHomePage: { slogan, visionStatement, reviews, heroImage },
-    contentfulContactPage: { address },
+    contentfulContactPage: { address, phoneNumber },
   } = data;
 
   const image = getImage(heroImage);
 
+  console.log(phoneNumber);
   return (
     <div>
       <Helmet title={`Lushful Aesthetics | Home`} />
@@ -60,13 +61,20 @@ export default function IndexPage({ data }) {
           </div>
 
           <div className="flex flex-col justify-center">
-            <div className="font-serif text-2xl font-semibold mt-5">
+            <h1 className="font-serif text-2xl font-semibold mt-5">
               {`Lushful Aesthetics™`}
-            </div>
-            <div className="font-serif text-2xl font-semibold">
+            </h1>
+            <h1 className="font-serif text-2xl font-semibold">
               {` by InjectorChris`}
-            </div>
-            <div className="font-medium my-4">{address}</div>
+            </h1>
+            <h2 className="font-medium my-4">{address}</h2>
+            <a
+              href={`tel:+1${phoneNumber}`}
+              className="font-serif text-xl font-semibold mb-4"
+            >
+              {phoneNumber}
+            </a>
+            <div></div>
             <div>
               <Button />
             </div>
@@ -110,6 +118,7 @@ export const query = graphql`
     }
     contentfulContactPage {
       address
+      phoneNumber
     }
   }
 `;
