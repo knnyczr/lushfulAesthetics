@@ -11,9 +11,6 @@ export default function CategoryFeaturedServices({ featuredServices }) {
       <div className="h-0.5 bg-black mb-4" />
       <div className="w-100 flex flex-row h-auto overflow-auto snap-mandatory snap-x md:flex-col">
         {featuredServices.map((service) => {
-          console.log(
-            renderRichText(service.intro)[0].props.children[0].slice(0, 120)
-          );
           return (
             <div className="mb-5 mr-4 last:mr-0 md:mr-0 lg:mr-0">
               <Link to={`/${service.slug}`}>
