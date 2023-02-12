@@ -4,12 +4,12 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function CategoryFeaturedServices({ featuredServices }) {
   return (
-    <div className="order-last md:order-2 px-4 md:col-start-4">
+    <div className="order-last md:order-2 px-4 md:col-start-4 md:px-2 md:row-span-2">
       <h1 className="uppercase font-bold font-sans text-xl mb-4">
         Featured Services
       </h1>
       <div className="h-0.5 bg-black mb-4" />
-      <div className="w-100 flex flex-row h-auto overflow-auto snap-mandatory snap-x md:flex-col ">
+      <div className="w-100 flex flex-row h-auto overflow-auto snap-mandatory snap-x md:flex-col">
         {featuredServices.map((service) => {
           console.log(
             renderRichText(service.intro)[0].props.children[0].slice(0, 120)
@@ -27,7 +27,7 @@ export default function CategoryFeaturedServices({ featuredServices }) {
                 <h2 className="uppercase font-sans text-xl font-medium">
                   {service.serviceTitle}
                 </h2>
-                <p>
+                <p className="hidden md:block">
                   {renderRichText(service.intro)[0].props.children[0].slice(
                     0,
                     70

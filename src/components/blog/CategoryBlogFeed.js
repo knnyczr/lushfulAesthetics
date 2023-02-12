@@ -1,33 +1,43 @@
 import { Link } from "gatsby";
 import React from "react";
+import { formatDate } from "../../hooks/format-date";
 
 export default function CategoryBlogFeed({ blogPosts }) {
-  console.log("here are blog posts", blogPosts);
   return (
-    <div className="order-2 mb-20 px-4 md:order-last">
+    <div className="order-2 mb-5 px-4 md:order-last md:col-span-3 md:px-0">
       {blogPosts.map((post, _) => {
         return (
-          <div key={_} className="grid grid-cols-3 gap-2">
+          <div key={_} className="flex items-center mb-5">
             <Link
-              className="col-start-1"
+              className=""
               to={`/blog/${post.category.slug}/${post.uniqueIdentifier}`}
             >
-              <div
-                className="w-20 h-20"
-                style={{
-                  backgroundImage: `url(${post.heroImage.url})`,
-                  backgroundSize: `cover`,
-                }}
-              />
+              <div className="flex-auto w-40 h-40 lg:w-60 lg:h-60">
+                <img
+                  src={post.heroImage.url}
+                  style={{
+                    height: `100%`,
+                    objectFit: `cover`,
+                  }}
+                />
+              </div>
             </Link>
-            <Link
-              className="col-start-2 col-end-4"
-              to={`/blog/${post.category.slug}/${post.uniqueIdentifier}`}
-            >
-              <h2 className="font-medium font-sans text-xl">{post.title}</h2>
-              <p className="sm:hidden font-sans font-normal">
-                {post.intro.slice(0, 70)}...
-              </p>
+            <Link to={`/blog/${post.category.slug}/${post.uniqueIdentifier}`}>
+              <div className="flex flex-col flex-auto ml-5">
+                <p className="font-sans font-medium md:order-3 md:mb-2">
+                  Posted on: {formatDate(post.datePosted)}
+                </p>
+                <h2 className="font-bold font-sans text-2xl md:order-1 md:mb-2">
+                  {post.title}
+                </h2>
+                <p className="hidden font-sans font-normal mb-2 md:block md:order-2 lg:hidden">
+                  {post.intro.slice(0, 100)}...
+                </p>
+                <p className="hidden font-sans font-normal mb-2 lg:mb-2 lg:block lg:order-3">
+                  {post.intro.slice(0, 300)}...
+                </p>
+                <p className="order-last md:order-last">🔗icon</p>
+              </div>
             </Link>
           </div>
         );
