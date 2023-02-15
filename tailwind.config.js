@@ -9,7 +9,7 @@ module.exports = {
     "./src/templates/**/*.{js,jsx,ts,tsx}",
     "./src/components/**/*.{js,jsx,ts,tsx}",
     "./src/components/blog/**/*.{js,jsx,ts,tsx}",
-    "./src/components/blog/BlogCards/**/*.{js,jsx,ts,tsx}",
+    "./src/components/BlogCards/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     screens: {
