@@ -4,7 +4,7 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function CategoryFeaturedServices({ featuredServices }) {
   return (
-    <div className="order-last md:order-2 px-4 md:col-start-4 md:px-2 md:row-span-2">
+    <>
       <h1 className="uppercase font-bold font-sans text-xl mb-4">
         Featured Services
       </h1>
@@ -36,6 +36,6 @@ export default function CategoryFeaturedServices({ featuredServices }) {
           );
         })}
       </div>
-    </div>
+    </>
   );
 }
