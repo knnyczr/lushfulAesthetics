@@ -22,7 +22,6 @@ export default function BlogPost({ data }) {
     },
   } = data;
 
-  // console.log("image", featuredServices[0].heroImage.url);
   const options = {
     renderMark: {
       [MARKS.BOLD]: (text) => (
@@ -30,18 +29,53 @@ export default function BlogPost({ data }) {
       ),
     },
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (node, children) => (
-        <div className="mb-4">
-          <p className="font-serif">{children}</p>
-        </div>
-      ),
+      [BLOCKS.PARAGRAPH]: (node, children) => {
+        return <p className="font-sans my-4">{children}</p>;
+      },
       [BLOCKS.HEADING_1]: (node, children) => (
-        <h2 className="pt-4">{children}</h2>
+        <h1 className="py-4 text-2xl font-bold my-4">{children}</h1>
       ),
+      [BLOCKS.HEADING_2]: (node, children) => (
+        <h2 className="py-3 text-xl font-bold my-3">{children}</h2>
+      ),
+      [BLOCKS.HEADING_3]: (node, children) => {
+        return <h3 className="py-2 text-lg font-bold my-2">{children}</h3>;
+      },
+      [BLOCKS.HEADING_4]: (node, children) => {
+        return <h4 className="py-2 font-bold my-1">{children}</h4>;
+      },
+      [BLOCKS.QUOTE]: (node, children) => {
+        return (
+          <p className="px-4 py-[1px] font-serif text-lg italic bg-main-green">
+            {children}
+          </p>
+        );
+      },
       [BLOCKS.HR]: (node) => <hr className="py-2 opacity-0" />,
       [BLOCKS.UL_LIST]: (node, children) => (
-        <ul className="ml-4 italic">{children}</ul>
+        <ul className="flex flex-col md:flex-row justify-center">{children}</ul>
       ),
+      [BLOCKS.LIST_ITEM]: (node, children) => (
+        <li className="py-8 px-4 my-2 h-auto align-middle md:py-10 md:px-8 md:h-auto bg-white mx-2 rounded md:w-1/4 text-center font-serif font-medium ">
+          {children}
+        </li>
+      ),
+      // [INLINES.HYPERLINK]: ({ data }, children) => (
+      //   <a
+      //     className="underline "
+      //     href={data.uri ? data.uri : ""}
+      //     target={`${
+      //       data.uri.startsWith(website_url || "http://localhost:8000/")
+      //         ? "_self"
+      //         : "_blank"
+      //     }`}
+      //     rel={`${
+      //       data.uri.startsWith(website_url) ? "" : "noopener noreferrer"
+      //     }`}
+      //   >
+      //     {children}
+      //   </a>
+      // ),
     },
   };
 

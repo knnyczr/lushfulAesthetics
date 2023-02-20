@@ -10,9 +10,9 @@ export default function CategoryFeaturedServices({ featuredServices }) {
       </h1>
       <div className="h-0.5 bg-black mb-4" />
       <div className="w-100 flex flex-row h-auto overflow-auto snap-mandatory snap-x md:flex-col">
-        {featuredServices.map((service) => {
+        {featuredServices.map((service, idx) => {
           return (
-            <div className="mb-5 mr-4 last:mr-0 md:mr-0 lg:mr-0">
+            <div className="mb-5 mr-4 last:mr-0 md:mr-0 lg:mr-0" key={idx}>
               <Link to={`/${service.slug}`}>
                 <div
                   className="h-60 w-60 md:h-40 md:w-auto"

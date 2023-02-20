@@ -16,10 +16,10 @@ export default function BlogCategory({ data }) {
 
   return (
     <div className="sm:px-0 md:px-5">
-      <button className="font-medium uppercase ml-4 my-2 md:ml-0 lg:ml-20">
+      <button className="font-medium uppercase ml-4 mt-12 mb-6 md:ml-0 lg:ml-20">
         <Link to="/blog">{`← Return to all posts`}</Link>
       </button>
-      <div className="grid grid-cols-1 md:grid-rows-2 sm:gap-10 md:grid-cols-4 md:gap-1 lg:px-20 lg:gap-10">
+      <div className="grid grid-cols-1 lg:grid-rows-2 gap-16 md:grid-cols-4 md:gap-8 lg:px-20 lg:gap-10">
         <CategoryFeaturedPost
           categoryTitle={categoryTitle}
           featuredPost={featuredPost}

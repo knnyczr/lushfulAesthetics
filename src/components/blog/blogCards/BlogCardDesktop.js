@@ -15,7 +15,7 @@ export default function BlogCardDesktop({
             <div className="h-0.5 bg-black mb-4" />
 
             <Link to={`${categoryObj[0].category.slug}`}>
-              <h1 className="font-sans uppercase text-2xl mb-6">
+              <h1 className="font-sans uppercase text-2xl mb-6 hover:text-main-green">
                 {categoryObj[0].category.categoryTitle}
               </h1>
             </Link>
