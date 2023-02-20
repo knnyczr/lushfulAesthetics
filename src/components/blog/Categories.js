@@ -4,7 +4,7 @@ import CategoryChip from "./CategoryChip";
 export default function Categories({ categories }) {
   return (
     <>
-      <h1 className="font-sans uppercase font-medium mb-2">Categories</h1>
+      <h1 className="font-sans font-bold text-xl uppercase mb-2">Categories</h1>
       {categories.map((category, idx) => (
         <CategoryChip
           key={idx}

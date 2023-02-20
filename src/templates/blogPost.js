@@ -121,20 +121,22 @@ export default function BlogPost({ data }) {
           className="h-[20rem] lg:h-[30rem] w-full my-6"
         ></div>
       </div>
-      <div className="grid grid-cols-1 mb-6 md:grid-cols-4 md:mb-12 lg:grid-rows-2 lg:mb-16">
-        <div className="px-4 py-4 md:col-span-3 md:row-span-2 md:px-12 lg:px-24">
+      <div className="flex mb-6 flex-col md:flex-row md:mb-12 lg:mb-16">
+        <div className="flex-initial md:flex-1 px-4 py-4 md:px-12 lg:px-24">
           <div>
             <p className="font-bold">{intro}</p>
           </div>
           <div className="h-[0.0625rem] bg-black my-4 lg:my-6" />
           <div> {renderRichText(article, options)}</div>
         </div>
-        <div className="py-4 px-4 order-3 md:pr-24 md:col-start-4 md:order-last">
-          <div className="h-0.5 bg-black mb-4" />
-          <Categories categories={data.allContentfulBlogCategory.edges} />
-        </div>
-        <div className="px-4 order-2 md:order-last md:row-auto">
-          <CategoryFeaturedServices featuredServices={featuredServices} />
+        <div className="flex flex-none px-6 flex-col md:flex-none md:w-4/12">
+          <div className="py-4 order-3 md:pr-24 md:order-last">
+            <div className="h-0.5 bg-black mb-4" />
+            <Categories categories={data.allContentfulBlogCategory.edges} />
+          </div>
+          <div className="order-2 md:order-last md:pr-24">
+            <CategoryFeaturedServices featuredServices={featuredServices} />
+          </div>
         </div>
       </div>
     </>
