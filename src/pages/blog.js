@@ -20,7 +20,7 @@ export default function Blog({ data }) {
   return (
     <div>
       <FeaturedPost featuredPost={featuredPost} />
-      <SearchBar />
+      {/* <SearchBar /> */}
       <div className="grid grid-cols-1 md:grid-cols-3">
         <div className="md:col-start-3 md:pr-24 py-4 px-4">
           <div className="h-0.5 bg-black mb-4" />
