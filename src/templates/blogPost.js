@@ -1,13 +1,13 @@
 import { graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { formatDate } from "../hooks/format-date";
 import Categories from "../components/blog/Categories";
+import CategoryFeaturedServices from "../components/blog/CategoryFeaturedServices";
 
 export default function BlogPost({ data }) {
-  console.log("🧱 Blog Post data: ", data);
-
   const {
     contentfulBlogPost: {
       title,
@@ -22,7 +22,6 @@ export default function BlogPost({ data }) {
     },
   } = data;
 
-  // console.log("image", featuredServices[0].heroImage.url);
   const options = {
     renderMark: {
       [MARKS.BOLD]: (text) => (
@@ -30,17 +29,75 @@ export default function BlogPost({ data }) {
       ),
     },
     renderNode: {
-      [BLOCKS.PARAGRAPH]: (node, children) => (
-        <div className="mb-4">
-          <p className="font-serif">{children}</p>
-        </div>
-      ),
+      [BLOCKS.PARAGRAPH]: (node, children) => {
+        return <p className="font-sans">{children}</p>;
+      },
       [BLOCKS.HEADING_1]: (node, children) => (
-        <h2 className="pt-4">{children}</h2>
+        <h1 className="py-4 text-2xl font-bold my-4">{children}</h1>
       ),
+      [BLOCKS.HEADING_2]: (node, children) => (
+        <h2 className="py-3 text-xl font-bold my-3">{children}</h2>
+      ),
+      [BLOCKS.HEADING_3]: (node, children) => {
+        return <h3 className="py-2 text-lg font-bold my-2">{children}</h3>;
+      },
+      [BLOCKS.HEADING_4]: (node, children) => {
+        return <h4 className="py-2 font-bold my-1">{children}</h4>;
+      },
+      [BLOCKS.HEADING_5]: (node, children) => {
+        return <h5 className="py-2 font-bold my-1">{children}</h5>;
+      },
+      [BLOCKS.QUOTE]: (node, children) => {
+        return (
+          <div className="px-4 py-6 my-4 font-serif text-lg italic font-bold bg-main-green text-white">
+            {children}
+          </div>
+        );
+      },
       [BLOCKS.HR]: (node) => <hr className="py-2 opacity-0" />,
       [BLOCKS.UL_LIST]: (node, children) => (
-        <ul className="ml-4 italic">{children}</ul>
+        <ul className="flex flex-col justify-center list-disc">{children}</ul>
+      ),
+      [BLOCKS.OL_LIST]: (node, children) => (
+        <ol className="flex flex-col justify-center list-decimal">
+          {children}
+        </ol>
+      ),
+      [BLOCKS.LIST_ITEM]: (node, children) => (
+        <li className="font-serif font-medium h-auto mx-6 my-1">{children}</li>
+      ),
+      [BLOCKS.EMBEDDED_ASSET]: (node) => {
+        console.log(node.data.target);
+        const { gatsbyImageData, description } = node.data.target;
+        return (
+          <GatsbyImage image={getImage(gatsbyImageData)} alt={description} />
+        );
+      },
+      [INLINES.HYPERLINK]: ({ data }, children) => (
+        <a
+          className="underline "
+          href={data.uri ? data.uri : ""}
+          target={`${
+            data.uri.startsWith(
+              "https://www.lushfulaesthetics" ||
+                "https://lushfulaesthetics-blog-branch.netlify.app" ||
+                "http://localhost:8000/"
+            )
+              ? "_self"
+              : "_blank"
+          }`}
+          rel={`${
+            data.uri.startsWith(
+              "https://www.lushfulaesthetics" ||
+                "https://lushfulaesthetics-blog-branch.netlify.app" ||
+                "http://localhost:8000/"
+            )
+              ? ""
+              : "noopener noreferrer"
+          }`}
+        >
+          {children}
+        </a>
       ),
     },
   };
@@ -56,7 +113,7 @@ export default function BlogPost({ data }) {
         <p>Posted on {formatDate(datePosted)}</p>
         <div
           style={{
-            backgroundImage: `url(${featuredServices[0].heroImage.url})`,
+            backgroundImage: `url(${heroImage.url})`,
             backgroundSize: `cover`,
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `50% 50%`,
@@ -64,17 +121,22 @@ export default function BlogPost({ data }) {
           className="h-[20rem] lg:h-[30rem] w-full my-6"
         ></div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 mb-6 md:mb-12 lg:mb-16">
-        <div className="md:col-span-2 md:px-12 lg:px-24 px-4 py-4">
+      <div className="flex mb-6 flex-col md:flex-row md:mb-12 lg:mb-16">
+        <div className="flex-initial md:flex-1 px-4 py-4 md:px-12 lg:px-24">
           <div>
             <p className="font-bold">{intro}</p>
           </div>
           <div className="h-[0.0625rem] bg-black my-4 lg:my-6" />
-          <div> {renderRichText(article)}</div>
+          <div> {renderRichText(article, options)}</div>
         </div>
-        <div className="md:col-span-1 md:pr-24 py-4 px-4 ">
-          <div className="h-0.5 bg-black mb-4" />
-          <Categories categories={data.allContentfulBlogCategory.edges} />
+        <div className="flex flex-none px-6 flex-col md:flex-none md:w-4/12">
+          <div className="py-4 order-3 md:pr-24 md:order-last">
+            <div className="h-0.5 bg-black mb-4" />
+            <Categories categories={data.allContentfulBlogCategory.edges} />
+          </div>
+          <div className="order-2 md:order-last md:pr-24">
+            <CategoryFeaturedServices featuredServices={featuredServices} />
+          </div>
         </div>
       </div>
     </>
@@ -86,6 +148,7 @@ export const BlogPostQuery = graphql`
     contentfulBlogPost(uniqueIdentifier: { eq: $pageId }) {
       heroImage {
         id
+        url
       }
       title
       datePosted
@@ -99,14 +162,22 @@ export const BlogPostQuery = graphql`
       article {
         raw
         references {
-          url
+          ... on ContentfulAsset {
+            contentful_id
+            title
+            description
+            gatsbyImageData(width: 1000)
+            __typename
+          }
         }
       }
       featuredServices {
         slug
+        serviceTitle
+        intro {
+          raw
+        }
         heroImage {
-          id
-          title
           url
         }
       }

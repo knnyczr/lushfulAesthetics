@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql, Link, useStaticQuery } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import Logo from "../images/logo-footer.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -71,13 +70,13 @@ export default function Footer() {
               <h2 className="mb-6 text-xl font-serif uppercase">Support</h2>
               <div className="font-medium md:text-lg flex flex-row ">
                 <div className="flex flex-col mr-8">
-                  <Link
+                  <a
                     target="_blank"
                     to={`${bookNowLink}`}
                     className="hover:underline mr-4 mb-4"
                   >
                     Book an appointment
-                  </Link>
+                  </a>
                   <Link to="/about" className="hover:underline mr-4 mb-4">
                     About
                   </Link>
