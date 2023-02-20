@@ -1,10 +1,11 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 
-import SearchBar from "../components/blog/SearchBar";
-import FeaturedPost from "../components/blog/FeaturedPost";
-import BlogCards from "../components/BlogCards/BlogCards";
+import BlogCardDesktop from "../components/blog/blogCards/BlogCardDesktop";
+import BlogCardMobile from "../components/blog/blogCards/BlogCardMobile";
 import Categories from "../components/blog/Categories";
+import FeaturedPost from "../components/blog/FeaturedPost";
+import SearchBar from "../components/blog/SearchBar";
 
 export default function Blog({ data }) {
   const {
@@ -15,14 +16,6 @@ export default function Blog({ data }) {
       sexualEnhancementHeroes,
     },
   } = data;
-
-  console.log(
-    "🧱 Blog Homepage data ",
-    featuredPost,
-    facialAestheticHeroes,
-    bodyAestheticHeroes,
-    sexualEnhancementHeroes
-  );
 
   return (
     <div>
@@ -35,11 +28,20 @@ export default function Blog({ data }) {
         </div>
 
         <div className="lg:pl-24 md:row-start-1 md:pl-12 md:pr-12 lg:pr-24 md:col-span-2 px-4 py-4">
-          <BlogCards
-            facialAesthetic={facialAestheticHeroes}
-            bodyAesthetic={bodyAestheticHeroes}
-            sexualEnhancement={sexualEnhancementHeroes}
-          />
+          <div className="hidden w-full h-auto md:flex md:flex-col">
+            <BlogCardDesktop
+              facialCategory={facialAestheticHeroes}
+              bodyCategory={bodyAestheticHeroes}
+              sexualCategory={sexualEnhancementHeroes}
+            />
+          </div>
+          <div className="md:hidden flex flex-col h-auto">
+            <BlogCardMobile
+              facialCategory={facialAestheticHeroes}
+              bodyCategory={bodyAestheticHeroes}
+              sexualCategory={sexualEnhancementHeroes}
+            />
+          </div>
         </div>
       </div>
     </div>
