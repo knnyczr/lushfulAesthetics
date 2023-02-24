@@ -106,17 +106,12 @@ export default function BlogPost({ data }) {
     },
   };
 
-  // <Helmet>
-  //       <title>{`${useSiteMetadata().title} | ${serviceTitle}`}</title>
-  //       {pageMetaDescription && (
-  //         <meta name="description" content={`${pageMetaDescription}`}></meta>
-  //       )}
-  //     </Helmet>
+  const useSiteMetaTitle = useSiteMetadata().title;
 
   return (
     <>
       <Helmet>
-        <title>{metaTitle || `${useSiteMetadata().title} | ${title}`}</title>
+        <title>{metaTitle || `${useSiteMetaTitle} | ${title}`}</title>
         {metaDescription && (
           <meta name="description" content={`${metaDescription}`}></meta>
         )}
