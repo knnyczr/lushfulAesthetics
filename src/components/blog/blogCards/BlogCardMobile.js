@@ -10,7 +10,7 @@ export default function BlogCardMobile({
   return (
     <>
       {[facialCategory, bodyCategory, sexualCategory].map((category, idx) => (
-        <Link to={`${category[0].category.slug}`} key={idx}>
+        <Link to={`${category[0].category.slug}/`} key={idx}>
           <div className="h-0.5 bg-black mb-4" />
           <h1 className="font-sans uppercase text-2xl mb-6">
             {category[0].category.categoryTitle}
@@ -41,7 +41,7 @@ const CategoryCards = ({ category }) => {
               <div className="text-white w-blogcard h-[32rem] sm:w-blogcard-sm sm:h-[35rem] bg-gradient-to-b from-black/0 via-black/0 to-black/75 z-10 cursor-pointer flex flex-col justify-end items-start px-4 py-6">
                 <h3 className="font-serif text-3xl font-bold">{card.title}</h3>
                 <p className="text-sm lg:text-lg my-3 lg:my-4">
-                  Posted on {formatDate(card.datePosted)}
+                  {formatDate(card.datePosted)}
                 </p>
                 <p className="text-sm">{card.intro}</p>
               </div>

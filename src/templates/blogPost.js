@@ -6,6 +6,8 @@ import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { formatDate } from "../hooks/format-date";
 import Categories from "../components/blog/Categories";
 import CategoryFeaturedServices from "../components/blog/CategoryFeaturedServices";
+import { Helmet } from "react-helmet";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 
 export default function BlogPost({ data }) {
   const {
@@ -19,6 +21,8 @@ export default function BlogPost({ data }) {
       featuredServices,
       heroImage,
       uniqueIdentifier,
+      metaTitle,
+      metaDescription,
     },
   } = data;
 
@@ -102,15 +106,23 @@ export default function BlogPost({ data }) {
     },
   };
 
+  const useSiteMetaTitle = useSiteMetadata().title;
+
   return (
     <>
+      <Helmet>
+        <title>{metaTitle || `${useSiteMetaTitle} | ${title}`}</title>
+        {metaDescription && (
+          <meta name="description" content={`${metaDescription}`}></meta>
+        )}
+      </Helmet>
       <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-12 lg:py-16 flex flex-col justify-center items-center">
         <h5 className="">{category.categoryTitle}</h5>
         <h2 className="font-serif text-3xl lg:text-4xl font-bold my-4 lg:my-5">
           {title}
         </h2>
         <p>By {author}</p>
-        <p>Posted on {formatDate(datePosted)}</p>
+        <p>{formatDate(datePosted)}</p>
         <div
           style={{
             backgroundImage: `url(${heroImage.url})`,
@@ -151,6 +163,8 @@ export const BlogPostQuery = graphql`
         url
       }
       title
+      metaTitle
+      metaDescription
       datePosted
       author
       intro

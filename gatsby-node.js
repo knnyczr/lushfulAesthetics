@@ -92,7 +92,7 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
   allContentfulServicePage.edges.forEach((page) => {
     createPage({
-      path: `/${page.node.slug}`,
+      path: `/${page.node.slug}/`,
       component: servicePageTemplate,
       context: {
         servicePageId: page.node.id,
@@ -102,7 +102,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allContentfulPackagePage.edges.forEach((page) => {
     createPage({
-      path: `/${page.node.slug}`,
+      path: `/${page.node.slug}/`,
       component: packagesPageTemplate,
       context: {
         packagePageId: page.node.id,
@@ -112,7 +112,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allContentfulGeneralFaqPage.edges.forEach((page) => {
     createPage({
-      path: `/${page.node.slug}`,
+      path: `/${page.node.slug}/`,
       component: generalFAQsTemplate,
       context: { pageId: page.node.id },
     });
@@ -120,7 +120,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allContentfulPrivacyPolicyPage.edges.forEach((page) => {
     createPage({
-      path: `/${page.node.slug}`,
+      path: `/${page.node.slug}/`,
       component: privacyPolicyTemplate,
       context: { pageId: page.node.id },
     });
@@ -128,7 +128,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allContentfulHipaaPolicyPage.edges.forEach((page) => {
     createPage({
-      path: `/${page.node.slug}`,
+      path: `/${page.node.slug}/`,
       component: hipaaPolicyTemplate,
       context: { pageId: page.node.id },
     });
@@ -136,7 +136,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allContentfulBlogCategory.edges.forEach((page) => {
     createPage({
-      path: `/blog/${page.node.slug}`,
+      path: `/blog/${page.node.slug}/`,
       context: { blogCategory: page.node.id },
       component: categoryPageTemplate,
     });
@@ -144,7 +144,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allContentfulBlogPost.edges.forEach((page) => {
     createPage({
-      path: `/blog/${page.node.category.slug}/${page.node.uniqueIdentifier}`,
+      path: `/blog/${page.node.category.slug}/${page.node.uniqueIdentifier}/`,
       context: { pageId: page.node.uniqueIdentifier },
       component: blogPageTemplate,
     });

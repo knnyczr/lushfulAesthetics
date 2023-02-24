@@ -13,7 +13,7 @@ export default function CategoryFeaturedServices({ featuredServices }) {
         {featuredServices.map((service, idx) => {
           return (
             <div className="mb-5 mr-4 last:mr-0 md:mr-0 lg:mr-0" key={idx}>
-              <Link to={`/${service.slug}`}>
+              <Link to={`/${service.slug}/`}>
                 <div
                   className="h-60 w-60 md:h-40 md:w-auto"
                   style={{
