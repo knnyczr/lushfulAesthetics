@@ -14,7 +14,7 @@ export default function BlogCardDesktop({
           <div key={_}>
             <div className="h-0.5 bg-black mb-4" />
 
-            <Link to={`${categoryObj[0].category.slug}`}>
+            <Link to={`${categoryObj[0].category.slug}/`}>
               <h1 className="font-sans uppercase text-2xl mb-6 hover:text-main-green">
                 {categoryObj[0].category.categoryTitle}
               </h1>
@@ -40,7 +40,7 @@ export default function BlogCardDesktop({
                   .map((post, idx) => (
                     <div key={idx}>
                       <Link
-                        to={`${post.category.slug}/${post.uniqueIdentifier}`}
+                        to={`${post.category.slug}/${post.uniqueIdentifier}/`}
                         key={idx}
                       >
                         <div className="flex flex-col items-center w-full h-[18rem] mr-2 cursor-pointer">
@@ -56,7 +56,7 @@ export default function BlogCardDesktop({
 
                           <div className="flex flex-col items-center">
                             <h3 className="text-2xl">{post.title}</h3>
-                            <p>Posted on {formatDate(post.datePosted)}</p>
+                            <p>{formatDate(post.datePosted)}</p>
                           </div>
                         </div>
                       </Link>
@@ -82,7 +82,7 @@ const LatestPost = ({
 }) => {
   return (
     <div className="w-full h-full mb-12 cursor-pointer">
-      <Link to={`${slug}/${uniqueIdentifier}`}>
+      <Link to={`${slug}/${uniqueIdentifier}/`}>
         <div
           style={{
             backgroundImage: `url(${heroImage.url})`,
@@ -94,7 +94,7 @@ const LatestPost = ({
         ></div>
         <div className="flex flex-col items-center">
           <h1 className="text-3xl">{title}</h1>
-          <p>Posted on {formatDate(datePosted)}</p>
+          <p>{formatDate(datePosted)}</p>
         </div>
       </Link>
     </div>

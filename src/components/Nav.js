@@ -211,7 +211,7 @@ export default function Nav() {
                                                 (serviceCategoryChild) => (
                                                   <Link
                                                     key={`LINK-${serviceCategoryChild.slug}`}
-                                                    to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}`}
+                                                    to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}/`}
                                                     className="ml-6 hover:text-main-green-shade text-left"
                                                   >
                                                     {serviceCategoryChild.title}
@@ -222,7 +222,7 @@ export default function Nav() {
                                           ) : (
                                             <Link
                                               key={`LINK-${serviceCategory.slug}`}
-                                              to={`/${service.slug}/${serviceCategory.slug}`}
+                                              to={`/${service.slug}/${serviceCategory.slug}/`}
                                               className="hover:text-main-green-shade text-left"
                                             >
                                               {serviceCategory.title}
@@ -381,7 +381,7 @@ export default function Nav() {
                                               <Link
                                                 onClick={() => closeMenu()}
                                                 key={`LINK-${serviceCategoryChild.slug}`}
-                                                to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}`}
+                                                to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}/`}
                                                 className="ml-3 hover:text-main-green-shade text-left pb-1"
                                               >
                                                 {serviceCategoryChild.title}
@@ -393,7 +393,7 @@ export default function Nav() {
                                         <Link
                                           onClick={() => closeMenu()}
                                           key={`LINK-${serviceCategory.slug}`}
-                                          to={`/${service.slug}/${serviceCategory.slug}`}
+                                          to={`/${service.slug}/${serviceCategory.slug}/`}
                                           className="hover:text-main-green-shade text-left pb-1"
                                         >
                                           {serviceCategory.title}
@@ -412,7 +412,7 @@ export default function Nav() {
 
                 <Link
                   onClick={() => closeMenu()}
-                  to="/about"
+                  to="/about/"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
                   About
@@ -420,7 +420,7 @@ export default function Nav() {
 
                 <Link
                   onClick={() => closeMenu()}
-                  to="/contact"
+                  to="/contact/"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
                   Contact Us
@@ -428,7 +428,7 @@ export default function Nav() {
 
                 <Link
                   onClick={() => closeMenu()}
-                  to="/financing"
+                  to="/financing/"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
                   Financing
@@ -436,7 +436,7 @@ export default function Nav() {
 
                 <Link
                   onClick={() => closeMenu()}
-                  to="/blog"
+                  to="/blog/"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
                   Blog

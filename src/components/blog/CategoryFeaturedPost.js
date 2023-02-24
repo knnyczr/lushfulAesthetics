@@ -8,7 +8,7 @@ export default function CategoryFeaturedPost({ featuredPost, categoryTitle }) {
       <h1 className="uppercase font-bold mb-4 text-2xl">{categoryTitle}</h1>
       <div className="h-0.5 bg-black mb-4" />
       <Link
-        to={`/blog/${featuredPost.category.slug}/${featuredPost.uniqueIdentifier}`}
+        to={`/blog/${featuredPost.category.slug}/${featuredPost.uniqueIdentifier}/`}
       >
         <div
           className="relative h-80 md:h-96 lg:h-128"
@@ -22,7 +22,7 @@ export default function CategoryFeaturedPost({ featuredPost, categoryTitle }) {
             {featuredPost.title}
           </h2>
           <h5 className="text-center font-medium mb-2">
-            Posted on {formatDate(featuredPost.datePosted)}
+            {formatDate(featuredPost.datePosted)}
           </h5>
         </div>
       </Link>

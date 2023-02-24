@@ -110,7 +110,7 @@ export default function BlogPost({ data }) {
           {title}
         </h2>
         <p>By {author}</p>
-        <p>Posted on {formatDate(datePosted)}</p>
+        <p>{formatDate(datePosted)}</p>
         <div
           style={{
             backgroundImage: `url(${heroImage.url})`,
