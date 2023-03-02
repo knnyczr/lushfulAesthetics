@@ -2,7 +2,6 @@ import React from "react";
 import { graphql } from "gatsby";
 import ContactForm from "../components/ContactForm";
 import { Helmet } from "react-helmet";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export { Head } from "../components/Layout";
 
