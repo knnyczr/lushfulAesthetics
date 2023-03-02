@@ -6,7 +6,10 @@ const nth2 = new Nth("2", "2"); // Sub-elements that are multiples of 3
 module.exports = {
   content: [
     "./src/pages/**/*.{js,jsx,ts,tsx}",
+    "./src/templates/**/*.{js,jsx,ts,tsx}",
     "./src/components/**/*.{js,jsx,ts,tsx}",
+    "./src/components/blog/**/*.{js,jsx,ts,tsx}",
+    "./src/components/BlogCards/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     screens: {
@@ -34,6 +37,10 @@ module.exports = {
         "main-green-shade": "#434232",
         "main-green-light": "#BAB9A0",
         "second-gold": "#EAC096",
+      },
+      width: {
+        blogcard: `calc(90vw - 30px)`,
+        "blogcard-sm": `calc(55vw)`,
       },
       aspectRatio: {
         "3/4": "3 / 4",

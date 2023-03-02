@@ -20,7 +20,7 @@ export function Head({ children }) {
         content="lih9j34woa8ztip98myvop39w9zcy6"
       />
 
-      <meta http-equiv="content-language" content="en-us" />
+      <meta httpEquiv="content-language" content="en-us" />
       {children}
     </>
   );

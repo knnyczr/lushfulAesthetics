@@ -211,7 +211,7 @@ export default function Nav() {
                                                 (serviceCategoryChild) => (
                                                   <Link
                                                     key={`LINK-${serviceCategoryChild.slug}`}
-                                                    to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}`}
+                                                    to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}/`}
                                                     className="ml-6 hover:text-main-green-shade text-left"
                                                   >
                                                     {serviceCategoryChild.title}
@@ -222,7 +222,7 @@ export default function Nav() {
                                           ) : (
                                             <Link
                                               key={`LINK-${serviceCategory.slug}`}
-                                              to={`/${service.slug}/${serviceCategory.slug}`}
+                                              to={`/${service.slug}/${serviceCategory.slug}/`}
                                               className="hover:text-main-green-shade text-left"
                                             >
                                               {serviceCategory.title}
@@ -259,6 +259,12 @@ export default function Nav() {
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
                   >
                     Financing
+                  </Link>
+                  <Link
+                    to="/blog"
+                    className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
+                  >
+                    Blog
                   </Link>
                 </div>
               </div>
@@ -375,7 +381,7 @@ export default function Nav() {
                                               <Link
                                                 onClick={() => closeMenu()}
                                                 key={`LINK-${serviceCategoryChild.slug}`}
-                                                to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}`}
+                                                to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}/`}
                                                 className="ml-3 hover:text-main-green-shade text-left pb-1"
                                               >
                                                 {serviceCategoryChild.title}
@@ -387,7 +393,7 @@ export default function Nav() {
                                         <Link
                                           onClick={() => closeMenu()}
                                           key={`LINK-${serviceCategory.slug}`}
-                                          to={`/${service.slug}/${serviceCategory.slug}`}
+                                          to={`/${service.slug}/${serviceCategory.slug}/`}
                                           className="hover:text-main-green-shade text-left pb-1"
                                         >
                                           {serviceCategory.title}
@@ -406,7 +412,7 @@ export default function Nav() {
 
                 <Link
                   onClick={() => closeMenu()}
-                  to="/about"
+                  to="/about/"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
                   About
@@ -414,7 +420,7 @@ export default function Nav() {
 
                 <Link
                   onClick={() => closeMenu()}
-                  to="/contact"
+                  to="/contact/"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
                   Contact Us
@@ -422,27 +428,36 @@ export default function Nav() {
 
                 <Link
                   onClick={() => closeMenu()}
-                  to="/financing"
+                  to="/financing/"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
                   Financing
                 </Link>
 
+                <Link
+                  onClick={() => closeMenu()}
+                  to="/blog/"
+                  className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
+                >
+                  Blog
+                </Link>
+
                 <div className="pt-16">
                   <div className="flex flex-row justify-center pt-5 md:pb-16 text-white">
-                    {socialTwitter && socialTwitter.startsWith("https://www.") && (
-                      <a
-                        href={`${socialTwitter}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mr-6 mb-4"
-                      >
-                        <FontAwesomeIcon
-                          className="fa-2x hover:black"
-                          icon={faTwitter}
-                        />
-                      </a>
-                    )}
+                    {socialTwitter &&
+                      socialTwitter.startsWith("https://www.") && (
+                        <a
+                          href={`${socialTwitter}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="mr-6 mb-4"
+                        >
+                          <FontAwesomeIcon
+                            className="fa-2x hover:black"
+                            icon={faTwitter}
+                          />
+                        </a>
+                      )}
                     {socialInstagram &&
                       socialInstagram.startsWith("https://www.") && (
                         <a
@@ -457,19 +472,20 @@ export default function Nav() {
                           />
                         </a>
                       )}
-                    {socialTiktok && socialTiktok.startsWith("https://www.") && (
-                      <a
-                        href={`${socialTiktok}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mr-6 mb-4"
-                      >
-                        <FontAwesomeIcon
-                          className="fa-2x hover:black"
-                          icon={faTiktok}
-                        />
-                      </a>
-                    )}
+                    {socialTiktok &&
+                      socialTiktok.startsWith("https://www.") && (
+                        <a
+                          href={`${socialTiktok}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="mr-6 mb-4"
+                        >
+                          <FontAwesomeIcon
+                            className="fa-2x hover:black"
+                            icon={faTiktok}
+                          />
+                        </a>
+                      )}
 
                     {youtube && youtube.startsWith("https://www.") && (
                       <a

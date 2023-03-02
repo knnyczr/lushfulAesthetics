@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
+import React from "react";
 import Button from "../components/BookBtn";
 import { StaticImage } from "gatsby-plugin-image";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
