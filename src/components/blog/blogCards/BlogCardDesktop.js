@@ -2,14 +2,10 @@ import React from "react";
 import { Link } from "gatsby";
 import { formatDate } from "../../../hooks/format-date";
 
-export default function BlogCardDesktop({
-  facialCategory,
-  bodyCategory,
-  sexualCategory,
-}) {
+export default function BlogCardDesktop({ categories }) {
   return (
     <>
-      {[facialCategory, bodyCategory, sexualCategory].map((categoryObj, _) => {
+      {categories.map((categoryObj, _) => {
         return (
           <div key={_}>
             <div className="h-0.5 bg-black mb-4" />

@@ -2,14 +2,10 @@ import React from "react";
 import { Link } from "gatsby";
 import { formatDate } from "../../../hooks/format-date";
 
-export default function BlogCardMobile({
-  facialCategory,
-  bodyCategory,
-  sexualCategory,
-}) {
+export default function BlogCardMobile({ categories }) {
   return (
     <>
-      {[facialCategory, bodyCategory, sexualCategory].map((category, idx) => (
+      {categories.map((category, idx) => (
         <Link to={`${category[0].category.slug}/`} key={idx}>
           <div className="h-0.5 bg-black mb-4" />
           <h1 className="font-sans uppercase text-2xl mb-6">

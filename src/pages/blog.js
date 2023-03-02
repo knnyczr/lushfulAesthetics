@@ -13,9 +13,17 @@ export default function Blog({ data }) {
       featuredPost,
       facialAestheticHeroes,
       bodyAestheticHeroes,
-      sexualEnhancementHeroes,
+      // sexualEnhancementHeroes,
     },
   } = data;
+
+  const categories = [
+    facialAestheticHeroes,
+    bodyAestheticHeroes,
+    // sexualEnhancementHeroes,
+  ];
+
+  console.log(categories);
 
   return (
     <div>
@@ -30,16 +38,18 @@ export default function Blog({ data }) {
         <div className="lg:pl-24 md:row-start-1 md:pl-12 md:pr-12 lg:pr-24 md:col-span-2 px-4 py-4">
           <div className="hidden w-full h-auto md:flex md:flex-col">
             <BlogCardDesktop
-              facialCategory={facialAestheticHeroes}
-              bodyCategory={bodyAestheticHeroes}
-              sexualCategory={sexualEnhancementHeroes}
+              categories={categories}
+              // facialCategory={facialAestheticHeroes}
+              // bodyCategory={bodyAestheticHeroes}
+              // sexualCategory={sexualEnhancementHeroes}
             />
           </div>
           <div className="md:hidden flex flex-col h-auto">
             <BlogCardMobile
-              facialCategory={facialAestheticHeroes}
-              bodyCategory={bodyAestheticHeroes}
-              sexualCategory={sexualEnhancementHeroes}
+              categories={categories}
+              // facialCategory={facialAestheticHeroes}
+              // bodyCategory={bodyAestheticHeroes}
+              // sexualCategory={sexualEnhancementHeroes}
             />
           </div>
         </div>
@@ -97,20 +107,20 @@ export const pageQuery = graphql`
         uniqueIdentifier
       }
 
-      sexualEnhancementHeroes {
-        intro
-        heroImage {
-          id
-          url
-        }
-        datePosted
-        title
-        category {
-          categoryTitle
-          slug
-        }
-        uniqueIdentifier
-      }
+      # sexualEnhancementHeroes {
+      #   intro
+      #   heroImage {
+      #     id
+      #     url
+      #   }
+      #   datePosted
+      #   title
+      #   category {
+      #     categoryTitle
+      #     slug
+      #   }
+      #   uniqueIdentifier
+      # }
     }
     allContentfulBlogCategory {
       edges {

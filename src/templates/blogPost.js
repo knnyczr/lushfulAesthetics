@@ -156,7 +156,7 @@ export default function BlogPost({ data }) {
 }
 
 export const BlogPostQuery = graphql`
-  query blogPageQuery($pageId: String!) {
+  query blogPageQuery($pageId: Date!) {
     contentfulBlogPost(uniqueIdentifier: { eq: $pageId }) {
       heroImage {
         id
@@ -175,15 +175,15 @@ export const BlogPostQuery = graphql`
       }
       article {
         raw
-        references {
-          ... on ContentfulAsset {
-            contentful_id
-            title
-            description
-            gatsbyImageData(width: 1000)
-            __typename
-          }
-        }
+        # references {
+        #   ... on ContentfulAsset {
+        #     contentful_id
+        #     title
+        #     description
+        #     gatsbyImageData(width: 1000)
+        #     __typename
+        #   }
+        # }
       }
       featuredServices {
         slug
