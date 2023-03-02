@@ -241,27 +241,27 @@ export default function Nav() {
                   </div>
 
                   <Link
-                    to="/about"
+                    to="/about/"
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base lg:text-lg font-medium uppercase"
                   >
                     About
                   </Link>
 
                   <Link
-                    to="/contact"
+                    to="/contact/"
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
                   >
                     Contact
                   </Link>
 
                   <Link
-                    to="/financing"
+                    to="/financing/"
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
                   >
                     Financing
                   </Link>
                   <Link
-                    to="/blog"
+                    to="/blog/"
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
                   >
                     Blog
