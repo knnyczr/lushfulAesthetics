@@ -117,8 +117,8 @@ export default function BlogPost({ data }) {
         )}
       </Helmet>
       <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-12 lg:py-16 flex flex-col justify-center items-center">
-        <h5 className="">{category.categoryTitle}</h5>
-        <h2 className="font-serif text-3xl lg:text-4xl font-bold my-4 lg:my-5">
+        <h5 className="text-center">{category.categoryTitle}</h5>
+        <h2 className="font-serif text-center text-3xl lg:text-4xl font-bold my-4 lg:my-5">
           {title}
         </h2>
         <p>By {author}</p>
@@ -128,13 +128,13 @@ export default function BlogPost({ data }) {
             backgroundImage: `url(${heroImage.url})`,
             backgroundSize: `cover`,
             backgroundRepeat: `no-repeat`,
-            backgroundPosition: `50% 50%`,
+            backgroundPosition: `center`,
           }}
           className="h-[20rem] lg:h-[30rem] w-full my-6"
         ></div>
       </div>
       <div className="flex mb-6 flex-col md:flex-row md:mb-12 lg:mb-16">
-        <div className="flex-initial md:flex-1 px-4 py-4 md:px-12 lg:px-24">
+        <div className="flex-initial px-4 pt-4 pb-12 md:flex-1md:px-12 lg:px-24">
           <div>
             <p className="font-bold">{intro}</p>
           </div>
