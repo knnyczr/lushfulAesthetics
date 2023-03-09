@@ -5,7 +5,10 @@ import BlogCardDesktop from "../components/blog/blogCards/BlogCardDesktop";
 import BlogCardMobile from "../components/blog/blogCards/BlogCardMobile";
 import Categories from "../components/blog/Categories";
 import FeaturedPost from "../components/blog/FeaturedPost";
-import SearchBar from "../components/blog/SearchBar";
+import { Helmet } from "react-helmet";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
+
+// import SearchBar from "../components/blog/SearchBar";
 
 export default function Blog({ data }) {
   const {
@@ -23,10 +26,16 @@ export default function Blog({ data }) {
     // sexualEnhancementHeroes,
   ];
 
-  console.log(categories);
+  const useSiteMetaTitle = useSiteMetadata().title;
 
   return (
     <div>
+      <Helmet>
+        <title>{`${useSiteMetaTitle} | Blog`}</title>
+        {/* {metaDescription && (
+          <meta name="description" content={`${metaDescription}`}></meta>
+        )} */}
+      </Helmet>
       <FeaturedPost featuredPost={featuredPost} />
       {/* <SearchBar /> */}
       <div className="grid grid-cols-1 md:grid-cols-3">
