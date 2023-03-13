@@ -19,6 +19,7 @@ export default function CategoryFeaturedServices({ featuredServices }) {
                   style={{
                     backgroundImage: `url(${service.heroImage.url})`,
                     backgroundSize: `cover`,
+                    backgroundPosition: `center`,
                   }}
                 />
                 <h2 className="uppercase font-sans text-xl font-medium">

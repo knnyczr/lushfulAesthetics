@@ -9,6 +9,7 @@ export default function FeaturedPost({ featuredPost }) {
         style={{
           backgroundImage: `url(${featuredPost.heroImage.url})`,
           backgroundSize: `cover`,
+          backgroundPosition: `center`,
         }}
         className="relative"
       >
