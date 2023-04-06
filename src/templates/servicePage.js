@@ -50,8 +50,11 @@ export default function ServicePage({ data }) {
       ),
       [BLOCKS.HR]: (node) => <hr className="py-2 opacity-0" />,
       [BLOCKS.UL_LIST]: (node, children) => (
-        <ul className="ml-4 italic">{children}</ul>
+        <ul className="ml-4 list-disc">{children}</ul>
       ),
+      [BLOCKS.OL_LIST]: (node, children) => {
+        return <ol className="ml-10 list-decimal">{children}</ol>;
+      },
       [INLINES.HYPERLINK]: ({ data }, children) => (
         <a
           className="underline "
