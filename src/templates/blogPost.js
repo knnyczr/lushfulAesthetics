@@ -34,7 +34,7 @@ export default function BlogPost({ data }) {
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node, children) => {
-        return <p className="font-sans">{children}</p>;
+        return <p className="font-sans py-2">{children}</p>;
       },
       [BLOCKS.HEADING_1]: (node, children) => (
         <h1 className="py-4 text-2xl font-bold my-4">{children}</h1>
@@ -71,10 +71,15 @@ export default function BlogPost({ data }) {
         <li className="font-serif font-medium h-auto mx-6 my-1">{children}</li>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
-        console.log(node.data.target);
         const { gatsbyImageData, description } = node.data.target;
         return (
-          <GatsbyImage image={getImage(gatsbyImageData)} alt={description} />
+          <div className="flex justify-center py-10">
+            <GatsbyImage
+              image={getImage(gatsbyImageData)}
+              alt={description}
+              style={{ width: "500px", objectFit: "fit" }}
+            />
+          </div>
         );
       },
       [INLINES.HYPERLINK]: ({ data }, children) => (
