@@ -55,6 +55,9 @@ export default function ServicePage({ data }) {
       [BLOCKS.OL_LIST]: (node, children) => {
         return <ol className="ml-10 list-decimal">{children}</ol>;
       },
+      [BLOCKS.LIST_ITEM]: (node, children) => (
+        <li className="font-serif font-medium h-auto mx-6 my-1">{children}</li>
+      ),
       [INLINES.HYPERLINK]: ({ data }, children) => (
         <a
           className="underline "
