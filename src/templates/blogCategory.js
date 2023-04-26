@@ -46,11 +46,11 @@ export const BlogCategoryQuery = graphql`
           slug
         }
         title
-        uniqueIdentifier
+        slug
         datePosted
       }
       featuredPost {
-        uniqueIdentifier
+        slug
         intro
         category {
           slug

@@ -7,9 +7,7 @@ export default function CategoryFeaturedPost({ featuredPost, categoryTitle }) {
     <div className="order-first px-4 md:col-start-1 md:col-end-4 md:px-0 md:pb-8 lg:pb-12">
       <h1 className="uppercase font-bold mb-4 text-2xl">{categoryTitle}</h1>
       <div className="h-0.5 bg-black mb-4" />
-      <Link
-        to={`/blog/${featuredPost.category.slug}/${featuredPost.uniqueIdentifier}/`}
-      >
+      <Link to={`/blog/${featuredPost.category.slug}/${featuredPost.slug}/`}>
         <div
           className="relative h-80 md:h-96 lg:h-128"
           style={{

@@ -24,6 +24,7 @@ if (!spaceId || !accessToken) {
 }
 
 module.exports = {
+  trailingSlash: "always",
   siteMetadata: {
     title: `Lushful Aesthetics`,
     siteUrl: `https://www.lushfulaesthetics.com/`,
@@ -41,7 +42,89 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     `gatsby-plugin-lodash`,
-    "gatsby-plugin-advanced-sitemap",
+    // "gatsby-plugin-advanced-sitemap",
+    {
+      resolve: `gatsby-plugin-advanced-sitemap-webrication`,
+      options: {
+        createLinkInHead: true,
+        addUncaughtPages: true,
+        output: "/sitemap.xml",
+        query: `
+          {
+            allContentfulServicePage {
+              edges {
+                node {
+                  slug
+                  id
+                }
+              }
+            }
+      
+            allContentfulPackagePage {
+              edges {
+                node {
+                  slug
+                  id
+                }
+              }
+            }
+      
+            allContentfulGeneralFaqPage(limit: 1) {
+              edges {
+                node {
+                  slug
+                  id
+                }
+              }
+            }
+      
+            allContentfulPrivacyPolicyPage(limit: 1) {
+              edges {
+                node {
+                  slug
+                  id
+                }
+              }
+            }
+      
+            allContentfulHipaaPolicyPage(limit: 1) {
+              edges {
+                node {
+                  slug
+                  id
+                }
+              }
+            }
+            allContentfulBlogCategory {
+              edges {
+                node {
+                  slug
+                  id
+                }
+              }
+            }
+            allContentfulBlogPost {
+              edges {
+                node {
+                  slug
+                  category {
+                    slug
+                  }
+                }
+              }
+            }
+          }
+        `,
+        exclude: [
+          `/dev-404-page`,
+          `/404`,
+          `/404.html`,
+          `/offline-plugin-app-shell-fallback`,
+          `/my-excluded-page`,
+          /(\/)?hash-\S*/, // you can also pass valid RegExp to exclude internal tags for example
+        ],
+      },
+    },
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
