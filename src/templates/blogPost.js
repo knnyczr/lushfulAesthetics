@@ -29,7 +29,7 @@ export default function BlogPost({ data }) {
   const options = {
     renderMark: {
       [MARKS.BOLD]: (text) => (
-        <span className="font-sans font-bold lg:text-lg mb-1">{text}</span>
+        <span className="font-sans font-bold lg:text-lg">{text}</span>
       ),
     },
     renderNode: {
@@ -37,19 +37,19 @@ export default function BlogPost({ data }) {
         return <p className="font-sans py-2">{children}</p>;
       },
       [BLOCKS.HEADING_1]: (node, children) => (
-        <h1 className="py-4 text-2xl font-bold my-4">{children}</h1>
+        <h1 className="text-2xl font-bold mt-4">{children}</h1>
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 className="py-3 text-xl font-bold my-3">{children}</h2>
+        <h2 className="text-xl font-bold mt-3">{children}</h2>
       ),
       [BLOCKS.HEADING_3]: (node, children) => {
-        return <h3 className="py-2 text-lg font-bold my-2">{children}</h3>;
+        return <h3 className="text-lg font-bold mt-2">{children}</h3>;
       },
       [BLOCKS.HEADING_4]: (node, children) => {
-        return <h4 className="py-2 font-bold my-1">{children}</h4>;
+        return <h4 className="font-bold mt-1">{children}</h4>;
       },
       [BLOCKS.HEADING_5]: (node, children) => {
-        return <h5 className="py-2 font-bold my-1">{children}</h5>;
+        return <h5 className="font-bold mt-1">{children}</h5>;
       },
       [BLOCKS.QUOTE]: (node, children) => {
         return (
