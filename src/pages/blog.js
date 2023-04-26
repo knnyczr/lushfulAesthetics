@@ -16,14 +16,14 @@ export default function Blog({ data }) {
       featuredPost,
       facialAestheticHeroes,
       bodyAestheticHeroes,
-      // sexualEnhancementHeroes,
+      sexualEnhancementHeroes,
     },
   } = data;
 
   const categories = [
     facialAestheticHeroes,
     bodyAestheticHeroes,
-    // sexualEnhancementHeroes,
+    sexualEnhancementHeroes,
   ];
 
   const useSiteMetaTitle = useSiteMetadata().title;
@@ -116,20 +116,20 @@ export const pageQuery = graphql`
         slug
       }
 
-      # sexualEnhancementHeroes {
-      #   intro
-      #   heroImage {
-      #     id
-      #     url
-      #   }
-      #   datePosted
-      #   title
-      #   category {
-      #     categoryTitle
-      #     slug
-      #   }
-      #   slug
-      # }
+      sexualEnhancementHeroes {
+        intro
+        heroImage {
+          id
+          url
+        }
+        datePosted
+        title
+        category {
+          categoryTitle
+          slug
+        }
+        slug
+      }
     }
     allContentfulBlogCategory {
       edges {

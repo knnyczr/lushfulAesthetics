@@ -16,7 +16,6 @@ export default function IndexPage({ data }) {
 
   const image = getImage(heroImage);
 
-  console.log(phoneNumber);
   return (
     <div>
       <Helmet title={`Lushful Aesthetics | Home`} />
