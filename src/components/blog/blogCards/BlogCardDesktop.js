@@ -36,7 +36,7 @@ export default function BlogCardDesktop({ categories }) {
                   .map((post, idx) => (
                     <div key={idx}>
                       <Link
-                        to={`${post.category.slug}/${post.uniqueIdentifier}/`}
+                        to={`${post.category.slug}/${post.slug}/`}
                         key={idx}
                       >
                         <div className="flex flex-col items-center w-full h-[18rem] mr-2 cursor-pointer">
@@ -68,17 +68,11 @@ export default function BlogCardDesktop({ categories }) {
 }
 
 const LatestPost = ({
-  post: {
-    category: { slug },
-    uniqueIdentifier,
-    heroImage,
-    title,
-    datePosted,
-  },
+  post: { category, slug, heroImage, title, datePosted },
 }) => {
   return (
     <div className="w-full h-full mb-12 cursor-pointer">
-      <Link to={`${slug}/${uniqueIdentifier}/`}>
+      <Link to={`${category.slug}/${slug}/`}>
         <div
           style={{
             backgroundImage: `url(${heroImage.url})`,

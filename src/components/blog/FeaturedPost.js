@@ -26,9 +26,7 @@ export default function FeaturedPost({ featuredPost }) {
             {featuredPost.intro}
           </p>
           <button className="uppercase underline text-sm font-bold">
-            <Link
-              to={`${featuredPost.category.slug}/${featuredPost.uniqueIdentifier}/`}
-            >
+            <Link to={`${featuredPost.category.slug}/${featuredPost.slug}/`}>
               read more
             </Link>
           </button>

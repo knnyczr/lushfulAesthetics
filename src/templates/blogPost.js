@@ -20,7 +20,7 @@ export default function BlogPost({ data }) {
       datePosted,
       featuredServices,
       heroImage,
-      uniqueIdentifier,
+      slug,
       metaTitle,
       metaDescription,
     },
@@ -162,7 +162,7 @@ export default function BlogPost({ data }) {
 
 export const BlogPostQuery = graphql`
   query blogPageQuery($pageId: String) {
-    contentfulBlogPost(uniqueIdentifier: { eq: $pageId }) {
+    contentfulBlogPost(slug: { eq: $pageId }) {
       heroImage {
         id
         url
@@ -173,7 +173,7 @@ export const BlogPostQuery = graphql`
       datePosted
       author
       intro
-      uniqueIdentifier
+      slug
       category {
         slug
         categoryTitle
@@ -208,7 +208,7 @@ export const BlogPostQuery = graphql`
           categoryTitle
           blogPosts {
             title
-            uniqueIdentifier
+            slug
           }
         }
       }

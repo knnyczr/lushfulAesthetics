@@ -83,7 +83,7 @@ export const pageQuery = graphql`
         datePosted
         intro
         title
-        uniqueIdentifier
+        slug
       }
 
       bodyAestheticHeroes {
@@ -98,7 +98,7 @@ export const pageQuery = graphql`
           categoryTitle
           slug
         }
-        uniqueIdentifier
+        slug
       }
 
       facialAestheticHeroes {
@@ -113,7 +113,7 @@ export const pageQuery = graphql`
           categoryTitle
           slug
         }
-        uniqueIdentifier
+        slug
       }
 
       # sexualEnhancementHeroes {
@@ -128,7 +128,7 @@ export const pageQuery = graphql`
       #     categoryTitle
       #     slug
       #   }
-      #   uniqueIdentifier
+      #   slug
       # }
     }
     allContentfulBlogCategory {
@@ -138,7 +138,7 @@ export const pageQuery = graphql`
           categoryTitle
           blogPosts {
             title
-            uniqueIdentifier
+            slug
           }
         }
       }

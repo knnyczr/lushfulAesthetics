@@ -8,10 +8,7 @@ export default function CategoryBlogFeed({ blogPosts }) {
       {blogPosts.map((post, _) => {
         return (
           <div key={_} className="flex items-center mb-5">
-            <Link
-              className=""
-              to={`/blog/${post.category.slug}/${post.uniqueIdentifier}/`}
-            >
+            <Link className="" to={`/blog/${post.category.slug}/${post.slug}/`}>
               <div className="flex-auto w-40 h-40 lg:w-60 lg:h-60">
                 <img
                   src={post.heroImage.url}
@@ -22,7 +19,7 @@ export default function CategoryBlogFeed({ blogPosts }) {
                 />
               </div>
             </Link>
-            <Link to={`/blog/${post.category.slug}/${post.uniqueIdentifier}/`}>
+            <Link to={`/blog/${post.category.slug}/${post.slug}/`}>
               <div className="flex flex-col flex-auto ml-5">
                 <p className="font-sans font-medium md:order-3 md:mb-2">
                   {formatDate(post.datePosted)}
