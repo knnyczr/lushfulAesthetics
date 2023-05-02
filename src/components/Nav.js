@@ -69,10 +69,6 @@ export default function Nav() {
           }
         }
         sexualEnhancementServices {
-          ... on ContentfulPackagePage {
-            slug
-            packagePageTitle
-          }
           ... on ContentfulServicePage {
             slug
             serviceTitle
