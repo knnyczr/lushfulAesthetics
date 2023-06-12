@@ -42,7 +42,14 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     `gatsby-plugin-lodash`,
-    // "gatsby-plugin-advanced-sitemap",
+    {
+      resolve: `gatsby-plugin-mailchimp`,
+      options: {
+        endpoint: `https://lushfulaesthetics.us7.list-manage.com/subscribe/post?u=5b9b5b0b0b9b5b0b0b9b5b0b0&amp;id=5b9b5b0b0b`, // TODO: rememebr to check in nabout this end point wasnot able to find it in the mailchip admin account
+
+        timeout: 3500,
+      },
+    },
     {
       resolve: `gatsby-plugin-advanced-sitemap-webrication`,
       options: {
