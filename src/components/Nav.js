@@ -241,7 +241,7 @@ export default function Nav() {
                     target="_blank"
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base lg:text-lg font-medium uppercase"
                   >
-                    Store
+                    Shop
                   </Link>
 
                   <Link
@@ -420,7 +420,7 @@ export default function Nav() {
                   target="_blank"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
-                  Store
+                  Shop
                 </Link>
 
                 <Link
