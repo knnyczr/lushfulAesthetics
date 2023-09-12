@@ -53,10 +53,10 @@ export default function Nav() {
             slug
             serviceTitle
           }
-          ... on ContentfulPackagePage {
-            slug
-            packagePageTitle
-          }
+          # ... on ContentfulPackagePage {
+          #   slug
+          #   packagePageTitle
+          # }
         }
         facialAestheticServices {
           ... on ContentfulServicePage {

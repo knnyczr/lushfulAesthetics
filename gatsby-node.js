@@ -3,7 +3,7 @@ const path = require("path");
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const servicePageTemplate = path.resolve(`./src/templates/servicePage.js`);
-  const packagesPageTemplate = path.resolve(`./src/templates/packagesPage.js`);
+  // const packagesPageTemplate = path.resolve(`./src/templates/packagesPage.js`);
   const generalFAQsTemplate = path.resolve(`./src/templates/generalFAQs.js`);
   const privacyPolicyTemplate = path.resolve(
     `./src/templates/privacyPolicyPage.js`
@@ -17,7 +17,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const {
     data: {
       allContentfulServicePage,
-      allContentfulPackagePage,
+      // allContentfulPackagePage,
       allContentfulGeneralFaqPage,
       allContentfulPrivacyPolicyPage,
       allContentfulHipaaPolicyPage,
@@ -100,15 +100,15 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  allContentfulPackagePage.edges.forEach((page) => {
-    createPage({
-      path: `/${page.node.slug}/`,
-      component: packagesPageTemplate,
-      context: {
-        packagePageId: page.node.id,
-      },
-    });
-  });
+  // allContentfulPackagePage.edges.forEach((page) => {
+  //   createPage({
+  //     path: `/${page.node.slug}/`,
+  //     component: packagesPageTemplate,
+  //     context: {
+  //       packagePageId: page.node.id,
+  //     },
+  //   });
+  // });
 
   allContentfulGeneralFaqPage.edges.forEach((page) => {
     createPage({
