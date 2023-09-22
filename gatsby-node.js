@@ -35,14 +35,14 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
 
-      allContentfulPackagePage {
-        edges {
-          node {
-            slug
-            id
-          }
-        }
-      }
+      # allContentfulPackagePage {
+      #   edges {
+      #     node {
+      #       slug
+      #       id
+      #     }
+      #   }
+      # }
 
       allContentfulGeneralFaqPage(limit: 1) {
         edges {
