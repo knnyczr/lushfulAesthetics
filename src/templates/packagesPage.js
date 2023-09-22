@@ -10,12 +10,12 @@ import { useSiteMetadata } from "../hooks/use-site-metadata";
 export { Head } from "../components/Layout";
 
 export default function PackagesPage({ data }) {
-  const { packagePageTitle, packagesList, heroImage, pageMetaDescription } =
-    data.contentfulPackagePage;
+  // const { packagePageTitle, packagesList, heroImage, pageMetaDescription } =
+  //   data.contentfulPackagePage;
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>{`${useSiteMetadata().title} | ${packagePageTitle}`}</title>
         {pageMetaDescription && (
           <meta name="description" content={`${pageMetaDescription}`}></meta>
@@ -34,7 +34,7 @@ export default function PackagesPage({ data }) {
         <div className="flex justify-center mt-8 lg:mt-16">
           <Button />
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
@@ -43,29 +43,29 @@ export default function PackagesPage({ data }) {
 // aesthetic-services/facial-treatments/facial-packages
 
 export const pageQuery = graphql`
-  query packagePageQuery($packagePageId: String!) {
+  query packagePageQuery {
     site {
       siteMetadata {
         title
       }
     }
-    contentfulPackagePage(id: { eq: $packagePageId }) {
-      heroImage {
-        gatsbyImageData(layout: CONSTRAINED, quality: 90)
-        description
-      }
-      packagePageTitle
-      packagesList {
-        packagePrice
-        packageTitle
-        description {
-          raw
-        }
-        includesTheseServices {
-          raw
-        }
-      }
-      pageMetaDescription
-    }
+    # contentfulPackagePage(id: { eq: $packagePageId }) {
+    #   heroImage {
+    #     gatsbyImageData(layout: CONSTRAINED, quality: 90)
+    #     description
+    #   }
+    #   packagePageTitle
+    #   packagesList {
+    #     packagePrice
+    #     packageTitle
+    #     description {
+    #       raw
+    #     }
+    #     includesTheseServices {
+    #       raw
+    #     }
+    #   }
+    #   pageMetaDescription
+    # }
   }
 `;
