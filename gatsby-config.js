@@ -60,14 +60,14 @@ module.exports = {
               }
             }
       
-            allContentfulPackagePage {
-              edges {
-                node {
-                  slug
-                  id
-                }
-              }
-            }
+            // allContentfulPackagePage {
+            //   edges {
+            //     node {
+            //       slug
+            //       id
+            //     }
+            //   }
+            // }
       
             allContentfulGeneralFaqPage(limit: 1) {
               edges {
