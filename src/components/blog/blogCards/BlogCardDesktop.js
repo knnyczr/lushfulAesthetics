@@ -28,7 +28,7 @@ export default function BlogCardDesktop({ categories }) {
               ))}
 
             {categoryObj.length >= 3 && (
-              <div className="w-full h-[20rem] grid gap-4 grid-cols-2">
+              <div className="w-full grid gap-x-4 gap-y-8 grid-cols-2 mb-12">
                 {categoryObj
                   .filter((post, index) => {
                     if (index > 0) return post;
@@ -39,7 +39,7 @@ export default function BlogCardDesktop({ categories }) {
                         to={`${post.category.slug}/${post.slug}/`}
                         key={idx}
                       >
-                        <div className="flex flex-col items-center w-full h-[18rem] mr-2 cursor-pointer">
+                        <div className="flex flex-col w-full h-auto mr-2 cursor-pointer">
                           <div
                             style={{
                               backgroundImage: `url(${post.heroImage.url})`,
@@ -47,12 +47,14 @@ export default function BlogCardDesktop({ categories }) {
                               backgroundRepeat: `no-repeat`,
                               backgroundPosition: `50% 50%`,
                             }}
-                            className="w-full h-full mb-4"
+                            className="w-full h-full mb-4 aspect-[3/2]"
                           ></div>
 
-                          <div className="flex flex-col items-center">
+                          <div className="flex flex-col">
                             <h3 className="text-2xl">{post.title}</h3>
-                            <p>{formatDate(post.datePosted)}</p>
+                            <p className="mt-1">
+                              {formatDate(post.datePosted)}
+                            </p>
                           </div>
                         </div>
                       </Link>
@@ -71,7 +73,7 @@ const LatestPost = ({
   post: { category, slug, heroImage, title, datePosted },
 }) => {
   return (
-    <div className="w-full h-full mb-12 cursor-pointer">
+    <div className="w-full h-full mb-8 cursor-pointer">
       <Link to={`${category.slug}/${slug}/`}>
         <div
           style={{
@@ -80,11 +82,11 @@ const LatestPost = ({
             backgroundRepeat: `no-repeat`,
             backgroundPosition: `50% 50%`,
           }}
-          className="h-[20rem] lg:h-[30rem] w-auto mb-6"
+          className="h-[20rem] lg:h-auto lg:max-h-[32rem] w-full aspect-[3/2] mb-6"
         ></div>
         <div className="flex flex-col items-center">
           <h1 className="text-3xl">{title}</h1>
-          <p>{formatDate(datePosted)}</p>
+          <p className="mt-1">{formatDate(datePosted)}</p>
         </div>
       </Link>
     </div>
