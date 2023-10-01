@@ -32,6 +32,7 @@ export default function Nav() {
     contentfulServicesMenu: {
       sexualEnhancementServices,
       bodyAestheticServices,
+      facialInjectableServices,
       facialAestheticServices,
       slugDictionaries,
     },
@@ -69,6 +70,12 @@ export default function Nav() {
           #   packagePageTitle
           # }
         }
+        facialInjectableServices {
+          ... on ContentfulServicePage {
+            slug
+            serviceTitle
+          }
+        }
         sexualEnhancementServices {
           ... on ContentfulServicePage {
             slug
@@ -94,6 +101,10 @@ export default function Nav() {
 
   useEffect(() => {
     let menuTree = new ServicesTree(slugDictionaries);
+
+    facialInjectableServices
+      .map((service) => service.slug.split("/"))
+      .forEach((arr, i) => menuTree.add(arr, facialInjectableServices[i]));
 
     facialAestheticServices
       .map((service) => service.slug.split("/"))
