@@ -12,8 +12,10 @@ export default function Contact({ data }) {
   return (
     <>
       <Helmet title={`Lushful Aesthetics | Contact`} />
-      <div className="sm:px-0 d:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-center items-center">
-        <h2 className="pb-8 uppercase text-2xl font-semibold ">{pageTitle}</h2>
+      <div className="sm:px-0 d:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-center items-center h-auto min-h-[50rem]">
+        <h2 className="pb-16 uppercase text-3xl text-center md:text-4xl lg:text-5xl text-black font-serif font-semibold">
+          {pageTitle}
+        </h2>
 
         <div>
           <ContactForm

@@ -11,6 +11,7 @@ import {
   faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { ServicesTree } from "../helpers/navTree";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -92,52 +93,7 @@ export default function Nav() {
   `);
 
   useEffect(() => {
-    class Node {
-      constructor(slug, title) {
-        this.slug = slug;
-        this.title = title;
-        this.children = [];
-      }
-    }
-
-    class ServicesTree {
-      constructor() {
-        this.slug = "services";
-        this.title = "Services";
-        this.children = [];
-      }
-      get completeMenu() {
-        return this.children;
-      }
-      add(arr, service) {
-        let count = 0;
-        while (count < arr.length) {
-          let current = this;
-          for (let i = 0; i < arr.length; i++) {
-            let found = current.children.find((node) => node.slug === arr[i]);
-
-            if (!found) {
-              let slugDictionary = slugDictionaries.find(
-                (definition) => definition.slug === arr[i]
-              )?.slugTitle;
-              if (!slugDictionary) {
-                slugDictionary =
-                  service.serviceTitle || service.packagePageTitle;
-              }
-              let newNode = new Node(arr[i], slugDictionary);
-              current.children.push(newNode);
-              current = newNode;
-            } else {
-              current = found;
-            }
-
-            count++;
-          }
-        }
-      }
-    }
-
-    let menuTree = new ServicesTree();
+    let menuTree = new ServicesTree(slugDictionaries);
 
     facialAestheticServices
       .map((service) => service.slug.split("/"))
@@ -160,16 +116,16 @@ export default function Nav() {
   ]);
 
   return (
-    <div className="bg-white sticky top-0 z-50 shadow-sm">
-      <nav>
-        <div className="flex justify-between items-center px-4 py-4 d:px-12 lg:px-24">
-          <div className="w-48 lg:w-60 py-auto">
+    <div className="bg-white sticky top-0 z-50 shadow-sm ">
+      <nav className="max-w-[1536px] mx-auto">
+        <div className="flex items-center px-4 py-4 md:px-12 lg:px-4">
+          <div className="w-48 lg:w-60 mr-auto">
             <Link to="/">
               <Logo />
             </Link>
           </div>
 
-          <div className="flex items-center justify-end h-16">
+          <div className="flex items-center justify-between h-16">
             <div className="flex justify-end items-center">
               <div className="hidden md:block ">
                 <div className="flex items-baseline space-x-4">

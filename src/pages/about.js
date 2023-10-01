@@ -32,14 +32,14 @@ export default function AboutUs({ data }) {
             pageTitle={`Where Lifestyle Meets Beauty`}
           />
 
-          <div className="mt-6 px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-center items-center bg-main-green">
-            <h2 className="pb-8 text-xl font-semibold font-serif">{`About Lushful Aesthetics`}</h2>
+          <div className="mt-6 px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-center md:items-center bg-main-green">
+            <h2 className="pb-8 text-2xl lg:text-3xl font-semibold font-serif text-left">{`About Lushful Aesthetics`}</h2>
             <div className="max-w-screen-lg pb-8 lg:pb-16 lg:text-lg md:text-center">
               {renderRichText(aboutLushfulAesthetics)}
             </div>
           </div>
 
-          <div className="flex flex-col lg:justify-center lg:flex-row min-h-fit ">
+          <div className="flex flex-col lg:justify-center lg:flex-row min-h-fit mx-auto max-w-[1536px] ">
             <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 w-full lg:w-2/3 flex flex-col">
               <h3 className="font-serif font-semibold text-2xl lg:text-3xl mb-10">
                 Meet InjectorChris
