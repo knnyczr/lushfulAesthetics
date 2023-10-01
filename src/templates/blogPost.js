@@ -115,44 +115,46 @@ export default function BlogPost({ data }) {
 
   return (
     <>
-      <Helmet>
-        <title>{metaTitle || `${useSiteMetaTitle} | ${title}`}</title>
-        {metaDescription && (
-          <meta name="description" content={`${metaDescription}`}></meta>
-        )}
-      </Helmet>
-      <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-12 lg:py-16 flex flex-col justify-center items-center">
-        <h5 className="text-center">{category.categoryTitle}</h5>
-        <h2 className="font-serif text-center text-3xl lg:text-4xl font-bold my-4 lg:my-5">
-          {title}
-        </h2>
-        <p>By {author}</p>
-        <p>{formatDate(datePosted)}</p>
-        <div
-          style={{
-            backgroundImage: `url(${heroImage.url})`,
-            backgroundSize: `cover`,
-            backgroundRepeat: `no-repeat`,
-            backgroundPosition: `center`,
-          }}
-          className="h-[20rem] lg:h-[30rem] w-full my-6"
-        ></div>
-      </div>
-      <div className="flex mb-6 flex-col md:flex-row md:mb-12 lg:mb-16">
-        <div className="flex-initial px-4 pt-4 pb-12 md:flex-1md:px-12 lg:px-24">
-          <div>
-            <p className="font-bold">{intro}</p>
-          </div>
-          <div className="h-[0.0625rem] bg-black my-4 lg:my-6" />
-          <div> {renderRichText(article, options)}</div>
+      <div className="max-w-[1536px] mx-auto">
+        <Helmet>
+          <title>{metaTitle || `${useSiteMetaTitle} | ${title}`}</title>
+          {metaDescription && (
+            <meta name="description" content={`${metaDescription}`}></meta>
+          )}
+        </Helmet>
+        <div className="py-12 lg:py-16 flex flex-col justify-center items-center ">
+          <h5 className="text-center">{category.categoryTitle}</h5>
+          <h2 className="font-serif text-center text-3xl lg:text-4xl font-bold my-4 lg:my-5">
+            {title}
+          </h2>
+          <p>By {author}</p>
+          <p>{formatDate(datePosted)}</p>
+          <div
+            style={{
+              backgroundImage: `url(${heroImage.url})`,
+              backgroundSize: `cover`,
+              backgroundRepeat: `no-repeat`,
+              backgroundPosition: `center`,
+            }}
+            className="h-[400px] lg:h-auto lg:aspect-[19/9] lg:max-h-[700px] aspect-[19/9] w-full my-6"
+          ></div>
         </div>
-        <div className="flex flex-none px-6 flex-col md:flex-none md:w-4/12">
-          <div className="py-4 order-3 md:pr-24 md:order-last">
-            <div className="h-0.5 bg-black mb-4" />
-            <Categories categories={data.allContentfulBlogCategory.edges} />
+        <div className="flex mb-6 flex-col md:flex-row md:mb-12 lg:mb-16">
+          <div className="flex-initial px-4 pt-4 pb-12 md:flex-1 md:px-12 lg:px-12 2xl:pr-24 2xl:pl-0">
+            <div>
+              <p className="font-bold">{intro}</p>
+            </div>
+            <div className="h-[0.0625rem] bg-black my-4 lg:my-6" />
+            <div> {renderRichText(article, options)}</div>
           </div>
-          <div className="order-2 md:order-last md:pr-24">
-            <CategoryFeaturedServices featuredServices={featuredServices} />
+          <div className="flex flex-none px-4 sm:px-6 md:px-12 2xl:pr-0 flex-col md:flex-none md:w-4/12">
+            <div className="py-4 order-3 md:order-last">
+              <div className="h-0.5 bg-black mb-4" />
+              <Categories categories={data.allContentfulBlogCategory.edges} />
+            </div>
+            <div className="order-2 md:order-last">
+              <CategoryFeaturedServices featuredServices={featuredServices} />
+            </div>
           </div>
         </div>
       </div>
