@@ -7,13 +7,14 @@ export default function HeroImage({ heroImage, pageTitle }) {
 
   return (
     <>
-      <div className="relative">
+      <div className="relative flex justify-between items-center mx-auto max-w-[1536px] ">
         {heroImage && (
           <GatsbyImage
             image={image}
             alt={heroImage.description}
-            imgStyle={{ backgroundPositionY: "top" }}
-            style={{ height: "500px" }}
+            // imgStyle={{ backgroundPositionY: "top" }}
+            // style={{ height: "500px" }}
+            className="w-full object-contain h-[400px] lg:h-auto lg:aspect-[19/9] lg:max-h-[800px]"
           />
         )}
 

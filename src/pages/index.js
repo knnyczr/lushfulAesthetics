@@ -19,13 +19,14 @@ export default function IndexPage({ data }) {
   return (
     <div>
       <Helmet title={`Lushful Aesthetics | Home`} />
-      <div className="relative w-full h-3/6 overflow-hidden">
+      <div className="relative w-full max-w-[1536px] mx-auto overflow-hidden">
         <GatsbyImage
           image={image}
           alt={`${heroImage.description}`}
-          style={{ height: "600px" }}
+          // style={{ height: "600px" }}
+          className="w-full object-contain h-[400px] lg:h-auto lg:aspect-[19/9] lg:max-h-[800px]"
         />
-        <div className="absolute bottom-6 flex flex-col justify-center items-center w-screen left-1/2 -translate-x-1/2 -translate-y-1/2 md:justify-start lg:items-start lg:-translate-y-48 lg:pl-20">
+        <div className="absolute bottom-6 max-w-[1536px] flex flex-col justify-center items-center w-screen left-1/2 -translate-x-1/2 -translate-y-1/2 md:justify-start lg:items-start lg:-translate-y-24 lg:pl-20">
           <h1 className="font-serif font-bold text-white text-3xl md:text-4xl lg:text-5xl text-center lg:text-left py-6 lg:py-8 w-full">
             {slogan}
           </h1>

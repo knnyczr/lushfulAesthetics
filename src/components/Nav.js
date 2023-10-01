@@ -160,16 +160,16 @@ export default function Nav() {
   ]);
 
   return (
-    <div className="bg-white sticky top-0 z-50 shadow-sm">
-      <nav>
-        <div className="flex justify-between items-center px-4 py-4 d:px-12 lg:px-24">
-          <div className="w-48 lg:w-60 py-auto">
+    <div className="bg-white sticky top-0 z-50 shadow-sm ">
+      <nav className="max-w-[1536px] mx-auto">
+        <div className="flex items-center px-4 py-4 md:px-12 lg:px-4">
+          <div className="w-48 lg:w-60 mr-auto">
             <Link to="/">
               <Logo />
             </Link>
           </div>
 
-          <div className="flex items-center justify-end h-16">
+          <div className="flex items-center justify-between h-16">
             <div className="flex justify-end items-center">
               <div className="hidden md:block ">
                 <div className="flex items-baseline space-x-4">

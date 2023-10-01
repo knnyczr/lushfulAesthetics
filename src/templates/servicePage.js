@@ -78,7 +78,7 @@ export default function ServicePage({ data }) {
   };
 
   return (
-    <div>
+    <div className="mx-auto max-w-[1536px]">
       <Helmet>
         <title>
           {pageMetaTitle || `${useSiteMetaTitle} | ${serviceTitle}`}
