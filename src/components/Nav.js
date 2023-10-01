@@ -11,6 +11,7 @@ import {
   faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { ServicesTree } from "../helpers/navTree";
 
 export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +32,7 @@ export default function Nav() {
     contentfulServicesMenu: {
       sexualEnhancementServices,
       bodyAestheticServices,
+      facialInjectableServices,
       facialAestheticServices,
       slugDictionaries,
     },
@@ -68,6 +70,12 @@ export default function Nav() {
           #   packagePageTitle
           # }
         }
+        facialInjectableServices {
+          ... on ContentfulServicePage {
+            slug
+            serviceTitle
+          }
+        }
         sexualEnhancementServices {
           ... on ContentfulServicePage {
             slug
@@ -92,52 +100,11 @@ export default function Nav() {
   `);
 
   useEffect(() => {
-    class Node {
-      constructor(slug, title) {
-        this.slug = slug;
-        this.title = title;
-        this.children = [];
-      }
-    }
+    let menuTree = new ServicesTree(slugDictionaries);
 
-    class ServicesTree {
-      constructor() {
-        this.slug = "services";
-        this.title = "Services";
-        this.children = [];
-      }
-      get completeMenu() {
-        return this.children;
-      }
-      add(arr, service) {
-        let count = 0;
-        while (count < arr.length) {
-          let current = this;
-          for (let i = 0; i < arr.length; i++) {
-            let found = current.children.find((node) => node.slug === arr[i]);
-
-            if (!found) {
-              let slugDictionary = slugDictionaries.find(
-                (definition) => definition.slug === arr[i]
-              )?.slugTitle;
-              if (!slugDictionary) {
-                slugDictionary =
-                  service.serviceTitle || service.packagePageTitle;
-              }
-              let newNode = new Node(arr[i], slugDictionary);
-              current.children.push(newNode);
-              current = newNode;
-            } else {
-              current = found;
-            }
-
-            count++;
-          }
-        }
-      }
-    }
-
-    let menuTree = new ServicesTree();
+    facialInjectableServices
+      .map((service) => service.slug.split("/"))
+      .forEach((arr, i) => menuTree.add(arr, facialInjectableServices[i]));
 
     facialAestheticServices
       .map((service) => service.slug.split("/"))
