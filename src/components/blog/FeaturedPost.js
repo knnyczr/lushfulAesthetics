@@ -11,9 +11,9 @@ export default function FeaturedPost({ featuredPost }) {
           backgroundSize: `cover`,
           backgroundPosition: `center`,
         }}
-        className="relative max-w-[1536px] mx-auto"
+        className="relative max-w-[1536px] mx-auto h-[600px] lg:h-auto lg:aspect-[19/9] lg:max-h-[800px]"
       >
-        <div className="h-[400px] lg:h-auto lg:aspect-[19/9] lg:max-h-[800px] w-full flex flex-col justify-end items-start bg-gradient-to-b from-black/10 via-black/10 to-black/50 z-10 cursor-pointer text-white px-4 py-6 sm:p-6 md:px-12 md:py-6 lg:px-24 lg:py-12">
+        <div className="h-[600px] lg:h-auto lg:aspect-[19/9] lg:max-h-[800px] w-full flex flex-col justify-end items-start bg-gradient-to-b from-black/10 via-black/10 to-black/50 z-10 cursor-pointer text-white px-4 py-6 sm:p-6 md:px-12 md:py-6 lg:px-24 lg:py-12">
           <h5 className="mb-2 lg:mb-4 lg:text-lg">Featured</h5>
           <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-3 lg:mb-4">
             {featuredPost.title}
