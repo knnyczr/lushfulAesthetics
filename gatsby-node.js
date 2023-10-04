@@ -1,7 +1,7 @@
 const path = require("path");
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
   const servicePageTemplate = path.resolve(`./src/templates/servicePage.js`);
   // const packagesPageTemplate = path.resolve(`./src/templates/packagesPage.js`);
   const generalFAQsTemplate = path.resolve(`./src/templates/generalFAQs.js`);
