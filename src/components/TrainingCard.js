@@ -3,7 +3,9 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 
-export default function Package({ packageCard }) {
+export default function TrainingCard({ trainingCard }) {
+  const { trainingTitle, trainingPrice, description, includesTheseTrainings } =
+    trainingCard;
   const website_url = "https://www.lushfulaesthetics.com/";
 
   const options = {
@@ -46,19 +48,15 @@ export default function Package({ packageCard }) {
       <div className="py-2 max-w-6xl m-auto p-auto">
         <div className="bg-main-green px-6 md:px-12 py-6 md:py-8 rounded-lg">
           <div className="flex flex-row justify-between items-baseline">
-            <h2 className="font-serif font-bold text-2xl">
-              {packageCard.packageTitle}
-            </h2>
-            <h2 className="font-serif font-bold text-lg">
-              {packageCard.packagePrice}
-            </h2>
+            <h2 className="font-serif font-bold text-2xl">{trainingTitle}</h2>
+            <h2 className="font-serif font-bold text-lg">{trainingPrice}</h2>
           </div>
           <hr className="my-4 border-black" />
           <div className="font-serif font-bold ">
-            {renderRichText(packageCard.description, options)}
+            {renderRichText(description, options)}
           </div>
           <div className="ml-8 font-sans font-light italic">
-            {renderRichText(packageCard.includesTheseServices, options)}
+            {renderRichText(includesTheseTrainings, options)}
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
-import Package from "../components/Package";
+import Package from "../components/TrainingCard";
 import Button from "../components/BookBtn";
 import HeroImage from "../components/HeroImage";
 import { Helmet } from "react-helmet";
