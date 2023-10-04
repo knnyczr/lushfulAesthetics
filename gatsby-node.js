@@ -151,31 +151,31 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   createRedirect({
-    fromPath: `/facial-aesthetic-services/botox/`,
-    toPath: `/facial-injectable-services/botox/`,
+    fromPath: `/facial-aesthetic-services/botox`,
+    toPath: `/facial-injectable-services/botox`,
   });
   createRedirect({
-    fromPath: `/facial-aesthetic-services/fillers/cheek-filler/`,
-    toPath: `/facial-injectable-services/cheek-filler/`,
+    fromPath: `/facial-aesthetic-services/fillers/cheek-filler`,
+    toPath: `/facial-injectable-services/cheek-filler`,
   });
   createRedirect({
-    fromPath: `/facial-aesthetic-services/fillers/lip-filler/`,
-    toPath: `/facial-injectable-services/lip-filler/`,
+    fromPath: `/facial-aesthetic-services/fillers/lip-filler`,
+    toPath: `/facial-injectable-services/lip-filler`,
   });
   createRedirect({
-    fromPath: `/facial-aesthetic-services/fillers/jawline-filler/`,
-    toPath: `/facial-injectable-services/jawline-filler/`,
+    fromPath: `/facial-aesthetic-services/fillers/jawline-filler`,
+    toPath: `/facial-injectable-services/jawline-filler`,
   });
   createRedirect({
-    fromPath: `/facial-aesthetic-services/fillers/chin-filler/`,
-    toPath: `/facial-injectable-services/chin-filler/`,
+    fromPath: `/facial-aesthetic-services/fillers/chin-filler`,
+    toPath: `/facial-injectable-services/chin-filler`,
   });
   createRedirect({
-    fromPath: `/facial-aesthetic-services/fillers/nasolabiel-fold-filler/`,
-    toPath: `/facial-injectable-services/nasolabial-fold-filler/`,
+    fromPath: `/facial-aesthetic-services/fillers/nasolabiel-fold-filler`,
+    toPath: `/facial-injectable-services/nasolabial-fold-filler`,
   });
   createRedirect({
-    fromPath: `/facial-aesthetic-services/prp/under-eye-prp/`,
-    toPath: `/facial-injectable-services/prp/under-eye-prp/`,
+    fromPath: `/facial-aesthetic-services/prp/under-eye-prp`,
+    toPath: `/facial-injectable-services/prp/under-eye-prp`,
   });
 };
