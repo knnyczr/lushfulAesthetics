@@ -5,10 +5,11 @@ import HeroImage from "../components/HeroImage";
 import ServicePrice from "../components/ServicePrice";
 import PrePostCare from "../components/PrePostCare";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
-import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import servicePageOptions from "../helpers/servicePageOptions";
 import OurApproach from "../components/OurApproach";
 import { Helmet } from "react-helmet";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 export { Head } from "../components/Layout";
 
@@ -19,6 +20,7 @@ export default function ServicePage({ data }) {
       faqRef,
       pricing,
       intro,
+      press,
       heroImage,
       ourApproach,
       preCare,
@@ -26,56 +28,14 @@ export default function ServicePage({ data }) {
       pageMetaDescription,
       subheadingOne,
       subheadingTwo,
+      subheadingAsSeenIn,
       pageMetaTitle,
     },
   } = data;
 
   const website_url = useSiteMetadata().siteUrl;
   const useSiteMetaTitle = useSiteMetadata().title;
-
-  const options = {
-    renderMark: {
-      [MARKS.BOLD]: (text) => (
-        <span className="font-sans font-bold lg:text-lg mb-1">{text}</span>
-      ),
-    },
-    renderNode: {
-      [BLOCKS.PARAGRAPH]: (node, children) => (
-        <div className="mb-4">
-          <p className="font-serif">{children}</p>
-        </div>
-      ),
-      [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 className="pt-4">{children}</h2>
-      ),
-      [BLOCKS.HR]: (node) => <hr className="py-2 opacity-0" />,
-      [BLOCKS.UL_LIST]: (node, children) => (
-        <ul className="ml-4 list-disc">{children}</ul>
-      ),
-      [BLOCKS.OL_LIST]: (node, children) => {
-        return <ol className="ml-10 list-decimal">{children}</ol>;
-      },
-      [BLOCKS.LIST_ITEM]: (node, children) => (
-        <li className="font-serif font-medium h-auto mx-6 my-1">{children}</li>
-      ),
-      [INLINES.HYPERLINK]: ({ data }, children) => (
-        <a
-          className="underline "
-          href={data.uri ? data.uri : ""}
-          target={`${
-            data.uri.startsWith(website_url || "http://localhost:8000/")
-              ? "_self"
-              : "_blank"
-          }`}
-          rel={`${
-            data.uri.startsWith(website_url) ? "" : "noopener noreferrer"
-          }`}
-        >
-          {children}
-        </a>
-      ),
-    },
-  };
+  const options = servicePageOptions(website_url);
 
   return (
     <div className="mx-auto max-w-[1536px]">
@@ -95,6 +55,10 @@ export default function ServicePage({ data }) {
         pricing={renderRichText(pricing, options)}
         subheadingOne={subheadingOne}
       />
+
+      {press?.length && (
+        <AsSeenIn press={press} subheadingAsSeenIn={subheadingAsSeenIn} />
+      )}
 
       <OurApproach
         subheadingTwo={subheadingTwo}
@@ -127,6 +91,52 @@ export default function ServicePage({ data }) {
   );
 }
 
+function AsSeenIn({ press, subheadingAsSeenIn, asSeenInSubheading }) {
+  return (
+    <>
+      <div className="px-4 pb-16 flex flex-col justify-start sm:px-6 md:justify-center lg:px-24 lg:pb-24">
+        <div className="flex items-center mb-6">
+          <h2 className="font-serif text-2xl pr-6 lg:text-3xl font-bold md:mb-2">
+            {subheadingAsSeenIn}
+          </h2>
+          <div className="flex-1 h-px bg-black mr-10" />
+        </div>
+        <div
+          className="flex flex-col mx-auto md:flex-row lg:flex-row"
+          style={{ maxWidth: `676px` }}
+        >
+          {press.map((obj) => {
+            const {
+              articleTitle,
+              url,
+              companyLogo: { companyName, companyLogo },
+            } = obj;
+            const image = getImage(companyLogo);
+
+            return (
+              <div className="flex items-center justify-center">
+                <a
+                  key={`${companyName}: ${articleTitle}`}
+                  href={`${url}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${companyName}: ${articleTitle}`}
+                >
+                  <GatsbyImage
+                    image={image}
+                    className="mr-6"
+                    alt={`${companyName}: ${articleTitle}`}
+                  />
+                </a>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </>
+  );
+}
+
 export const pageQuery = graphql`
   query servicePageQuery($servicePageId: String!) {
     site {
@@ -148,6 +158,18 @@ export const pageQuery = graphql`
       }
       intro {
         raw
+      }
+      subheadingAsSeenIn
+      press {
+        articleTitle
+        url
+        companyLogo {
+          companyName
+          companyLogo {
+            publicUrl
+            gatsbyImageData(width: 200, quality: 90)
+          }
+        }
       }
       ourApproach {
         raw
