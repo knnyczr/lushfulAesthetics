@@ -28,6 +28,7 @@ export default function ServicePage({ data }) {
       pageMetaDescription,
       subheadingOne,
       subheadingTwo,
+      subheadingAsSeenIn,
       pageMetaTitle,
     },
   } = data;
@@ -55,7 +56,9 @@ export default function ServicePage({ data }) {
         subheadingOne={subheadingOne}
       />
 
-      {press?.length && <AsSeenIn press={press} />}
+      {press?.length && (
+        <AsSeenIn press={press} subheadingAsSeenIn={subheadingAsSeenIn} />
+      )}
 
       <OurApproach
         subheadingTwo={subheadingTwo}
@@ -88,38 +91,47 @@ export default function ServicePage({ data }) {
   );
 }
 
-function AsSeenIn({ press }) {
+function AsSeenIn({ press, subheadingAsSeenIn }) {
   return (
-    <div className="px-4 pb-16 flex flex-col justify-start sm:px-6 md:justify-center lg:px-24 lg:pb-24">
-      <h2 className="font-serif text-2xl lg:text-3xl font-bold mb-6">
-        As Seen In
-      </h2>
-      {press.map((obj) => {
-        const {
-          articleTitle,
-          url,
-          companyLogo: { companyName, companyLogo },
-        } = obj;
-        const image = getImage(companyLogo);
+    <>
+      <div className="px-4 pb-16 flex flex-col justify-start sm:px-6 md:justify-center lg:px-24 lg:pb-24">
+        <hr className="mb-8 border-black" />
+        <h2 className="font-serif text-2xl lg:text-3xl font-bold mb-6 md:mb-2">
+          {subheadingAsSeenIn}
+        </h2>
+        <div
+          className="flex flex-col justify-items-center mx-auto md:flex-row lg:flex-row"
+          style={{ maxWidth: `676px` }}
+        >
+          {press.map((obj) => {
+            const {
+              articleTitle,
+              url,
+              companyLogo: { companyName, companyLogo },
+            } = obj;
+            const image = getImage(companyLogo);
 
-        return (
-          <div key={`${companyName}: ${articleTitle}`}>
-            <a
-              href={`${url}`}
-              target="_blank"
-              rel="noreferrer"
-              className="mr-6 mb-4"
-              aria-label={`${companyName}: ${articleTitle}`}
-            >
-              <GatsbyImage
-                image={image}
-                alt={`${companyName}: ${articleTitle}`}
-              />
-            </a>
-          </div>
-        );
-      })}
-    </div>
+            return (
+              <div className="flex items-center justify-center">
+                <a
+                  key={`${companyName}: ${articleTitle}`}
+                  href={`${url}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${companyName}: ${articleTitle}`}
+                >
+                  <GatsbyImage
+                    image={image}
+                    className="mr-6"
+                    alt={`${companyName}: ${articleTitle}`}
+                  />
+                </a>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -145,6 +157,7 @@ export const pageQuery = graphql`
       intro {
         raw
       }
+      subheadingAsSeenIn
       press {
         articleTitle
         url
