@@ -55,7 +55,7 @@ export default function ServicePage({ data }) {
         subheadingOne={subheadingOne}
       />
 
-      {press.length && <AsSeenIn press={press} />}
+      {press?.length && <AsSeenIn press={press} />}
 
       <OurApproach
         subheadingTwo={subheadingTwo}
