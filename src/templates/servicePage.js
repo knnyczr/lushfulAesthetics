@@ -30,7 +30,6 @@ export default function ServicePage({ data }) {
       subheadingTwo,
       subheadingAsSeenIn,
       pageMetaTitle,
-      asSeenInSubheading,
     },
   } = data;
 
@@ -58,11 +57,7 @@ export default function ServicePage({ data }) {
       />
 
       {press?.length && (
-        <AsSeenIn
-          press={press}
-          subheadingAsSeenIn={subheadingAsSeenIn}
-          asSeenInSubheading={asSeenInSubheading}
-        />
+        <AsSeenIn press={press} subheadingAsSeenIn={subheadingAsSeenIn} />
       )}
 
       <OurApproach
@@ -106,9 +101,6 @@ function AsSeenIn({ press, subheadingAsSeenIn, asSeenInSubheading }) {
           </h2>
           <div className="flex-1 h-px bg-black mr-10" />
         </div>
-        <h3 className="font-serif text-3xl mx-auto mb-4">
-          {asSeenInSubheading}
-        </h3>
         <div
           className="flex flex-col mx-auto md:flex-row lg:flex-row"
           style={{ maxWidth: `676px` }}
@@ -168,7 +160,6 @@ export const pageQuery = graphql`
         raw
       }
       subheadingAsSeenIn
-      asSeenInSubheading
       press {
         articleTitle
         url
