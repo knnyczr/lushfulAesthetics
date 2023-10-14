@@ -3,6 +3,8 @@ import { graphql, Link } from "gatsby";
 import CategoryFeaturedPost from "../components/blog/CategoryFeaturedPost";
 import CategoryFeaturedServices from "../components/blog/CategoryFeaturedServices";
 import CategoryBlogFeed from "../components/blog/CategoryBlogFeed";
+import { Helmet } from "react-helmet";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 
 export default function BlogCategory({ data }) {
   const {
@@ -11,11 +13,21 @@ export default function BlogCategory({ data }) {
       blogPosts,
       featuredPost,
       featuredServices,
+      metaTitle,
+      metaDescription,
     },
   } = data;
 
+  const useSiteMetaTitle = useSiteMetadata().title;
+
   return (
     <div className="sm:px-0 md:px-5">
+      <Helmet>
+        <title>{metaTitle || `${useSiteMetaTitle} | ${categoryTitle}`}</title>
+        {metaDescription && (
+          <meta name="description" content={`${metaDescription}`}></meta>
+        )}
+      </Helmet>
       <button className="font-medium uppercase ml-4 mt-12 mb-6 md:ml-0 lg:ml-20">
         <Link to="/blog">{`← Return to all posts`}</Link>
       </button>
@@ -37,6 +49,8 @@ export const BlogCategoryQuery = graphql`
   query blogCategoryQuery($blogCategory: String!) {
     contentfulBlogCategory(id: { eq: $blogCategory }) {
       categoryTitle
+      metaTitle
+      metaDescription
       blogPosts {
         intro
         heroImage {
