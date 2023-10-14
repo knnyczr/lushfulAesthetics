@@ -30,6 +30,7 @@ export default function ServicePage({ data }) {
       subheadingTwo,
       subheadingAsSeenIn,
       pageMetaTitle,
+      asSeenInSubheading,
     },
   } = data;
 
@@ -57,7 +58,11 @@ export default function ServicePage({ data }) {
       />
 
       {press?.length && (
-        <AsSeenIn press={press} subheadingAsSeenIn={subheadingAsSeenIn} />
+        <AsSeenIn
+          press={press}
+          subheadingAsSeenIn={subheadingAsSeenIn}
+          asSeenInSubheading={asSeenInSubheading}
+        />
       )}
 
       <OurApproach
@@ -91,16 +96,21 @@ export default function ServicePage({ data }) {
   );
 }
 
-function AsSeenIn({ press, subheadingAsSeenIn }) {
+function AsSeenIn({ press, subheadingAsSeenIn, asSeenInSubheading }) {
   return (
     <>
       <div className="px-4 pb-16 flex flex-col justify-start sm:px-6 md:justify-center lg:px-24 lg:pb-24">
-        <hr className="mb-8 border-black" />
-        <h2 className="font-serif text-2xl lg:text-3xl font-bold mb-6 md:mb-2">
-          {subheadingAsSeenIn}
-        </h2>
+        <div className="flex items-center mb-6">
+          <h2 className="font-serif text-2xl pr-6 lg:text-3xl font-bold md:mb-2">
+            {subheadingAsSeenIn}
+          </h2>
+          <div className="flex-1 h-px bg-black mr-10" />
+        </div>
+        <h3 className="font-serif text-3xl mx-auto mb-4">
+          {asSeenInSubheading}
+        </h3>
         <div
-          className="flex flex-col justify-items-center mx-auto md:flex-row lg:flex-row"
+          className="flex flex-col mx-auto md:flex-row lg:flex-row"
           style={{ maxWidth: `676px` }}
         >
           {press.map((obj) => {
@@ -158,6 +168,7 @@ export const pageQuery = graphql`
         raw
       }
       subheadingAsSeenIn
+      asSeenInSubheading
       press {
         articleTitle
         url
