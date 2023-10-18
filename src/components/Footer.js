@@ -171,7 +171,7 @@ export default function Footer() {
             </div>
 
             <span>
-              © 2022 Lushful Aesthetics by InjectorChris. All rights reserved.
+              © 2023 InjectorChris Aesthetics LLC. All rights reserved.
             </span>
           </div>
         </div>
