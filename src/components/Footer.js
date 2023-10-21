@@ -21,6 +21,7 @@ export default function Footer() {
       socialTwitter,
       socialTiktok,
       youtube,
+      copyright,
     },
     contentfulServicesMenu: {
       bookNowLinkReference: { bookNowLink },
@@ -42,13 +43,14 @@ export default function Footer() {
         hipaaPolicy {
           slug
         }
+        privacyPolicy {
+          slug
+        }
+        copyright
         socialInstagram
         socialTwitter
         socialTiktok
         youtube
-        privacyPolicy {
-          slug
-        }
       }
     }
   `);
@@ -170,9 +172,7 @@ export default function Footer() {
               </span>
             </div>
 
-            <span>
-              © 2023 InjectorChris Aesthetics LLC. All rights reserved.
-            </span>
+            <span>{copyright}</span>
           </div>
         </div>
         {/* <div className="flex flex-col justify-center md:flex-row">
