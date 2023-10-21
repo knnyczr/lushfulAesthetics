@@ -4,7 +4,7 @@ import { formatDate } from "../../hooks/format-date";
 
 export default function CategoryFeaturedPost({ featuredPost, categoryTitle }) {
   return (
-    <div className="order-first px-4 md:col-start-1 md:col-end-4 md:px-0 md:pb-8 lg:pb-12">
+    <div className="order-first px-4 md:col-start-1 md:col-end-4 md:px-0">
       <h1 className="uppercase font-bold mb-4 text-2xl">{categoryTitle}</h1>
       <div className="h-0.5 bg-black mb-4" />
       <Link to={`/blog/${featuredPost.category.slug}/${featuredPost.slug}/`}>
