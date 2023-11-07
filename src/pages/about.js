@@ -6,12 +6,18 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Helmet } from "react-helmet";
 
 import { BLOCKS } from "@contentful/rich-text-types";
+import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";
 
 export default function AboutUs({ data }) {
-  const { aboutLushfulAesthetics, meetInjectorChris, heroImage, portrait } =
-    data.contentfulAboutUs;
+  const {
+    aboutLushfulAesthetics,
+    meetInjectorChris,
+    heroImage,
+    portrait,
+    employees,
+  } = data.contentfulAboutUs;
 
   let image = getImage(portrait);
 
@@ -25,7 +31,7 @@ export default function AboutUs({ data }) {
   return (
     <div>
       <Helmet title={`Lushful Aesthetics | About`} />
-      {data.contentfulAboutUs ? (
+      {data.contentfulAboutUs && (
         <>
           <HeroImage
             heroImage={heroImage}
@@ -53,9 +59,31 @@ export default function AboutUs({ data }) {
             </div>
           </div>
         </>
-      ) : (
-        "Loading..."
       )}
+      {employees.length &&
+        employees.map((employee) => {
+          let employeeImage = getImage(employee.photo);
+          return (
+            <>
+              <div className="flex items-center mb-6 w-full justify-center">
+                <div className="h-px bg-black mr-10 w-9/12" />
+              </div>
+              <div className="flex flex-col lg:justify-center lg:flex-row min-h-fit mx-auto max-w-[1536px] ">
+                <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 w-full lg:w-2/3 flex flex-col">
+                  <h3 className="font-serif font-semibold text-2xl lg:text-3xl mb-10">
+                    Meet {employee.employeeName}
+                  </h3>
+                  <div className="max-w-screen-lg pb-2 w-full lg:pb-16 lg:text-lg justify-center items-start ">
+                    {renderRichText(employee.aboutEmployee, options)}
+                  </div>
+                </div>
+                <div className="pb-8 h-auto w-min-max lg:w-96 mx-4 my-4  md:mr-12 md:mt-12 lg:mr-24 lg:mt-24">
+                  <GatsbyImage image={employeeImage} />
+                </div>
+              </div>
+            </>
+          );
+        })}
     </div>
   );
 }
@@ -82,6 +110,15 @@ export const pageQuery = graphql`
       }
       portrait {
         gatsbyImageData(layout: CONSTRAINED, quality: 90)
+      }
+      employees {
+        aboutEmployee {
+          raw
+        }
+        employeeName
+        photo {
+          gatsbyImageData(layout: CONSTRAINED, quality: 90)
+        }
       }
     }
   }
