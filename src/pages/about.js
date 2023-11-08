@@ -17,6 +17,9 @@ export default function AboutUs({ data }) {
     heroImage,
     portrait,
     employees,
+    metaDescription,
+    metaTitle,
+    meetInjectorChrisTitle,
   } = data.contentfulAboutUs;
 
   let image = getImage(portrait);
@@ -30,7 +33,10 @@ export default function AboutUs({ data }) {
   };
   return (
     <div>
-      <Helmet title={`Lushful Aesthetics | About`} />
+      <Helmet>
+        <title>{metaTitle}</title>
+        <meta name="description" content={`${metaDescription}`}></meta>
+      </Helmet>
       {data.contentfulAboutUs && (
         <>
           <HeroImage
@@ -48,7 +54,7 @@ export default function AboutUs({ data }) {
           <div className="flex flex-col lg:justify-center lg:flex-row min-h-fit mx-auto max-w-[1536px] ">
             <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 w-full lg:w-2/3 flex flex-col">
               <h3 className="font-serif font-semibold text-2xl lg:text-3xl mb-10">
-                Meet InjectorChris
+                {meetInjectorChrisTitle}
               </h3>
               <div className="max-w-screen-lg pb-2 w-full lg:pb-16 lg:text-lg justify-center items-start ">
                 {renderRichText(meetInjectorChris, options)}
@@ -71,7 +77,7 @@ export default function AboutUs({ data }) {
               <div className="flex flex-col lg:justify-center lg:flex-row min-h-fit mx-auto max-w-[1536px] ">
                 <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 w-full lg:w-2/3 flex flex-col">
                   <h3 className="font-serif font-semibold text-2xl lg:text-3xl mb-10">
-                    Meet {employee.employeeName}
+                    {employee.meetEmployeeTitle}
                   </h3>
                   <div className="max-w-screen-lg pb-2 w-full lg:pb-16 lg:text-lg justify-center items-start ">
                     {renderRichText(employee.aboutEmployee, options)}
@@ -112,6 +118,7 @@ export const pageQuery = graphql`
         gatsbyImageData(layout: CONSTRAINED, quality: 90)
       }
       employees {
+        meetEmployeeTitle
         aboutEmployee {
           raw
         }
@@ -120,6 +127,9 @@ export const pageQuery = graphql`
           gatsbyImageData(layout: CONSTRAINED, quality: 90)
         }
       }
+      metaDescription
+      metaTitle
+      meetInjectorChrisTitle
     }
   }
 `;
