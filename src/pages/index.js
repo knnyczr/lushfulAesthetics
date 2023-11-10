@@ -120,6 +120,14 @@ export const query = graphql`
       reviews {
         review
         reviewerName
+        headline
+        articleLink
+        mediaLogo {
+          companyLogo {
+            publicUrl
+            gatsbyImageData(width: 200, quality: 90)
+          }
+        }
         bgImage {
           gatsbyImageData(quality: 100, layout: CONSTRAINED)
           file {
