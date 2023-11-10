@@ -42,14 +42,13 @@ export default function Reviews({ reviews }) {
                               image={mediaLogo}
                               alt={`${review.mediaLogo.companyName}'s logo`}
                             />
-                            <p className="md:hidden lg:hidden text-center text-white mt-2">
-                              Tap for more
-                            </p>
+                            <div className="w-full px-5 flex justify-center">
+                              <p className="md:hidden lg:hidden text-center text-white mt-2 rounded-full border-solid border-white border w-3/4	text-sm	p-1">
+                                Tap for more
+                              </p>
+                            </div>
                           </div>
                         </div>
-                        {/* <p className="absolute justify-end pr-1 text-white">
-                          Click Here
-                        </p> */}
                       </div>
                     </a>
                   </BackgroundImage>
