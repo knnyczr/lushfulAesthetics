@@ -32,16 +32,24 @@ export default function Reviews({ reviews }) {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <div className="flex flex-col justify-between py-20 items-center backdrop-blur-md bg-main-green-shade/50 rounded h-128 px-6">
-                        <h2 className="z-10 my-6 font-bold text-white font-serif text-3xl text-center leading-normal">
-                          {review.headline} 🔗
-                        </h2>
-                        <div>
-                          <GatsbyImage
-                            image={mediaLogo}
-                            alt={`${review.mediaLogo.companyName}'s logo`}
-                          />
+                      <div className="backdrop-blur-md bg-main-green-shade/50 rounded flex justify-end  items-end	">
+                        <div className="flex flex-col justify-between py-16 items-center h-128 px-6">
+                          <h2 className="z-10 my-6 font-bold text-white font-serif text-3xl text-center leading-normal">
+                            {review.headline}
+                          </h2>
+                          <div>
+                            <GatsbyImage
+                              image={mediaLogo}
+                              alt={`${review.mediaLogo.companyName}'s logo`}
+                            />
+                            <p className="md:hidden lg:hidden text-center text-white mt-2">
+                              Tap for more
+                            </p>
+                          </div>
                         </div>
+                        {/* <p className="absolute justify-end pr-1 text-white">
+                          Click Here
+                        </p> */}
                       </div>
                     </a>
                   </BackgroundImage>
