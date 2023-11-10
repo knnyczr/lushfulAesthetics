@@ -36,10 +36,10 @@ export default function Reviews({ reviews }) {
                         <h2 className="z-10 my-6 font-bold text-white font-serif text-3xl text-center leading-normal">
                           {review.headline} 🔗
                         </h2>
-                        <div className="">
+                        <div>
                           <GatsbyImage
                             image={mediaLogo}
-                            alt={`something needs to go here`}
+                            alt={`${review.mediaLogo.companyName}'s logo`}
                           />
                         </div>
                       </div>

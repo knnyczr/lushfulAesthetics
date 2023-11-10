@@ -123,6 +123,7 @@ export const query = graphql`
         headline
         articleLink
         mediaLogo {
+          companyName
           companyLogo {
             publicUrl
             gatsbyImageData(width: 200, quality: 90)
