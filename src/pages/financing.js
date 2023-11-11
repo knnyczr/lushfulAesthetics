@@ -5,6 +5,7 @@ import HeroImage from "../components/HeroImage";
 import ApplyCherryBtn from "../components/ApplyCherryBtn";
 import { Helmet } from "react-helmet";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";
 
@@ -16,6 +17,8 @@ export default function Financing({ data }) {
     whatIsCherry,
     heroImage,
     applyForCherryLink,
+    metaDescription,
+    metaTitle,
   } = data.contentfulFinancingPage;
 
   const options = {
@@ -42,7 +45,10 @@ export default function Financing({ data }) {
 
   return (
     <div>
-      <Helmet title={`Lushful Aesthetics | Financing With Cherry`} />
+      <HelmetWithMetaDesc
+        metaTitle={metaTitle}
+        metaDescription={metaDescription}
+      />
       {data.contentfulFinancingPage && (
         <>
           <HeroImage heroImage={heroImage} pageTitle={pageTitle} />
@@ -87,6 +93,8 @@ export default function Financing({ data }) {
 export const pageQuery = graphql`
   query financingPageQuery {
     contentfulFinancingPage {
+      metaTitle
+      metaDescription
       applyForCherryLink
       pageTitle
       reasonsWhyPatientsLoveCherry {

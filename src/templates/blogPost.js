@@ -6,8 +6,7 @@ import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { formatDate } from "../hooks/format-date";
 import Categories from "../components/blog/Categories";
 import CategoryFeaturedServices from "../components/blog/CategoryFeaturedServices";
-import { Helmet } from "react-helmet";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export default function BlogPost({ data }) {
   const {
@@ -20,7 +19,6 @@ export default function BlogPost({ data }) {
       datePosted,
       featuredServices,
       heroImage,
-      slug,
       metaTitle,
       metaDescription,
     },
@@ -111,17 +109,13 @@ export default function BlogPost({ data }) {
     },
   };
 
-  const useSiteMetaTitle = useSiteMetadata().title;
-
   return (
     <>
       <div className="max-w-[1536px] mx-auto">
-        <Helmet>
-          <title>{metaTitle || `${useSiteMetaTitle} | ${title}`}</title>
-          {metaDescription && (
-            <meta name="description" content={`${metaDescription}`}></meta>
-          )}
-        </Helmet>
+        <HelmetWithMetaDesc
+          metaTitle={metaTitle}
+          metaDescription={metaDescription}
+        />
         <div className="py-12 lg:py-16 flex flex-col justify-center items-center ">
           <h5 className="text-center">{category.categoryTitle}</h5>
           <h2 className="font-serif text-center text-3xl lg:text-4xl font-bold my-4 lg:my-5">

@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { Helmet } from "react-helmet";
+import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";
 
@@ -53,7 +54,10 @@ export default function PrivacyPolicy({ data }) {
   };
   return (
     <>
-      <Helmet title={`Lushful Aesthetics | Privacy Policy`} />
+      <HelmetWithMetaDesc
+        metaTitle={data.metaTitle}
+        metaDescription={data.metaDescription}
+      />
       {renderRichText(
         data.allContentfulPrivacyPolicyPage.edges[0].node.content,
         options
@@ -70,6 +74,8 @@ export const pageQuery = graphql`
           content {
             raw
           }
+          metaTitle
+          metaDescription
         }
       }
     }
