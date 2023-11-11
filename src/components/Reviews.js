@@ -43,7 +43,7 @@ export default function Reviews({ reviews }) {
                               alt={`${review.mediaLogo.companyName}'s logo`}
                             />
                             <div className="w-full px-5 flex justify-center">
-                              <p className="md:hidden lg:hidden text-center text-white mt-2 rounded-full border-solid border-white border w-3/4	text-sm	p-1">
+                              <p className="md:hidden lg:hidden text-center text-white mt-8 rounded-full border-solid border-white border w-3/4	text-sm	p-1">
                                 Tap for more
                               </p>
                             </div>
