@@ -1,16 +1,23 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
 import Button from "../components/BookBtn";
 import Reviews from "../components/Reviews";
 import { Helmet } from "react-helmet";
+import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";
 
 export default function IndexPage({ data }) {
   const {
-    contentfulHomePage: { slogan, visionStatement, reviews, heroImage },
+    contentfulHomePage: {
+      slogan,
+      visionStatement,
+      reviews,
+      heroImage,
+      metaTitle,
+      metaDescription,
+    },
     contentfulContactPage: { address, phoneNumber },
   } = data;
 
@@ -18,7 +25,10 @@ export default function IndexPage({ data }) {
 
   return (
     <div>
-      <Helmet title={`Lushful Aesthetics | Home`} />
+      <HelmetWithMetaDesc
+        metaTitle={metaTitle}
+        metaDescription={metaDescription}
+      />
       <div className="relative w-full max-w-[1536px] mx-auto overflow-hidden">
         <GatsbyImage
           image={image}
@@ -45,7 +55,7 @@ export default function IndexPage({ data }) {
       </div>
 
       <div className="px-4 py-12 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center ">
-        <div className=" border border-black py-8 px-3 lg:py-10 lg:px-12 flex justify-center items-center flex-col md:flex-row">
+        <div className="border border-black py-8 px-3 lg:py-10 lg:px-12 flex justify-center items-center flex-col md:flex-row">
           <div className="mx-10 w-90 max-w-md h-80 flex justify-center items-center rounded">
             <a
               href="https://goo.gl/maps/3mpJJytXMqn581Yw9"
@@ -93,6 +103,8 @@ export const query = graphql`
       }
     }
     contentfulHomePage {
+      metaTitle
+      metaDescription
       slogan
       visionStatement
       heroImage {

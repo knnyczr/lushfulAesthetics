@@ -3,8 +3,7 @@ import { graphql, Link } from "gatsby";
 import CategoryFeaturedPost from "../components/blog/CategoryFeaturedPost";
 import CategoryFeaturedServices from "../components/blog/CategoryFeaturedServices";
 import CategoryBlogFeed from "../components/blog/CategoryBlogFeed";
-import { Helmet } from "react-helmet";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export default function BlogCategory({ data }) {
   const {
@@ -18,16 +17,12 @@ export default function BlogCategory({ data }) {
     },
   } = data;
 
-  const useSiteMetaTitle = useSiteMetadata().title;
-
   return (
     <div className="sm:px-0 md:px-5">
-      <Helmet>
-        <title>{metaTitle || `${useSiteMetaTitle} | ${categoryTitle}`}</title>
-        {metaDescription && (
-          <meta name="description" content={`${metaDescription}`}></meta>
-        )}
-      </Helmet>
+      <HelmetWithMetaDesc
+        metaTitle={metaTitle}
+        metaDescription={metaDescription}
+      />
       <button className="font-medium uppercase ml-4 mt-12 mb-6 md:ml-0 lg:ml-20">
         <Link to="/blog">{`← Return to all posts`}</Link>
       </button>

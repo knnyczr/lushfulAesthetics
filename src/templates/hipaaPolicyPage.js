@@ -3,11 +3,12 @@ import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import { Helmet } from "react-helmet";
+import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";
 
 export default function HIPAAPolicy({
-  data: { allContentfulHipaaPolicyPage },
+  data: { allContentfulHipaaPolicyPage, metaTitle, metaDescription },
 }) {
   const website_url = "https://www.lushfulaesthetics.com/";
 
@@ -55,7 +56,10 @@ export default function HIPAAPolicy({
   };
   return (
     <>
-      <Helmet title={`Lushful Aesthetics | HIPAA`} />
+      <HelmetWithMetaDesc
+        metaTitle={metaTitle}
+        metaDescription={metaDescription}
+      />
       {renderRichText(
         allContentfulHipaaPolicyPage.edges[0].node.content,
         options
@@ -72,6 +76,8 @@ export const pageQuery = graphql`
           content {
             raw
           }
+          metaTitle
+          metaDescription
         }
       }
     }

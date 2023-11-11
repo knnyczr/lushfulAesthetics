@@ -5,8 +5,7 @@ import BlogCardDesktop from "../components/blog/blogCards/BlogCardDesktop";
 import BlogCardMobile from "../components/blog/blogCards/BlogCardMobile";
 import Categories from "../components/blog/Categories";
 import FeaturedPost from "../components/blog/FeaturedPost";
-import { Helmet } from "react-helmet";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 // import SearchBar from "../components/blog/SearchBar";
 
@@ -17,6 +16,8 @@ export default function Blog({ data }) {
       facialAestheticHeroes,
       bodyAestheticHeroes,
       sexualEnhancementHeroes,
+      metaTitle,
+      metaDescription,
     },
   } = data;
 
@@ -26,16 +27,12 @@ export default function Blog({ data }) {
     sexualEnhancementHeroes,
   ];
 
-  const useSiteMetaTitle = useSiteMetadata().title;
-
   return (
     <div>
-      <Helmet>
-        <title>{`${useSiteMetaTitle} | Blog`}</title>
-        {/* {metaDescription && (
-          <meta name="description" content={`${metaDescription}`}></meta>
-        )} */}
-      </Helmet>
+      <HelmetWithMetaDesc
+        metaTitle={metaTitle}
+        metaDescription={metaDescription}
+      />
       <FeaturedPost featuredPost={featuredPost} />
       {/* <SearchBar /> */}
       <div className="grid grid-cols-1 md:grid-cols-3 max-w-[1536px] mx-auto">
@@ -70,6 +67,8 @@ export default function Blog({ data }) {
 export const pageQuery = graphql`
   query blogPageQuery {
     contentfulBlogHomepage {
+      metaTitle
+      metaDescription
       featuredPost {
         heroImage {
           id

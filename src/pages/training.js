@@ -1,11 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
 import TrainingCard from "../components/TrainingCard";
-import Button from "../components/BookBtn";
 import HeroImage from "../components/HeroImage";
-import { Helmet } from "react-helmet";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";
 
@@ -13,18 +10,17 @@ export default function Training({ data }) {
   const {
     trainingPageTitle,
     trainingsList,
-    pageMetaDescription,
+    metaDescription,
+    metaTitle,
     heroImage,
     registerLink,
   } = data.contentfulTrainingPage;
   return (
     <>
-      <Helmet>
-        <title>{`${useSiteMetadata().title} | ${trainingPageTitle}`}</title>
-        {pageMetaDescription && (
-          <meta name="description" content={`${pageMetaDescription}`}></meta>
-        )}
-      </Helmet>
+      <HelmetWithMetaDesc
+        metaTitle={metaTitle}
+        metaDescription={metaDescription}
+      />
       <HeroImage heroImage={heroImage} pageTitle={trainingPageTitle} />
       <div className="px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 m-auto p-auto">
         <div className="py-10">
@@ -59,7 +55,8 @@ export const pageQuery = graphql`
     }
     contentfulTrainingPage {
       trainingPageTitle
-      pageMetaDescription
+      metaDescription
+      metaTitle
       registerLink
       trainingsList {
         trainingTitle

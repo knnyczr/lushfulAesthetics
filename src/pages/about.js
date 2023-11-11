@@ -3,8 +3,6 @@ import React from "react";
 import HeroImage from "../components/HeroImage";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { Helmet } from "react-helmet";
-
 import { BLOCKS } from "@contentful/rich-text-types";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
@@ -33,10 +31,10 @@ export default function AboutUs({ data }) {
   };
   return (
     <div>
-      <Helmet>
-        <title>{metaTitle}</title>
-        <meta name="description" content={`${metaDescription}`}></meta>
-      </Helmet>
+      <HelmetWithMetaDesc
+        metaTitle={metaTitle}
+        metaDescription={metaDescription}
+      />
       {data.contentfulAboutUs && (
         <>
           <HeroImage
