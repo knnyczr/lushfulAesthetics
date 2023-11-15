@@ -7,9 +7,9 @@ import PrePostCare from "../components/PrePostCare";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import servicePageOptions from "../helpers/servicePageOptions";
 import OurApproach from "../components/OurApproach";
-import { Helmet } from "react-helmet";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";
 
@@ -34,17 +34,15 @@ export default function ServicePage({ data }) {
   } = data;
 
   const website_url = useSiteMetadata().siteUrl;
-  const useSiteMetaTitle = useSiteMetadata().title;
+
   const options = servicePageOptions(website_url);
 
   return (
     <div className="mx-auto max-w-[1536px]">
-      <Helmet>
-        <title>{metaTitle || `${useSiteMetaTitle} | ${serviceTitle}`}</title>
-        {metaDescription && (
-          <meta name="description" content={`${metaDescription}`}></meta>
-        )}
-      </Helmet>
+      <HelmetWithMetaDesc
+        metaTitle={metaTitle}
+        metaDescription={metaDescription}
+      />
 
       <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
 

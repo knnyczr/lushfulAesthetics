@@ -75,6 +75,7 @@ export default function Footer() {
                   <div className="flex flex-col mr-8">
                     <a
                       target="_blank"
+                      rel="noreferrer"
                       href={`${bookNowLink}`}
                       className="hover:underline mr-4 mb-4"
                     >

@@ -3,7 +3,6 @@ import { graphql } from "gatsby";
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import Button from "../components/BookBtn";
 import Reviews from "../components/Reviews";
-import { Helmet } from "react-helmet";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";

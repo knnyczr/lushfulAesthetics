@@ -2,7 +2,6 @@ import React from "react";
 import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
-import { Helmet } from "react-helmet";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";
