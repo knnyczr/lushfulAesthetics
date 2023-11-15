@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
 import ContactForm from "../components/ContactForm";
-import { Helmet } from "react-helmet";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";

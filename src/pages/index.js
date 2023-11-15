@@ -3,7 +3,6 @@ import { graphql } from "gatsby";
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import Button from "../components/BookBtn";
 import Reviews from "../components/Reviews";
-import { Helmet } from "react-helmet";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";
@@ -120,6 +119,15 @@ export const query = graphql`
       reviews {
         review
         reviewerName
+        headline
+        articleLink
+        mediaLogo {
+          companyName
+          companyLogo {
+            publicUrl
+            gatsbyImageData(width: 200, quality: 90)
+          }
+        }
         bgImage {
           gatsbyImageData(quality: 100, layout: CONSTRAINED)
           file {

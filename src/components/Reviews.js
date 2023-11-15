@@ -1,5 +1,5 @@
 import React from "react";
-import { getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import BackgroundImage from "gatsby-background-image";
 import { convertToBgImage } from "gbimage-bridge";
 
@@ -11,6 +11,7 @@ export default function Reviews({ reviews }) {
           <div className="flex flex-nowrap snap-mandatory snap-x">
             {reviews.map((review, index) => {
               let image = getImage(review.bgImage);
+              let mediaLogo = getImage(review.mediaLogo.companyLogo);
               let bgImage = convertToBgImage(image);
               return (
                 <div
@@ -23,17 +24,33 @@ export default function Reviews({ reviews }) {
                     style={{
                       backgroundRepeat: "no-repeat",
                       backgroundSize: "cover",
-                      backgroundPosition: "-50px 0",
+                      backgroundPosition: "-40px 0",
                     }}
                   >
-                    <div className="flex flex-col justify-center items-center backdrop-blur-md bg-main-green-shade/50 rounded h-128 px-8">
-                      <h4 className=" z-10 my-6 text-white font-serif text-lg text-center">
-                        {review.review}
-                      </h4>
-                      <p className="text-white font-semibold text-lg">
-                        {review.reviewerName}
-                      </p>
-                    </div>
+                    <a
+                      href={review.articleLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <div className="backdrop-blur-md bg-main-green-shade/50 rounded flex justify-end  items-end	">
+                        <div className="flex flex-col justify-between py-16 items-center h-128 px-6">
+                          <h2 className="z-10 my-6 font-bold text-white font-serif text-3xl text-center leading-normal">
+                            {review.headline}
+                          </h2>
+                          <div>
+                            <GatsbyImage
+                              image={mediaLogo}
+                              alt={`${review.mediaLogo.companyName}'s logo`}
+                            />
+                            <div className="w-full px-5 flex justify-center">
+                              <p className="md:hidden lg:hidden text-center text-white mt-8 rounded-full border-solid border-white border w-3/4	text-sm	p-1">
+                                Tap for more
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
                   </BackgroundImage>
                 </div>
               );

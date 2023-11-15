@@ -1,6 +1,5 @@
 import React from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { useContentfulImage } from "gatsby-source-contentful/hooks";
 
 export default function HeroImage({ heroImage, pageTitle }) {
   const image = getImage(heroImage.gatsbyImageData);
