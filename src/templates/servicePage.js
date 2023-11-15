@@ -25,11 +25,11 @@ export default function ServicePage({ data }) {
       ourApproach,
       preCare,
       postCare,
-      pageMetaDescription,
+      metaDescription,
       subheadingOne,
       subheadingTwo,
       subheadingAsSeenIn,
-      pageMetaTitle,
+      metaTitle,
     },
   } = data;
 
@@ -40,11 +40,9 @@ export default function ServicePage({ data }) {
   return (
     <div className="mx-auto max-w-[1536px]">
       <Helmet>
-        <title>
-          {pageMetaTitle || `${useSiteMetaTitle} | ${serviceTitle}`}
-        </title>
-        {pageMetaDescription && (
-          <meta name="description" content={`${pageMetaDescription}`}></meta>
+        <title>{metaTitle || `${useSiteMetaTitle} | ${serviceTitle}`}</title>
+        {metaDescription && (
+          <meta name="description" content={`${metaDescription}`}></meta>
         )}
       </Helmet>
 
@@ -185,9 +183,9 @@ export const pageQuery = graphql`
       }
       subheadingOne
       subheadingTwo
-      pageMetaDescription
+      metaDescription
       serviceTitle
-      pageMetaTitle
+      metaTitle
     }
   }
 `;
