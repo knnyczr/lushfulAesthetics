@@ -117,8 +117,6 @@ export const query = graphql`
         )
       }
       reviews {
-        review
-        reviewerName
         headline
         articleLink
         mediaLogo {
