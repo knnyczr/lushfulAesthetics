@@ -120,7 +120,7 @@ function AsSeenIn({ press, subheadingAsSeenIn, asSeenInSubheading }) {
                 >
                   <GatsbyImage
                     image={image}
-                    className="mr-6"
+                    className="mr-6 sm:mb-6"
                     alt={`${companyName}: ${articleTitle}`}
                   />
                 </a>
