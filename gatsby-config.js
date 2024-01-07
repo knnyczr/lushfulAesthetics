@@ -81,12 +81,19 @@ module.exports = {
             allContentfulFooterContent {
               edges {
                 node {
-                  hipaaSlug
                   privacyPolicySlug
                 }
               }
             }
-            
+
+            allContentfulFooterContent {
+              edges {
+                node {
+                  hipaaSlug
+                }
+              }
+            }
+
             allContentfulBlogCategory {
               edges {
                 node {
