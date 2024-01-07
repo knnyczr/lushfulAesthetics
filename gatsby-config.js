@@ -78,23 +78,15 @@ module.exports = {
               }
             }
       
-            allContentfulPrivacyPolicyPage(limit: 1) {
+            allContentfulFooterContent {
               edges {
                 node {
-                  slug
-                  id
+                  hipaaSlug
+                  privacyPolicySlug
                 }
               }
             }
-      
-            allContentfulHipaaPolicyPage(limit: 1) {
-              edges {
-                node {
-                  slug
-                  id
-                }
-              }
-            }
+            
             allContentfulBlogCategory {
               edges {
                 node {
