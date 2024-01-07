@@ -23,6 +23,8 @@ export default function Footer() {
       youtube,
       copyright,
       bookNowLink,
+      privacyPolicySlug,
+      hipaaSlug,
     },
   } = useStaticQuery(graphql`
     query FooterQuery {
@@ -33,12 +35,8 @@ export default function Footer() {
         generalFaq {
           slug
         }
-        hipaaPolicy {
-          slug
-        }
-        privacyPolicy {
-          slug
-        }
+        privacyPolicySlug
+        hipaaSlug
         copyright
         socialInstagram
         socialTwitter
@@ -160,10 +158,10 @@ export default function Footer() {
           <div className="flex flex-col justify-center text-sm md:text-base md:flex-row pb-8 md:pb-2">
             <div className="py-4 md:py-0">
               <span className="mr-4">
-                <Link to={`/${privacyPolicy.slug}`}>Privacy Policy</Link>
+                <Link to={`/${privacyPolicySlug}`}>Privacy Policy</Link>
               </span>
               <span className="mr-4">
-                <Link to={`/${hipaaPolicy.slug}`}>HIPAA Policy</Link>
+                <Link to={`/${hipaaSlug}`}>HIPAA Policy</Link>
               </span>
             </div>
 
