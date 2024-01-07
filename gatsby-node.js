@@ -17,10 +17,9 @@ exports.createPages = async ({ graphql, actions }) => {
     data: {
       allContentfulServicePage,
       allContentfulGeneralFaqPage,
-      allContentfulPrivacyPolicyPage,
-      allContentfulHipaaPolicyPage,
       allContentfulBlogCategory,
       allContentfulBlogPost,
+      allContentfulFooterContent,
     },
   } = await graphql(`
     {
