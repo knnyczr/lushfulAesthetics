@@ -3,10 +3,10 @@ import { useStaticQuery, graphql } from "gatsby";
 
 export default function Button() {
   const {
-    contentfulBookNowLink: { bookNowLink },
+    contentfulFooterContent: { bookNowLink },
   } = useStaticQuery(graphql`
     query BookNowQuery {
-      contentfulBookNowLink {
+      contentfulFooterContent {
         bookNowLink
       }
     }
