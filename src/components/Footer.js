@@ -189,6 +189,21 @@ export default function Footer() {
           </span>
         </div> */}
       </div>
+      <script
+        src="https://js.adsrvr.org/up_loader.1.1.0.js"
+        type="text/javascript"
+      />
+      <script type="text/javascript">
+        {`
+          ttd_dom_ready( 
+            function() { 
+              if (typeof TTDUniversalPixelApi === 'function') { 
+                var universalPixelApi = new TTDUniversalPixelApi(); universalPixelApi.init("t2f05ni", ["yekzz77"], "https://insight.adsrvr.org/track/up");
+              } 
+            }
+          )
+        `}
+      </script>
     </>
   );
 }
