@@ -41,6 +41,7 @@ export default function Nav() {
       socialTiktok,
       socialTwitter,
       youtube,
+      storeLink,
     },
   } = useStaticQuery(graphql`
     query NavQuery {
@@ -55,20 +56,12 @@ export default function Nav() {
             slug
             serviceTitle
           }
-          # ... on ContentfulPackagePage {
-          #   slug
-          #   packagePageTitle
-          # }
         }
         facialAestheticServices {
           ... on ContentfulServicePage {
             slug
             serviceTitle
           }
-          # ... on ContentfulPackagePage {
-          #   slug
-          #   packagePageTitle
-          # }
         }
         facialInjectableServices {
           ... on ContentfulServicePage {
@@ -82,9 +75,6 @@ export default function Nav() {
             serviceTitle
           }
         }
-        bookNowLinkReference {
-          bookNowLink
-        }
         slugDictionaries {
           slugTitle
           slug
@@ -95,6 +85,7 @@ export default function Nav() {
         socialTiktok
         socialTwitter
         youtube
+        storeLink
       }
     }
   `);
@@ -202,14 +193,13 @@ export default function Nav() {
                       </div>
                     )}
                   </div>
-
-                  <Link
-                    to="https://lushfulaesthetics.myshopify.com/"
+                  <a
+                    href={storeLink}
                     target="_blank"
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base lg:text-lg font-medium uppercase"
                   >
                     Shop
-                  </Link>
+                  </a>
 
                   <Link
                     to="/about/"
@@ -386,15 +376,14 @@ export default function Nav() {
                     </div>
                   </div>
                 </div>
-
-                <Link
+                <a
                   onClick={() => closeMenu()}
-                  to="https://lushfulaesthetics.myshopify.com/"
+                  href={storeLink}
                   target="_blank"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
                   Shop
-                </Link>
+                </a>
 
                 <Link
                   onClick={() => closeMenu()}

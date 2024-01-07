@@ -22,17 +22,10 @@ export default function Footer() {
       socialTiktok,
       youtube,
       copyright,
-    },
-    contentfulServicesMenu: {
-      bookNowLinkReference: { bookNowLink },
+      bookNowLink,
     },
   } = useStaticQuery(graphql`
     query FooterQuery {
-      contentfulServicesMenu {
-        bookNowLinkReference {
-          bookNowLink
-        }
-      }
       contentfulFooterContent {
         disclosure {
           raw
@@ -51,6 +44,7 @@ export default function Footer() {
         socialTwitter
         socialTiktok
         youtube
+        bookNowLink
       }
     }
   `);
