@@ -60,15 +60,6 @@ module.exports = {
               }
             }
       
-            # allContentfulPackagePage {
-            #   edges {
-            #     node {
-            #       slug
-            #       id
-            #     }
-            #   }
-            # }
-      
             allContentfulGeneralFaqPage(limit: 1) {
               edges {
                 node {
@@ -78,21 +69,21 @@ module.exports = {
               }
             }
       
-            allContentfulFooterContent {
-              edges {
-                node {
-                  privacyPolicySlug
-                }
-              }
-            }
+            # allContentfulFooterContent {
+            #   edges {
+            #     node {
+            #       privacyPolicySlug
+            #     }
+            #   }
+            # }
 
-            allContentfulFooterContent {
-              edges {
-                node {
-                  hipaaSlug
-                }
-              }
-            }
+            # allContentfulFooterContent {
+            #   edges {
+            #     node {
+            #       hipaaSlug
+            #     }
+            #   }
+            # }
 
             allContentfulBlogCategory {
               edges {
@@ -102,6 +93,7 @@ module.exports = {
                 }
               }
             }
+
             allContentfulBlogPost {
               edges {
                 node {
