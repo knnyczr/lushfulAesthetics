@@ -6,7 +6,11 @@ import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";
 
-export default function PrivacyPolicy({ data }) {
+export default function PrivacyPolicy({
+  data: {
+    allContentfulFooterContent: { edges },
+  },
+}) {
   const website_url = "https://www.lushfulaesthetics.com/";
 
   const options = {
@@ -51,30 +55,34 @@ export default function PrivacyPolicy({ data }) {
       ),
     },
   };
+
+  const {
+    privacyPolicyContent,
+    privacyPolicyMetaDescription,
+    privacyPolicyMetaTitle,
+  } = edges[0].node;
+
   return (
     <>
       <HelmetWithMetaDesc
-        metaTitle={data.metaTitle}
-        metaDescription={data.metaDescription}
+        metaTitle={privacyPolicyMetaTitle}
+        metaDescription={privacyPolicyMetaDescription}
       />
-      {renderRichText(
-        data.allContentfulPrivacyPolicyPage.edges[0].node.content,
-        options
-      )}
+      {renderRichText(privacyPolicyContent, options)}
     </>
   );
 }
 
 export const pageQuery = graphql`
-  query PrivacyPolicyQuery($pageId: String!) {
-    allContentfulPrivacyPolicyPage(limit: 1, filter: { id: { eq: $pageId } }) {
+  query PrivacyPolicyQuery {
+    allContentfulFooterContent {
       edges {
         node {
-          content {
+          privacyPolicyMetaTitle
+          privacyPolicyMetaDescription
+          privacyPolicyContent {
             raw
           }
-          metaTitle
-          metaDescription
         }
       }
     }

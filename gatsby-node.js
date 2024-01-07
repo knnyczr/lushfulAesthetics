@@ -3,7 +3,6 @@ const path = require("path");
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions;
   const servicePageTemplate = path.resolve(`./src/templates/servicePage.js`);
-  // const packagesPageTemplate = path.resolve(`./src/templates/packagesPage.js`);
   const generalFAQsTemplate = path.resolve(`./src/templates/generalFAQs.js`);
   const privacyPolicyTemplate = path.resolve(
     `./src/templates/privacyPolicyPage.js`
@@ -17,7 +16,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const {
     data: {
       allContentfulServicePage,
-      // allContentfulPackagePage,
       allContentfulGeneralFaqPage,
       allContentfulPrivacyPolicyPage,
       allContentfulHipaaPolicyPage,
@@ -35,15 +33,6 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
 
-      # allContentfulPackagePage {
-      #   edges {
-      #     node {
-      #       slug
-      #       id
-      #     }
-      #   }
-      # }
-
       allContentfulGeneralFaqPage(limit: 1) {
         edges {
           node {
@@ -53,23 +42,15 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
 
-      allContentfulPrivacyPolicyPage(limit: 1) {
+      allContentfulFooterContent {
         edges {
           node {
-            slug
-            id
+            hipaaSlug
+            privacyPolicySlug
           }
         }
       }
 
-      allContentfulHipaaPolicyPage(limit: 1) {
-        edges {
-          node {
-            slug
-            id
-          }
-        }
-      }
       allContentfulBlogCategory {
         edges {
           node {
@@ -100,16 +81,6 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  // allContentfulPackagePage.edges.forEach((page) => {
-  //   createPage({
-  //     path: `/${page.node.slug}/`,
-  //     component: packagesPageTemplate,
-  //     context: {
-  //       packagePageId: page.node.id,
-  //     },
-  //   });
-  // });
-
   allContentfulGeneralFaqPage.edges.forEach((page) => {
     createPage({
       path: `/${page.node.slug}/`,
@@ -118,20 +89,19 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  allContentfulPrivacyPolicyPage.edges.forEach((page) => {
-    createPage({
-      path: `/${page.node.slug}/`,
-      component: privacyPolicyTemplate,
-      context: { pageId: page.node.id },
-    });
-  });
-
-  allContentfulHipaaPolicyPage.edges.forEach((page) => {
-    createPage({
-      path: `/${page.node.slug}/`,
-      component: hipaaPolicyTemplate,
-      context: { pageId: page.node.id },
-    });
+  allContentfulFooterContent.edges.forEach((page) => {
+    if (page.node.hipaaSlug) {
+      createPage({
+        path: `/${page.node.hipaaSlug}/`,
+        component: hipaaPolicyTemplate,
+      });
+    }
+    if (page.node.privacyPolicySlug) {
+      createPage({
+        path: `/${page.node.privacyPolicySlug}/`,
+        component: privacyPolicyTemplate,
+      });
+    }
   });
 
   allContentfulBlogCategory.edges.forEach((page) => {

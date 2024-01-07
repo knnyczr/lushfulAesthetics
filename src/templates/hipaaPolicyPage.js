@@ -7,7 +7,9 @@ import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 export { Head } from "../components/Layout";
 
 export default function HIPAAPolicy({
-  data: { allContentfulHipaaPolicyPage, metaTitle, metaDescription },
+  data: {
+    allContentfulFooterContent: { edges },
+  },
 }) {
   const website_url = "https://www.lushfulaesthetics.com/";
 
@@ -53,30 +55,30 @@ export default function HIPAAPolicy({
       ),
     },
   };
+
+  const { hipaaContent, hipaaMetaDescription, hipaaMetaTitle } = edges[0].node;
+
   return (
     <>
       <HelmetWithMetaDesc
-        metaTitle={metaTitle}
-        metaDescription={metaDescription}
+        metaTitle={hipaaMetaTitle}
+        metaDescription={hipaaMetaDescription}
       />
-      {renderRichText(
-        allContentfulHipaaPolicyPage.edges[0].node.content,
-        options
-      )}
+      {renderRichText(hipaaContent, options)}
     </>
   );
 }
 
 export const pageQuery = graphql`
-  query HipaaPolicyQuery($pageId: String!) {
-    allContentfulHipaaPolicyPage(limit: 1, filter: { id: { eq: $pageId } }) {
+  query HipaaPolicyQuery {
+    allContentfulFooterContent {
       edges {
         node {
-          content {
+          hipaaMetaDescription
+          hipaaMetaTitle
+          hipaaContent {
             raw
           }
-          metaTitle
-          metaDescription
         }
       }
     }
