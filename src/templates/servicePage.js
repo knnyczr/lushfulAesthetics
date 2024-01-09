@@ -67,6 +67,8 @@ export default function ServicePage({ data }) {
         heroImage={heroImage}
       />
 
+      {/* BEFORE & AFTERS FEATURES */}
+
       <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
         <div className="container my-4 px-4 md:px-6 lg:px-24 mx-auto">
           <h2 className="container font-serif font-bold text-3xl my-4 ">
