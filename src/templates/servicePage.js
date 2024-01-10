@@ -10,6 +10,7 @@ import OurApproach from "../components/OurApproach";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
+import BeforeAfter from "../components/beforeAfter/BeforeAfter";
 
 export { Head } from "../components/Layout";
 
@@ -68,6 +69,7 @@ export default function ServicePage({ data }) {
       />
 
       {/* BEFORE & AFTERS FEATURES */}
+      <BeforeAfter heroImage={heroImage} />
 
       <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
         <div className="container my-4 px-4 md:px-6 lg:px-24 mx-auto">
