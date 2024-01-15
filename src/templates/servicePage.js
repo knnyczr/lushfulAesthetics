@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 import CustomAccordion from "../components/CustomAccodian";
 import HeroImage from "../components/HeroImage";
@@ -11,6 +11,7 @@ import { useSiteMetadata } from "../hooks/use-site-metadata";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 import BeforeAndAfterContainer from "../components/beforeAndAfter/BeforeAndAfterContainer";
+import AgeAndEmailCaptureModal from "../components/beforeAndAfter/AgeAndEmailCaptureModal";
 
 export { Head } from "../components/Layout";
 
@@ -38,39 +39,45 @@ export default function ServicePage({ data }) {
 
   const options = servicePageOptions(website_url);
 
+  const needToVerifyAge = true;
+  const [isVerifyAgePopupOpen, setIsVerifyAgePopupOpen] = useState(false);
+
   return (
     <div className="mx-auto max-w-[1536px]">
       <HelmetWithMetaDesc
         metaTitle={metaTitle}
         metaDescription={metaDescription}
       />
-
       <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
-
       <ServicePrice
         intro={renderRichText(intro, options)}
         pricing={renderRichText(pricing, options)}
         subheadingOne={subheadingOne}
       />
-
       {press?.length && (
         <AsSeenIn press={press} subheadingAsSeenIn={subheadingAsSeenIn} />
       )}
-
       <OurApproach
         subheadingTwo={subheadingTwo}
         ourApproach={renderRichText(ourApproach, options)}
       />
-
       <PrePostCare
         preCare={preCare}
         postCare={postCare}
         heroImage={heroImage}
       />
-
       {/* BEFORE & AFTERS FEATURES */}
       <BeforeAndAfterContainer />
+      <button onClick={() => setIsVerifyAgePopupOpen(!isVerifyAgePopupOpen)}>
+        verify age
+      </button>
 
+      {needToVerifyAge && isVerifyAgePopupOpen && (
+        <AgeAndEmailCaptureModal
+          heroImage={heroImage}
+          setIsVerifyAgePopupOpen={setIsVerifyAgePopupOpen}
+        />
+      )}
       <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
         <div className="container my-4 px-4 md:px-6 lg:px-24 mx-auto">
           <h2 className="container font-serif font-bold text-3xl my-4 ">
