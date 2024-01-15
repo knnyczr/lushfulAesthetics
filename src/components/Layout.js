@@ -1,12 +1,17 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
+import AcceptCookiePopover from "./AcceptCookieBanner";
 
 export default function Layout({ children }) {
+  const [hasAcceptedCookies, setHasAcceptedCookies] = useState(false);
   return (
     <>
       <Nav />
       {children}
+      {!hasAcceptedCookies && (
+        <AcceptCookiePopover setHasAcceptedCookies={setHasAcceptedCookies} />
+      )}
       <Footer />
     </>
   );
