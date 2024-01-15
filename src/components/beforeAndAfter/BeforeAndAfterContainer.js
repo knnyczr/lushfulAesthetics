@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import ImageWithOverlay from "./ImageWithOverlay";
 import ImageModal from "./ImageModal";
 
-export default function BeforeAfter({ heroImage }) {
-  console.log(heroImage, "this is the heroImage");
-
+export default function BeforeAndAfterContainer() {
   const images = [
     {
       before:
@@ -39,27 +37,22 @@ export default function BeforeAfter({ heroImage }) {
   ];
 
   const [viewAll, setViewAll] = useState(false);
-  const [openedImagePair, setOpenedImagePair] = useState(null);
+  const [isImagePairOpen, setIsImagePairOpen] = useState(false);
 
   useEffect(() => {
-    if (openedImagePair) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isImagePairOpen ? "hidden" : "";
 
     return () => {
       document.body.style.overflow = "";
     };
-  }, [openedImagePair]);
+  }, [isImagePairOpen]);
 
-  console.log("Current viewAll state:", viewAll);
   const renderImagePairs = (count) => {
     return images.slice(0, count).map((imagePair, index) => (
       <div
         key={index}
         className="col-span-2 md:col-span-1 flex cursor-pointer"
-        onClick={() => setOpenedImagePair(imagePair)}
+        onClick={() => setIsImagePairOpen(imagePair)}
       >
         <ImageWithOverlay
           src={imagePair.before}
@@ -87,7 +80,6 @@ export default function BeforeAfter({ heroImage }) {
           <button
             className="font-sans font-bold"
             onClick={() => {
-              console.log("Toggling viewAll state");
               setViewAll(!viewAll);
             }}
           >
@@ -98,10 +90,10 @@ export default function BeforeAfter({ heroImage }) {
           {viewAll ? renderImagePairs(images.length) : renderImagePairs(2)}
         </div>
       </div>
-      {openedImagePair && (
+      {isImagePairOpen && (
         <ImageModal
-          imagePair={openedImagePair}
-          onClose={() => setOpenedImagePair(null)}
+          imagePair={isImagePairOpen}
+          onClose={() => setIsImagePairOpen(null)}
         />
       )}
     </>
