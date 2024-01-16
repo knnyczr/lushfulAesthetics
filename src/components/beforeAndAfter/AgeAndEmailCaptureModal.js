@@ -25,7 +25,7 @@ export default function AgeAndEmailCaptureModal({
           width: `96%`,
           backgroundColor: `#BABAA0`,
         }}
-        className="flex h-3/4 md:w-3/4 md:h-3/5 lg:h-4/5"
+        className="flex h-4/5 md:w-3/4 md:min-h-3/5 lg:h-4/5"
       >
         <div className="flex flex-nowrap flex-col justify-between px-10 w-full md:w-1/2 relative">
           <div className="w-full h-10 pt-16 md:pt-20 flex flex-row justify-between items-center">
@@ -40,7 +40,7 @@ export default function AgeAndEmailCaptureModal({
             </div>
           </div>
           <form className="flex flex-col items-center">
-            <h1 className="font-serif text-5xl text-center text-white md:text-2xl lg:text-3xl">{`Verify your age`}</h1>
+            <h1 className="font-serif text-4xl text-center text-white md:text-2xl lg:text-3xl">{`Verify your age`}</h1>
             <p className="text-center py-4 text-white">{`Verify your age and sign up with your email to receive updates on our latest products and exclusive access to view this content.`}</p>
             <div className="w-full md:flex md:flex-row md:gap-2">
               <input
