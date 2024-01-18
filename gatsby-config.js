@@ -236,5 +236,12 @@ module.exports = {
         pixelId: "438425791770503",
       },
     },
+    {
+      resolve: "gatsby-plugin-html-attributes",
+      options: {
+        lang: "en",
+      },
+      //https://www.gatsbyjs.com/plugins/gatsby-plugin-html-attributes/
+    },
   ],
 };
