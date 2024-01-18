@@ -71,12 +71,12 @@ export default function IndexPage({ data }) {
           </div>
 
           <div className="flex flex-col justify-center">
-            <h1 className="font-serif text-2xl font-semibold mt-5">
+            <h3 className="font-serif text-2xl font-semibold mt-5">
               {`Lushful Aesthetics™`}
-            </h1>
-            <h1 className="font-serif text-2xl font-semibold">
+            </h3>
+            <h3 className="font-serif text-2xl font-semibold">
               {` by InjectorChris`}
-            </h1>
+            </h3>
             <h2 className="font-medium my-4">{address}</h2>
             <a
               href={`tel:+1${phoneNumber}`}
