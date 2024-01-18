@@ -60,6 +60,7 @@ export default function IndexPage({ data }) {
               href="https://goo.gl/maps/3mpJJytXMqn581Yw9"
               target="_blank"
               rel="noreferrer"
+              aria-label="View our location on Google Maps (opens in a new tab)"
             >
               <StaticImage
                 alt="image of map, link for google maps"

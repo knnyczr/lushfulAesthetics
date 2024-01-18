@@ -3,7 +3,12 @@ import React from "react";
 export default function ApplyCherryBtn({ url }) {
   return (
     <>
-      <a target="_blank" rel="noreferrer" href={`${url}`}>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Apply with Cherry (opens in a new tab)"
+        href={`${url}`}
+      >
         <button
           className="py-3 px-6 bg-main-green hover:bg-main-green-shade rounded text-white text-sm lg:text-lg uppercase"
           type="button"

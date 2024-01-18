@@ -32,7 +32,12 @@ export default function Training({ data }) {
             ))}
         </div>
         <div className="flex justify-center mt-8 lg:mt-16">
-          <a href={registerLink} target="_blank" rel="noreferrer">
+          <a
+            href={registerLink}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Register now (opens in a new tab)"
+          >
             <button
               className="py-3 px-6 text-sm text-bold md:text-base bg-main-green hover:bg-main-green-shade rounded text-white uppercase whitespace-nowrap "
               type="button"
