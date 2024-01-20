@@ -15,7 +15,12 @@ export default function ContactForm({
       <div className="px-4 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center ">
         <div className="px-3 flex justify-center items-center flex-col md:flex-row">
           <div className="mx-4 md:mx-10 w-full max-w-md flex justify-center items-center rounded">
-            <a href={`${googleLocation}`} target="_blank" rel="noreferrer">
+            <a
+              href={`${googleLocation}`}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View our location on Google Maps (opens in a new tab)"
+            >
               <StaticImage
                 alt="image of map, link for google maps"
                 src="../images/Lushful_address.png"

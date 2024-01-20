@@ -31,6 +31,7 @@ export default function Reviews({ reviews }) {
                       href={review.articleLink}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="Read the review article (opens in a new tab)"
                     >
                       <div className="backdrop-blur-md bg-main-green-shade/50 rounded flex justify-end  items-end	">
                         <div className="flex flex-col justify-between py-16 items-center h-128 px-6">

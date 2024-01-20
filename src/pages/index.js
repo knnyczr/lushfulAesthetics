@@ -28,6 +28,11 @@ export default function IndexPage({ data }) {
         metaTitle={metaTitle}
         metaDescription={metaDescription}
       />
+
+      {/* <a className="sr-only sr-only-focusable" href="#slogan">
+        Skip to Slogan
+      </a> */}
+
       <div className="relative w-full max-w-[1536px] mx-auto overflow-hidden">
         <GatsbyImage
           image={image}
@@ -35,7 +40,10 @@ export default function IndexPage({ data }) {
           // style={{ height: "600px" }}
           className="w-full object-contain h-[400px] lg:h-auto lg:aspect-[19/9] lg:max-h-[800px]"
         />
-        <div className="absolute bottom-6 max-w-[1536px] flex flex-col justify-center items-center w-screen left-1/2 -translate-x-1/2 -translate-y-1/2 md:justify-start lg:items-start lg:-translate-y-24 lg:pl-20">
+        <div
+          // id="slogan"
+          className="absolute bottom-6 max-w-[1536px] flex flex-col justify-center items-center w-screen left-1/2 -translate-x-1/2 -translate-y-1/2 md:justify-start lg:items-start lg:-translate-y-24 lg:pl-20"
+        >
           <h1 className="font-serif font-bold text-white text-3xl md:text-4xl lg:text-5xl text-center lg:text-left py-6 lg:py-8 w-full">
             {slogan}
           </h1>
@@ -49,17 +57,32 @@ export default function IndexPage({ data }) {
         </div>
       </div>
 
-      <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 bg-main-green">
+      {/* <a className="sr-only sr-only-focusable" href="#reviews">
+        Skip to Reviews
+      </a> */}
+
+      <div
+        // id="reviews"
+        className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 bg-main-green"
+      >
         <Reviews reviews={reviews} />
       </div>
 
-      <div className="px-4 py-12 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center ">
+      {/* <a className="sr-only sr-only-focusable" href="#contact-info">
+        Skip to Contact Information
+      </a> */}
+
+      <div
+        // id="contact-info"
+        className="px-4 py-12 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center "
+      >
         <div className="border border-black py-8 px-3 lg:py-10 lg:px-12 flex justify-center items-center flex-col md:flex-row">
           <div className="mx-10 w-90 max-w-md h-80 flex justify-center items-center rounded">
             <a
               href="https://goo.gl/maps/3mpJJytXMqn581Yw9"
               target="_blank"
               rel="noreferrer"
+              aria-label="View our location on Google Maps (opens in a new tab)"
             >
               <StaticImage
                 alt="image of map, link for google maps"
@@ -70,12 +93,12 @@ export default function IndexPage({ data }) {
           </div>
 
           <div className="flex flex-col justify-center">
-            <h1 className="font-serif text-2xl font-semibold mt-5">
+            <h3 className="font-serif text-2xl font-semibold mt-5">
               {`Lushful Aesthetics™`}
-            </h1>
-            <h1 className="font-serif text-2xl font-semibold">
+            </h3>
+            <h3 className="font-serif text-2xl font-semibold">
               {` by InjectorChris`}
-            </h1>
+            </h3>
             <h2 className="font-medium my-4">{address}</h2>
             <a
               href={`tel:+1${phoneNumber}`}

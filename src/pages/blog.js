@@ -33,9 +33,18 @@ export default function Blog({ data }) {
         metaTitle={metaTitle}
         metaDescription={metaDescription}
       />
+
       <FeaturedPost featuredPost={featuredPost} />
+
+      {/* <a className="sr-only sr-only-focusable" href="#main-content">
+        Skip to main content
+      </a> */}
+
       {/* <SearchBar /> */}
-      <div className="grid grid-cols-1 md:grid-cols-3 max-w-[1536px] mx-auto">
+      <div
+        // id="main-content"
+        className="grid grid-cols-1 md:grid-cols-3 max-w-[1536px] mx-auto"
+      >
         <div className="md:col-start-3 md:pr-24 py-4 px-4 2xl:pr-0">
           <div className="h-0.5 bg-black mb-4" />
           <Categories categories={data.allContentfulBlogCategory.edges} />
