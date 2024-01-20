@@ -68,6 +68,7 @@ export default function Footer() {
                     <a
                       target="_blank"
                       rel="noreferrer"
+                      aria-label="Book an appointment (opens in a new tab)"
                       href={`${bookNowLink}`}
                       className="hover:underline mr-4 mb-4"
                     >
@@ -97,6 +98,7 @@ export default function Footer() {
                   href={`${socialTwitter}`}
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="Follow us on Twitter (opens in a new tab)"
                   className="mr-6 mb-4"
                 >
                   <FontAwesomeIcon
@@ -112,6 +114,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noreferrer"
                     className="mr-6 mb-4"
+                    aria-label="Follow us on Instagram (opens in a new tab)"
                   >
                     <FontAwesomeIcon
                       className="fa-2x hover:black"
@@ -126,6 +129,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   className="mr-6 mb-4"
+                  aria-label="Follow us on Tiktok (opens in a new tab)"
                 >
                   <FontAwesomeIcon
                     className="fa-2x hover:black"
@@ -140,6 +144,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   className="mr-6 mb-4"
+                  aria-label="Follow us on Tiktok (opens in a new tab)"
                 >
                   <FontAwesomeIcon
                     className="fa-2x hover:black"

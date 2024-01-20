@@ -196,6 +196,8 @@ export default function Nav() {
                   <a
                     href={storeLink}
                     target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Shop on our store (opens in a new tab)"
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base lg:text-lg font-medium uppercase"
                   >
                     Shop
@@ -380,6 +382,8 @@ export default function Nav() {
                   onClick={() => closeMenu()}
                   href={storeLink}
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Shop on our store (opens in a new tab)"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
                   Shop
@@ -434,6 +438,7 @@ export default function Nav() {
                           target="_blank"
                           rel="noreferrer"
                           className="mr-6 mb-4"
+                          aria-label="Follow us on Twitter (opens in a new tab)"
                         >
                           <FontAwesomeIcon
                             className="fa-2x hover:black"
@@ -448,6 +453,7 @@ export default function Nav() {
                           target="_blank"
                           rel="noreferrer"
                           className="mr-6 mb-4"
+                          aria-label="Follow us on Instagtam (opens in a new tab)"
                         >
                           <FontAwesomeIcon
                             className="fa-2x hover:black"
@@ -462,6 +468,7 @@ export default function Nav() {
                           target="_blank"
                           rel="noreferrer"
                           className="mr-6 mb-4"
+                          aria-label="Follow us on Tiktok (opens in a new tab)"
                         >
                           <FontAwesomeIcon
                             className="fa-2x hover:black"
@@ -476,6 +483,7 @@ export default function Nav() {
                         target="_blank"
                         rel="noreferrer"
                         className="mr-6 mb-4"
+                        aria-label="Follow us on Youtube (opens in a new tab)"
                       >
                         <FontAwesomeIcon
                           className="fa-2x hover:black"
