@@ -36,7 +36,8 @@ export default function AgeAndEmailCaptureModal({
               />
             </button>
             <div className="w-3/4 md:w-1/2 lg:w-3/5 xl:w-1/2">
-              <Logo />
+              {/* this aria hidden into a react component needs testing */}
+              <Logo aria-hidden={true} />
             </div>
           </div>
           <form className="flex flex-col items-center">
