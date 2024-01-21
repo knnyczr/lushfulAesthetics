@@ -1,23 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Logo from "../../images/logo-footer.svg";
+import { Context } from "../Context";
 
 export default function AgeAndEmailCaptureModal({
   heroImage,
   setIsVerifyAgePopupOpen,
+  shouldCaptureEmail,
+  shouldVerifyAge,
 }) {
+  const { user, setUser } = useContext(Context);
   const image = getImage(heroImage.gatsbyImageData);
 
-  useEffect(
-    () => {
-      // TODO: get mailchimp info ready here
-    },
-    [
-      //mailchimp data
-    ]
-  );
+  useEffect(() => {
+    // TODO: get mailchimp info ready here
+    // TODO: conditional render components based on should capture email or verifyAge
+    // console.log(
+    //   "here is the extrapolated values",
+    //   user,
+    //   setUser,
+    //   shouldCaptureEmail,
+    //   shouldVerifyAge
+    // );
+  }, [
+    //mailchimp data
+    user,
+    setUser,
+  ]);
   return (
     <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
       <div
@@ -49,6 +60,7 @@ export default function AgeAndEmailCaptureModal({
                 className="my-2 p-5 placeholder-shown:font-serif placeholder-shown:text-black w-full"
                 type="text"
                 placeholder="Name"
+                onChange={(e) => setUser({ ...user, name: e.target.value })}
               />
               <input
                 aria-label="Email"
@@ -56,6 +68,7 @@ export default function AgeAndEmailCaptureModal({
                 className="my-2 p-5 placeholder-shown:font-serif w-full"
                 type="text"
                 placeholder="Email"
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
               />
             </div>
             <p className="text-center text-white text-xs">{`By submitting this form and opting in for text messages, you agree to receive promotional and reminder texts from Lushful Aesthetics at the provided phone number, which may include messages sent by an automated system. Your consent is not required for any purchase. Message and data rates may apply. The frequency of messages varies. You can opt out at any time by replying STOP or following the unsubscribe link (if available). See our Privacy Policy and Terms for more details.`}</p>

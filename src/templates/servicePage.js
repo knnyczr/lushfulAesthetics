@@ -32,6 +32,9 @@ export default function ServicePage({ data }) {
       subheadingTwo,
       subheadingAsSeenIn,
       metaTitle,
+      beforeAfterVideos,
+      shouldCaptureEmail,
+      shouldVerifyAge,
     },
   } = data;
 
@@ -39,7 +42,6 @@ export default function ServicePage({ data }) {
 
   const options = servicePageOptions(website_url);
 
-  const needToVerifyAge = true;
   const [isVerifyAgePopupOpen, setIsVerifyAgePopupOpen] = useState(false);
 
   return (
@@ -72,10 +74,12 @@ export default function ServicePage({ data }) {
         verify age
       </button>
 
-      {needToVerifyAge && isVerifyAgePopupOpen && (
+      {isVerifyAgePopupOpen && (shouldVerifyAge || shouldCaptureEmail) && (
         <AgeAndEmailCaptureModal
           heroImage={heroImage}
           setIsVerifyAgePopupOpen={setIsVerifyAgePopupOpen}
+          shouldCaptureEmail={shouldCaptureEmail}
+          shouldVerifyAge={shouldVerifyAge}
         />
       )}
       <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
@@ -195,6 +199,9 @@ export const pageQuery = graphql`
       metaDescription
       serviceTitle
       metaTitle
+      beforeAfterVideos
+      shouldCaptureEmail
+      shouldVerifyAge
     }
   }
 `;

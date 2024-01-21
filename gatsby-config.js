@@ -30,6 +30,9 @@ module.exports = {
     siteUrl: `https://www.lushfulaesthetics.com/`,
     description: `Lushful Aesthetics by Injector Chris`,
   },
+  flags: {
+    DEV_SSR: true,
+  },
   plugins: [
     {
       resolve: "gatsby-source-contentful",
