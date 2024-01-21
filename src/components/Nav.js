@@ -3,6 +3,7 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 import { Transition } from "@headlessui/react";
 import Button from "./BookBtn";
 import Logo from "../images/lushful-aesthetic-logo-side.svg";
+import PromoBanner from "./PromoBanner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -132,6 +133,7 @@ export default function Nav() {
 
   return (
     <div className="bg-white sticky top-0 z-50 shadow-sm ">
+      <PromoBanner />
       <nav className="max-w-[1536px] mx-auto">
         <div className="flex items-center px-4 py-4 md:px-12 lg:px-4">
           <div className="w-48 lg:w-60 mr-auto">
