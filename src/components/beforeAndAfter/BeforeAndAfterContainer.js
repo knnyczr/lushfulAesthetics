@@ -2,41 +2,11 @@ import React, { useState, useEffect } from "react";
 import ImageWithOverlay from "./ImageWithOverlay";
 import ImageModal from "./ImageModal";
 
-export default function BeforeAndAfterContainer() {
-  const images = [
-    {
-      before:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      after:
-        "https://images.unsplash.com/photo-1567324216289-97cc4134f626?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      before:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      after:
-        "https://images.unsplash.com/photo-1586796676774-c93004ae009f?q=80&w=3165&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      before:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      after:
-        "https://images.unsplash.com/photo-1586796676774-c93004ae009f?q=80&w=3165&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      before:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      after:
-        "https://plus.unsplash.com/premium_photo-1675804300600-888042d9e90d?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-    {
-      before:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      after:
-        "https://images.unsplash.com/photo-1586796676774-c93004ae009f?q=80&w=3165&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    },
-  ];
-
-  const [viewAll, setViewAll] = useState(false);
+export default function BeforeAndAfterContainer({
+  beforeAfterVideos,
+  beforeAndAfters,
+}) {
+  const [isViewAll, setIsViewAll] = useState(false);
   const [isImagePairOpen, setIsImagePairOpen] = useState(false);
 
   useEffect(() => {
@@ -48,7 +18,7 @@ export default function BeforeAndAfterContainer() {
   }, [isImagePairOpen]);
 
   const renderImagePairs = (count) => {
-    return images.slice(0, count).map((imagePair, index) => (
+    return beforeAndAfters.slice(0, count).map((imagePair, index) => (
       <div
         key={index}
         className="col-span-2 md:col-span-1 flex cursor-pointer"
@@ -56,13 +26,13 @@ export default function BeforeAndAfterContainer() {
       >
         <ImageWithOverlay
           src={imagePair.before}
-          alt={`Before Image ${index + 1}`}
+          alt={imagePair.before.title}
           overlayText="BEFORE"
           type="Before"
         />
         <ImageWithOverlay
           src={imagePair.after}
-          alt={`After Image ${index + 1}`}
+          alt={imagePair.after.title}
           overlayText="AFTER"
           type="After"
         />
@@ -77,23 +47,40 @@ export default function BeforeAndAfterContainer() {
           <span className="text-3xl font-serif font-bold">
             Before and After
           </span>
-          <button
-            className="font-sans font-bold"
-            onClick={() => {
-              setViewAll(!viewAll);
-            }}
-          >
-            {viewAll ? "View Less" : "View All"}
-          </button>
+          {beforeAndAfters && beforeAndAfters.length > 2 && (
+            <button
+              className="font-sans font-bold"
+              onClick={() => {
+                setIsViewAll(!isViewAll);
+              }}
+            >
+              {isViewAll ? "View Less" : "View All"}
+            </button>
+          )}
         </div>
-        <div className="grid grid-cols-2 gap-8 mt-8">
-          {viewAll ? renderImagePairs(images.length) : renderImagePairs(2)}
-        </div>
+        {beforeAndAfters && (
+          <div className="grid grid-cols-2 gap-8 mt-8">
+            {isViewAll
+              ? renderImagePairs(beforeAndAfters.length)
+              : renderImagePairs(2)}
+          </div>
+        )}
+        {/* TODO: LBA-45 none working component to integrate vimeo videos */}
+        {beforeAfterVideos && (
+          <iframe
+            src={beforeAfterVideos}
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            frameBorder="0"
+            webkitallowfullscreen="true"
+            mozallowfullscreen="true"
+            allowFullScreen
+          />
+        )}
       </div>
       {isImagePairOpen && (
         <ImageModal
           imagePair={isImagePairOpen}
-          onClose={() => setIsImagePairOpen(null)}
+          onClose={() => setIsImagePairOpen(false)}
         />
       )}
     </>
