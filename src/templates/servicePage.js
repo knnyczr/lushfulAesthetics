@@ -33,6 +33,7 @@ export default function ServicePage({ data }) {
       subheadingAsSeenIn,
       metaTitle,
       beforeAfterVideos,
+      beforeAndAfters,
       shouldCaptureEmail,
       shouldVerifyAge,
     },
@@ -69,7 +70,14 @@ export default function ServicePage({ data }) {
         heroImage={heroImage}
       />
       {/* BEFORE & AFTERS FEATURES */}
-      <BeforeAndAfterContainer />
+
+      {(beforeAfterVideos || beforeAndAfters) && (
+        <BeforeAndAfterContainer
+          beforeAfterVideos={beforeAfterVideos}
+          beforeAndAfters={beforeAndAfters}
+        />
+      )}
+
       <button onClick={() => setIsVerifyAgePopupOpen(!isVerifyAgePopupOpen)}>
         verify age
       </button>
@@ -102,7 +110,7 @@ export default function ServicePage({ data }) {
   );
 }
 
-function AsSeenIn({ press, subheadingAsSeenIn, asSeenInSubheading }) {
+function AsSeenIn({ press, subheadingAsSeenIn }) {
   return (
     <>
       <div className="px-4 pb-16 flex flex-col justify-start sm:px-6 md:justify-center lg:px-24 lg:pb-24">
@@ -125,9 +133,11 @@ function AsSeenIn({ press, subheadingAsSeenIn, asSeenInSubheading }) {
             const image = getImage(companyLogo);
 
             return (
-              <div className="flex items-center justify-center">
+              <div
+                key={`${companyName}: ${articleTitle}`}
+                className="flex items-center justify-center"
+              >
                 <a
-                  key={`${companyName}: ${articleTitle}`}
                   href={`${url}`}
                   target="_blank"
                   rel="noreferrer"
@@ -199,9 +209,21 @@ export const pageQuery = graphql`
       metaDescription
       serviceTitle
       metaTitle
-      beforeAfterVideos
       shouldCaptureEmail
       shouldVerifyAge
+      beforeAfterVideos
+      beforeAndAfters {
+        before {
+          id
+          gatsbyImageData
+          title
+        }
+        after {
+          id
+          gatsbyImageData
+          title
+        }
+      }
     }
   }
 `;
