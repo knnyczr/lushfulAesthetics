@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
-import AcceptCookiePopover from "./AcceptCookieBanner";
+import AcceptDataDisclosure from "./AcceptDataDisclosure";
 import { Context, initialState } from "./Context";
 
 const isBrowser = typeof window !== `undefined`;
@@ -16,7 +16,6 @@ export default function Layout({ children }) {
     return value ? JSON.parse(value) : state;
   };
 
-  const [hasAcceptedCookies, setHasAcceptedCookies] = useState(false);
   const [user, setUser] = useState(() => {
     return isBrowser
       ? getLocalStorageOrInitialState("user", initialState)
@@ -28,23 +27,28 @@ export default function Layout({ children }) {
   }, [user]);
 
   return (
-    <Context.Provider
-      value={{
-        user: {
-          name: user.name,
-          email: user.email,
-        },
-        setUser: (user) =>
-          setUser({ ...user, name: user.name, email: user.email }),
-      }}
-    >
-      <Nav />
-      {children}
-      {!hasAcceptedCookies && (
-        <AcceptCookiePopover setHasAcceptedCookies={setHasAcceptedCookies} />
-      )}
-      <Footer />
-    </Context.Provider>
+    <>
+      <Context.Provider
+        value={{
+          user: {
+            name: user.name,
+            email: user.email,
+          },
+          setUser: (user) => setUser({ ...user }),
+        }}
+      >
+        <Nav />
+        {children}
+        {!user.hasSeenDataDisclosurePopover && (
+          <AcceptDataDisclosure
+            setUser={(hasAcceptedArg) =>
+              setUser({ ...user, hasSeenDataDisclosurePopover: hasAcceptedArg })
+            }
+          />
+        )}
+        <Footer />
+      </Context.Provider>
+    </>
   );
 }
 

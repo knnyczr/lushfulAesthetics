@@ -26,25 +26,23 @@ export default function PromoBanner() {
   };
 
   return (
-    <>
-      <div className="flex justify-center items-center mx-auto bg-main-green py-3 md:py-4 text-sm px-4 md:px-12 lg:px-4">
-        <div className="flex justify-between items-center w-[600px] mx-auto">
-          <button className="" onClick={() => handleNavClick("left")}>
-            <FontAwesomeIcon icon={faAngleLeft} />
-          </button>
-          <div className="">
-            <p>
-              <span className="">{promotions[currentPromotion].text}. </span>
-              <a href={promotions[currentPromotion].link} className="">
-                <span className="underline underline-offset-2">View all</span>
-              </a>
-            </p>
-          </div>
-          <button className="" onClick={() => handleNavClick("right")}>
-            <FontAwesomeIcon icon={faAngleRight} />
-          </button>
+    <div className="flex justify-center items-center mx-auto bg-main-green py-3 md:py-4 text-sm px-4 md:px-12 lg:px-4">
+      <div className="flex justify-between items-center w-[600px] mx-auto">
+        <button onClick={() => handleNavClick("left")}>
+          <FontAwesomeIcon icon={faAngleLeft} />
+        </button>
+        <div>
+          <p>
+            <span>{promotions[currentPromotion].text}. </span>
+            <a href={promotions[currentPromotion].link}>
+              <span className="underline underline-offset-2">View all</span>
+            </a>
+          </p>
         </div>
+        <button onClick={() => handleNavClick("right")}>
+          <FontAwesomeIcon icon={faAngleRight} />
+        </button>
       </div>
-    </>
+    </div>
   );
 }
