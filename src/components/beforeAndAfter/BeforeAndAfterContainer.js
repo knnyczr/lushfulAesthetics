@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ImageWithOverlay from "./ImageWithOverlay";
 import ImageModal from "./ImageModal";
+import { VimeoPlayer } from "reactjs-vimeo-player";
 
 export default function BeforeAndAfterContainer({
   beforeAfterVideos,
@@ -44,7 +45,7 @@ export default function BeforeAndAfterContainer({
     <>
       <div className="flex flex-col justify-between px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24">
         <div className="w-full flex flex-row justify-between">
-          <span className="text-3xl font-serif font-bold">
+          <span className="my-5 text-3xl font-serif font-bold">
             Before and After
           </span>
           {beforeAndAfters && beforeAndAfters.length > 2 && (
@@ -65,16 +66,10 @@ export default function BeforeAndAfterContainer({
               : renderImagePairs(2)}
           </div>
         )}
-        {/* TODO: LBA-45 none working component to integrate vimeo videos */}
         {beforeAfterVideos && (
-          <iframe
-            src={beforeAfterVideos}
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            frameBorder="0"
-            webkitallowfullscreen="true"
-            mozallowfullscreen="true"
-            allowFullScreen
-          />
+          <div className="flex w-full justify-center">
+            <VimeoPlayer className="" id={beforeAfterVideos} />
+          </div>
         )}
       </div>
       {isImagePairOpen && (

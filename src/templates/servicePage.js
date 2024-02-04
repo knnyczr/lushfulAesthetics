@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { graphql } from "gatsby";
 import CustomAccordion from "../components/CustomAccodian";
 import HeroImage from "../components/HeroImage";
@@ -45,6 +45,12 @@ export default function ServicePage({ data }) {
 
   const [isVerifyAgePopupOpen, setIsVerifyAgePopupOpen] = useState(false);
 
+  useEffect(() => {
+    // conditional decision on
+    // shouldCaptureEmail
+    // shouldVerifyAge
+  }, []);
+
   return (
     <div className="mx-auto max-w-[1536px]">
       <HelmetWithMetaDesc
@@ -52,6 +58,14 @@ export default function ServicePage({ data }) {
         metaDescription={metaDescription}
       />
       <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
+
+      <button
+        className="m-5"
+        onClick={() => setIsVerifyAgePopupOpen(!isVerifyAgePopupOpen)}
+      >
+        verify age
+      </button>
+
       <ServicePrice
         intro={renderRichText(intro, options)}
         pricing={renderRichText(pricing, options)}
@@ -69,6 +83,7 @@ export default function ServicePage({ data }) {
         postCare={postCare}
         heroImage={heroImage}
       />
+
       {/* BEFORE & AFTERS FEATURES */}
 
       {(beforeAfterVideos || beforeAndAfters) && (
@@ -77,10 +92,6 @@ export default function ServicePage({ data }) {
           beforeAndAfters={beforeAndAfters}
         />
       )}
-
-      <button onClick={() => setIsVerifyAgePopupOpen(!isVerifyAgePopupOpen)}>
-        verify age
-      </button>
 
       {isVerifyAgePopupOpen && (shouldVerifyAge || shouldCaptureEmail) && (
         <AgeAndEmailCaptureModal
