@@ -33,6 +33,9 @@ export default function Layout({ children }) {
           user: {
             name: user.name,
             email: user.email,
+            hasSeenDataDisclosurePopover: user.hasSeenDataDisclosurePopover,
+            hasCheckedOrCreatedMailChimpForUser:
+              user.hasCheckedOrCreatedMailChimpForUser,
           },
           setUser: (user) => setUser({ ...user }),
         }}
