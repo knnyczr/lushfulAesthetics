@@ -9,6 +9,7 @@ export default function BeforeAndAfterContainer({
 }) {
   const [isViewAll, setIsViewAll] = useState(false);
   const [isImagePairOpen, setIsImagePairOpen] = useState(false);
+  const [currentImagePairIndex, setCurrentImagePairIndex] = useState(0);
 
   useEffect(() => {
     document.body.style.overflow = isImagePairOpen ? "hidden" : "";
@@ -18,12 +19,30 @@ export default function BeforeAndAfterContainer({
     };
   }, [isImagePairOpen]);
 
+  const handleImagePairClick = (imagePair, index) => {
+    setIsImagePairOpen(imagePair);
+    setCurrentImagePairIndex(index);
+  };
+
+  const onNext = () => {
+    setCurrentImagePairIndex(
+      (currentImagePairIndex + 1) % beforeAndAfters.length
+    );
+  };
+
+  const onPrev = () => {
+    setCurrentImagePairIndex(
+      (currentImagePairIndex - 1 + beforeAndAfters.length) %
+        beforeAndAfters.length
+    );
+  };
+
   const renderImagePairs = (count) => {
     return beforeAndAfters.slice(0, count).map((imagePair, index) => (
       <div
         key={index}
         className="col-span-2 md:col-span-1 flex cursor-pointer"
-        onClick={() => setIsImagePairOpen(imagePair)}
+        onClick={() => handleImagePairClick(imagePair, index)}
       >
         <ImageWithOverlay
           src={imagePair.before}
@@ -74,8 +93,12 @@ export default function BeforeAndAfterContainer({
       </div>
       {isImagePairOpen && (
         <ImageModal
-          imagePair={isImagePairOpen}
+          imagePairs={beforeAndAfters}
+          currentIndex={currentImagePairIndex}
           onClose={() => setIsImagePairOpen(false)}
+          onNext={onNext}
+          onPrev={onPrev}
+          totalImages={beforeAndAfters.length}
         />
       )}
     </>
