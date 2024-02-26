@@ -6,7 +6,7 @@ export default function ApplyBtn({ url, text }) {
       <a
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Apply with Cherry (opens in a new tab)"
+        aria-label={`${text} (opens in a new tab)`}
         href={`${url}`}
       >
         <button

@@ -4,7 +4,7 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import HeroImage from "../components/HeroImage";
 import ApplyBtn from "../components/ApplyBtn";
 
-import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 
 export { Head } from "../components/Layout";
@@ -14,15 +14,14 @@ export default function Financing({ data }) {
     howDoesCherryWork,
     pageTitle,
     reasonsWhyPatientsLoveCherry,
-    whatIsCherry,
     heroImage,
     applyForCherryLink,
     applyForPatientFiLink,
     metaDescription,
     metaTitle,
+    financingIntro,
+    howDoesPatientFiWork,
   } = data.contentfulFinancingPage;
-
-  console.log("content", data.contentfulFinancingPage);
 
   const options = {
     renderMark: {
@@ -46,6 +45,27 @@ export default function Financing({ data }) {
     },
   };
 
+  const howDoesItworkOptions = {
+    renderMark: {
+      [MARKS.BOLD]: (text) => (
+        <span className="font-sans font-bold lg:text-lg pt-6">
+          <br />
+          {text}
+        </span>
+      ),
+    },
+    renderNode: {
+      [BLOCKS.UL_LIST]: (node, children) => (
+        <ul className="flex flex-col justify-center list-disc ml-5">
+          {children}
+        </ul>
+      ),
+      [BLOCKS.LIST_ITEM]: (node, children) => (
+        <li className="text">{children}</li>
+      ),
+    },
+  };
+
   return (
     <div>
       <HelmetWithMetaDesc
@@ -59,13 +79,13 @@ export default function Financing({ data }) {
           <div>
             <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-start md:justify-center md:items-center ">
               <div className="max-w-screen-lg pb-8 lg:pb-16 text-lg lg:text-2xl text-center">
-                {renderRichText(whatIsCherry)}
+                {renderRichText(financingIntro)}
               </div>
               <div className="flex flex-col md:flex-row gap-4 lg:gap-8 justify-center mx-auto w-2/3">
                 <ApplyBtn url={applyForCherryLink} text={"Apply with cherry"} />
                 <ApplyBtn
                   url={applyForPatientFiLink}
-                  text={" Apply with PatientFiLink"}
+                  text={"Apply with PatientFi"}
                 />
               </div>
             </div>
@@ -84,7 +104,7 @@ export default function Financing({ data }) {
                   </h4>
                   <hr className=" border-black" />
                   <div className="pt-4 lg:pt-8 lg:text-lg [&>*]:mb-6 nth-child-2:mb-0">
-                    {renderRichText(howDoesCherryWork)}
+                    {renderRichText(howDoesCherryWork, howDoesItworkOptions)}
                   </div>
                   <div>
                     <ApplyBtn
@@ -97,16 +117,16 @@ export default function Financing({ data }) {
               <div className="flex justify-start items-start border border-black ">
                 <div className="max-w-screen-lg py-8 px-6 lg:py-12 lg:px-12">
                   <h4 className="capitalize font-serif font-bold text-2xl pb-4 lg:pb-8 lg:text-3xl">
-                    How does PatientFiLink work
+                    How does PatientFi work
                   </h4>
                   <hr className=" border-black" />
                   <div className="pt-4 lg:pt-8 lg:text-lg [&>*]:mb-6 nth-child-2:mb-0">
-                    {renderRichText(howDoesCherryWork)}
+                    {renderRichText(howDoesPatientFiWork, howDoesItworkOptions)}
                   </div>
                   <div className="">
                     <ApplyBtn
-                      url={applyForCherryLink}
-                      text={" Apply with PatientFiLink"}
+                      url={applyForPatientFiLink}
+                      text={"Apply with PatientFi"}
                     />
                   </div>
                 </div>
@@ -127,6 +147,9 @@ export const pageQuery = graphql`
       applyForPatientFiLink
       applyForCherryLink
       pageTitle
+      financingIntro {
+        raw
+      }
       reasonsWhyPatientsLoveCherry {
         raw
       }
@@ -134,6 +157,9 @@ export const pageQuery = graphql`
         raw
       }
       howDoesCherryWork {
+        raw
+      }
+      howDoesPatientFiWork {
         raw
       }
       heroImage {
