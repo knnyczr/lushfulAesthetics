@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
+import { useSwipeable } from "react-swipeable";
 
 export default function ImageModal({
   imagePairs,
@@ -41,12 +42,19 @@ export default function ImageModal({
   surgery.`;
   //TODO: If this information comes with imagePairs, replace it to make it work!
 
+  //swipe handles
+  const handles = useSwipeable({
+    onSwipedLeft: () => onNext(),
+    onSwipedRight: () => onPrev(),
+  });
+
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50"
+      className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50"
       onClick={onClose}
     >
       <div
+        {...handles}
         className="p-4 rounded flex flex-col justify-center overflow-auto max-w-full max-h-full"
         onClick={(e) => e.stopPropagation()}
       >
@@ -54,11 +62,11 @@ export default function ImageModal({
           {/* Previous Button */}
           <button
             onClick={onPrev}
-            className="absolute left-0 top-[45%] z-10 px-4 md:px-12 lg:px-4 text-white text-3xl"
+            className="hidden lg:block absolute left-0 top-[45%] z-10 px-4 md:px-12 lg:px-4 text-white text-3xl"
             aria-label="Previous image"
           >
             <FontAwesomeIcon
-              className="text-white text-3xl p-6 font-light"
+              className="text-white text-3xl p-6 font-light hidden lg:block"
               icon={faArrowLeft}
             />
           </button>
@@ -82,11 +90,11 @@ export default function ImageModal({
 
           <button
             onClick={onNext}
-            className="absolute right-0 top-[45%] px-4 md:px-12 lg:px-4 z-10 text-white text-3xl"
+            className="hidden lg:block absolute right-0 top-[45%] px-4 md:px-12 lg:px-4 z-10 text-white text-3xl"
             aria-label="Next image"
           >
             <FontAwesomeIcon
-              className="text-white text-3xl p-6 font-light"
+              className="text-white text-3xl p-6 font-light hidden lg:block"
               icon={faArrowRight}
             />
           </button>
