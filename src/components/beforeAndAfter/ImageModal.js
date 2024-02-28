@@ -42,8 +42,14 @@ export default function ImageModal({
   //TODO: If this information comes with imagePairs, replace it to make it work!
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50">
-      <div className="p-4 rounded flex flex-col justify-center overflow-auto max-w-full max-h-full">
+    <div
+      className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50"
+      onClick={onClose}
+    >
+      <div
+        className="p-4 rounded flex flex-col justify-center overflow-auto max-w-full max-h-full"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex w-full max-w-4xl">
           {/* Previous Button */}
           <button
@@ -52,7 +58,7 @@ export default function ImageModal({
             aria-label="Previous image"
           >
             <FontAwesomeIcon
-              className="text-white text-3xl p-4 font-light"
+              className="text-white text-3xl p-6 font-light"
               icon={faArrowLeft}
             />
           </button>
@@ -80,7 +86,7 @@ export default function ImageModal({
             aria-label="Next image"
           >
             <FontAwesomeIcon
-              className="text-white text-3xl p-4 font-light"
+              className="text-white text-3xl p-6 font-light"
               icon={faArrowRight}
             />
           </button>
@@ -106,7 +112,7 @@ export default function ImageModal({
           className="flex flex-row absolute top-0 right-0 px-4 py-4 md:px-12 lg:px-4"
         >
           <FontAwesomeIcon
-            className="text-white text-3xl p-4 font-light"
+            className="text-white text-3xl p-6 font-light"
             icon={faClose}
           />
         </button>
