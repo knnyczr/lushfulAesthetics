@@ -37,9 +37,8 @@ export default function ImageModal({
     },
   });
 
-  const beforeAndAfterDescription = `*Experience a lifted, rounder, and more sculpted backside without
-  surgery.`;
-  //TODO: If this information comes with imagePairs, replace it to make it work!
+  const beforeDescription = currentImagePair.beforeImageDescription;
+  const afterDescription = currentImagePair.afterImageDescription;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50">
@@ -85,20 +84,26 @@ export default function ImageModal({
             />
           </button>
         </div>
-        <div className="flex flex-col text-center text-white">
-          <div className="flex flex-row justify-center font-bold lg:text-lg">
-            <div className="bg-main-green w-1/2 text-center py-3 lg:py-4 bg-gradient-to-l from-black/0 to-transparent">
-              <span>Before</span>
+        <div className="flex flex-col text-center text-white w-full">
+          <div className="max-w-4xl flex flex-row justify-center lg:text-lg bg-main-green ">
+            <div className="w-1/2 text-left px-6 py-4 bg-gradient-to-l from-black/10 to-transparent">
+              <span className="font-bold">Before</span>
+              {beforeDescription ? (
+                <div className="font-normal text-sm mt-1">
+                  {beforeDescription}
+                </div>
+              ) : null}
             </div>
-            <div className="bg-main-green w-1/2 text-center py-3 lg:py-4 bg-gradient-to-l from-black/10 to-transparent">
-              <span>After</span>
+
+            <div className="w-1/2 text-left px-6 py-4 bg-gradient-to-l from-black/10 to-transparent">
+              <span className="font-bold">After</span>
+              {afterDescription ? (
+                <div className="font-normal text-sm mt-1">
+                  {afterDescription}
+                </div>
+              ) : null}
             </div>
           </div>
-          {beforeAndAfterDescription ? (
-            <div className="border-white border-[1px] bg-black/50 w-full mt-4 py-4 lg:py-5 px-8 lg:px-16 text-sm">
-              {beforeAndAfterDescription}
-            </div>
-          ) : null}
         </div>
 
         <button
