@@ -8,7 +8,7 @@ import { faChevronDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import {
   faTiktok,
   faInstagram,
-  faTwitter,
+  faXTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import { ServicesTree } from "../helpers/navTree";
@@ -442,7 +442,7 @@ export default function Nav() {
                         >
                           <FontAwesomeIcon
                             className="fa-2x hover:black"
-                            icon={faTwitter}
+                            icon={faXTwitter}
                           />
                         </a>
                       )}
