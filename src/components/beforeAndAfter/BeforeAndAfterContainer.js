@@ -62,7 +62,11 @@ export default function BeforeAndAfterContainer({
 
   return (
     <>
-      <div className="flex flex-col justify-between px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24">
+      <div
+        className={`flex flex-col justify-between px-4 pt-16 ${
+          !beforeAfterVideos && `pb-16`
+        } h-full sm:px-6 md:px-12 lg:px-24 lg:py-24`}
+      >
         <div className="w-full flex flex-row justify-between">
           <span className="my-5 text-3xl font-serif font-bold">
             Before and After
@@ -86,8 +90,11 @@ export default function BeforeAndAfterContainer({
           </div>
         )}
         {beforeAfterVideos && (
-          <div className="flex w-full justify-center">
-            <VimeoPlayer className="" id={beforeAfterVideos} />
+          <div className="flex justify-center">
+            <VimeoPlayer
+              className="w-1/2 justify-center flex mx-auto"
+              id={beforeAfterVideos}
+            />
           </div>
         )}
       </div>
