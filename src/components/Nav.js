@@ -156,7 +156,7 @@ export default function Nav() {
                     {menuOpen && (
                       <div
                         ref={ref}
-                        className="pointer-events-auto flex flex-col absolute top-24 left-0 p-10 w-full shadow-md bg-main-green text-white duration-300 "
+                        className="pointer-events-auto flex flex-col absolute top-[148px] left-0 p-10 w-full shadow-md bg-main-green text-white duration-300"
                       >
                         <div
                           className="flex flex-row items-start gap-10  "
