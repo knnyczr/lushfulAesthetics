@@ -279,6 +279,8 @@ export const pageQuery = graphql`
       shouldVerifyAge
       beforeAfterVideos
       beforeAndAfters {
+        afterImageDescription
+        beforeImageDescription
         before {
           id
           gatsbyImageData

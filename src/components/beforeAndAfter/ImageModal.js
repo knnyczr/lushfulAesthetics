@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
+import { useSwipeable } from "react-swipeable";
 
 export default function ImageModal({
   imagePairs,
@@ -37,27 +38,39 @@ export default function ImageModal({
     },
   });
 
-  // These 2 lines are for infinite loop toggels for previous and next
-  // const showPrevButton = currentIndex > 0;
-  // const showNextButton = currentIndex < imagePairs.length - 1;
+  const beforeDescription = currentImagePair.beforeImageDescription;
+  const afterDescription = currentImagePair.afterImageDescription;
+
+  //swipe handler
+  const handles = useSwipeable({
+    onSwipedLeft: () => onNext(),
+    onSwipedRight: () => onPrev(),
+  });
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center p-4 z-50">
-      <div className="p-4 rounded flex overflow-auto max-w-full max-h-full">
+    <div
+      className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50"
+      onClick={onClose}
+    >
+      <div
+        {...handles}
+        className="p-4 rounded flex flex-col justify-center overflow-auto max-w-full max-h-full"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex w-full max-w-4xl">
           {/* Previous Button */}
-          {/* {showPrevButton && ( */}
+
           <button
             onClick={onPrev}
-            className="absolute left-0 top-1/2 z-10 px-4 md:px-12 lg:px-4 text-white text-3xl"
+            className="hidden lg:block absolute left-0 top-[45%] z-10 px-4 md:px-12 lg:px-4 text-white text-3xl"
             aria-label="Previous image"
           >
             <FontAwesomeIcon
-              className="text-white text-3xl p-4 font-light"
+              className="text-white text-3xl p-6 font-light hidden lg:block"
               icon={faArrowLeft}
             />
           </button>
-          {/* )} */}
+
           {/* Before Image */}
           <div className="w-1/2 relative">
             <GatsbyImage
@@ -65,9 +78,6 @@ export default function ImageModal({
               className="w-full h-full object-cover aspect-[3/4]"
               alt={currentImagePair.before.title}
             />
-            <div className="absolute w-full h-full top-0 left-0 flex items-end justify-end text-white text-lg font-bold pr-6 pb-6 bg-gradient-to-t from-black/50 to-transparent">
-              BEFORE
-            </div>
           </div>
           {/* After Image */}
           <div className="w-1/2 relative">
@@ -76,23 +86,41 @@ export default function ImageModal({
               className="w-full h-full object-cover aspect-[3/4]"
               alt={currentImagePair.after.title}
             />
-            <div className="absolute w-full h-full top-0 left-0 flex items-end justify-start text-white text-lg font-bold pl-6 pb-6 bg-gradient-to-t from-black/50 to-transparent">
-              AFTER
-            </div>
           </div>
           {/* Next Button */}
-          {/* {showNextButton && ( */}
+
           <button
             onClick={onNext}
-            className="absolute right-0 top-1/2 px-4 md:px-12 lg:px-4 z-10 text-white text-3xl"
+            className="hidden lg:block absolute right-0 top-[45%] px-4 md:px-12 lg:px-4 z-10 text-white text-3xl"
             aria-label="Next image"
           >
             <FontAwesomeIcon
-              className="text-white text-3xl p-4 font-light"
+              className="text-white text-3xl p-6 font-light hidden lg:block"
               icon={faArrowRight}
             />
           </button>
-          {/* )} */}
+        </div>
+
+        <div className="flex flex-col text-center text-white w-full">
+          <div className="max-w-4xl flex flex-row justify-center lg:text-lg bg-main-green ">
+            <div className="w-1/2 text-left px-6 py-4 bg-gradient-to-l from-black/10 to-transparent">
+              <span className="font-bold">Before</span>
+              {beforeDescription ? (
+                <div className="font-normal text-sm mt-1">
+                  {beforeDescription}
+                </div>
+              ) : null}
+            </div>
+
+            <div className="w-1/2 text-left px-6 py-4 bg-gradient-to-l from-black/10 to-transparent">
+              <span className="font-bold">After</span>
+              {afterDescription ? (
+                <div className="font-normal text-sm mt-1">
+                  {afterDescription}
+                </div>
+              ) : null}
+            </div>
+          </div>
         </div>
 
         <button
@@ -100,7 +128,7 @@ export default function ImageModal({
           className="flex flex-row absolute top-0 right-0 px-4 py-4 md:px-12 lg:px-4"
         >
           <FontAwesomeIcon
-            className="text-white text-3xl p-4 font-light"
+            className="text-white text-3xl p-6 font-light"
             icon={faClose}
           />
         </button>
