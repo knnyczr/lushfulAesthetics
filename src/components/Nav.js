@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { Transition } from "@headlessui/react";
 import Button from "./BookBtn";
@@ -22,6 +22,7 @@ export default function Nav() {
     "body-aesthetic-services": false,
     "sexual-enhancement-services": false,
   });
+  const ref = useRef(null);
 
   function closeMenu() {
     setIsOpen(false);
@@ -117,6 +118,18 @@ export default function Nav() {
     facialAestheticServices,
   ]);
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+
   return (
     <div className="bg-white sticky top-0 z-50 shadow-sm ">
       <nav className="max-w-[1536px] mx-auto">
@@ -139,7 +152,10 @@ export default function Nav() {
                       Services
                     </button>
                     {menuOpen && (
-                      <div className="pointer-events-auto flex flex-col absolute top-24 left-0 p-10 w-full shadow-md bg-main-green text-white duration-300 ">
+                      <div
+                        ref={ref}
+                        className="pointer-events-auto flex flex-col absolute top-24 left-0 p-10 w-full shadow-md bg-main-green text-white duration-300 "
+                      >
                         <div
                           className="flex flex-row items-start gap-10  "
                           onClick={() => setMenuOpen(!menuOpen)}
