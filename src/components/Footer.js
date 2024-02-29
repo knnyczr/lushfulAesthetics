@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTiktok,
   faInstagram,
-  faTwitter,
+  faXTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 
@@ -103,7 +103,7 @@ export default function Footer() {
                 >
                   <FontAwesomeIcon
                     className="fa-2x hover:black"
-                    icon={faTwitter}
+                    icon={faXTwitter}
                   />
                 </a>
               )}
