@@ -37,6 +37,8 @@ export default function Nav() {
       facialInjectableServices,
       facialAestheticServices,
       slugDictionaries,
+      allPromosLink,
+      promos,
     },
     contentfulFooterContent: {
       socialInstagram,
@@ -53,6 +55,10 @@ export default function Nav() {
         }
       }
       contentfulServicesMenu {
+        allPromosLink
+        promos {
+          promoOffer
+        }
         bodyAestheticServices {
           ... on ContentfulServicePage {
             slug
@@ -133,7 +139,7 @@ export default function Nav() {
 
   return (
     <div className="bg-white sticky top-0 z-50 shadow-sm ">
-      <PromoBanner />
+      <PromoBanner allPromosLink={allPromosLink} promos={promos} />
       <nav className="max-w-[1536px] mx-auto">
         <div className="flex items-center px-4 py-4 md:px-12 lg:px-4">
           <div className="w-48 lg:w-60 mr-auto">

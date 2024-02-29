@@ -1,27 +1,17 @@
-import * as React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-const promotions = [
-  {
-    text: "Book by 12/25 to get 20% OFF. CODE: DADDY25",
-    link: "/link1",
-  },
-  { text: "2X points on 1/20-1/24", link: "/link1" },
-  { text: "Refer your friend and get 20% OFF", link: "/link1" },
-];
-
-export default function PromoBanner() {
+export default function PromoBanner({ allPromosLink, promos }) {
   const [currentPromotion, setCurrentPromotion] = useState(0);
 
   const handleNavClick = (direction) => {
     if (direction === "left") {
       setCurrentPromotion(
-        (currentPromotion - 1 + promotions.length) % promotions.length
+        (currentPromotion - 1 + promos.length) % promos.length
       );
     } else {
-      setCurrentPromotion((currentPromotion + 1) % promotions.length);
+      setCurrentPromotion((currentPromotion + 1) % promos.length);
     }
   };
 
@@ -33,8 +23,8 @@ export default function PromoBanner() {
         </button>
         <div>
           <p>
-            <span>{promotions[currentPromotion].text}. </span>
-            <a href={promotions[currentPromotion].link}>
+            <span>{promos[currentPromotion].promoOffer} </span>
+            <a href={allPromosLink}>
               <span className="underline underline-offset-2">View all</span>
             </a>
           </p>
