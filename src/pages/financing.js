@@ -153,9 +153,6 @@ export const pageQuery = graphql`
       reasonsWhyPatientsLoveCherry {
         raw
       }
-      whatIsCherry {
-        raw
-      }
       howDoesCherryWork {
         raw
       }
