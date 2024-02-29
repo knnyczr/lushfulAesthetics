@@ -2,7 +2,13 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import React from "react";
 
-export default function ImageWithOverlay({ src, alt, overlayText, type }) {
+export default function ImageWithOverlay({
+  src,
+  alt,
+  overlayText,
+  type,
+  shouldVerifyAge,
+}) {
   const overlayClass =
     type === "Before" ? "justify-end pr-6" : "justify-start pl-6";
 
@@ -18,7 +24,7 @@ export default function ImageWithOverlay({ src, alt, overlayText, type }) {
   });
 
   return (
-    <div className="relative w-1/2">
+    <div className="">
       <GatsbyImage image={dynamicImage} alt={alt} />
       <div
         className={`absolute w-full h-full top-0 left-0 flex items-end ${overlayClass} text-white font-medium pb-6 bg-gradient-to-t from-black/50 to-transparent`}

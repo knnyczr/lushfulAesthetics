@@ -49,7 +49,7 @@ export default function AcceptDataDisclosure({ setUser }) {
           style={{
             boxShadow: `0px 4px 20px 6px rgba(0, 0, 0, 0.15)`,
           }}
-          className="w-11/12 bg-white rounded-md pt-6 pb-4 px-6 md:px-16 md:py-6 flex flex-col md:flex-row items-center"
+          className="2xl:w-full w-11/12 bg-white rounded-md pt-6 pb-4 px-6 md:px-16 md:py-6 flex flex-col md:flex-row items-center"
         >
           <div className="text-xs flex mb-4 md:mb-0">
             {renderRichText(dataCaptureDisclosure, options)}
