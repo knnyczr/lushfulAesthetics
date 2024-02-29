@@ -43,13 +43,23 @@ export default function ServicePage({ data }) {
 
   const options = servicePageOptions(website_url);
 
-  const [isVerifyAgePopupOpen, setIsVerifyAgePopupOpen] = useState(false);
+  const [isVerifyAgePopupOpen, setIsVerifyAgePopupOpen] = useState({
+    isOpen: false,
+    flags: {
+      shouldVerifyAge,
+      shouldCaptureEmail,
+
+      // does this need to check the local stoarge for setting?
+      vAgeJustCollectEmail: false,
+    },
+  });
 
   useEffect(() => {
     // conditional decision on
     // shouldCaptureEmail
     // shouldVerifyAge
-  }, []);
+    // console.log(isVerifyAgePopupOpen);
+  }, [isVerifyAgePopupOpen]);
 
   return (
     <div className="mx-auto max-w-[1536px]">
@@ -61,9 +71,48 @@ export default function ServicePage({ data }) {
 
       <button
         className="m-5"
-        onClick={() => setIsVerifyAgePopupOpen(!isVerifyAgePopupOpen)}
+        onClick={() =>
+          setIsVerifyAgePopupOpen({
+            isOpen: true,
+            flags: {
+              shouldVerifyAge: true,
+              shouldCaptureEmail: false,
+              vAgeJustCollectEmail: false,
+            },
+          })
+        }
       >
-        verify age
+        Verify Age
+      </button>
+      <button
+        className="m-5"
+        onClick={() =>
+          setIsVerifyAgePopupOpen({
+            isOpen: true,
+            flags: {
+              shouldVerifyAge: false,
+              shouldCaptureEmail: true,
+              vAgeJustCollectEmail: false,
+            },
+          })
+        }
+      >
+        Capture Email
+      </button>
+      <button
+        className="m-5"
+        onClick={() =>
+          setIsVerifyAgePopupOpen({
+            isOpen: true,
+            flags: {
+              shouldVerifyAge: true,
+              shouldCaptureEmail: false,
+              vAgeJustCollectEmail: true,
+            },
+          })
+        }
+      >
+        Already captured age/email but they need to confirm their age once more
       </button>
 
       <ServicePrice
@@ -93,12 +142,18 @@ export default function ServicePage({ data }) {
         />
       )}
 
-      {isVerifyAgePopupOpen && (shouldVerifyAge || shouldCaptureEmail) && (
+      {isVerifyAgePopupOpen.isOpen && (
+        // || (shouldVerifyAge || shouldCaptureEmail)
         <AgeAndEmailCaptureModal
           heroImage={heroImage}
+          isVerifyAgePopupOpen={isVerifyAgePopupOpen}
           setIsVerifyAgePopupOpen={setIsVerifyAgePopupOpen}
-          shouldCaptureEmail={shouldCaptureEmail}
-          shouldVerifyAge={shouldVerifyAge}
+          serviceTitle={serviceTitle}
+          shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
+          shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
+          TMPvAgeJustCollectEmail={
+            isVerifyAgePopupOpen.flags.vAgeJustCollectEmail
+          }
         />
       )}
       <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">

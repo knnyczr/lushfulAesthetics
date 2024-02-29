@@ -1,9 +1,10 @@
-import React, { createContext } from "react";
+import { createContext } from "react";
 
 export const initialState = {
-  name: "",
+  name: { first: "", last: "" },
   email: "",
   hasSeenDataDisclosurePopover: false,
+  hasCheckedOrCreatedMailChimpForUser: false,
 };
 
 export const Context = createContext(initialState);
