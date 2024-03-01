@@ -7,7 +7,7 @@ export default function ImageWithOverlay({
   alt,
   overlayText,
   type,
-  shouldVerifyAge,
+  shouldBlur,
 }) {
   const overlayClass =
     type === "Before" ? "justify-end pr-6" : "justify-start pl-6";
@@ -24,10 +24,14 @@ export default function ImageWithOverlay({
   });
 
   return (
-    <div className="">
+    <div className="relative w-1/2">
       <GatsbyImage image={dynamicImage} alt={alt} />
       <div
-        className={`absolute w-full h-full top-0 left-0 flex items-end ${overlayClass} text-white font-medium pb-6 bg-gradient-to-t from-black/50 to-transparent`}
+        className={`absolute w-full h-full top-0 left-0 flex items-end ${overlayClass} text-white font-medium pb-6 ${
+          shouldBlur
+            ? "backdrop-blur-2xl"
+            : "bg-gradient-to-t from-black/50 to-transparent"
+        } `}
       >
         {overlayText}
       </div>

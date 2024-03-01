@@ -54,6 +54,17 @@ export default function ServicePage({ data }) {
     },
   });
 
+  const handleVerifyAge = () => {
+    setIsVerifyAgePopupOpen({
+      isOpen: true,
+      flags: {
+        shouldVerifyAge: true,
+        shouldCaptureEmail: false,
+        vAgeJustCollectEmail: false,
+      },
+    });
+  };
+
   useEffect(() => {
     // conditional decision on
     // shouldCaptureEmail
@@ -69,7 +80,7 @@ export default function ServicePage({ data }) {
       />
       <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
 
-      <button
+      {/* <button
         className="m-5"
         onClick={() =>
           setIsVerifyAgePopupOpen({
@@ -113,7 +124,7 @@ export default function ServicePage({ data }) {
         }
       >
         Already captured age/email but they need to confirm their age once more
-      </button>
+      </button> */}
 
       <ServicePrice
         intro={renderRichText(intro, options)}
@@ -139,6 +150,7 @@ export default function ServicePage({ data }) {
         <BeforeAndAfterContainer
           beforeAfterVideos={beforeAfterVideos}
           beforeAndAfters={beforeAndAfters}
+          onVerifyAge={handleVerifyAge}
           shouldVerifyAge={shouldVerifyAge}
         />
       )}

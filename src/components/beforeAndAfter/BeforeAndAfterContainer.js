@@ -7,6 +7,7 @@ export default function BeforeAndAfterContainer({
   beforeAfterVideos,
   beforeAndAfters,
   shouldVerifyAge,
+  onVerifyAge,
 }) {
   const [isViewAll, setIsViewAll] = useState(false);
   const [isImagePairOpen, setIsImagePairOpen] = useState(false);
@@ -48,28 +49,26 @@ export default function BeforeAndAfterContainer({
       <div
         key={index}
         className="col-span-2 md:col-span-1 flex cursor-pointer"
-        onClick={() => handleImagePairClick(imagePair, index)}
+        onClick={() => {
+          shouldVerifyAge
+            ? onVerifyAge()
+            : handleImagePairClick(imagePair, index);
+        }}
       >
-        <div
-          className={`relative w-1/2 ${
-            shouldVerifyAge ? "backdrop-blur-blur" : ""
-          }`}
-        >
-          <ImageWithOverlay
-            src={imagePair.before}
-            alt={imagePair.before.title}
-            overlayText="BEFORE"
-            type="Before"
-          />{" "}
-        </div>
-        <div className="relative w-1/2">
-          <ImageWithOverlay
-            src={imagePair.after}
-            alt={imagePair.after.title}
-            overlayText="AFTER"
-            type="After"
-          />
-        </div>
+        <ImageWithOverlay
+          src={imagePair.before}
+          alt={imagePair.before.title}
+          overlayText="BEFORE"
+          type="Before"
+          shouldBlur={shouldVerifyAge}
+        />
+        <ImageWithOverlay
+          src={imagePair.after}
+          alt={imagePair.after.title}
+          overlayText="AFTER"
+          type="After"
+          shouldBlur={shouldVerifyAge}
+        />
       </div>
     ));
   };
