@@ -139,6 +139,7 @@ export default function ServicePage({ data }) {
         <BeforeAndAfterContainer
           beforeAfterVideos={beforeAfterVideos}
           beforeAndAfters={beforeAndAfters}
+          shouldVerifyAge={shouldVerifyAge}
         />
       )}
 

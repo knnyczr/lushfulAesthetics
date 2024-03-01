@@ -6,10 +6,12 @@ import { VimeoPlayer } from "reactjs-vimeo-player";
 export default function BeforeAndAfterContainer({
   beforeAfterVideos,
   beforeAndAfters,
+  shouldVerifyAge,
 }) {
   const [isViewAll, setIsViewAll] = useState(false);
   const [isImagePairOpen, setIsImagePairOpen] = useState(false);
   const [currentImagePairIndex, setCurrentImagePairIndex] = useState(0);
+  const [showAgeModal, setShowAgeModal] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = isImagePairOpen ? "hidden" : "";
@@ -20,8 +22,12 @@ export default function BeforeAndAfterContainer({
   }, [isImagePairOpen]);
 
   const handleImagePairClick = (imagePair, index) => {
-    setIsImagePairOpen(imagePair);
-    setCurrentImagePairIndex(index);
+    if (shouldVerifyAge) {
+      setShowAgeModal(true);
+    } else {
+      setIsImagePairOpen(imagePair);
+      setCurrentImagePairIndex(index);
+    }
   };
 
   const onNext = () => {
@@ -44,21 +50,31 @@ export default function BeforeAndAfterContainer({
         className="col-span-2 md:col-span-1 flex cursor-pointer"
         onClick={() => handleImagePairClick(imagePair, index)}
       >
-        <ImageWithOverlay
-          src={imagePair.before}
-          alt={imagePair.before.title}
-          overlayText="BEFORE"
-          type="Before"
-        />
-        <ImageWithOverlay
-          src={imagePair.after}
-          alt={imagePair.after.title}
-          overlayText="AFTER"
-          type="After"
-        />
+        <div
+          className={`relative w-1/2 ${
+            shouldVerifyAge ? "backdrop-blur-blur" : ""
+          }`}
+        >
+          <ImageWithOverlay
+            src={imagePair.before}
+            alt={imagePair.before.title}
+            overlayText="BEFORE"
+            type="Before"
+          />{" "}
+        </div>
+        <div className="relative w-1/2">
+          <ImageWithOverlay
+            src={imagePair.after}
+            alt={imagePair.after.title}
+            overlayText="AFTER"
+            type="After"
+          />
+        </div>
       </div>
     ));
   };
+
+  console.log("shouldVerifyAge", shouldVerifyAge);
 
   return (
     <>
