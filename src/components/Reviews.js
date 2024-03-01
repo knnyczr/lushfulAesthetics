@@ -6,8 +6,8 @@ import { convertToBgImage } from "gbimage-bridge";
 export default function Reviews({ reviews }) {
   return (
     <>
-      <div className="flex flex-col bg-main-green">
-        <div className="flex overflow-x-scroll pb-10 xl:justify-center xl:scrollbar-hide">
+      <div className="flex flex-col justify-center mx-auto bg-main-green max-w-[1535px]">
+        <div className="flex overflow-x-scroll pb-10 justify-start xl:scrollbar-hide">
           <div className="flex flex-nowrap snap-mandatory snap-x">
             {reviews.map((review, index) => {
               let image = getImage(review.bgImage);
