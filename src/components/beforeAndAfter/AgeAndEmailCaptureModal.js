@@ -186,7 +186,14 @@ export default function AgeAndEmailCaptureModal({
       >
         <div className="flex flex-nowrap flex-col justify-between px-10 w-full md:w-1/2 relative">
           <div className="w-full h-10 pt-16 md:pt-20 flex flex-row justify-between items-center">
-            <button onClick={() => setIsVerifyAgePopupOpen(false)}>
+            <button
+              onClick={() =>
+                setIsVerifyAgePopupOpen({
+                  ...isVerifyAgePopupOpen,
+                  isOpen: false,
+                })
+              }
+            >
               <FontAwesomeIcon
                 className="text-white text-4xl font-light"
                 icon={faClose}
