@@ -3,6 +3,7 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 import { Transition } from "@headlessui/react";
 import Button from "./BookBtn";
 import Logo from "../images/lushful-aesthetic-logo-side.svg";
+import PromoBanner from "./PromoBanner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -36,6 +37,8 @@ export default function Nav() {
       facialInjectableServices,
       facialAestheticServices,
       slugDictionaries,
+      allPromosLink,
+      promos,
     },
     contentfulFooterContent: {
       socialInstagram,
@@ -52,6 +55,10 @@ export default function Nav() {
         }
       }
       contentfulServicesMenu {
+        allPromosLink
+        promos {
+          promoOffer
+        }
         bodyAestheticServices {
           ... on ContentfulServicePage {
             slug
@@ -132,6 +139,7 @@ export default function Nav() {
 
   return (
     <div className="bg-white sticky top-0 z-50 shadow-sm ">
+      <PromoBanner allPromosLink={allPromosLink} promos={promos} />
       <nav className="max-w-[1536px] mx-auto">
         <div className="flex items-center px-4 py-4 md:px-12 lg:px-4">
           <div className="w-48 lg:w-60 mr-auto">
@@ -154,7 +162,7 @@ export default function Nav() {
                     {menuOpen && (
                       <div
                         ref={ref}
-                        className="pointer-events-auto flex flex-col absolute top-24 left-0 p-10 w-full shadow-md bg-main-green text-white duration-300 "
+                        className="pointer-events-auto flex flex-col absolute top-[148px] left-0 p-10 w-full shadow-md bg-main-green text-white duration-300"
                       >
                         <div
                           className="flex flex-row items-start gap-10  "

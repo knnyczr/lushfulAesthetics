@@ -30,6 +30,10 @@ module.exports = {
     siteUrl: `https://www.lushfulaesthetics.com/`,
     description: `Lushful Aesthetics by Injector Chris`,
   },
+  // TODO: creates re-hydration error
+  // flags: {
+  //   DEV_SSR: true,
+  // },
   plugins: [
     {
       resolve: "gatsby-source-contentful",
@@ -122,12 +126,6 @@ module.exports = {
         host: "https://www.lushfulaesthetics.com/",
         sitemap: "https://www.lushfulaesthetics.com/sitemap.xml/",
         policy: [{ userAgent: "*", allow: "/" }],
-      },
-    },
-    {
-      resolve: "gatsby-plugin-layout",
-      options: {
-        component: require.resolve(`./src/components/Layout.js`),
       },
     },
     {

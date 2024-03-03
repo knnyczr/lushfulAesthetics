@@ -1,13 +1,56 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
+import AcceptDataDisclosure from "./AcceptDataDisclosure";
+import { Context, initialState } from "./Context";
+
+const isBrowser = typeof window !== `undefined`;
 
 export default function Layout({ children }) {
+  const setLocalStorage = (key, value) => {
+    window.localStorage.setItem(key, JSON.stringify(value));
+  };
+
+  const getLocalStorageOrInitialState = (key, state) => {
+    const value = window.localStorage.getItem(key);
+    return value ? JSON.parse(value) : state;
+  };
+
+  const [user, setUser] = useState(() => {
+    return isBrowser
+      ? getLocalStorageOrInitialState("user", initialState)
+      : initialState;
+  });
+
+  useEffect(() => {
+    if (isBrowser) setLocalStorage("user", user);
+  }, [user]);
+
   return (
     <>
-      <Nav />
-      {children}
-      <Footer />
+      <Context.Provider
+        value={{
+          user: {
+            name: user.name,
+            email: user.email,
+            hasSeenDataDisclosurePopover: user.hasSeenDataDisclosurePopover,
+            hasCheckedOrCreatedMailChimpForUser:
+              user.hasCheckedOrCreatedMailChimpForUser,
+          },
+          setUser: (user) => setUser({ ...user }),
+        }}
+      >
+        <Nav />
+        {children}
+        {!user.hasSeenDataDisclosurePopover && (
+          <AcceptDataDisclosure
+            setUser={(hasAcceptedArg) =>
+              setUser({ ...user, hasSeenDataDisclosurePopover: hasAcceptedArg })
+            }
+          />
+        )}
+        <Footer />
+      </Context.Provider>
     </>
   );
 }
