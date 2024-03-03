@@ -7,12 +7,12 @@ export default function BeforeAndAfterContainer({
   beforeAfterVideos,
   beforeAndAfters,
   shouldVerifyAge,
+  shouldCaptureEmail,
   onVerifyAge,
 }) {
   const [isViewAll, setIsViewAll] = useState(false);
   const [isImagePairOpen, setIsImagePairOpen] = useState(false);
   const [currentImagePairIndex, setCurrentImagePairIndex] = useState(0);
-  const [showAgeModal, setShowAgeModal] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = isImagePairOpen ? "hidden" : "";
@@ -23,12 +23,8 @@ export default function BeforeAndAfterContainer({
   }, [isImagePairOpen]);
 
   const handleImagePairClick = (imagePair, index) => {
-    if (shouldVerifyAge) {
-      setShowAgeModal(true);
-    } else {
-      setIsImagePairOpen(imagePair);
-      setCurrentImagePairIndex(index);
-    }
+    setIsImagePairOpen(imagePair);
+    setCurrentImagePairIndex(index);
   };
 
   const onNext = () => {
@@ -50,7 +46,7 @@ export default function BeforeAndAfterContainer({
         key={index}
         className="col-span-2 md:col-span-1 flex cursor-pointer"
         onClick={() => {
-          shouldVerifyAge
+          shouldVerifyAge || shouldCaptureEmail
             ? onVerifyAge()
             : handleImagePairClick(imagePair, index);
         }}
@@ -72,8 +68,6 @@ export default function BeforeAndAfterContainer({
       </div>
     ));
   };
-
-  console.log("shouldVerifyAge", shouldVerifyAge);
 
   return (
     <>
