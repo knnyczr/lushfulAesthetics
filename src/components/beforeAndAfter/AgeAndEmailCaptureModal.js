@@ -16,9 +16,8 @@ export default function AgeAndEmailCaptureModal({
   isVerifyAgePopupOpen,
   setIsVerifyAgePopupOpen,
   serviceTitle,
-  shouldCaptureEmail,
+  // shouldCaptureEmail,
   shouldVerifyAge,
-  TMPvAgeJustCollectEmail,
 }) {
   const { user, setUser } = useContext(Context);
   const [tempUser, setTempUser] = useState(user);
@@ -27,7 +26,7 @@ export default function AgeAndEmailCaptureModal({
   const options = servicePageOptions(website_url);
   const [submitState, setSubmitState] = useState("notSubmitted");
   // notSubmitted, loading, success, fail
-  const loadingMessage = "";
+  const [loadingMessage, setLoadingMessage] = useState("");
 
   const {
     contentfulAgeAndEmailCapturePopup: {
@@ -94,7 +93,10 @@ export default function AgeAndEmailCaptureModal({
           ...user,
           hasCheckedOrCreatedMailChimpForUser: true,
         });
-        setIsVerifyAgePopupOpen({ ...isVerifyAgePopupOpen, isOpen: false });
+        setIsVerifyAgePopupOpen({
+          flags: { shouldCaptureEmail: false, shouldVerifyAge: false },
+          isOpen: false,
+        });
       })
       .catch((err) => {
         setSubmitState("success");
@@ -102,7 +104,10 @@ export default function AgeAndEmailCaptureModal({
           ...user,
           hasCheckedOrCreatedMailChimpForUser: false,
         });
-        setIsVerifyAgePopupOpen({ ...isVerifyAgePopupOpen, isOpen: false });
+        setIsVerifyAgePopupOpen({
+          flags: { shouldCaptureEmail: false, shouldVerifyAge: false },
+          isOpen: false,
+        });
       });
   }
 
@@ -123,7 +128,7 @@ export default function AgeAndEmailCaptureModal({
   async function handleSubmit() {
     setSubmitState("loading");
     setTimeout(() => {
-      loadingMessage = `Working on it, please don't refresh`;
+      setLoadingMessage(`Working on it, please don't refresh`);
     }, 2000);
 
     if (isEmail(tempUser.email) && !user.hasCheckedOrCreatedMailChimpForUser) {
@@ -151,6 +156,7 @@ export default function AgeAndEmailCaptureModal({
     } else {
       setSubmitState("fail");
     }
+    setLoadingMessage("");
   }
 
   const renderInputs = (
@@ -175,6 +181,7 @@ export default function AgeAndEmailCaptureModal({
       />
     </div>
   );
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
       <div
@@ -186,7 +193,14 @@ export default function AgeAndEmailCaptureModal({
       >
         <div className="flex flex-nowrap flex-col justify-between px-10 w-full md:w-1/2 relative">
           <div className="w-full h-10 pt-16 md:pt-20 flex flex-row justify-between items-center">
-            <button onClick={() => setIsVerifyAgePopupOpen(false)}>
+            <button
+              onClick={() =>
+                setIsVerifyAgePopupOpen({
+                  ...isVerifyAgePopupOpen,
+                  isOpen: false,
+                })
+              }
+            >
               <FontAwesomeIcon
                 className="text-white text-4xl font-light"
                 icon={faClose}
@@ -203,10 +217,11 @@ export default function AgeAndEmailCaptureModal({
               handleSubmit();
             }}
           >
+            {/* TODO: Refactor 3 states */}
             <h1 className="font-serif text-4xl text-center text-white md:text-2xl lg:text-3xl">
               {/* need to check if user has successfully submitted for another service instead of user.name and user.email */}
-              {TMPvAgeJustCollectEmail || shouldVerifyAge
-                ? TMPvAgeJustCollectEmail || (user.name && user.email)
+              {shouldVerifyAge
+                ? user.name && user.email
                   ? verifyAgeWcookieTitle
                   : verifyAgeTitle
                 : emailCaptureTitle}
@@ -227,8 +242,7 @@ export default function AgeAndEmailCaptureModal({
               }
             >
               {/* if we need to verify age, and we have a user and email */}
-              {TMPvAgeJustCollectEmail ||
-              (shouldVerifyAge && user.name && user.email) ? (
+              {shouldVerifyAge && user.name && user.email ? (
                 <input type="checkbox" id="ageCheckBox" />
               ) : (
                 // we dont have name or email
@@ -236,9 +250,9 @@ export default function AgeAndEmailCaptureModal({
               )}
 
               {/* if we need to verify age */}
-              {TMPvAgeJustCollectEmail || shouldVerifyAge ? (
+              {shouldVerifyAge ? (
                 // if we have cookie
-                TMPvAgeJustCollectEmail || (user.name && user.email) ? (
+                user.name && user.email ? (
                   <label
                     htmlFor="ageCheckBox"
                     className="text-center text-white text-xs"

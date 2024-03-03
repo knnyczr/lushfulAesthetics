@@ -48,29 +48,15 @@ export default function ServicePage({ data }) {
     flags: {
       shouldVerifyAge,
       shouldCaptureEmail,
-
-      // does this need to check the local stoarge for setting?
-      vAgeJustCollectEmail: false,
     },
   });
 
   const handleVerifyAge = () => {
     setIsVerifyAgePopupOpen({
+      ...isVerifyAgePopupOpen,
       isOpen: true,
-      flags: {
-        shouldVerifyAge: true,
-        shouldCaptureEmail: false,
-        vAgeJustCollectEmail: false,
-      },
     });
   };
-
-  useEffect(() => {
-    // conditional decision on
-    // shouldCaptureEmail
-    // shouldVerifyAge
-    // console.log(isVerifyAgePopupOpen);
-  }, [isVerifyAgePopupOpen]);
 
   return (
     <div className="mx-auto max-w-[1536px]">
@@ -79,52 +65,6 @@ export default function ServicePage({ data }) {
         metaDescription={metaDescription}
       />
       <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
-
-      {/* <button
-        className="m-5"
-        onClick={() =>
-          setIsVerifyAgePopupOpen({
-            isOpen: true,
-            flags: {
-              shouldVerifyAge: true,
-              shouldCaptureEmail: false,
-              vAgeJustCollectEmail: false,
-            },
-          })
-        }
-      >
-        Verify Age
-      </button>
-      <button
-        className="m-5"
-        onClick={() =>
-          setIsVerifyAgePopupOpen({
-            isOpen: true,
-            flags: {
-              shouldVerifyAge: false,
-              shouldCaptureEmail: true,
-              vAgeJustCollectEmail: false,
-            },
-          })
-        }
-      >
-        Capture Email
-      </button>
-      <button
-        className="m-5"
-        onClick={() =>
-          setIsVerifyAgePopupOpen({
-            isOpen: true,
-            flags: {
-              shouldVerifyAge: true,
-              shouldCaptureEmail: false,
-              vAgeJustCollectEmail: true,
-            },
-          })
-        }
-      >
-        Already captured age/email but they need to confirm their age once more
-      </button> */}
 
       <ServicePrice
         intro={renderRichText(intro, options)}
@@ -145,18 +85,17 @@ export default function ServicePage({ data }) {
       />
 
       {/* BEFORE & AFTERS FEATURES */}
-
       {(beforeAfterVideos || beforeAndAfters) && (
         <BeforeAndAfterContainer
           beforeAfterVideos={beforeAfterVideos}
           beforeAndAfters={beforeAndAfters}
           onVerifyAge={handleVerifyAge}
-          shouldVerifyAge={shouldVerifyAge}
+          shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
+          shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
         />
       )}
 
       {isVerifyAgePopupOpen.isOpen && (
-        // || (shouldVerifyAge || shouldCaptureEmail)
         <AgeAndEmailCaptureModal
           heroImage={heroImage}
           isVerifyAgePopupOpen={isVerifyAgePopupOpen}
@@ -164,9 +103,6 @@ export default function ServicePage({ data }) {
           serviceTitle={serviceTitle}
           shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
           shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
-          TMPvAgeJustCollectEmail={
-            isVerifyAgePopupOpen.flags.vAgeJustCollectEmail
-          }
         />
       )}
       <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
