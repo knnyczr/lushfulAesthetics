@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ImageWithOverlay from "./ImageWithOverlay";
 import ImageModal from "./ImageModal";
 import { VimeoPlayer } from "reactjs-vimeo-player";
+import Vimeo from "@u-wave/react-vimeo";
 
 export default function BeforeAndAfterContainer({
   beforeAfterVideos,
@@ -13,6 +14,7 @@ export default function BeforeAndAfterContainer({
   const [isViewAll, setIsViewAll] = useState(false);
   const [isImagePairOpen, setIsImagePairOpen] = useState(false);
   const [currentImagePairIndex, setCurrentImagePairIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(true);
 
   useEffect(() => {
     document.body.style.overflow = isImagePairOpen ? "hidden" : "";
@@ -38,6 +40,17 @@ export default function BeforeAndAfterContainer({
       (currentImagePairIndex - 1 + beforeAndAfters.length) %
         beforeAndAfters.length
     );
+  };
+
+  const handlePlay = () => {
+    // TODO: if ageVerification
+    // TODO: pause state
+    // TODO: check if needs to be age verified.
+    // TODO: open the popup
+    // TODO: if we verify, play video
+    setIsPaused(true);
+    onVerifyAge();
+    console.log(isPaused);
   };
 
   const renderImagePairs = (count) => {
@@ -72,9 +85,9 @@ export default function BeforeAndAfterContainer({
   return (
     <>
       <div
-        className={`flex flex-col justify-between px-4 pt-16 ${
-          !beforeAfterVideos && `pb-16`
-        } h-full sm:px-6 md:px-12 lg:px-24 lg:py-24`}
+        className={`flex flex-col justify-between px-4 pt-16  h-full ${
+          !beforeAfterVideos ? "" : `pb-16`
+        } sm:px-6 md:px-12 lg:px-24 lg:py-24`}
       >
         <div className="w-full flex flex-row justify-between">
           <span className="my-5 text-3xl font-serif font-bold">
@@ -100,9 +113,11 @@ export default function BeforeAndAfterContainer({
         )}
         {beforeAfterVideos && (
           <div className="flex justify-center">
-            <VimeoPlayer
-              className="w-1/2 justify-center flex mx-auto"
-              id={beforeAfterVideos}
+            <Vimeo
+              className="justify-center flex mx-auto"
+              paused={isPaused}
+              video={beforeAfterVideos}
+              onPlay={() => handlePlay()}
             />
           </div>
         )}
