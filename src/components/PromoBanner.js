@@ -17,7 +17,7 @@ export default function PromoBanner({ allPromosLink, promos }) {
 
   return (
     <div className="flex justify-center items-center mx-auto bg-main-green py-3 md:py-4 text-sm px-4 md:px-12 lg:px-4">
-      <div className="flex justify-between items-center w-[600px] mx-auto">
+      <div className="flex justify-between items-center w-[700px] mx-auto text-center">
         <button onClick={() => handleNavClick("left")}>
           <FontAwesomeIcon icon={faAngleLeft} />
         </button>
@@ -25,7 +25,7 @@ export default function PromoBanner({ allPromosLink, promos }) {
           <p>
             <span>{promos[currentPromotion].promoOffer} </span>
             <a href={allPromosLink}>
-              <span className="underline underline-offset-2">View all</span>
+              <span className="underline underline-offset-2">Book now</span>
             </a>
           </p>
         </div>
