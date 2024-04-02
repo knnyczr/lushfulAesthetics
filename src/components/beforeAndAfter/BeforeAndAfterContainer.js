@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ImageWithOverlay from "./ImageWithOverlay";
 import ImageModal from "./ImageModal";
 import { VimeoPlayer } from "reactjs-vimeo-player";
+import { Context } from "../Context";
 
 export default function BeforeAndAfterContainer({
+  serviceTitle,
   beforeAfterVideos,
   beforeAndAfters,
+  beforeAfterServiceDescription,
   shouldVerifyAge,
   shouldCaptureEmail,
   onVerifyAge,
@@ -13,6 +16,21 @@ export default function BeforeAndAfterContainer({
   const [isViewAll, setIsViewAll] = useState(false);
   const [isImagePairOpen, setIsImagePairOpen] = useState(false);
   const [currentImagePairIndex, setCurrentImagePairIndex] = useState(0);
+
+  const { user, setUser } = useContext(Context);
+
+  async function setUserTags(user) {
+    await (() => {
+      return fetch("/api/mailchimp_set_tags", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ ...user, serviceTitle }),
+      });
+    })();
+    // .then((res) => res.json())
+  }
 
   useEffect(() => {
     document.body.style.overflow = isImagePairOpen ? "hidden" : "";
@@ -23,6 +41,9 @@ export default function BeforeAndAfterContainer({
   }, [isImagePairOpen]);
 
   const handleImagePairClick = (imagePair, index) => {
+    if (user.email) {
+      setUserTags(user);
+    }
     setIsImagePairOpen(imagePair);
     setCurrentImagePairIndex(index);
   };
@@ -46,7 +67,7 @@ export default function BeforeAndAfterContainer({
         key={index}
         className="col-span-2 md:col-span-1 flex cursor-pointer"
         onClick={() => {
-          shouldVerifyAge || shouldCaptureEmail
+          shouldVerifyAge || (shouldCaptureEmail && !user.email)
             ? onVerifyAge()
             : handleImagePairClick(imagePair, index);
         }}
@@ -80,6 +101,7 @@ export default function BeforeAndAfterContainer({
           <span className="my-5 text-3xl font-serif font-bold">
             Before and After
           </span>
+
           {beforeAndAfters && beforeAndAfters.length > 2 && (
             <button
               className="font-sans font-bold"
@@ -91,6 +113,11 @@ export default function BeforeAndAfterContainer({
             </button>
           )}
         </div>
+        {beforeAfterServiceDescription && (
+          <p className="mb-4">
+            {beforeAfterServiceDescription.beforeAfterServiceDescription}
+          </p>
+        )}
         {beforeAndAfters && (
           <div className="grid grid-cols-2 gap-8 mt-8">
             {isViewAll

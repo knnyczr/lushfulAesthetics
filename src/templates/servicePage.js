@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 import CustomAccordion from "../components/CustomAccodian";
 import HeroImage from "../components/HeroImage";
@@ -34,6 +34,7 @@ export default function ServicePage({ data }) {
       metaTitle,
       beforeAfterVideos,
       beforeAndAfters,
+      beforeAfterServiceDescription,
       shouldCaptureEmail,
       shouldVerifyAge,
     },
@@ -87,7 +88,9 @@ export default function ServicePage({ data }) {
       {/* BEFORE & AFTERS FEATURES */}
       {(beforeAfterVideos || beforeAndAfters) && (
         <BeforeAndAfterContainer
+          serviceTitle={serviceTitle}
           beforeAfterVideos={beforeAfterVideos}
+          beforeAfterServiceDescription={beforeAfterServiceDescription}
           beforeAndAfters={beforeAndAfters}
           onVerifyAge={handleVerifyAge}
           shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
@@ -226,6 +229,9 @@ export const pageQuery = graphql`
       metaTitle
       shouldCaptureEmail
       shouldVerifyAge
+      beforeAfterServiceDescription {
+        beforeAfterServiceDescription
+      }
       beforeAfterVideos
       beforeAndAfters {
         afterImageDescription
