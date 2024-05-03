@@ -14,7 +14,6 @@ export default function AboutUs({ data }) {
     meetInjectorChris,
     heroImage,
     portrait,
-    employees,
     metaDescription,
     metaTitle,
     meetInjectorChrisTitle,
@@ -64,8 +63,8 @@ export default function AboutUs({ data }) {
           </div>
         </>
       )}
-      {employees.length &&
-        employees.map((employee) => {
+      {data?.employees &&
+        data.employees.map((employee) => {
           let employeeImage = getImage(employee.photo);
           return (
             <>
@@ -115,16 +114,16 @@ export const pageQuery = graphql`
       portrait {
         gatsbyImageData(layout: CONSTRAINED, quality: 90)
       }
-      employees {
-        meetEmployeeTitle
-        aboutEmployee {
-          raw
-        }
-        employeeName
-        photo {
-          gatsbyImageData(layout: CONSTRAINED, quality: 90)
-        }
-      }
+      # employees {
+      #   meetEmployeeTitle
+      #   aboutEmployee {
+      #     raw
+      #   }
+      #   employeeName
+      #   photo {
+      #     gatsbyImageData(layout: CONSTRAINED, quality: 90)
+      #   }
+      # }
       metaDescription
       metaTitle
       meetInjectorChrisTitle
