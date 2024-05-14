@@ -217,7 +217,7 @@ export default function Nav() {
                       </div>
                     )}
                   </div>
-                  <a
+                  {/* <a
                     href={storeLink}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -225,7 +225,7 @@ export default function Nav() {
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base lg:text-lg font-medium uppercase"
                   >
                     Shop
-                  </a>
+                  </a> */}
 
                   <Link
                     to="/about/"
@@ -253,12 +253,12 @@ export default function Nav() {
                   >
                     Blog
                   </Link>
-                  <Link
+                  {/* <Link
                     to="/training/"
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
                   >
                     Training
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
@@ -402,7 +402,7 @@ export default function Nav() {
                     </div>
                   </div>
                 </div>
-                <a
+                {/* <a
                   onClick={() => closeMenu()}
                   href={storeLink}
                   target="_blank"
@@ -411,7 +411,7 @@ export default function Nav() {
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
                   Shop
-                </a>
+                </a> */}
 
                 <Link
                   onClick={() => closeMenu()}
@@ -445,13 +445,13 @@ export default function Nav() {
                   Blog
                 </Link>
 
-                <Link
+                {/* <Link
                   onClick={() => closeMenu()}
                   to="/training/"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
                   Training
-                </Link>
+                </Link> */}
 
                 <div className="pt-16">
                   <div className="flex flex-row justify-center pt-5 md:pb-16 text-white">
