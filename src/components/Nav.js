@@ -149,8 +149,8 @@ export default function Nav() {
           </div>
 
           <div className="flex items-center justify-between h-16">
-            <div className="flex justify-end items-center">
-              <div className="hidden md:block ">
+            <div className="flex items-center justify-end">
+              <div className="hidden md:block">
                 <div className="flex items-baseline space-x-4">
                   <div className="group z-50">
                     <button
@@ -162,85 +162,70 @@ export default function Nav() {
                     {menuOpen && (
                       <div
                         ref={ref}
-                        className="pointer-events-auto flex flex-col absolute top-[148px] left-0 p-10 w-full shadow-md bg-main-green text-white duration-300"
+                        className="pointer-events-auto flex flex-col absolute top-[148px] left-0 p-10 mx-auto w-full shadow-md bg-main-green text-white duration-300"
                       >
                         <div
-                          className="flex flex-row items-start gap-10  "
+                          className="flex flex-row gap-6 lg:gap-8 xl:gap-10 items-start justify-between mx-auto w-full max-w-[1536px] lg:px-4"
                           onClick={() => setMenuOpen(!menuOpen)}
                         >
-                          {menuItems &&
-                            menuItems.children.map((service) => {
-                              return (
-                                <div
-                                  className="flex flex-col ml-8 md:items-left lg:ml-20"
-                                  key={service.slug}
-                                >
-                                  <h3 className="mb-2 text-lg font-bold ">
-                                    {service.title}
-                                  </h3>
-                                  <div className={`flex flex-col`}>
-                                    {service.children.map((serviceCategory) => {
-                                      return (
-                                        <div className="flex flex-col">
-                                          {serviceCategory.children.length ? (
-                                            <div className=" flex flex-col">
-                                              <h3>{serviceCategory.title}</h3>
-                                              {serviceCategory.children.map(
-                                                (serviceCategoryChild) => (
-                                                  <Link
-                                                    key={`LINK-${serviceCategoryChild.slug}`}
-                                                    to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}/`}
-                                                    className="ml-6 hover:text-main-green-shade text-left"
-                                                  >
-                                                    {serviceCategoryChild.title}
-                                                  </Link>
-                                                )
-                                              )}
-                                            </div>
-                                          ) : (
+                          {menuItems?.children.map((service) => (
+                            <div
+                              className="flex flex-col ml-8 md:ml-0 items-start w-1/4"
+                              key={service.slug}
+                            >
+                              <h3 className="mb-2 text-lg font-bold">
+                                {service.title}
+                              </h3>
+                              <div className="flex flex-col">
+                                {service.children.map((serviceCategory) => (
+                                  <div
+                                    className="flex flex-col"
+                                    key={serviceCategory.slug}
+                                  >
+                                    {serviceCategory.children.length ? (
+                                      <div className="flex flex-col">
+                                        <h3>{serviceCategory.title}</h3>
+                                        {serviceCategory.children.map(
+                                          (serviceCategoryChild) => (
                                             <Link
-                                              key={`LINK-${serviceCategory.slug}`}
-                                              to={`/${service.slug}/${serviceCategory.slug}/`}
-                                              className="hover:text-main-green-shade text-left"
+                                              key={serviceCategoryChild.slug}
+                                              to={`/${service.slug}/${serviceCategory.slug}/${serviceCategoryChild.slug}/`}
+                                              className="ml-6 hover:text-main-green-shade text-left"
                                             >
-                                              {serviceCategory.title}
+                                              {serviceCategoryChild.title}
                                             </Link>
-                                          )}
-                                        </div>
-                                      );
-                                    })}
+                                          )
+                                        )}
+                                      </div>
+                                    ) : (
+                                      <Link
+                                        to={`/${service.slug}/${serviceCategory.slug}/`}
+                                        className="hover:text-main-green-shade text-left"
+                                      >
+                                        {serviceCategory.title}
+                                      </Link>
+                                    )}
                                   </div>
-                                </div>
-                              );
-                            })}
+                                ))}
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     )}
                   </div>
-                  {/* <a
-                    href={storeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Shop on our store (opens in a new tab)"
-                    className="text-black hover:text-main-green px-3 py-2 rounded-md text-base lg:text-lg font-medium uppercase"
-                  >
-                    Shop
-                  </a> */}
-
                   <Link
                     to="/about/"
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base lg:text-lg font-medium uppercase"
                   >
                     About
                   </Link>
-
                   <Link
                     to="/contact/"
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
                   >
                     Contact
                   </Link>
-
                   <Link
                     to="/financing/"
                     className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
@@ -253,12 +238,6 @@ export default function Nav() {
                   >
                     Blog
                   </Link>
-                  {/* <Link
-                    to="/training/"
-                    className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
-                  >
-                    Training
-                  </Link> */}
                 </div>
               </div>
             </div>
