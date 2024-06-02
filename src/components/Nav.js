@@ -142,7 +142,7 @@ export default function Nav() {
       <PromoBanner allPromosLink={allPromosLink} promos={promos} />
       <nav className="max-w-[1536px] mx-auto">
         <div className="flex items-center px-4 py-4 md:px-12 lg:px-4">
-          <div className="w-48 lg:w-60 mr-auto">
+          <div className="w-40 lg:w-56 min-w-[140px] mr-auto">
             <Link to="/">
               <Logo />
             </Link>
@@ -150,11 +150,11 @@ export default function Nav() {
 
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center justify-end">
-              <div className="hidden md:block">
-                <div className="flex items-baseline space-x-4">
+              <div className="hidden lg:block">
+                <div className="flex items-center gap-4">
                   <div className="group z-50">
                     <button
-                      className="group-hover:text-main-green px-4 py-4 rounded-md text-base md:text-lg font-medium uppercase"
+                      className="group-hover:text-main-green px-3 py-2 rounded-md text-lg font-medium uppercase"
                       onClick={() => setMenuOpen(!menuOpen)}
                     >
                       Services
@@ -216,35 +216,35 @@ export default function Nav() {
                   </div>
                   <Link
                     to="/about/"
-                    className="text-black hover:text-main-green px-3 py-2 rounded-md text-base lg:text-lg font-medium uppercase"
+                    className="text-black hover:text-main-green px-3 py-2 rounded-md text-lg font-medium uppercase"
                   >
                     About
                   </Link>
                   <Link
                     to="/contact/"
-                    className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
+                    className="text-black hover:text-main-green px-3 py-2 text-lg font-medium uppercase"
                   >
                     Contact
                   </Link>
                   <Link
                     to="/financing/"
-                    className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
+                    className="text-black hover:text-main-green px-3 py-2 text-lg font-medium uppercase"
                   >
                     Financing
                   </Link>
                   <Link
                     to="/blog/"
-                    className="text-black hover:text-main-green px-3 py-2 rounded-md text-base md:text-lg font-medium uppercase"
+                    className="text-black hover:text-main-green px-3 py-2 text-lg font-medium uppercase"
                   >
                     Blog
                   </Link>
                 </div>
               </div>
             </div>
-            <div className="mx-4 my-4">
+            <div className="mx-2 md:mx-4 my-4">
               <Button />
             </div>
-            <div className="-mr-2 flex md:hidden z-1000">
+            <div className="-mr-2 flex lg:hidden z-50">
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
