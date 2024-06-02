@@ -71,13 +71,9 @@ export default function IndexPage({ data }) {
       {/* <a className="sr-only sr-only-focusable" href="#contact-info">
         Skip to Contact Information
       </a> */}
-
-      <div
-        // id="contact-info"
-        className="px-4 py-12 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center "
-      >
+      <div className="px-4 py-12 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center">
         <div className="border border-black py-8 px-3 lg:py-10 lg:px-12 flex justify-center items-center flex-col md:flex-row">
-          <div className="mx-10 w-90 max-w-md h-80 flex justify-center items-center rounded">
+          <div className="mx-10 w-full max-w-md h-auto flex justify-center items-center rounded">
             <a
               href="https://goo.gl/maps/3mpJJytXMqn581Yw9"
               target="_blank"
@@ -92,7 +88,7 @@ export default function IndexPage({ data }) {
             </a>
           </div>
 
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center max-w-md">
             <h3 className="font-serif text-2xl font-semibold mt-5">
               {`Lushful Aesthetics™`}
             </h3>
@@ -106,7 +102,6 @@ export default function IndexPage({ data }) {
             >
               {phoneNumber}
             </a>
-            <div></div>
             <div>
               <Button />
             </div>
