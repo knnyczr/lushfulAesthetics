@@ -206,7 +206,7 @@ export default function AgeAndEmailCaptureModal({
                 icon={faClose}
               />
             </button>
-            <div className="w-3/4 md:w-1/2 lg:w-3/5 xl:w-1/2">
+            <div className="w-[180px] md:w-[200px] lg:w-[250px]">
               <Logo />
             </div>
           </div>

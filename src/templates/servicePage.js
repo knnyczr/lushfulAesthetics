@@ -109,20 +109,16 @@ export default function ServicePage({ data }) {
         />
       )}
       <div className="px-4 py-16 sm:px-6 lg:px-24 lg:py-12 xl:py-12">
-        <div className="container my-4 px-4 md:px-6 lg:px-24 mx-auto">
-          <h2 className="container font-serif font-bold text-3xl my-4 ">
-            FAQs
-          </h2>
+        <h2 className="container font-serif font-bold text-3xl my-4 ">FAQs</h2>
 
-          {faqRef.map((faq, idx) => (
-            <CustomAccordion
-              key={idx}
-              index={idx}
-              question={faq.question}
-              answer={faq.answer}
-            />
-          ))}
-        </div>
+        {faqRef.map((faq, idx) => (
+          <CustomAccordion
+            key={idx}
+            index={idx}
+            question={faq.question}
+            answer={faq.answer}
+          />
+        ))}
       </div>
     </div>
   );
@@ -131,45 +127,46 @@ export default function ServicePage({ data }) {
 function AsSeenIn({ press, subheadingAsSeenIn }) {
   return (
     <>
-      <div className="px-4 pb-16 flex flex-col justify-start sm:px-6 md:justify-center lg:px-24 lg:pb-24">
-        <div className="flex items-center mb-6">
-          <h2 className="font-serif text-2xl pr-6 lg:text-3xl font-bold md:mb-2">
-            {subheadingAsSeenIn}
-          </h2>
-          <div className="flex-1 h-px bg-black mr-10" />
+      <div className="px-4 sm:px-6 lg:px-24 pb-16 lg:pb-24 flex flex-row items-start gap-6">
+        <div className="">
+          {subheadingAsSeenIn && (
+            <h2 className="font-serif text-2xl lg:text-3xl font-bold whitespace-nowrap">
+              {subheadingAsSeenIn}
+            </h2>
+          )}
         </div>
-        <div
-          className="flex flex-col mx-auto md:flex-row lg:flex-row"
-          style={{ maxWidth: `676px` }}
-        >
-          {press.map((obj) => {
-            const {
-              articleTitle,
-              url,
-              companyLogo: { companyName, companyLogo },
-            } = obj;
-            const image = getImage(companyLogo);
+        <div className="pt-5 flex flex-col gap-10">
+          <div className="h-px bg-black w-full" />
+          <div className="flex mx-auto flex-wrap items-center gap-10">
+            {press.map((obj) => {
+              const {
+                articleTitle,
+                url,
+                companyLogo: { companyName, companyLogo },
+              } = obj;
+              const image = getImage(companyLogo);
 
-            return (
-              <div
-                key={`${companyName}: ${articleTitle}`}
-                className="flex items-center justify-center"
-              >
-                <a
-                  href={`${url}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`${companyName}: ${articleTitle}`}
+              return (
+                <div
+                  key={`${companyName}: ${articleTitle}`}
+                  className="min-w-[80px] w-[20%] max-w-[134px]"
                 >
-                  <GatsbyImage
-                    image={image}
-                    className="mb-6 mr-6 md:mb-0"
-                    alt={`${companyName}: ${articleTitle}`}
-                  />
-                </a>
-              </div>
-            );
-          })}
+                  <a
+                    href={`${url}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${companyName}: ${articleTitle}`}
+                  >
+                    <GatsbyImage
+                      image={image}
+                      className=""
+                      alt={`${companyName}: ${articleTitle}`}
+                    />
+                  </a>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

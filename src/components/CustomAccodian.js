@@ -6,7 +6,7 @@ import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 export default function CustomAccordion({ question, answer, index }) {
   return (
     <section className="text-black">
-      <div className="container py-1 mx-auto">
+      <div className="py-1 mx-auto">
         <div className="flex flex-wrap ">
           <div className="w-full py-2">
             <details className="mb-2 group open:ring">

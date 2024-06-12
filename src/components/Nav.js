@@ -244,7 +244,7 @@ export default function Nav() {
             <div className="mx-2 md:mx-4 my-4">
               <Button />
             </div>
-            <div className="-mr-2 flex lg:hidden z-50">
+            <div className="flex lg:hidden z-50">
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"

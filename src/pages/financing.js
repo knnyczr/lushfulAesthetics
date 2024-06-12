@@ -89,7 +89,7 @@ export default function Financing({ data }) {
                 />
               </div>
             </div>
-            <div className="bg-main-green w-screen px-4 py-16 sm:px-6 d:px-12 lg:px-24 flex flex-col justify-center items-center last:mt-10">
+            <div className="bg-main-green w-screen px-4 py-16 sm:px-6 d:px-12 lg:px-24 flex flex-col justify-center items-center last:mt-10 max-w-[1536px] mx-auto">
               <h4 className="text-white pb-8 uppercase text-lg font-semibold">
                 REASONS WHY PATIENTS LOVE financing with us
               </h4>
