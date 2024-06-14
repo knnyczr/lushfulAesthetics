@@ -189,10 +189,10 @@ export default function AgeAndEmailCaptureModal({
           width: `96%`,
           backgroundColor: `#BABAA0`,
         }}
-        className="flex h-4/5 md:w-3/4 md:min-h-3/5 lg:h-4/5"
+        className="flex h-4/5 md:w-3/4x lg:h-4/5"
       >
-        <div className="flex flex-nowrap flex-col justify-between px-10 w-full md:w-1/2 relative">
-          <div className="w-full h-10 pt-16 md:pt-20 flex flex-row justify-between items-center">
+        <div className="flex flex-nowrap flex-col justify-between px-6 lg:px-10 w-full md:w-1/2 relative">
+          <div className="w-full py-4 md:py-8 flex flex-row justify-between items-center">
             <button
               onClick={() =>
                 setIsVerifyAgePopupOpen({
@@ -206,7 +206,7 @@ export default function AgeAndEmailCaptureModal({
                 icon={faClose}
               />
             </button>
-            <div className="w-3/4 md:w-1/2 lg:w-3/5 xl:w-1/2">
+            <div className="w-[120px] sm:w-[160px] md:w-[200px] lg:w-[250px]">
               <Logo />
             </div>
           </div>
@@ -218,7 +218,7 @@ export default function AgeAndEmailCaptureModal({
             }}
           >
             {/* TODO: Refactor 3 states */}
-            <h1 className="font-serif text-4xl text-center text-white md:text-2xl lg:text-3xl">
+            <h1 className="font-serif text-2xl text-center text-white lg:text-3xl">
               {/* need to check if user has successfully submitted for another service instead of user.name and user.email */}
               {shouldVerifyAge
                 ? user.name && user.email
@@ -226,7 +226,7 @@ export default function AgeAndEmailCaptureModal({
                   : verifyAgeTitle
                 : emailCaptureTitle}
             </h1>
-            <p className="text-center py-4 text-white">
+            <p className="text-center py-3 md:py-4 text-white text-sm md:text-base leading-5">
               {shouldVerifyAge
                 ? user.name && user.email
                   ? verifyAgeWcookieContent
@@ -279,7 +279,7 @@ export default function AgeAndEmailCaptureModal({
                 width: `160px`,
                 minHeight: `24px`,
               }}
-              className="my-5 p-5 uppercase text-main-green flex justify-center"
+              className="my-4 lgmy-5 p-4 lg:p-5 uppercase text-main-green flex justify-center"
               type="submit"
             >
               {submitState !== "loading" ? (
