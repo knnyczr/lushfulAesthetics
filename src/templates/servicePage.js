@@ -127,17 +127,17 @@ export default function ServicePage({ data }) {
 function AsSeenIn({ press, subheadingAsSeenIn }) {
   return (
     <>
-      <div className="px-4 sm:px-6 lg:px-24 pb-16 lg:pb-24 flex flex-row items-start gap-6">
-        <div className="">
+      <div className="px-4 sm:px-6 lg:px-24 pb-16 lg:pb-24 flex flex-col gap-6">
+        <div className="flex flex-row items-center gap-6">
           {subheadingAsSeenIn && (
             <h2 className="font-serif text-2xl lg:text-3xl font-bold whitespace-nowrap">
               {subheadingAsSeenIn}
             </h2>
           )}
+          <div className="h-px bg-black w-full" />
         </div>
         <div className="pt-5 flex flex-col gap-10">
-          <div className="h-px bg-black w-full" />
-          <div className="flex mx-auto flex-wrap items-center gap-10">
+          <div className="flex mx-auto flex-wrap items-center justify-around gap-10 w-full">
             {press.map((obj) => {
               const {
                 articleTitle,
@@ -149,7 +149,7 @@ function AsSeenIn({ press, subheadingAsSeenIn }) {
               return (
                 <div
                   key={`${companyName}: ${articleTitle}`}
-                  className="min-w-[80px] w-[20%] max-w-[134px]"
+                  className="w-[calc(100%/5)] max-w-[150px] min-w-0"
                 >
                   <a
                     href={`${url}`}
