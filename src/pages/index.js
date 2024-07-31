@@ -20,7 +20,6 @@ export default function IndexPage({ data }) {
       metaDescription,
       contactInfo,
     },
-    // contentfulContactPage: { address, phoneNumber },
   } = data;
 
   const image = getImage(heroImage);
