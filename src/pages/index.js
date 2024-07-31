@@ -4,6 +4,8 @@ import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import Button from "../components/BookBtn";
 import Reviews from "../components/Reviews";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
+import homepagePageOptions from "../helpers/homepagePageOptions";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export { Head } from "../components/Layout";
 
@@ -16,11 +18,14 @@ export default function IndexPage({ data }) {
       heroImage,
       metaTitle,
       metaDescription,
+      contactInfo,
     },
-    contentfulContactPage: { address, phoneNumber },
+    // contentfulContactPage: { address, phoneNumber },
   } = data;
 
   const image = getImage(heroImage);
+
+  const options = homepagePageOptions();
 
   return (
     <div>
@@ -89,19 +94,7 @@ export default function IndexPage({ data }) {
           </div>
 
           <div className="flex flex-col justify-center max-w-md">
-            <h3 className="font-serif text-2xl font-semibold mt-5">
-              {`Lushful Aesthetics™`}
-            </h3>
-            <h3 className="font-serif text-2xl font-semibold">
-              {` by InjectorChris`}
-            </h3>
-            <h2 className="font-medium my-4">{address}</h2>
-            <a
-              href={`tel:+1${phoneNumber}`}
-              className="font-serif text-xl font-semibold mb-4"
-            >
-              {phoneNumber}
-            </a>
+            {renderRichText(contactInfo, options)}
             <div>
               <Button />
             </div>
@@ -124,6 +117,9 @@ export const query = graphql`
       metaDescription
       slogan
       visionStatement
+      contactInfo {
+        raw
+      }
       heroImage {
         gatsbyImageData(
           quality: 100
@@ -151,10 +147,6 @@ export const query = graphql`
           }
         }
       }
-    }
-    contentfulContactPage {
-      address
-      phoneNumber
     }
   }
 `;
