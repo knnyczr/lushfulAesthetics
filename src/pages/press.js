@@ -151,14 +151,14 @@ export default function Press({ data }) {
                   aria-label="Read the review article (opens in a new tab)"
                 >
                   <div className="flex flex-col my-2" key={review.headline}>
-                    <div className="w-[100px] md:w-[110px] lg:w-[120px] h-auto">
+                    <div className="w-[140px] lg:w-[175px] h-auto">
                       <GatsbyImage
                         image={mediaLogo}
                         alt={`${review.mediaLogo.companyName}'s logo`}
                       />
                     </div>
 
-                    <h2 className="font-serif text-2xl lg:text-3xl font-bold md:pr-8 lg:pr-28 py-4 hover:underline ">
+                    <h2 className="font-serif text-xl lg:text-2xl font-bold md:pr-8 lg:pr-28 py-4 hover:underline ">
                       {review.headline}
                     </h2>
                     <p className="text-sm lg:text-lg mb-3 lg:mb-4">
