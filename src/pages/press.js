@@ -2,6 +2,8 @@ import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 import React from "react";
 import { graphql } from "gatsby";
 import HeroImage from "../components/HeroImage";
+import { BLOCKS } from "@contentful/rich-text-types";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { formatDate } from "../hooks/format-date";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,10 +25,18 @@ export default function Press({ data }) {
       socialTwitter,
       youtube,
     },
-    contentfulFinancingPage: { heroImage },
+    contentfulPressPage: { heroImage, disclosure, metaTitle, metaDescription },
   } = data;
 
-  console.log("review", reviews);
+  console.log("review", heroImage, disclosure, metaTitle, metaDescription);
+
+  const options = {
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) => (
+        <p className="text-base">{children}</p>
+      ),
+    },
+  };
 
   const formattedAddress = address.replace(
     "New York, NY 10017",
@@ -35,26 +45,59 @@ export default function Press({ data }) {
 
   return (
     <>
-      {/* {metaTitle && metaDescription && (
+      {metaTitle && metaDescription && (
         <HelmetWithMetaDesc
           metaTitle={metaTitle}
           metaDescription={metaDescription}
         />
-      )} */}
+      )}
       <HeroImage heroImage={heroImage} pageTitle="Press" />
-      <div className="grid grid-cols-1 md:grid-cols-3 max-w-[1536px] px-4 py-8 md:px-12 lg:px-4 mx-auto">
-        <div className="mb-4 md:hidden order-first text-sm p-4 border">
-          <h3>Disclaimer*</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            suscipit purus nec purus finibus, vitae ornare libero tristique.
-            Fusce pharetra convallis urna, id pulvinar odio volutpat eu.
-            Maecenas aliquam eget ipsum vitae facilisis. Vivamus maximus velit
-            commodo, varius ligula vel, consequat est. Pellentesque ac massa
-            lorem. Nullam eget mollis lectus. Phasellus quis ligula arcu.
-          </p>
+      <div className="grid grid-cols-1 lg:grid-cols-3 max-w-[1536px] px-4 py-8 md:px-12 lg:px-4 mx-auto">
+        <div className=" lg:px-24 2xl:pl-0 lg:pr-8 lg:col-span-2 py-4">
+          <div className="mb-8 p-6 border">
+            <h3 className="font-medium mb-2">Disclaimer*</h3>
+            <p>{renderRichText(disclosure, options)}</p>
+          </div>
+          <div className="font-sans uppercase text-[20px] lg:text-2xl mb-2 lg:mb-4">
+            Featured Press Release
+          </div>
+          <div className="h-0.5 bg-black mb-8"></div>
+
+          <div className="flex flex-col lg:gap-2">
+            {reviews.map((review, index) => {
+              let mediaLogo = getImage(review.mediaLogo.companyLogo);
+              let datePosted = review.datePosted;
+              return (
+                <a
+                  href={review.articleLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Read the review article (opens in a new tab)"
+                >
+                  <div className="flex flex-col my-2" key={review.headline}>
+                    <div className="max-w-[250px] h-fit">
+                      <GatsbyImage
+                        image={mediaLogo}
+                        alt={`${review.mediaLogo.companyName}'s logo`}
+                      />
+                    </div>
+
+                    <h2 className="font-serif text-xl lg:text-2xl font-bold md:pr-8 lg:pr-28 pt-6 pb-2 hover:underline ">
+                      {review.headline}
+                    </h2>
+                    {datePosted && (
+                      <p className="text-sm lg:text-lg mb-3 lg:mb-4">
+                        {formatDate(datePosted)}
+                      </p>
+                    )}
+                    <div className="h-[1px] bg-black/30 my-4"></div>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
         </div>
-        <div className="md:col-start-3 py-4 2xl:pr-0 order-first md:order-none">
+        <div className=" py-4 2xl:pr-0">
           <div>
             <div className="font-sans uppercase text-[20px] lg:text-2xl mb-2 lg:mb-4">
               Social Media
@@ -122,57 +165,6 @@ export default function Press({ data }) {
             </div>
           </div>
         </div>
-        <div className="md:row-start-1 lg:px-24 2xl:pl-0 md:pr-8 md:col-span-2 py-4">
-          <div className="mb-8 hidden md:block text-sm p-6 border">
-            <h3>Disclaimer*</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              suscipit purus nec purus finibus, vitae ornare libero tristique.
-              Fusce pharetra convallis urna, id pulvinar odio volutpat eu.
-              Maecenas aliquam eget ipsum vitae facilisis. Vivamus maximus velit
-              commodo, varius ligula vel, consequat est. Pellentesque ac massa
-              lorem. Nullam eget mollis lectus. Phasellus quis ligula arcu.
-            </p>
-          </div>
-          <div className="font-sans uppercase text-[20px] lg:text-2xl mb-2 lg:mb-4">
-            Featured Press Release
-          </div>
-          <div className="h-0.5 bg-black mb-8"></div>
-
-          <div className="flex flex-col lg:gap-2">
-            {reviews.map((review, index) => {
-              let image = getImage(review.bgImage);
-              let mediaLogo = getImage(review.mediaLogo.companyLogo);
-              return (
-                <a
-                  href={review.articleLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Read the review article (opens in a new tab)"
-                >
-                  <div className="flex flex-col my-2" key={review.headline}>
-                    <div className="w-[140px] lg:w-[175px] h-auto">
-                      <GatsbyImage
-                        image={mediaLogo}
-                        alt={`${review.mediaLogo.companyName}'s logo`}
-                      />
-                    </div>
-
-                    <h2 className="font-serif text-xl lg:text-2xl font-bold md:pr-8 lg:pr-28 py-4 hover:underline ">
-                      {review.headline}
-                    </h2>
-                    <p className="text-sm lg:text-lg mb-3 lg:mb-4">
-                      Date Posted
-                    </p>
-                    {index < reviews.length - 1 && (
-                      <div className="h-[1px] bg-black/30 my-4"></div>
-                    )}
-                  </div>
-                </a>
-              );
-            })}
-          </div>
-        </div>
       </div>
     </>
   );
@@ -184,6 +176,7 @@ export const pageQuery = graphql`
       reviews {
         articleLink
         headline
+        datePosted
         mediaLogo {
           companyName
           companyLogo {
@@ -203,10 +196,15 @@ export const pageQuery = graphql`
       socialTwitter
       youtube
     }
-    contentfulFinancingPage {
+    contentfulPressPage {
       heroImage {
         gatsbyImageData(layout: FULL_WIDTH, quality: 100)
         description
+      }
+      metaTitle
+      metaDescription
+      disclosure {
+        raw
       }
     }
   }
