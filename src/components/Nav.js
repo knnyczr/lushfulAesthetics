@@ -300,7 +300,7 @@ export default function Nav() {
           leaveTo="opacity-0 scale-95"
         >
           {(ref) => (
-            <div className="md:hidden" id="mobile-menu">
+            <div className="lg:hidden" id="mobile-menu">
               <div
                 ref-setter={ref}
                 className="px-2 py-5 space-y-1 sm:px-3 bg-main-green flex flex-col min-h-screen"

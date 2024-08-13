@@ -104,7 +104,7 @@ export default function BeforeAndAfterContainer({
 
           {beforeAndAfters && beforeAndAfters.length > 2 && (
             <button
-              className="font-sans font-bold"
+              className="font-sans font-bold hidden md:inline-block"
               onClick={() => {
                 setIsViewAll(!isViewAll);
               }}
@@ -132,6 +132,16 @@ export default function BeforeAndAfterContainer({
               id={beforeAfterVideos}
             />
           </div>
+        )}
+        {beforeAndAfters && beforeAndAfters.length > 2 && (
+          <button
+            className="mt-8 py-3 border-black border font-sans font-bold md:hidden"
+            onClick={() => {
+              setIsViewAll(!isViewAll);
+            }}
+          >
+            {isViewAll ? "View Less" : "View All"}
+          </button>
         )}
       </div>
       {isImagePairOpen && (
