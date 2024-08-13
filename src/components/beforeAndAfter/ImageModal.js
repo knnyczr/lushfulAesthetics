@@ -15,6 +15,7 @@ export default function ImageModal({
   currentIndex,
   onNext,
   onPrev,
+  totalImages,
 }) {
   const currentImagePair = imagePairs[currentIndex];
   const dynamicImageBefore = useContentfulImage({
@@ -46,6 +47,68 @@ export default function ImageModal({
     onSwipedLeft: () => onNext(),
     onSwipedRight: () => onPrev(),
   });
+
+  //dots limitation
+  const getDotStyle = (index, currentIndex, totalImages) => {
+    const isStart = currentIndex === 0;
+    const isEnd = currentIndex === totalImages - 1;
+    const isMiddle = !isStart && !isEnd;
+
+    // Define dot sizes and colors
+    const activeDot = "w-[6px] h-[6px] bg-white";
+    const regularDot = "w-[6px] h-[6px] bg-gray-400";
+    const smallDot = "w-[5px] h-[5px] bg-gray-400";
+    const smallestDot = "w-[4px] h-[4px] bg-gray-400";
+
+    // Start: Active dot on left, decreasing size to the right
+    if (isStart) {
+      if (index === 0) return activeDot;
+      if (index === 1) return regularDot;
+      if (index === 2) return smallDot;
+      return smallestDot;
+    }
+
+    // End: Active dot on right, decreasing size to the left
+    if (isEnd) {
+      if (index === totalImages - 1) return activeDot;
+      if (index === totalImages - 2) return regularDot;
+      if (index === totalImages - 3) return smallDot;
+      return smallestDot;
+    }
+
+    // Middle: Active dot centered, smaller dots on either side
+    if (isMiddle) {
+      const middleIndex = Math.floor(totalImages / 2);
+      if (index === currentIndex) return activeDot;
+      if (index === currentIndex - 1 || index === currentIndex + 1)
+        return regularDot;
+      if (index === currentIndex - 2 || index === currentIndex + 2)
+        return smallDot;
+      return smallestDot;
+    }
+  };
+
+  // which dots to display based on position
+  const visibleDots = [];
+  const isStart = currentIndex === 0;
+  const isEnd = currentIndex === totalImages - 1;
+  const isMiddle = !isStart && !isEnd;
+
+  if (isStart) {
+    for (let i = 0; i < 5; i++) {
+      visibleDots.push(i);
+    }
+  } else if (isEnd) {
+    for (let i = totalImages - 5; i < totalImages; i++) {
+      visibleDots.push(i);
+    }
+  } else if (isMiddle) {
+    const startIndex = Math.max(0, currentIndex - 3);
+    const endIndex = Math.min(totalImages, currentIndex + 4);
+    for (let i = startIndex; i < endIndex; i++) {
+      visibleDots.push(i);
+    }
+  }
 
   return (
     <div
@@ -121,6 +184,28 @@ export default function ImageModal({
               ) : null}
             </div>
           </div>
+        </div>
+
+        {/* Indicators */}
+        <div className="flex justify-center items-center mt-4 space-x-1">
+          {visibleDots.map((index) => (
+            <button
+              key={index}
+              onClick={() => {
+                if (index > currentIndex) {
+                  onNext();
+                } else if (index < currentIndex) {
+                  onPrev();
+                }
+              }}
+              className={`rounded-full ${getDotStyle(
+                index,
+                currentIndex,
+                totalImages
+              )}`}
+              aria-label={`Go to image ${index + 1}`}
+            />
+          ))}
         </div>
 
         <button
