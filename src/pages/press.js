@@ -33,7 +33,7 @@ export default function Press({ data }) {
   const options = {
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className="text-base">{children}</p>
+        <p className="text-base mb-4">{children}</p>
       ),
     },
   };
