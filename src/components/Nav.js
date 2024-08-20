@@ -238,6 +238,12 @@ export default function Nav() {
                   >
                     Blog
                   </Link>
+                  <Link
+                    to="/press/"
+                    className="text-black hover:text-main-green px-3 py-2 text-lg font-medium uppercase"
+                  >
+                    Press
+                  </Link>
                 </div>
               </div>
             </div>
@@ -422,6 +428,14 @@ export default function Nav() {
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
                   Blog
+                </Link>
+
+                <Link
+                  onClick={() => closeMenu()}
+                  to="/press/"
+                  className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
+                >
+                  Press
                 </Link>
 
                 {/* <Link
