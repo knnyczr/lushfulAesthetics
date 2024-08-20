@@ -55,7 +55,6 @@ export default function Press({ data }) {
       <div className="grid grid-cols-1 lg:grid-cols-3 max-w-[1536px] px-4 py-8 md:px-12 lg:px-4 mx-auto">
         <div className=" lg:px-24 2xl:pl-0 lg:pr-8 lg:col-span-2 py-4">
           <div className="mb-8 p-6 border">
-            <h3 className="font-medium mb-2">Disclaimer*</h3>
             <p>{renderRichText(disclosure, options)}</p>
           </div>
           <div className="font-sans uppercase text-[20px] lg:text-2xl mb-2 lg:mb-4">
