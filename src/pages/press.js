@@ -17,18 +17,24 @@ export { Head } from "../components/Layout";
 
 export default function Press({ data }) {
   const {
-    contentfulHomePage: { reviews },
-    contentfulContactPage: { address, email },
+    contentfulContactPage: { address },
     contentfulFooterContent: {
       socialInstagram,
       socialTiktok,
       socialTwitter,
       youtube,
     },
-    contentfulPressPage: { heroImage, disclosure, metaTitle, metaDescription },
+    contentfulPressPage: {
+      heroImage,
+      disclosure,
+      metaTitle,
+      pressReviews,
+      metaDescription,
+      email,
+    },
   } = data;
 
-  console.log("review", heroImage, disclosure, metaTitle, metaDescription);
+  // console.log("review", heroImage, disclosure, metaTitle, metaDescription);
 
   const options = {
     renderNode: {
@@ -41,6 +47,11 @@ export default function Press({ data }) {
   const formattedAddress = address.replace(
     "New York, NY 10017",
     "<br>New York, NY 10017"
+  );
+
+  // Sort reviews by datePosted in descending order
+  const sortedReviews = pressReviews.sort(
+    (a, b) => new Date(b.datePosted) - new Date(a.datePosted)
   );
 
   return (
@@ -63,7 +74,7 @@ export default function Press({ data }) {
           <div className="h-0.5 bg-black mb-8"></div>
 
           <div className="flex flex-col lg:gap-2">
-            {reviews.map((review, index) => {
+            {sortedReviews.map((review, index) => {
               let mediaLogo = getImage(review.mediaLogo.companyLogo);
               let datePosted = review.datePosted;
               return (
@@ -171,22 +182,7 @@ export default function Press({ data }) {
 
 export const pageQuery = graphql`
   query PressPageQuery {
-    contentfulHomePage {
-      reviews {
-        articleLink
-        headline
-        datePosted
-        mediaLogo {
-          companyName
-          companyLogo {
-            publicUrl
-            gatsbyImageData(width: 200, quality: 90)
-          }
-        }
-      }
-    }
     contentfulContactPage {
-      email
       address
     }
     contentfulFooterContent {
@@ -202,8 +198,21 @@ export const pageQuery = graphql`
       }
       metaTitle
       metaDescription
+      email
       disclosure {
         raw
+      }
+      pressReviews {
+        articleLink
+        datePosted
+        headline
+        mediaLogo {
+          companyName
+          companyLogo {
+            publicUrl
+            gatsbyImageData(width: 200, quality: 90)
+          }
+        }
       }
     }
   }
