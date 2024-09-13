@@ -29,7 +29,7 @@ export default function homepagePageOptions() {
       ),
       [INLINES.HYPERLINK]: ({ data }, children) => (
         <a
-          className="underline "
+          className="underline font-sans"
           href={data.uri ? data.uri : ""}
           target={`"_blank"`}
           rel={`"noopener noreferrer"`}
