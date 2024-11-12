@@ -16,11 +16,9 @@ export default function Financing({ data }) {
     reasonsWhyPatientsLoveCherry,
     heroImage,
     applyForCherryLink,
-    applyForPatientFiLink,
     metaDescription,
     metaTitle,
     financingIntro,
-    howDoesPatientFiWork,
   } = data.contentfulFinancingPage;
 
   const options = {
@@ -83,10 +81,6 @@ export default function Financing({ data }) {
               </div>
               <div className="flex flex-col md:flex-row gap-4 lg:gap-8 justify-center mx-auto w-2/3">
                 <ApplyBtn url={applyForCherryLink} text={"Apply with cherry"} />
-                <ApplyBtn
-                  url={applyForPatientFiLink}
-                  text={"Apply with PatientFi"}
-                />
               </div>
             </div>
             <div className="bg-main-green w-screen px-4 py-16 sm:px-6 d:px-12 lg:px-24 flex flex-col justify-center items-center last:mt-10 max-w-[1536px] mx-auto">
@@ -114,23 +108,6 @@ export default function Financing({ data }) {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-start items-start border border-black ">
-                <div className="max-w-screen-lg py-8 px-6 lg:py-12 lg:px-12">
-                  <h4 className="capitalize font-serif font-bold text-2xl pb-4 lg:pb-8 lg:text-3xl">
-                    How does PatientFi work
-                  </h4>
-                  <hr className=" border-black" />
-                  <div className="pt-4 lg:pt-8 lg:text-lg [&>*]:mb-6 nth-child-2:mb-0">
-                    {renderRichText(howDoesPatientFiWork, howDoesItworkOptions)}
-                  </div>
-                  <div className="">
-                    <ApplyBtn
-                      url={applyForPatientFiLink}
-                      text={"Apply with PatientFi"}
-                    />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </>
@@ -144,7 +121,6 @@ export const pageQuery = graphql`
     contentfulFinancingPage {
       metaTitle
       metaDescription
-      applyForPatientFiLink
       applyForCherryLink
       pageTitle
       financingIntro {
@@ -154,9 +130,6 @@ export const pageQuery = graphql`
         raw
       }
       howDoesCherryWork {
-        raw
-      }
-      howDoesPatientFiWork {
         raw
       }
       heroImage {
