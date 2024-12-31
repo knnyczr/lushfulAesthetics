@@ -6,6 +6,7 @@ import Reviews from "../components/Reviews";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 import homepagePageOptions from "../helpers/homepagePageOptions";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
+import LocationCard from "../components/LocationCard";
 
 export { Head } from "../components/Layout";
 
@@ -19,6 +20,20 @@ export default function IndexPage({ data }) {
       metaTitle,
       metaDescription,
       contactInfo,
+    },
+    contentfulContactPage: {
+      newYorkTitle,
+      newYorkDescriptiveText,
+      newYorkAddress,
+      newYorkLocationLatLon,
+      newYorkHoursOfOperation,
+      newYorkNearestTransportation,
+      sanDiegoTitle,
+      sanDiegoDescriptiveText,
+      sanDiegoAddress,
+      sanDiegoHoursOfOperation,
+      sanDiegoNearestTransportation,
+      sanDiegoLocationLatLon,
     },
   } = data;
 
@@ -75,7 +90,7 @@ export default function IndexPage({ data }) {
       {/* <a className="sr-only sr-only-focusable" href="#contact-info">
         Skip to Contact Information
       </a> */}
-      <div className="px-4 py-12 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center">
+      {/* <div className="px-4 py-12 sm:px-6 md:px-12 lg:px-24 flex justify-center items-center">
         <div className="border border-black py-8 px-3 lg:py-10 lg:px-12 flex justify-center items-center flex-col md:flex-row">
           <div className="mx-10 w-full max-w-md h-auto flex justify-center items-center rounded">
             <a
@@ -99,7 +114,29 @@ export default function IndexPage({ data }) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+      <LocationCard
+        data={{
+          title: newYorkTitle,
+          description: newYorkDescriptiveText,
+          address: newYorkAddress,
+          hoursOfOperation: newYorkHoursOfOperation,
+          transportation: newYorkNearestTransportation,
+          location: newYorkLocationLatLon,
+          key: "NYC",
+        }}
+      />
+      <LocationCard
+        data={{
+          title: sanDiegoTitle,
+          description: sanDiegoDescriptiveText,
+          address: sanDiegoAddress,
+          hoursOfOperation: sanDiegoHoursOfOperation,
+          transportation: sanDiegoNearestTransportation,
+          location: sanDiegoLocationLatLon,
+          key: "SD",
+        }}
+      />
     </div>
   );
 }
@@ -145,6 +182,38 @@ export const query = graphql`
             url
           }
         }
+      }
+    }
+    contentfulContactPage {
+      newYorkTitle
+      newYorkDescriptiveText {
+        raw
+      }
+      newYorkAddress
+      newYorkHoursOfOperation {
+        raw
+      }
+      newYorkNearestTransportation {
+        raw
+      }
+      sanDiegoTitle
+      sanDiegoDescriptiveText {
+        raw
+      }
+      sanDiegoAddress
+      sanDiegoHoursOfOperation {
+        raw
+      }
+      sanDiegoNearestTransportation {
+        raw
+      }
+      newYorkLocationLatLon {
+        lat
+        lon
+      }
+      sanDiegoLocationLatLon {
+        lat
+        lon
       }
     }
   }

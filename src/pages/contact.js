@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import ContactForm from "../components/ContactForm";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
+import LocationCard from "../components/LocationCard";
 
 export { Head } from "../components/Layout";
 
@@ -15,6 +16,18 @@ export default function Contact({ data }) {
     email,
     metaTitle,
     metaDescription,
+    newYorkTitle,
+    newYorkDescriptiveText,
+    newYorkAddress,
+    newYorkHoursOfOperation,
+    newYorkNearestTransportation,
+    sanDiegoTitle,
+    sanDiegoDescriptiveText,
+    sanDiegoAddress,
+    sanDiegoHoursOfOperation,
+    sanDiegoNearestTransportation,
+    newYorkLocationLatLon,
+    sanDiegoLocationLatLon,
   } = data.contentfulContactPage;
 
   return (
@@ -29,11 +42,33 @@ export default function Contact({ data }) {
         </h2>
 
         <div>
-          <ContactForm
+          {/* <ContactForm
             address={address}
             phoneNumber={phoneNumber}
             email={email}
             googleLocation={googleLocation}
+          /> */}
+          <LocationCard
+            data={{
+              title: newYorkTitle,
+              description: newYorkDescriptiveText,
+              address: newYorkAddress,
+              hoursOfOperation: newYorkHoursOfOperation,
+              transportation: newYorkNearestTransportation,
+              location: newYorkLocationLatLon,
+              key: "NYC",
+            }}
+          />
+          <LocationCard
+            data={{
+              title: sanDiegoTitle,
+              description: sanDiegoDescriptiveText,
+              address: sanDiegoAddress,
+              hoursOfOperation: sanDiegoHoursOfOperation,
+              transportation: sanDiegoNearestTransportation,
+              location: sanDiegoLocationLatLon,
+              key: "SD",
+            }}
           />
         </div>
       </div>
@@ -54,6 +89,36 @@ export const query = graphql`
       address
       phoneNumber
       email
+      newYorkTitle
+      newYorkDescriptiveText {
+        raw
+      }
+      newYorkAddress
+      newYorkHoursOfOperation {
+        raw
+      }
+      newYorkNearestTransportation {
+        raw
+      }
+      sanDiegoTitle
+      sanDiegoDescriptiveText {
+        raw
+      }
+      sanDiegoAddress
+      sanDiegoHoursOfOperation {
+        raw
+      }
+      sanDiegoNearestTransportation {
+        raw
+      }
+      newYorkLocationLatLon {
+        lat
+        lon
+      }
+      sanDiegoLocationLatLon {
+        lat
+        lon
+      }
     }
   }
 `;

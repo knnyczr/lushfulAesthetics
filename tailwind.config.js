@@ -38,6 +38,11 @@ module.exports = {
         "main-green-shade": "#434232",
         "main-green-light": "#BAB9A0",
         "second-gold": "#EAC096",
+        "nyc-green": "#00933C",
+        "nyc-red": "#EE352E",
+        "nyc-purple": "#B933AD",
+        "nyc-gray": "#808183",
+        "nyc-yellow": "#FCCC0A",
       },
       width: {
         blogcard: `calc(90vw - 30px)`,
