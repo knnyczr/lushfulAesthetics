@@ -47,6 +47,7 @@ module.exports = {
     "gatsby-transformer-sharp",
     `gatsby-plugin-lodash`,
     // "gatsby-plugin-advanced-sitemap",
+
     {
       resolve: `gatsby-plugin-advanced-sitemap-webrication`,
       options: {
