@@ -17,6 +17,7 @@ export default function LocationCard({
     transportation,
     key,
     location,
+    googleAddressLink,
   },
 }) {
   console.log(
@@ -51,14 +52,16 @@ export default function LocationCard({
                 }}
                 defaultZoom={14}
               >
-                <div
-                  className="marker"
-                  lat={lat}
-                  lng={lng}
-                  style={{ color: "red", fontSize: "24px" }}
-                >
-                  📍
-                </div>
+                <a href={googleAddressLink}>
+                  <div
+                    className="marker"
+                    lat={lat}
+                    lng={lng}
+                    style={{ color: "red", fontSize: "24px" }}
+                  >
+                    📍
+                  </div>
+                </a>
               </GoogleMapReact>
             </div>
           )}
@@ -69,15 +72,17 @@ export default function LocationCard({
           {renderRichText(description, LocationCardOptions())}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="max-w-[250px]">{address}</p>
-              <div className="my-4">
+              <a href={googleAddressLink} className="max-w-[250px]">
+                {address}
+              </a>
+              {/* <div className="my-4">
                 {HoursOfOperation(
                   renderRichText(
                     hoursOfOperation,
                     LocationCardOptions("hoursOfOperation")
                   )
                 )}
-              </div>
+              </div> */}
             </div>
             <div>
               <h2 className="font-sans text-lg font-medium">

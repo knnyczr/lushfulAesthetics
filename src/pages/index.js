@@ -34,6 +34,8 @@ export default function IndexPage({ data }) {
       sanDiegoHoursOfOperation,
       sanDiegoNearestTransportation,
       sanDiegoLocationLatLon,
+      nycGoogleAddressLink,
+      sanDiegoGoogleAddressLink,
     },
   } = data;
 
@@ -123,6 +125,8 @@ export default function IndexPage({ data }) {
           hoursOfOperation: newYorkHoursOfOperation,
           transportation: newYorkNearestTransportation,
           location: newYorkLocationLatLon,
+          googleAddressLink: nycGoogleAddressLink,
+
           key: "NYC",
         }}
       />
@@ -134,6 +138,7 @@ export default function IndexPage({ data }) {
           hoursOfOperation: sanDiegoHoursOfOperation,
           transportation: sanDiegoNearestTransportation,
           location: sanDiegoLocationLatLon,
+          googleAddressLink: sanDiegoGoogleAddressLink,
           key: "SD",
         }}
       />
@@ -215,6 +220,8 @@ export const query = graphql`
         lat
         lon
       }
+      nycGoogleAddressLink
+      sanDiegoGoogleAddressLink
     }
   }
 `;
