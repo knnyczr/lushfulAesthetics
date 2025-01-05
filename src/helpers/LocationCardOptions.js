@@ -26,10 +26,12 @@ export default function LocationCardOptions(type, key) {
           ),
           [BLOCKS.LIST_ITEM]: (node, children) => {
             const nycTransportationKeys = {
+              // https://new.mta.info/maps
+              // https://metrorouteatlas.net/color_notes.html
               4: "#00933C",
               5: "#00933C",
               6: "#00933C",
-              7: "#00933C",
+              7: "#B933AD",
               S: "#808183",
               N: "#FCCC0A",
               Q: "#FCCC0A",
@@ -37,6 +39,10 @@ export default function LocationCardOptions(type, key) {
               1: "#EE352E",
               2: "#EE352E",
               3: "#EE352E",
+              B: "#FF6319",
+              D: "#FF6319",
+              F: "#FF6319",
+              M: "#FF6319",
             };
             const extractedValue = children[0].props.children.props.children;
             const backgroundColor =
