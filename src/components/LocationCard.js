@@ -4,7 +4,7 @@ import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import LocationCardOptions from "../helpers/LocationCardOptions";
 // import HoursOfOperation from "./LocationCardHoursOfOperation";
-import GoogleMapReact from "google-map-react";
+// import GoogleMapReact from "google-map-react";
 
 const isClient = typeof window !== "undefined";
 
@@ -34,7 +34,35 @@ export default function LocationCard({
         className="border border-black py-8 px-3 lg:py-10 lg:px-12 flex justify-center items-center flex-col"
       >
         <div className="mx-10 w-full h-auto flex justify-center items-center rounded">
-          {isClient && (
+          <div style={{ width: "100%" }}>
+            {/* TODO: inject screenshot here */}
+            <a
+              href={googleAddressLink}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View our location on Google Maps (opens in a new tab)"
+            >
+              {lat === 32.84575 ? (
+                <StaticImage
+                  alt="image of map, link for google maps"
+                  src={"../images/lushful-sd-location.png"}
+                  width={2000}
+                  height={500}
+                />
+              ) : (
+                <StaticImage
+                  alt="image of map, link for google maps"
+                  src={"../images/lushful-nyc-location.png"}
+                  width={2000}
+                  height={500}
+                />
+              )}
+            </a>
+            {/* <div className="mx-10 max-w-lg w-auto flex justify-center items-center rounded">
+            </div> */}
+          </div>
+          {/* TODO:  try this plugin:  https://www.npmjs.com/package/google-maps-react-markers */}
+          {/* {isClient && (
             <div style={{ height: "25vh", width: "100%" }}>
               <GoogleMapReact
                 bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY }}
@@ -56,7 +84,7 @@ export default function LocationCard({
                 </a>
               </GoogleMapReact>
             </div>
-          )}
+          )} */}
         </div>
 
         <div className="flex flex-col justify-center max-w-2xl">
