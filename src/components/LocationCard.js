@@ -3,7 +3,7 @@ import Button from "../components/BookBtn";
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import LocationCardOptions from "../helpers/LocationCardOptions";
-import HoursOfOperation from "./LocationCardHoursOfOperation";
+// import HoursOfOperation from "./LocationCardHoursOfOperation";
 import GoogleMapReact from "google-map-react";
 
 const isClient = typeof window !== "undefined";
@@ -20,14 +20,6 @@ export default function LocationCard({
     googleAddressLink,
   },
 }) {
-  console.log(
-    title,
-    address,
-    JSON.parse(description.raw),
-    JSON.parse(hoursOfOperation.raw),
-    JSON.parse(transportation.raw)
-  );
-
   const lat = parseFloat(location.lat);
   const lng = parseFloat(location.lon);
 

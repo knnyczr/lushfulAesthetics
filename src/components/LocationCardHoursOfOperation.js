@@ -10,11 +10,11 @@ export default function HoursOfOperation(businessHoursFromRenderRichText) {
     "Friday",
     "Saturday",
   ];
-  const getTodaysWeekday = () => {
-    const today = new Date();
-    const day = today.getDay();
-    return [weekdays[day], day];
-  };
+  // const getTodaysWeekday = () => {
+  //   const today = new Date();
+  //   const day = today.getDay();
+  //   return [weekdays[day], day];
+  // };
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -28,12 +28,12 @@ export default function HoursOfOperation(businessHoursFromRenderRichText) {
         className="cursor-pointer text-sm text-slate-800 hover:underline"
       >
         Today:{" "}
-        {getTodaysWeekday()[1] !== "Saturday" ||
+        {/* {getTodaysWeekday()[1] !== "Saturday" ||
         getTodaysWeekday()[1] !== "Sunday"
           ? businessHoursFromRenderRichText[0].props.children[
               getTodaysWeekday()[1]
             ]
-          : "Closed"}
+          : "Closed"} */}
       </span>
       <div
         className={`transition-all duration-300 ease-in-out overflow-hidden ${
