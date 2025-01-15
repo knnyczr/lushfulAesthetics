@@ -84,7 +84,7 @@ export default function IndexPage({ data }) {
 
       <div
         // id="reviews"
-        className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 bg-main-green"
+        className="px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 bg-main-green"
       >
         <Reviews reviews={reviews} />
       </div>
@@ -117,31 +117,33 @@ export default function IndexPage({ data }) {
           </div>
         </div>
       </div> */}
-      <LocationCard
-        data={{
-          title: newYorkTitle,
-          description: newYorkDescriptiveText,
-          address: newYorkAddress,
-          hoursOfOperation: newYorkHoursOfOperation,
-          transportation: newYorkNearestTransportation,
-          location: newYorkLocationLatLon,
-          googleAddressLink: nycGoogleAddressLink,
+      <div className="flex flex-col xl:flex-row gap-8 items-stretch px-4 md:px-12 lg:px-24 xl:px-0 py-24 lg:py-36 max-w-[1536px] mx-auto">
+        <LocationCard
+          data={{
+            title: newYorkTitle,
+            description: newYorkDescriptiveText,
+            address: newYorkAddress,
+            hoursOfOperation: newYorkHoursOfOperation,
+            transportation: newYorkNearestTransportation,
+            location: newYorkLocationLatLon,
+            googleAddressLink: nycGoogleAddressLink,
 
-          key: "NYC",
-        }}
-      />
-      <LocationCard
-        data={{
-          title: sanDiegoTitle,
-          description: sanDiegoDescriptiveText,
-          address: sanDiegoAddress,
-          hoursOfOperation: sanDiegoHoursOfOperation,
-          transportation: sanDiegoNearestTransportation,
-          location: sanDiegoLocationLatLon,
-          googleAddressLink: sanDiegoGoogleAddressLink,
-          key: "SD",
-        }}
-      />
+            key: "NYC",
+          }}
+        />
+        <LocationCard
+          data={{
+            title: sanDiegoTitle,
+            description: sanDiegoDescriptiveText,
+            address: sanDiegoAddress,
+            hoursOfOperation: sanDiegoHoursOfOperation,
+            transportation: sanDiegoNearestTransportation,
+            location: sanDiegoLocationLatLon,
+            googleAddressLink: sanDiegoGoogleAddressLink,
+            key: "SD",
+          }}
+        />
+      </div>
     </div>
   );
 }
