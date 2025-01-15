@@ -139,7 +139,9 @@ export default function LocationCard({
           {isClient && (
             <div style={{ height: "30vh", width: "100%" }}>
               <GoogleMapReact
-                bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY }}
+                bootstrapURLKeys={{
+                  key: process.env.GATSBY_GOOGLE_MAPS_API_KEY,
+                }}
                 defaultCenter={{
                   lat: location.lat,
                   lng: location.lon,
