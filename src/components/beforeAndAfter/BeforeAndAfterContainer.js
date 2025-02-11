@@ -3,12 +3,14 @@ import ImageWithOverlay from "./ImageWithOverlay";
 import ImageModal from "./ImageModal";
 import { VimeoPlayer } from "reactjs-vimeo-player";
 import { Context } from "../Context";
+import beforeAndAfterContainerOptions from "../../helpers/beforeAndAfterContainerOptions";
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function BeforeAndAfterContainer({
   serviceTitle,
   beforeAfterVideos,
   beforeAndAfters,
-  beforeAfterServiceDescription,
+  beforeAfterServiceDescriptionRichText,
   shouldVerifyAge,
   shouldCaptureEmail,
   onVerifyAge,
@@ -90,6 +92,8 @@ export default function BeforeAndAfterContainer({
     ));
   };
 
+  const options = beforeAndAfterContainerOptions()
+
   return (
     <>
       <div
@@ -113,9 +117,9 @@ export default function BeforeAndAfterContainer({
             </button>
           )}
         </div>
-        {beforeAfterServiceDescription && (
+        {beforeAfterServiceDescriptionRichText && (
           <p className="mb-4">
-            {beforeAfterServiceDescription.beforeAfterServiceDescription}
+            {renderRichText(beforeAfterServiceDescriptionRichText, options)}
           </p>
         )}
         {beforeAndAfters && (

@@ -34,7 +34,7 @@ export default function ServicePage({ data }) {
       metaTitle,
       beforeAfterVideos,
       beforeAndAfters,
-      beforeAfterServiceDescription,
+      beforeAfterServiceDescriptionRichText,
       shouldCaptureEmail,
       shouldVerifyAge,
     },
@@ -90,7 +90,7 @@ export default function ServicePage({ data }) {
         <BeforeAndAfterContainer
           serviceTitle={serviceTitle}
           beforeAfterVideos={beforeAfterVideos}
-          beforeAfterServiceDescription={beforeAfterServiceDescription}
+          beforeAfterServiceDescriptionRichText={beforeAfterServiceDescriptionRichText}
           beforeAndAfters={beforeAndAfters}
           onVerifyAge={handleVerifyAge}
           shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
@@ -226,8 +226,8 @@ export const pageQuery = graphql`
       metaTitle
       shouldCaptureEmail
       shouldVerifyAge
-      beforeAfterServiceDescription {
-        beforeAfterServiceDescription
+      beforeAfterServiceDescriptionRichText {
+        raw
       }
       beforeAfterVideos
       beforeAndAfters {
