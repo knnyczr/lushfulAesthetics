@@ -20,6 +20,7 @@ export default function ServicePage({ data }) {
     contentfulServicePage: {
       serviceTitle,
       faqRef,
+      faqSchema,
       pricing,
       intro,
       press,
@@ -64,6 +65,7 @@ export default function ServicePage({ data }) {
       <HelmetWithMetaDesc
         metaTitle={metaTitle}
         metaDescription={metaDescription}
+        faqSchema={faqSchema}
       />
       <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
 
@@ -90,7 +92,9 @@ export default function ServicePage({ data }) {
         <BeforeAndAfterContainer
           serviceTitle={serviceTitle}
           beforeAfterVideos={beforeAfterVideos}
-          beforeAfterServiceDescriptionRichText={beforeAfterServiceDescriptionRichText}
+          beforeAfterServiceDescriptionRichText={
+            beforeAfterServiceDescriptionRichText
+          }
           beforeAndAfters={beforeAndAfters}
           onVerifyAge={handleVerifyAge}
           shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
@@ -191,6 +195,11 @@ export const pageQuery = graphql`
           raw
         }
         question
+      }
+      faqSchema {
+        internal {
+          content
+        }
       }
       intro {
         raw
