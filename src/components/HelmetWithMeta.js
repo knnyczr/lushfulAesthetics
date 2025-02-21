@@ -13,9 +13,7 @@ export default function HelmetWithMetaDesc({
       <title>{metaTitle}</title>
       <meta name="description" content={`${metaDescription}`}></meta>
       {faqSchema && (
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema.internal.content)}
-        </script>
+        <script type="application/ld+json">{faqSchema.internal.content}</script>
       )}
     </Helmet>
   );
