@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import { useLocation } from "@reach/router";
+
 import { graphql } from "gatsby";
 import CustomAccordion from "../components/CustomAccodian";
 import HeroImage from "../components/HeroImage";
@@ -18,10 +21,13 @@ export { Head } from "../components/Layout";
 export default function ServicePage({ data }) {
   const {
     contentfulServicePage: {
+      slug,
       serviceTitle,
       faqRef,
       faqSchema,
       pricing,
+      pricingHeading,
+      pricingSlug,
       intro,
       press,
       heroImage,
@@ -45,6 +51,8 @@ export default function ServicePage({ data }) {
 
   const options = servicePageOptions(website_url);
 
+  const location = useLocation();
+
   const [isVerifyAgePopupOpen, setIsVerifyAgePopupOpen] = useState({
     isOpen: false,
     flags: {
@@ -60,6 +68,27 @@ export default function ServicePage({ data }) {
     });
   };
 
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    if (!hasScrolled && location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      setTimeout(() => {
+        setHasScrolled(true);
+        if (element) {
+          const yOffset =
+            element.getBoundingClientRect().top + window.scrollY - 200;
+          window.scrollTo({ top: yOffset, behavior: "smooth" });
+        }
+      }, 2000);
+    }
+  }, [location, hasScrolled]);
+
   return (
     <div className="mx-auto max-w-[1536px]">
       <HelmetWithMetaDesc
@@ -73,6 +102,9 @@ export default function ServicePage({ data }) {
         intro={renderRichText(intro, options)}
         pricing={renderRichText(pricing, options)}
         subheadingOne={subheadingOne}
+        slug={slug}
+        pricingHeading={pricingHeading}
+        pricingSlug={pricingSlug}
       />
       {press?.length && (
         <AsSeenIn press={press} subheadingAsSeenIn={subheadingAsSeenIn} />
@@ -228,6 +260,8 @@ export const pageQuery = graphql`
       pricing {
         raw
       }
+      pricingHeading
+      pricingSlug
       subheadingOne
       subheadingTwo
       metaDescription
