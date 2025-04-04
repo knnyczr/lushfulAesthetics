@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./BookBtn";
 
-const ConditionalAnchor = ({ condition, wrap, children }) =>
-  condition ? wrap(children) : children;
+import ConditionalWrapperComponent from "./ConditionalWrapperComponent";
+import AnchorLinkComponent from "./AnchorLinkComponent";
 
 export default function ServicePrice({
   slug,
@@ -19,20 +19,19 @@ export default function ServicePrice({
           {subheadingOne || `What Is It For?`}
         </h2>
         <div className="max-w-screen-lg lg:text-lg">{intro}</div>
-
-        <ConditionalAnchor
+        <ConditionalWrapperComponent
           condition={!!pricingSlug}
           wrap={(wrappedChildren) => (
-            <div id={pricingSlug.substring(1)}>{wrappedChildren}</div>
-          )}
-        >
+            <AnchorLinkComponent slug={slug} pricingSlug={pricingSlug}>
+              {wrappedChildren}
+            </AnchorLinkComponent>
           {pricingHeading && (
             <h3 className="font-serif text-2xl lg:text-3xl font-bold mb-6 mt-12">
               {pricingHeading}
             </h3>
           )}
           <div className="mb-6">{pricing}</div>
-        </ConditionalAnchor>
+        </ConditionalWrapperComponent>
         <Button />
       </div>
     </>

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-
 import { useLocation } from "@reach/router";
-
 import { graphql } from "gatsby";
 import CustomAccordion from "../components/CustomAccodian";
 import HeroImage from "../components/HeroImage";
@@ -15,6 +13,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 import BeforeAndAfterContainer from "../components/beforeAndAfter/BeforeAndAfterContainer";
 import AgeAndEmailCaptureModal from "../components/beforeAndAfter/AgeAndEmailCaptureModal";
+import ConditionalWrapperComponent from "../components/ConditionalWrapperComponent";
 
 export { Head } from "../components/Layout";
 
@@ -121,17 +120,22 @@ export default function ServicePage({ data }) {
 
       {/* BEFORE & AFTERS FEATURES */}
       {(beforeAfterVideos || beforeAndAfters) && (
-        <BeforeAndAfterContainer
-          serviceTitle={serviceTitle}
-          beforeAfterVideos={beforeAfterVideos}
-          beforeAfterServiceDescriptionRichText={
-            beforeAfterServiceDescriptionRichText
-          }
-          beforeAndAfters={beforeAndAfters}
-          onVerifyAge={handleVerifyAge}
-          shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
-          shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
-        />
+        <ConditionalWrapperComponent
+          condition={true}
+          // wrap={(wrappedchildren) => ()}
+        >
+          <BeforeAndAfterContainer
+            serviceTitle={serviceTitle}
+            beforeAfterVideos={beforeAfterVideos}
+            beforeAfterServiceDescriptionRichText={
+              beforeAfterServiceDescriptionRichText
+            }
+            beforeAndAfters={beforeAndAfters}
+            onVerifyAge={handleVerifyAge}
+            shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
+            shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
+          />
+        </ConditionalWrapperComponent>
       )}
 
       {isVerifyAgePopupOpen.isOpen && (
