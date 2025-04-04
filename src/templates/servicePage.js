@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-
-import { useLocation } from "@reach/router";
-
 import { graphql } from "gatsby";
 import CustomAccordion from "../components/CustomAccodian";
 import HeroImage from "../components/HeroImage";
@@ -15,6 +12,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 import BeforeAndAfterContainer from "../components/beforeAndAfter/BeforeAndAfterContainer";
 import AgeAndEmailCaptureModal from "../components/beforeAndAfter/AgeAndEmailCaptureModal";
+import ConditionalWrapperComponent from "../components/ConditionalWrapperComponent";
 
 export { Head } from "../components/Layout";
 
@@ -54,8 +52,6 @@ export default function ServicePage({ data }) {
 
   const options = servicePageOptions(website_url);
 
-  const location = useLocation();
-
   const [isVerifyAgePopupOpen, setIsVerifyAgePopupOpen] = useState({
     isOpen: false,
     flags: {
@@ -70,27 +66,6 @@ export default function ServicePage({ data }) {
       isOpen: true,
     });
   };
-
-  const [hasScrolled, setHasScrolled] = useState(false);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    if (!hasScrolled && location.hash) {
-      const id = location.hash.replace("#", "");
-      const element = document.getElementById(id);
-      setTimeout(() => {
-        setHasScrolled(true);
-        if (element) {
-          const yOffset =
-            element.getBoundingClientRect().top + window.scrollY - 200;
-          window.scrollTo({ top: yOffset, behavior: "smooth" });
-        }
-      }, 2000);
-    }
-  }, [location, hasScrolled]);
 
   return (
     <div className="mx-auto max-w-[1536px]">
@@ -124,11 +99,9 @@ export default function ServicePage({ data }) {
 
       {/* BEFORE & AFTERS FEATURES */}
       {(beforeAfterVideos || beforeAndAfters) && (
-        <ConditionalAnchor
-          condition={!!beforeAfterVideos || !!beforeAndAfters}
-          wrap={(wrappedChildren) => (
-            <div id="before-after">{wrappedChildren}</div>
-          )}
+        <ConditionalWrapperComponent
+          condition={true}
+          // wrap={(wrappedchildren) => ()}
         >
           <BeforeAndAfterContainer
             serviceTitle={serviceTitle}
@@ -141,7 +114,7 @@ export default function ServicePage({ data }) {
             shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
             shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
           />
-        </ConditionalAnchor>
+        </ConditionalWrapperComponent>
       )}
 
       {isVerifyAgePopupOpen.isOpen && (
