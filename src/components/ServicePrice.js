@@ -19,15 +19,12 @@ export default function ServicePrice({
           {subheadingOne || `What Is It For?`}
         </h2>
         <div className="max-w-screen-lg lg:text-lg">{intro}</div>
-
         <ConditionalWrapperComponent
           condition={!!pricingSlug}
           wrap={(wrappedChildren) => (
             <AnchorLinkComponent slug={slug} pricingSlug={pricingSlug}>
               {wrappedChildren}
             </AnchorLinkComponent>
-          )}
-        >
           {pricingHeading && (
             <h3 className="font-serif text-2xl lg:text-3xl font-bold mb-6 mt-12">
               {pricingHeading}
