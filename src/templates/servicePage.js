@@ -18,6 +18,9 @@ import AgeAndEmailCaptureModal from "../components/beforeAndAfter/AgeAndEmailCap
 
 export { Head } from "../components/Layout";
 
+const ConditionalAnchor = ({ condition, wrap, children }) =>
+  condition ? wrap(children) : children;
+
 export default function ServicePage({ data }) {
   const {
     contentfulServicePage: {
@@ -121,17 +124,24 @@ export default function ServicePage({ data }) {
 
       {/* BEFORE & AFTERS FEATURES */}
       {(beforeAfterVideos || beforeAndAfters) && (
-        <BeforeAndAfterContainer
-          serviceTitle={serviceTitle}
-          beforeAfterVideos={beforeAfterVideos}
-          beforeAfterServiceDescriptionRichText={
-            beforeAfterServiceDescriptionRichText
-          }
-          beforeAndAfters={beforeAndAfters}
-          onVerifyAge={handleVerifyAge}
-          shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
-          shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
-        />
+        <ConditionalAnchor
+          condition={!!beforeAfterVideos || !!beforeAndAfters}
+          wrap={(wrappedChildren) => (
+            <div id="before-after">{wrappedChildren}</div>
+          )}
+        >
+          <BeforeAndAfterContainer
+            serviceTitle={serviceTitle}
+            beforeAfterVideos={beforeAfterVideos}
+            beforeAfterServiceDescriptionRichText={
+              beforeAfterServiceDescriptionRichText
+            }
+            beforeAndAfters={beforeAndAfters}
+            onVerifyAge={handleVerifyAge}
+            shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
+            shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
+          />
+        </ConditionalAnchor>
       )}
 
       {isVerifyAgePopupOpen.isOpen && (
