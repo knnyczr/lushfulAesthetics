@@ -26,6 +26,7 @@
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@react-google-maps/api": "^2.20.5",
     "contentful": "^9.1.34",
+    "embla-carousel-react": "^8.6.0",
     "framer-motion": "^7.3.2",
     "gatsby": "^4.24.6",
     "gatsby-background-image": "^1.6.0",

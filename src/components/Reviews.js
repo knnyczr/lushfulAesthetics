@@ -1,61 +1,84 @@
 import React from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { useEffect, useState } from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import BackgroundImage from "gatsby-background-image";
-import { convertToBgImage } from "gbimage-bridge";
 
 export default function Reviews({ reviews }) {
+  // console.log(reviews[0].bgImage.file.url);
+  // console.log(reviews);
+
+  const bgImage = reviews[0].bgImage.file.url;
+  const options = {
+    dragFree: true,
+    dragFreeOptions: {
+      speed: 2,
+      bounce: true,
+    },
+    containScroll: "trimSnaps",
+    loop: false,
+    align: "start",
+  };
+  const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on("select", () =>
+        setSelectedIndex(emblaApi.selectedScrollSnap())
+      );
+    }
+  }, [emblaApi]);
+
   return (
     <>
-      <div className="flex flex-col justify-center mx-auto bg-main-green max-w-[1535px]">
-        <div className="flex overflow-x-scroll pb-10 justify-start xl:scrollbar-hide">
-          <div className="flex flex-nowrap snap-mandatory snap-x">
-            {reviews.map((review, index) => {
-              let image = getImage(review.bgImage);
-              let mediaLogo = getImage(review.mediaLogo.companyLogo);
-              let bgImage = convertToBgImage(image);
-              return (
-                <div
-                  className="inline-block snap-mandatory snap-x "
-                  key={index}
-                >
-                  <BackgroundImage
-                    className="w-136 h-128 max-w-xs snap-mandatory snap-x overflow-hidden rounded-lg shadow-md mr-8 hover:shadow-xl transition-shadow duration-300 ease-in-out flex flex-col justify-center items-center "
-                    {...bgImage}
-                    style={{
-                      backgroundRepeat: "no-repeat",
-                      backgroundSize: "cover",
-                      backgroundPosition: "-40px 0",
-                    }}
+      {/* Background image */}
+      <div className="relative w-full h-full">
+        <div
+          className="absolute inset-0 bg-cover bg-no-repeat filter blur-lg"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundPosition: "50% 3%",
+          }}
+        />
+
+        {/* Card view */}
+        <div className="relative z-10 px-4 sm:px-6 md:px-12 lg:px-6 2xl:px-0 py-16 lg:py-24 max-w-[1535px] mx-auto">
+          <div
+            className="overflow-hidden md:overflow-x-auto overflow-y-hidden"
+            ref={emblaRef}
+            style={{ scrollbarGutter: "stable both-edges" }}
+          >
+            <div className="flex flex-row gap-4">
+              {reviews.map((review, index) => {
+                const mediaLogo = getImage(review.mediaLogo.companyLogo);
+                return (
+                  <a
+                    key={index}
+                    href={review.articleLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Read the review article (opens in a new tab)"
+                    className="flex-none pt-0 md:pt-4 p-4 pb-8 bg-white bg-opacity-25 backdrop-blur-2xl rounded-lg shadow-lg flex flex-col items-center w-[250px] gap-6"
                   >
-                    <a
-                      href={review.articleLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Read the review article (opens in a new tab)"
-                    >
-                      <div className="backdrop-blur-md bg-main-green-shade/50 rounded flex justify-end  items-end	">
-                        <div className="flex flex-col justify-between py-16 items-center h-128 px-6">
-                          <h2 className="z-10 my-6 font-bold text-white font-serif text-3xl text-center leading-normal">
-                            {review.headline}
-                          </h2>
-                          <div>
-                            <GatsbyImage
-                              image={mediaLogo}
-                              alt={`${review.mediaLogo.companyName}'s logo`}
-                            />
-                            <div className="w-full px-5 flex justify-center">
-                              <p className="md:hidden lg:hidden text-center text-white mt-8 rounded-full border-solid border-white border w-3/4	text-sm	p-1">
-                                Tap for more
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </BackgroundImage>
-                </div>
-              );
-            })}
+                    <div className="h-full flex flex-col justify-center items-center">
+                      <GatsbyImage
+                        image={mediaLogo}
+                        alt={review.mediaLogo.companyName}
+                        className="w-[70%] h-auto object-contain"
+                      />
+                    </div>
+                    <div className="h-1/3 flex flex-col justify-end items-center text-center">
+                      <p className="mb-4 text-lg font-bold font-serif pt-4">
+                        {review.headline}
+                      </p>
+                      <button className="md:hidden border-[1px] border-black rounded-full px-4 py-[4px] text-sm">
+                        Tap for more
+                      </button>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
