@@ -84,7 +84,7 @@ export default function IndexPage({ data }) {
 
       <div
         // id="reviews"
-        className="px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 bg-main-green"
+        className=" bg-main-green overflow-hidden"
       >
         <Reviews reviews={reviews} />
       </div>
