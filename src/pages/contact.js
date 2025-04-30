@@ -56,6 +56,8 @@ export default function Contact({ data }) {
               hoursOfOperation: newYorkHoursOfOperation,
               transportation: newYorkNearestTransportation,
               location: newYorkLocationLatLon,
+              phoneNumber: phoneNumber,
+              email: email,
               key: "NYC",
             }}
           />
@@ -67,6 +69,8 @@ export default function Contact({ data }) {
               hoursOfOperation: sanDiegoHoursOfOperation,
               transportation: sanDiegoNearestTransportation,
               location: sanDiegoLocationLatLon,
+              phoneNumber: phoneNumber,
+              email: email,
               key: "SD",
             }}
           />

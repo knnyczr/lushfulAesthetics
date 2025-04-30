@@ -22,6 +22,8 @@ export default function IndexPage({ data }) {
       contactInfo,
     },
     contentfulContactPage: {
+      phoneNumber,
+      email,
       newYorkTitle,
       newYorkDescriptiveText,
       newYorkAddress,
@@ -127,7 +129,8 @@ export default function IndexPage({ data }) {
             transportation: newYorkNearestTransportation,
             location: newYorkLocationLatLon,
             googleAddressLink: nycGoogleAddressLink,
-
+            phoneNumber: phoneNumber,
+            email: email,
             key: "NYC",
           }}
         />
@@ -140,6 +143,8 @@ export default function IndexPage({ data }) {
             transportation: sanDiegoNearestTransportation,
             location: sanDiegoLocationLatLon,
             googleAddressLink: sanDiegoGoogleAddressLink,
+            phoneNumber: phoneNumber,
+            email: email,
             key: "SD",
           }}
         />
@@ -192,6 +197,8 @@ export const query = graphql`
       }
     }
     contentfulContactPage {
+      phoneNumber
+      email
       newYorkTitle
       newYorkDescriptiveText {
         raw

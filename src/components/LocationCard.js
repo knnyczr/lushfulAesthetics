@@ -3,7 +3,7 @@ import Button from "../components/BookBtn";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import LocationCardOptions from "../helpers/LocationCardOptions";
 // import HoursOfOperation from "./LocationCardHoursOfOperation";
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
 const isClient = typeof window !== "undefined";
 
@@ -17,6 +17,8 @@ export default function LocationCard({
     key,
     location,
     googleAddressLink,
+    phoneNumber,
+    email,
   },
 }) {
   const lat = parseFloat(location.lat);
@@ -27,13 +29,13 @@ export default function LocationCard({
   };
 
   const handleMarkerClick = () => {
-    window.open(googleAddressLink, '_blank');
+    window.open(googleAddressLink, "_blank");
   };
- 
+
   const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
+    id: "google-map-script",
     googleMapsApiKey: `${process.env.GATSBY_GOOGLE_MAPS_API_KEY}`,
-  }) 
+  });
 
   return (
     <div className="flex justify-center items-center ">
@@ -42,24 +44,24 @@ export default function LocationCard({
           {isClient && isLoaded && (
             <div style={{ height: "30vh", width: "100%" }}>
               <GoogleMap
-                  mapContainerStyle={{
-                    width: '100%',
-                    height: '100%',
+                mapContainerStyle={{
+                  width: "100%",
+                  height: "100%",
+                }}
+                center={{
+                  lat: lat,
+                  lng: lng,
+                }}
+                zoom={15}
+              >
+                <Marker
+                  position={{ lat: lat, lng: lng }}
+                  icon={{
+                    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Google_Maps_pin.svg/40px-Google_Maps_pin.svg.png?20171209021230",
+                    scaledSize: new window.google.maps.Size(23, 36),
                   }}
-                  center={{
-                    lat: lat,
-                    lng: lng,
-                  }}
-                  zoom={15}
-                >      
-                  <Marker
-                    position={{ lat: lat, lng: lng }}
-                    icon={{ 
-                      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Google_Maps_pin.svg/40px-Google_Maps_pin.svg.png?20171209021230", 
-                      scaledSize: new window.google.maps.Size(23, 36),
-                    }}
-                    onClick={handleMarkerClick}
-                  />
+                  onClick={handleMarkerClick}
+                />
               </GoogleMap>
             </div>
           )}
@@ -74,6 +76,17 @@ export default function LocationCard({
                 <a href={googleAddressLink} className="max-w-[250px]">
                   {address}
                 </a>
+                <div className="py-2">
+                  <a
+                    className="font-sans font-bold text-lg"
+                    href={`tel:${phoneNumber}`}
+                  >
+                    {phoneNumber}
+                  </a>
+                </div>
+                <div className="py-2 underline">
+                  <a href={`$mailto:${email}`}>{email}</a>
+                </div>
               </div>
               <div>
                 <h2 className="font-sans text-lg font-medium">
