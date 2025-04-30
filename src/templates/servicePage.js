@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from "react";
-
-import { useLocation } from "@reach/router";
-
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 import CustomAccordion from "../components/CustomAccodian";
 import HeroImage from "../components/HeroImage";
@@ -17,9 +14,6 @@ import BeforeAndAfterContainer from "../components/beforeAndAfter/BeforeAndAfter
 import AgeAndEmailCaptureModal from "../components/beforeAndAfter/AgeAndEmailCaptureModal";
 
 export { Head } from "../components/Layout";
-
-const ConditionalAnchor = ({ condition, wrap, children }) =>
-  condition ? wrap(children) : children;
 
 export default function ServicePage({ data }) {
   const {
@@ -54,8 +48,6 @@ export default function ServicePage({ data }) {
 
   const options = servicePageOptions(website_url);
 
-  const location = useLocation();
-
   const [isVerifyAgePopupOpen, setIsVerifyAgePopupOpen] = useState({
     isOpen: false,
     flags: {
@@ -70,27 +62,6 @@ export default function ServicePage({ data }) {
       isOpen: true,
     });
   };
-
-  const [hasScrolled, setHasScrolled] = useState(false);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    if (!hasScrolled && location.hash) {
-      const id = location.hash.replace("#", "");
-      const element = document.getElementById(id);
-      setTimeout(() => {
-        setHasScrolled(true);
-        if (element) {
-          const yOffset =
-            element.getBoundingClientRect().top + window.scrollY - 200;
-          window.scrollTo({ top: yOffset, behavior: "smooth" });
-        }
-      }, 2000);
-    }
-  }, [location, hasScrolled]);
 
   return (
     <div className="mx-auto max-w-[1536px]">
@@ -124,24 +95,18 @@ export default function ServicePage({ data }) {
 
       {/* BEFORE & AFTERS FEATURES */}
       {(beforeAfterVideos || beforeAndAfters) && (
-        <ConditionalAnchor
-          condition={!!beforeAfterVideos || !!beforeAndAfters}
-          wrap={(wrappedChildren) => (
-            <div id="before-after">{wrappedChildren}</div>
-          )}
-        >
-          <BeforeAndAfterContainer
-            serviceTitle={serviceTitle}
-            beforeAfterVideos={beforeAfterVideos}
-            beforeAfterServiceDescriptionRichText={
-              beforeAfterServiceDescriptionRichText
-            }
-            beforeAndAfters={beforeAndAfters}
-            onVerifyAge={handleVerifyAge}
-            shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
-            shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
-          />
-        </ConditionalAnchor>
+        <BeforeAndAfterContainer
+          slug={slug}
+          serviceTitle={serviceTitle}
+          beforeAfterVideos={beforeAfterVideos}
+          beforeAfterServiceDescriptionRichText={
+            beforeAfterServiceDescriptionRichText
+          }
+          beforeAndAfters={beforeAndAfters}
+          onVerifyAge={handleVerifyAge}
+          shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
+          shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
+        />
       )}
 
       {isVerifyAgePopupOpen.isOpen && (

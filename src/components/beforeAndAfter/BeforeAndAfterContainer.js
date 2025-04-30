@@ -5,6 +5,7 @@ import { VimeoPlayer } from "reactjs-vimeo-player";
 import { Context } from "../Context";
 import beforeAndAfterContainerOptions from "../../helpers/beforeAndAfterContainerOptions";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
+import AnchorLinkComponent from "../AnchorLinkComponent";
 
 export default function BeforeAndAfterContainer({
   serviceTitle,
@@ -14,6 +15,7 @@ export default function BeforeAndAfterContainer({
   shouldVerifyAge,
   shouldCaptureEmail,
   onVerifyAge,
+  slug,
 }) {
   const [isViewAll, setIsViewAll] = useState(false);
   const [isImagePairOpen, setIsImagePairOpen] = useState(false);
@@ -66,6 +68,7 @@ export default function BeforeAndAfterContainer({
   const renderImagePairs = (count) => {
     return beforeAndAfters.slice(0, count).map((imagePair, index) => (
       <div
+        // TODO: jsx-a11y/click-events-have-key-events descriptive images?
         key={index}
         className="col-span-2 md:col-span-1 flex cursor-pointer"
         onClick={() => {
@@ -92,7 +95,7 @@ export default function BeforeAndAfterContainer({
     ));
   };
 
-  const options = beforeAndAfterContainerOptions()
+  const options = beforeAndAfterContainerOptions();
 
   return (
     <>
@@ -102,9 +105,14 @@ export default function BeforeAndAfterContainer({
         } h-full sm:px-6 md:px-12 lg:px-24 lg:py-24`}
       >
         <div className="w-full flex flex-row justify-between">
-          <span className="my-5 text-3xl font-serif font-bold">
-            Before and After
-          </span>
+          <AnchorLinkComponent
+            slug={`${slug}/${serviceTitle}/#beforeAndAfters`}
+            pricingSlug={`#beforeandafter`}
+          >
+            <span className="my-5 text-3xl font-serif font-bold">
+              Before and After
+            </span>
+          </AnchorLinkComponent>
 
           {beforeAndAfters && beforeAndAfters.length > 2 && (
             <button
