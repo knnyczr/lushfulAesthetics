@@ -15,7 +15,7 @@ export default function ServicePrice({
   serviceTitle,
   beforeAfterVideos,
   beforeAndAfters,
-  handleVerifyAge,
+  onVerifyAge,
   shouldVerifyAge,
   shouldCaptureEmail,
   beforeAfterServiceDescriptionRichText,
@@ -27,7 +27,6 @@ export default function ServicePrice({
           {subheadingOne || `What Is It For?`}
         </h2>
         <div className="max-w-screen-lg lg:text-lg">{intro}</div>
-        {/* HERE */}
         {(beforeAfterVideos || beforeAndAfters) && (
           <BeforeAndAfterContainer
             slug={slug}
@@ -37,7 +36,7 @@ export default function ServicePrice({
               beforeAfterServiceDescriptionRichText
             }
             beforeAndAfters={beforeAndAfters}
-            onVerifyAge={handleVerifyAge}
+            onVerifyAge={onVerifyAge}
             shouldVerifyAge={shouldVerifyAge}
             shouldCaptureEmail={shouldCaptureEmail}
           />
