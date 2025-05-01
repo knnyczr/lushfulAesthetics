@@ -10,7 +10,6 @@ import OurApproach from "../components/OurApproach";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
-import BeforeAndAfterContainer from "../components/beforeAndAfter/BeforeAndAfterContainer";
 import AgeAndEmailCaptureModal from "../components/beforeAndAfter/AgeAndEmailCaptureModal";
 
 export { Head } from "../components/Layout";
@@ -71,8 +70,16 @@ export default function ServicePage({ data }) {
         faqSchema={faqSchema}
       />
       <HeroImage heroImage={heroImage} pageTitle={serviceTitle} />
-
       <ServicePrice
+        serviceTitle={serviceTitle}
+        beforeAfterVideos={beforeAfterVideos}
+        beforeAfterServiceDescriptionRichText={
+          beforeAfterServiceDescriptionRichText
+        }
+        beforeAndAfters={beforeAndAfters}
+        onVerifyAge={handleVerifyAge}
+        shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
+        shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
         intro={renderRichText(intro, options)}
         pricing={renderRichText(pricing, options)}
         subheadingOne={subheadingOne}
@@ -92,22 +99,6 @@ export default function ServicePage({ data }) {
         postCare={postCare}
         heroImage={heroImage}
       />
-
-      {/* BEFORE & AFTERS FEATURES */}
-      {(beforeAfterVideos || beforeAndAfters) && (
-        <BeforeAndAfterContainer
-          slug={slug}
-          serviceTitle={serviceTitle}
-          beforeAfterVideos={beforeAfterVideos}
-          beforeAfterServiceDescriptionRichText={
-            beforeAfterServiceDescriptionRichText
-          }
-          beforeAndAfters={beforeAndAfters}
-          onVerifyAge={handleVerifyAge}
-          shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
-          shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
-        />
-      )}
 
       {isVerifyAgePopupOpen.isOpen && (
         <AgeAndEmailCaptureModal

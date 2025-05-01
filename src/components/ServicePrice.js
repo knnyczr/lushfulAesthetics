@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Button from "./BookBtn";
 
 import ConditionalWrapperComponent from "./ConditionalWrapperComponent";
 import AnchorLinkComponent from "./AnchorLinkComponent";
+import BeforeAndAfterContainer from "./beforeAndAfter/BeforeAndAfterContainer";
 
 export default function ServicePrice({
   slug,
@@ -11,6 +12,13 @@ export default function ServicePrice({
   subheadingOne,
   pricingHeading,
   pricingSlug,
+  serviceTitle,
+  beforeAfterVideos,
+  beforeAndAfters,
+  handleVerifyAge,
+  shouldVerifyAge,
+  shouldCaptureEmail,
+  beforeAfterServiceDescriptionRichText,
 }) {
   return (
     <>
@@ -19,7 +27,21 @@ export default function ServicePrice({
           {subheadingOne || `What Is It For?`}
         </h2>
         <div className="max-w-screen-lg lg:text-lg">{intro}</div>
-
+        {/* HERE */}
+        {(beforeAfterVideos || beforeAndAfters) && (
+          <BeforeAndAfterContainer
+            slug={slug}
+            serviceTitle={serviceTitle}
+            beforeAfterVideos={beforeAfterVideos}
+            beforeAfterServiceDescriptionRichText={
+              beforeAfterServiceDescriptionRichText
+            }
+            beforeAndAfters={beforeAndAfters}
+            onVerifyAge={handleVerifyAge}
+            shouldVerifyAge={shouldVerifyAge}
+            shouldCaptureEmail={shouldCaptureEmail}
+          />
+        )}
         <ConditionalWrapperComponent
           condition={!!pricingSlug}
           wrap={(wrappedChildren) => (
