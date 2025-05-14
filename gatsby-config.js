@@ -115,6 +115,9 @@ module.exports = {
           `/dev-404-page`,
           `/404`,
           `/404.html`,
+          `/sexual-enhancement-services/girthfillosophy`,
+          `/sexual-enhancement-services/girthfillo`,
+          `/sexual-enhancement-services/girthfillxl`,
           `/offline-plugin-app-shell-fallback`,
           `/my-excluded-page`,
           /(\/)?hash-\S*/, // you can also pass valid RegExp to exclude internal tags for example
