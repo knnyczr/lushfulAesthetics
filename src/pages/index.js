@@ -119,7 +119,7 @@ export default function IndexPage({ data }) {
           </div>
         </div>
       </div> */}
-      <div className="flex flex-col xl:flex-row gap-8 items-stretch px-4 md:px-12 lg:px-24 xl:px-0 py-24 lg:mx-6 lg:py-36 max-w-[1536px] mx-auto">
+      <div className="flex flex-col xl:flex-row gap-8 mx-auto max-w-[1536px] px-4 md:px-12 lg:px-24 2xl:px-0 py-24 lg:py-36">
         <LocationCard
           data={{
             title: newYorkTitle,
