@@ -17,6 +17,7 @@ export default function AboutUs({ data }) {
     metaDescription,
     metaTitle,
     meetInjectorChrisTitle,
+    headerTitle,
   } = data.contentfulAboutUs;
 
   let image = getImage(portrait);
@@ -36,10 +37,7 @@ export default function AboutUs({ data }) {
       />
       {data.contentfulAboutUs && (
         <>
-          <HeroImage
-            heroImage={heroImage}
-            pageTitle={`Where Lifestyle Meets Beauty`}
-          />
+          <HeroImage heroImage={heroImage} pageTitle={headerTitle} />
 
           <div className="mt-6 px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-center md:items-center bg-main-green">
             <h2 className="pb-8 text-2xl lg:text-3xl font-semibold font-serif text-left">{`About Lushful Aesthetics`}</h2>
@@ -105,6 +103,7 @@ export const pageQuery = graphql`
         )
         description
       }
+      headerTitle
       aboutLushfulAesthetics {
         raw
       }
