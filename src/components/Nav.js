@@ -244,6 +244,12 @@ export default function Nav() {
                   >
                     Press
                   </Link>
+                  <Link
+                    to="/reviews/"
+                    className="text-black hover:text-main-green px-3 py-2 text-lg font-medium uppercase"
+                  >
+                    Reviews
+                  </Link>
                 </div>
               </div>
             </div>
@@ -438,13 +444,13 @@ export default function Nav() {
                   Press
                 </Link>
 
-                {/* <Link
+                <Link
                   onClick={() => closeMenu()}
-                  to="/training/"
+                  to="/reviews/"
                   className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
                 >
-                  Training
-                </Link> */}
+                  Reviews
+                </Link>
 
                 <div className="pt-16">
                   <div className="flex flex-row justify-center pt-5 md:pb-16 text-white">
