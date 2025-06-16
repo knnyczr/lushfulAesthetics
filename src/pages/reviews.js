@@ -165,7 +165,7 @@ export default function Reviews({ data }) {
 
       {/* Featured Aesthetic Services */}
 
-      <div className="flex flex-col justify-between items-center mx-auto max-w-[1536px] mt-32 w-full py-8 px-4 pb-12 md:px-12 lg:px-24">
+      <div className="flex flex-col justify-between items-start md:items-center mx-auto max-w-[1536px] lg:mt-16 w-full py-8 px-4 pb-12 md:px-12 lg:px-24">
         <div className="font-sans uppercase text-[20px] lg:text-2xl mb-6 lg:mb-12">
           Discover Our Featured Aesthetic Services
         </div>
