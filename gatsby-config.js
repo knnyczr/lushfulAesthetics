@@ -46,6 +46,16 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     `gatsby-plugin-lodash`,
+
+    // {
+    //   resolve: `gatsby-source-google-places`,
+    //   options: {
+    //     placeIds: ChIJ1cIlk0JZwokRQOqE6XMWUL8,
+    //     apiKey: process.env.GOOGLE_PLACES_API_KEY,
+    //     language: "en-US",
+    //   },
+    // },
+
     // "gatsby-plugin-advanced-sitemap",
 
     {

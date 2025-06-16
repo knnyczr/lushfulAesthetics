@@ -1,8 +1,8 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
-import HeroImage from "../components/HeroImage";
-import FeaturedPost from "../components/blog/FeaturedPost";
+
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 import PatientReviews from "../components/review/PatientReviews";
 import {
   faTiktok,
@@ -18,55 +18,48 @@ export default function Reviews({ data }) {
     contentfulHomePage: { reviews },
     contentfulReviewsPage: {
       pageTitle,
-      reviewContent,
       reviewerName,
+      reviewerName2,
+      reviewerName3,
+      reviewerName4,
+      reviewContent,
+      reviewContent2,
+      reviewContent3,
+      reviewContent4,
       heroimage,
+      metaTitle,
+      metaDescription,
+      featuredAestheticServices,
     },
-    contentfulBlogHomepage: { featuredPost },
+
     contentfulFooterContent: {
       socialInstagram,
       socialTiktok,
       socialTwitter,
       youtube,
     },
-    contentfulContactPage: { address },
+
     contentfulPressPage: { email },
   } = data;
 
-  console.log(
-    "reviews data",
-    pageTitle,
-    reviewContent,
-    reviewerName,
-    heroimage
-  );
-
-  const formattedAddress = address.replace(
-    "New York, NY 10017",
-    "<br>New York, NY 10017"
-  );
+  const reviewsPageData = data.contentfulReviewsPage;
 
   return (
     <>
       {/* Featured Reviews */}
       <div className="relative flex justify-between items-center mx-auto max-w-[1536px] ">
-        <FeaturedReviews
-          pageTitle={pageTitle}
-          reviewContent={reviewContent}
-          reviewerName={reviewerName}
-          heroimage={heroimage}
-        />
+        <FeaturedReviews data={reviewsPageData} />
       </div>
 
       {/* page content here */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 max-w-[1536px] px-4 py-8 md:px-12 lg:px-4 mx-auto">
-        <div className=" lg:px-24 2xl:pl-0 lg:pr-16 lg:col-span-2 py-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 max-w-[1536px]  py-8  mx-auto ">
+        <div className="  lg:pr-16 lg:col-span-2 py-4 px-4 pt-4 pb-12 md:flex-1 md:px-12 lg:px-24 2xl:pl-0">
           {" "}
           <PatientReviews />
         </div>
 
         {/* right side */}
-        <div className=" py-4 2xl:pr-0">
+        <div className=" py-4 2xl:pr-0 px-4 pt-4 pb-12 md:flex-1 md:px-12 lg:px-24 lg:pl-0">
           <div>
             <div className="font-sans uppercase text-[20px] lg:text-2xl mb-2 lg:mb-4">
               Leave us a review
@@ -160,10 +153,59 @@ export default function Reviews({ data }) {
                 <a href={`mailto:${email}`}>{email}</a>
               </div>
               <div className="max-w-xs">
-                <p dangerouslySetInnerHTML={{ __html: formattedAddress }} />
+                <p>
+                  18 E 41st St 14th Floor,
+                  <br /> New York, NY 10017
+                </p>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Featured Aesthetic Services */}
+
+      <div className="flex flex-col justify-between items-center mx-auto max-w-[1536px] mt-32 w-full py-8 px-4 pb-12 md:px-12 lg:px-24">
+        <div className="font-sans uppercase text-[20px] lg:text-2xl mb-6 lg:mb-12">
+          Discover Our Featured Aesthetic Services
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8 w-full">
+          {featuredAestheticServices.map((service, index) => {
+            const extractPlainText = (node) => {
+              if (node.nodeType === "text") return node.value;
+              if (node.content)
+                return node.content.map(extractPlainText).join("");
+              return "";
+            };
+
+            let shortText = "";
+            try {
+              const parsed = JSON.parse(service.intro.raw);
+              const fullText = extractPlainText(parsed);
+              shortText =
+                fullText.length > 250 ? fullText.slice(0, 250) + "…" : fullText;
+            } catch (err) {
+              console.error("Error parsing intro rich text", err);
+            }
+            console.log(service);
+            return (
+              <Link to={`/${service.slug}`} key={index} className="block">
+                <div className="flex flex-col hover:opacity-90 transition-opacity">
+                  <div
+                    style={{
+                      backgroundImage: `url(${service.heroImage.url})`,
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                    }}
+                    className="w-full aspect-[3/2] mb-4"
+                  />
+                  <h2 className="text-2xl mb-2">{service.serviceTitle}</h2>
+                  <p className="text-sm text-gray-700">{shortText}</p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </>
@@ -172,20 +214,38 @@ export default function Reviews({ data }) {
 
 export const query = graphql`
   query ReviewsPageQuery {
-    contentfulContactPage {
-      address
-    }
-
     contentfulReviewsPage {
       metaTitle
       metaDescription
       pageTitle
+      reviewerName
+      reviewerName2
+      reviewerName3
+      reviewerName4
       reviewContent {
         reviewContent
       }
-      reviewerName
+      reviewContent2 {
+        reviewContent2
+      }
+      reviewContent3 {
+        reviewContent3
+      }
+      reviewContent4 {
+        reviewContent4
+      }
       heroimage {
         url
+      }
+      featuredAestheticServices {
+        heroImage {
+          url
+        }
+        intro {
+          raw
+        }
+        serviceTitle
+        slug
       }
     }
 
@@ -205,13 +265,14 @@ export const query = graphql`
           }
         }
         bgImage {
-          gatsbyImageData(quality: 100, layout: CONSTRAINED)
+          gatsbyImageData(layout: CONSTRAINED, quality: 100)
           file {
             url
           }
         }
       }
     }
+
     contentfulFooterContent {
       socialInstagram
       socialTiktok
@@ -220,8 +281,6 @@ export const query = graphql`
     }
 
     contentfulBlogHomepage {
-      metaTitle
-      metaDescription
       featuredPost {
         heroImage {
           id
