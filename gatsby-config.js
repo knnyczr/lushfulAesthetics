@@ -30,6 +30,9 @@ module.exports = {
     siteUrl: `https://www.lushfulaesthetics.com/`,
     description: `Lushful Aesthetics by Injector Chris`,
   },
+  flags: {
+    FUNCTIONS: true,
+  },
   // TODO: creates re-hydration error
   // flags: {
   //   DEV_SSR: true,
@@ -47,14 +50,13 @@ module.exports = {
     "gatsby-transformer-sharp",
     `gatsby-plugin-lodash`,
 
-    // {
-    //   resolve: `gatsby-source-google-places`,
-    //   options: {
-    //     placeIds: ChIJ1cIlk0JZwokRQOqE6XMWUL8,
-    //     apiKey: process.env.GOOGLE_PLACES_API_KEY,
-    //     language: "en-US",
-    //   },
-    // },
+    {
+      resolve: `gatsby-source-google-places`,
+      options: {
+        placeIds: ["ChIJ1cIlk0JZwokRQOqE6XMWUL8"], // 👈 must be a string inside an array
+        apiKey: process.env.GOOGLE_PLACES_API_KEY, // 👈 or replace with your actual key
+      },
+    },
 
     // "gatsby-plugin-advanced-sitemap",
 

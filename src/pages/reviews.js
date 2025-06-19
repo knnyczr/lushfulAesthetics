@@ -31,6 +31,7 @@ export default function Reviews({ data }) {
       metaDescription,
       featuredAestheticServices,
     },
+    googlePlacesPlace: { childrenGooglePlacesReview },
 
     contentfulFooterContent: {
       socialInstagram,
@@ -55,7 +56,9 @@ export default function Reviews({ data }) {
       <div className="grid grid-cols-1 lg:grid-cols-3 max-w-[1536px]  py-8  mx-auto ">
         <div className="  lg:pr-16 lg:col-span-2 py-4 px-4 pt-4 pb-12 md:flex-1 md:px-12 lg:px-24 2xl:pl-0">
           {" "}
-          <PatientReviews />
+          <PatientReviews
+            childrenGooglePlacesReview={childrenGooglePlacesReview}
+          />
         </div>
 
         {/* right side */}
@@ -246,6 +249,14 @@ export const query = graphql`
         }
         serviceTitle
         slug
+      }
+    }
+
+    googlePlacesPlace {
+      childrenGooglePlacesReview {
+        author_name
+        text
+        rating
       }
     }
 
