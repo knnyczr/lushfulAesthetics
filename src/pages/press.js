@@ -17,7 +17,7 @@ export { Head } from "../components/Layout";
 
 export default function Press({ data }) {
   const {
-    contentfulContactPage: { address },
+    allContentfulContactPage: { edges },
     contentfulFooterContent: {
       socialInstagram,
       socialTiktok,
@@ -44,10 +44,12 @@ export default function Press({ data }) {
     },
   };
 
-  const formattedAddress = address.replace(
+  console.log("address", edges);
+  const formattedAddress = edges[1].node.ContactAddress.replace(
     "New York, NY 10017",
     "<br>New York, NY 10017"
   );
+  console.log("formattedAddress", formattedAddress);
 
   // Sort reviews by datePosted in descending order
   const sortedReviews = pressReviews.sort(
@@ -182,8 +184,12 @@ export default function Press({ data }) {
 
 export const pageQuery = graphql`
   query PressPageQuery {
-    contentfulContactPage {
-      address
+    allContentfulContactPage {
+      edges {
+        node {
+          ContactAddress
+        }
+      }
     }
     contentfulFooterContent {
       socialInstagram
