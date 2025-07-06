@@ -17,7 +17,8 @@ export { Head } from "../components/Layout";
 
 export default function Press({ data }) {
   const {
-    contentfulContactPage: { address },
+    // contentfulContactPage: { address },
+    contentfulContactPage: { ContactAddress },
     contentfulFooterContent: {
       socialInstagram,
       socialTiktok,
@@ -44,7 +45,7 @@ export default function Press({ data }) {
     },
   };
 
-  const formattedAddress = address.replace(
+  const formattedAddress = ContactAddress.replace(
     "New York, NY 10017",
     "<br>New York, NY 10017"
   );
@@ -182,8 +183,8 @@ export default function Press({ data }) {
 
 export const pageQuery = graphql`
   query PressPageQuery {
-    contentfulContactPage {
-      address
+    contentfulContactPage(id: { eq: "27aafb18-969b-5d82-81ba-317faf01a80e" }) {
+      ContactAddress
     }
     contentfulFooterContent {
       socialInstagram

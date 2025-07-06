@@ -15,8 +15,6 @@ export default function Footer() {
     contentfulFooterContent: {
       disclosure,
       generalFaq,
-      hipaaPolicy,
-      privacyPolicy,
       socialInstagram,
       socialTwitter,
       socialTiktok,
@@ -102,7 +100,7 @@ export default function Footer() {
                   className="mr-6 mb-4"
                 >
                   <FontAwesomeIcon
-                    className="fa-2x hover:black"
+                    className="fa-2x hover:text-black"
                     icon={faXTwitter}
                   />
                 </a>
@@ -117,7 +115,7 @@ export default function Footer() {
                     aria-label="Follow us on Instagram (opens in a new tab)"
                   >
                     <FontAwesomeIcon
-                      className="fa-2x hover:black"
+                      className="fa-2x hover:text-black"
                       icon={faInstagram}
                     />
                   </a>
@@ -132,7 +130,7 @@ export default function Footer() {
                   aria-label="Follow us on Tiktok (opens in a new tab)"
                 >
                   <FontAwesomeIcon
-                    className="fa-2x hover:black"
+                    className="fa-2x hover:text-black"
                     icon={faTiktok}
                   />
                 </a>
@@ -147,7 +145,7 @@ export default function Footer() {
                   aria-label="Follow us on Tiktok (opens in a new tab)"
                 >
                   <FontAwesomeIcon
-                    className="fa-2x hover:black"
+                    className="fa-2x hover:text-black"
                     icon={faYoutube}
                   />
                 </a>
