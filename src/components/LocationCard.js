@@ -8,6 +8,7 @@ import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 const isClient = typeof window !== "undefined";
 
 export default function LocationCard({
+  data,
   data: {
     title,
     address,
@@ -16,11 +17,12 @@ export default function LocationCard({
     transportation,
     key,
     location,
-    googleAddressLink,
+    addressLink,
     phoneNumber,
     email,
   },
 }) {
+  console.log("LocationCard data:", data);
   const lat = parseFloat(location.lat);
   const lng = parseFloat(location.lon);
 
@@ -29,7 +31,7 @@ export default function LocationCard({
   };
 
   const handleMarkerClick = () => {
-    window.open(googleAddressLink, "_blank");
+    window.open(addressLink, "_blank");
   };
 
   const { isLoaded } = useJsApiLoader({
@@ -70,10 +72,10 @@ export default function LocationCard({
         <div className="flex flex-col justify-between max-w-4xl h-full mx-auto">
           <div>
             <h2 className="font-serif font-bold text-2xl py-4">{title}</h2>
-            {renderRichText(description, LocationCardOptions())}
+            <p className="mb-6">{description}</p>
             <div className="flex flex-col md:flex-row  xl:flex-col gap-12 justify-start items-start mb-4">
               <div>
-                <a href={googleAddressLink} className="max-w-[250px]">
+                <a href={addressLink} className="max-w-[250px]">
                   {address}
                 </a>
                 <div className="py-2">

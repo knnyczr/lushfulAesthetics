@@ -18,12 +18,15 @@ export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [menuItems, setMenuItems] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isContactMenuOpen, setContactMenuOpen] = useState(false);
+  const [isContactMobileMenuOpen, setContactMobileMenuOpen] = useState(false);
   const [subMenuOpen, setSubMenuOpen] = useState({
     "facial-aesthetic-services": false,
     "body-aesthetic-services": false,
     "sexual-enhancement-services": false,
   });
   const ref = useRef(null);
+  const secondRef = useRef(null);
 
   function closeMenu() {
     setIsOpen(false);
@@ -40,12 +43,12 @@ export default function Nav() {
       allPromosLink,
       promos,
     },
+    contentfulContactPage,
     contentfulFooterContent: {
       socialInstagram,
       socialTiktok,
       socialTwitter,
       youtube,
-      storeLink,
     },
   } = useStaticQuery(graphql`
     query NavQuery {
@@ -53,6 +56,12 @@ export default function Nav() {
         siteMetadata {
           title
         }
+      }
+      contentfulContactPage(
+        id: { eq: "27aafb18-969b-5d82-81ba-317faf01a80e" }
+      ) {
+        phoneNumber
+        email
       }
       contentfulServicesMenu {
         allPromosLink
@@ -93,7 +102,6 @@ export default function Nav() {
         socialTiktok
         socialTwitter
         youtube
-        storeLink
       }
     }
   `);
@@ -136,6 +144,18 @@ export default function Nav() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ref]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (secondRef.current && !secondRef.current.contains(event.target)) {
+        setContactMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [secondRef]);
 
   return (
     <div className="bg-white sticky top-0 z-50 shadow-sm ">
@@ -220,12 +240,126 @@ export default function Nav() {
                   >
                     About
                   </Link>
-                  <Link
-                    to="/contact/"
-                    className="text-black hover:text-main-green px-3 py-2 text-lg font-medium uppercase"
+                  <button
+                    className="group-hover:text-main-green px-3 py-2 rounded-md text-lg font-medium uppercase"
+                    onClick={() => setContactMenuOpen(!isContactMenuOpen)}
                   >
                     Contact
-                  </Link>
+                  </button>
+                  {isContactMenuOpen && (
+                    <div
+                      ref={secondRef}
+                      className="pointer-events-auto flex flex-col absolute top-[148px] left-0 p-10 mx-auto w-full shadow-md bg-main-green text-white duration-300 border border-gray-200"
+                    >
+                      <div
+                        className="flex flex-row gap-6 lg:gap-8 xl:gap-10 items-start justify-between mx-auto w-full max-w-[1000px] lg:px-4"
+                        onClick={() => setContactMenuOpen(!isContactMenuOpen)}
+                      >
+                        <div className="flex flex-col">
+                          <h2 className="uppercase">Locations</h2>
+                          <Link
+                            to="/contact/new-york"
+                            className="text-white hover:text-black px-3 text-lg"
+                          >
+                            New York
+                          </Link>
+                          <Link
+                            to="/contact/san-diego"
+                            className="text-white hover:text-black px-3 text-lg"
+                          >
+                            San Diego
+                          </Link>
+                        </div>
+                        <div className="h-[100px] top-0 bottom-0 w-[2px] bg-white"></div>
+                        <div className="flex flex-col">
+                          <h2 className="text-white uppercase font-medium">
+                            Email
+                          </h2>
+                          <a
+                            href={`mailto:${contentfulContactPage.email}`}
+                            className="text-white hover:text-black px-3 text-lg"
+                          >
+                            {contentfulContactPage.email}
+                          </a>
+                        </div>
+                        <div className="flex flex-col">
+                          <h2 className="text-white uppercase font-medium">
+                            Phone
+                          </h2>
+                          <a
+                            href={`tel:${contentfulContactPage.phoneNumber}`}
+                            className="text-white hover:text-black px-3 text-lg"
+                          >
+                            {contentfulContactPage.phoneNumber}
+                          </a>
+                        </div>
+                        <div className="flex flex-col">
+                          <h2>Socials</h2>
+                          <div className="flex flex-row">
+                            {socialTwitter &&
+                              socialTwitter.startsWith("https://www.") && (
+                                <a
+                                  href={`${socialTwitter}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="mr-6 mb-4"
+                                  aria-label="Follow us on Twitter (opens in a new tab)"
+                                >
+                                  <FontAwesomeIcon
+                                    className="fa-2x hover:text-black"
+                                    icon={faXTwitter}
+                                  />
+                                </a>
+                              )}
+                            {socialInstagram &&
+                              socialInstagram.startsWith("https://www.") && (
+                                <a
+                                  href={`${socialInstagram}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="mr-6 mb-4"
+                                  aria-label="Follow us on Instagram (opens in a new tab)"
+                                >
+                                  <FontAwesomeIcon
+                                    className="fa-2x hover:text-black"
+                                    icon={faInstagram}
+                                  />
+                                </a>
+                              )}
+                            {socialTiktok &&
+                              socialTiktok.startsWith("https://www.") && (
+                                <a
+                                  href={`${socialTiktok}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="mr-6 mb-4"
+                                  aria-label="Follow us on TikTok (opens in a new tab)"
+                                >
+                                  <FontAwesomeIcon
+                                    className="fa-2x hover:text-black"
+                                    icon={faTiktok}
+                                  />
+                                </a>
+                              )}
+                            {youtube && youtube.startsWith("https://www.") && (
+                              <a
+                                href={`${youtube}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="mr-6 mb-4"
+                                aria-label="Follow us on YouTube (opens in a new tab)"
+                              >
+                                <FontAwesomeIcon
+                                  className="fa-2x hover:text-black"
+                                  icon={faYoutube}
+                                />
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                   <Link
                     to="/financing/"
                     className="text-black hover:text-main-green px-3 py-2 text-lg font-medium uppercase"
@@ -387,16 +521,6 @@ export default function Nav() {
                     </div>
                   </div>
                 </div>
-                {/* <a
-                  onClick={() => closeMenu()}
-                  href={storeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Shop on our store (opens in a new tab)"
-                  className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
-                >
-                  Shop
-                </a> */}
 
                 <Link
                   onClick={() => closeMenu()}
@@ -406,13 +530,78 @@ export default function Nav() {
                   About
                 </Link>
 
-                <Link
-                  onClick={() => closeMenu()}
-                  to="/contact/"
-                  className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
+                <button
+                  className="text-white text-left flex items-center group-hover:text-main-green px-6 py-2 rounded-md text-lg font-medium uppercase"
+                  onClick={() =>
+                    setContactMobileMenuOpen(!isContactMobileMenuOpen)
+                  }
                 >
-                  Contact Us
-                </Link>
+                  <h1 className="pr-2">Contact</h1>
+                  <span className="flex flex-row justify-between">
+                    {!isContactMobileMenuOpen ? (
+                      <FontAwesomeIcon
+                        className="hover:cursor-pointer"
+                        icon={faAngleUp}
+                      />
+                    ) : (
+                      <FontAwesomeIcon
+                        className="hover:cursor-pointer"
+                        icon={faChevronDown}
+                      />
+                    )}
+                  </span>
+                </button>
+                {isContactMobileMenuOpen && (
+                  <div
+                    ref={secondRef}
+                    className="ml-2 pointer-events-auto flex flex-col"
+                  >
+                    <div
+                      className="ml-6 flex flex-col"
+                      onClick={() => setContactMenuOpen(!isContactMenuOpen)}
+                    >
+                      <div className="flex flex-col">
+                        <h2 className="text-white uppercase font-medium">
+                          Locations
+                        </h2>
+                        <Link
+                          to="/contact/new-york"
+                          className="text-white hover:text-main-green px-3 text-lg "
+                        >
+                          New York
+                        </Link>
+                        <Link
+                          to="/contact/san-diego"
+                          className="text-white hover:text-main-green px-3 text-lg "
+                        >
+                          San Diego
+                        </Link>
+                      </div>
+                      <div className="pt-2">
+                        <h2 className="text-white uppercase font-medium">
+                          Phone
+                        </h2>
+                        <a
+                          href={`tel:${contentfulContactPage.phoneNumber}`}
+                          className="text-white hover:text-main-green px-3 text-lg"
+                        >
+                          {contentfulContactPage.phoneNumber}
+                        </a>
+                      </div>
+                      <div className="pt-2">
+                        <h2 className="text-white uppercase font-medium">
+                          Email
+                        </h2>
+                        <a
+                          href={`mailto:${contentfulContactPage.email}`}
+                          className="text-white hover:text-main-green px-3 text-lg"
+                        >
+                          {contentfulContactPage.email}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 <Link
                   onClick={() => closeMenu()}
@@ -437,14 +626,6 @@ export default function Nav() {
                 >
                   Press
                 </Link>
-
-                {/* <Link
-                  onClick={() => closeMenu()}
-                  to="/training/"
-                  className=" text-white hover:text-main-green-shade px-6 py-1 rounded-md text-base md:text-lg font-medium uppercase"
-                >
-                  Training
-                </Link> */}
 
                 <div className="pt-16">
                   <div className="flex flex-row justify-center pt-5 md:pb-16 text-white">

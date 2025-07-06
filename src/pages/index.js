@@ -1,11 +1,10 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Button from "../components/BookBtn";
 import Reviews from "../components/Reviews";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
-import homepagePageOptions from "../helpers/homepagePageOptions";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
+// import homepagePageOptions from "../helpers/homepagePageOptions";
 import LocationCard from "../components/LocationCard";
 
 export { Head } from "../components/Layout";
@@ -19,31 +18,17 @@ export default function IndexPage({ data }) {
       heroImage,
       metaTitle,
       metaDescription,
-      contactInfo,
     },
-    contentfulContactPage: {
-      phoneNumber,
-      email,
-      newYorkTitle,
-      newYorkDescriptiveText,
-      newYorkAddress,
-      newYorkLocationLatLon,
-      newYorkHoursOfOperation,
-      newYorkNearestTransportation,
-      sanDiegoTitle,
-      sanDiegoDescriptiveText,
-      sanDiegoAddress,
-      sanDiegoHoursOfOperation,
-      sanDiegoNearestTransportation,
-      sanDiegoLocationLatLon,
-      nycGoogleAddressLink,
-      sanDiegoGoogleAddressLink,
-    },
+    allContentfulContactPage: { nodes },
   } = data;
+
+  const [sanDiegoContact, newYorkContact] = nodes;
 
   const image = getImage(heroImage);
 
-  const options = homepagePageOptions();
+  // const options = homepagePageOptions();
+
+  console.log("test", sanDiegoContact, newYorkContact);
 
   return (
     <div>
@@ -52,21 +37,13 @@ export default function IndexPage({ data }) {
         metaDescription={metaDescription}
       />
 
-      {/* <a className="sr-only sr-only-focusable" href="#slogan">
-        Skip to Slogan
-      </a> */}
-
       <div className="relative w-full max-w-[1536px] mx-auto overflow-hidden">
         <GatsbyImage
           image={image}
           alt={`${heroImage.description}`}
-          // style={{ height: "600px" }}
           className="w-full object-contain h-[400px] lg:h-auto lg:aspect-[19/9] lg:max-h-[800px]"
         />
-        <div
-          // id="slogan"
-          className="absolute bottom-6 max-w-[1536px] flex flex-col justify-center items-center w-screen left-1/2 -translate-x-1/2 -translate-y-1/2 md:justify-start lg:items-start lg:-translate-y-24 lg:pl-20"
-        >
+        <div className="absolute bottom-6 max-w-[1536px] flex flex-col justify-center items-center w-screen left-1/2 -translate-x-1/2 -translate-y-1/2 md:justify-start lg:items-start lg:-translate-y-24 lg:pl-20">
           <h1 className="font-serif font-bold text-white text-3xl md:text-4xl lg:text-5xl text-center lg:text-left py-6 lg:py-8 w-full">
             {slogan}
           </h1>
@@ -120,34 +97,34 @@ export default function IndexPage({ data }) {
         </div>
       </div> */}
       <div className="flex flex-col xl:flex-row gap-8 mx-auto max-w-[1536px] px-4 md:px-12 lg:px-24 2xl:px-0 py-24 lg:py-36">
-        <LocationCard
-          data={{
-            title: newYorkTitle,
-            description: newYorkDescriptiveText,
-            address: newYorkAddress,
-            hoursOfOperation: newYorkHoursOfOperation,
-            transportation: newYorkNearestTransportation,
-            location: newYorkLocationLatLon,
-            googleAddressLink: nycGoogleAddressLink,
-            phoneNumber: phoneNumber,
-            email: email,
-            key: "NYC",
-          }}
-        />
-        <LocationCard
-          data={{
-            title: sanDiegoTitle,
-            description: sanDiegoDescriptiveText,
-            address: sanDiegoAddress,
-            hoursOfOperation: sanDiegoHoursOfOperation,
-            transportation: sanDiegoNearestTransportation,
-            location: sanDiegoLocationLatLon,
-            googleAddressLink: sanDiegoGoogleAddressLink,
-            phoneNumber: phoneNumber,
-            email: email,
-            key: "SD",
-          }}
-        />
+        {nodes.map((node, index) => {
+          const {
+            ContactAddress,
+            phoneNumber,
+            email,
+            locationCardTitle,
+            locationLatLon,
+            locationNearestTransportation,
+            contactPageDescription: { contactPageDescription },
+          } = node;
+
+          return (
+            <LocationCard
+              data={{
+                title: locationCardTitle,
+                description: contactPageDescription,
+                address: ContactAddress,
+                // hoursOfOperation: "Hours of Operation not provided",
+                transportation: locationNearestTransportation,
+                location: locationLatLon,
+                phoneNumber: phoneNumber,
+                email: email,
+                key: locationCardTitle === "New York City" ? "NYC" : "SD",
+              }}
+              key={index}
+            />
+          );
+        })}
       </div>
     </div>
   );
@@ -193,6 +170,34 @@ export const query = graphql`
           file {
             url
           }
+        }
+      }
+    }
+    allContentfulContactPage(
+      filter: {
+        id: {
+          in: [
+            "270f104d-e518-5b0b-93bd-ba8c6e4ab050"
+            "27aafb18-969b-5d82-81ba-317faf01a80e"
+          ]
+        }
+      }
+    ) {
+      nodes {
+        ContactAddress
+        addressLink
+        phoneNumber
+        email
+        locationCardTitle
+        locationLatLon {
+          lat
+          lon
+        }
+        locationNearestTransportation {
+          raw
+        }
+        contactPageDescription {
+          contactPageDescription
         }
       }
     }
