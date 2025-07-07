@@ -17,6 +17,7 @@ export default function Contact({ data }) {
     locationCardTitle,
     addressLink,
     locationNearestTransportation,
+    offeredServices,
   } = data.contentfulContactPage;
 
   return (
@@ -40,6 +41,7 @@ export default function Contact({ data }) {
             location: locationLatLon,
             phoneNumber: phoneNumber,
             email: email,
+            offeredServices,
             key: "SD",
           }}
         />
@@ -55,9 +57,6 @@ export const query = graphql`
       email
       locationCardTitle
       contactPageDescriptionRichText {
-        raw
-      }
-      offeredServices {
         raw
       }
       locationNearestTransportation {
@@ -79,8 +78,8 @@ export const query = graphql`
       offeredServices {
         references {
           slug
+          serviceTitle
         }
-        raw
       }
     }
   }

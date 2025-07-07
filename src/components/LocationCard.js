@@ -2,7 +2,6 @@ import React from "react";
 import Button from "../components/BookBtn";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import LocationCardOptions from "../helpers/LocationCardOptions";
-// import HoursOfOperation from "./LocationCardHoursOfOperation";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import { Link } from "gatsby";
 
@@ -13,7 +12,6 @@ export default function LocationCard({
     title,
     address,
     description,
-    hoursOfOperation,
     transportation,
     key,
     location,
@@ -39,15 +37,9 @@ export default function LocationCard({
     googleMapsApiKey: `${process.env.GATSBY_GOOGLE_MAPS_API_KEY}`,
   });
 
-  console.log("location services:", title, offeredServices);
-
-  // function richTextFunction(services) {
-  //   return renderRichText(services, LocationCardOptions("offeredServices"));
-  // }
-
   return (
     <div className="flex justify-center items-center ">
-      <div className="border border-black py-8 px-4 lg:py-12 lg:px-10 flex flex-col w-full h-full">
+      <div className="flex flex-col w-full h-full border border-black py-8 px-4 mx-2 lg:py-12 lg:px-10 ">
         <div className="w-full h-auto flex items-center rounded">
           {isClient && isLoaded && (
             <div style={{ height: "30vh", width: "100%" }}>
@@ -119,16 +111,14 @@ export default function LocationCard({
                 <h2 className="font-sans text-lg font-medium">
                   Nearest Transportation
                 </h2>
-                <>
-                  {convertTransportation(
-                    renderRichText(
-                      transportation,
-                      LocationCardOptions(
-                        key === "NYC" ? "transportationNYC" : "transportationSD"
-                      )
+                {convertTransportation(
+                  renderRichText(
+                    transportation,
+                    LocationCardOptions(
+                      key === "NYC" ? "transportationNYC" : "transportationSD"
                     )
-                  )}
-                </>
+                  )
+                )}
               </div>
             </div>
           </div>

@@ -254,20 +254,20 @@ export default function Nav() {
                       className="pointer-events-auto flex flex-col absolute top-[148px] left-0 p-10 mx-auto w-full shadow-md bg-main-green text-white duration-300 border border-gray-200"
                     >
                       <div
-                        className="flex flex-row gap-6 lg:gap-8 xl:gap-10 items-start justify-between mx-auto w-full max-w-[1000px] lg:px-4"
+                        className="flex flex-row gap-6 font-medium lg:gap-8 xl:gap-10 items-start justify-between mx-auto w-full max-w-[1000px] lg:px-4"
                         onClick={() => setContactMenuOpen(!isContactMenuOpen)}
                       >
                         <div className="flex flex-col">
                           <h2 className="uppercase">Locations</h2>
                           <Link
                             to="/contact/new-york"
-                            className="text-white hover:text-black px-3 text-lg"
+                            className="text-white font-normal normal hover:text-black text-lg"
                           >
                             New York
                           </Link>
                           <Link
                             to="/contact/san-diego"
-                            className="text-white hover:text-black px-3 text-lg"
+                            className="text-white font-normal hover:text-black text-lg"
                           >
                             San Diego
                           </Link>
@@ -279,7 +279,7 @@ export default function Nav() {
                           </h2>
                           <a
                             href={`mailto:${contentfulContactPage.email}`}
-                            className="text-white hover:text-black px-3 text-lg"
+                            className="text-white font-normal hover:text-black text-lg"
                           >
                             {contentfulContactPage.email}
                           </a>
@@ -290,7 +290,7 @@ export default function Nav() {
                           </h2>
                           <a
                             href={`tel:${contentfulContactPage.phoneNumber}`}
-                            className="text-white hover:text-black px-3 text-lg"
+                            className="text-white font-normal hover:text-black text-lg"
                           >
                             {contentfulContactPage.phoneNumber}
                           </a>

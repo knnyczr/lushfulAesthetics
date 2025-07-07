@@ -102,7 +102,7 @@ export default function IndexPage({ data }) {
             contactPageDescriptionRichText,
             offeredServices,
           } = node;
-          console.log("location services:", offeredServices);
+
           return (
             <LocationCard
               data={{

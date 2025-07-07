@@ -35,8 +35,6 @@ export default function Press({ data }) {
     },
   } = data;
 
-  // console.log("review", heroImage, disclosure, metaTitle, metaDescription);
-
   const options = {
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node, children) => (
@@ -75,7 +73,7 @@ export default function Press({ data }) {
           <div className="h-0.5 bg-black mb-8"></div>
 
           <div className="flex flex-col lg:gap-2">
-            {sortedReviews.map((review, index) => {
+            {sortedReviews.map((review) => {
               let mediaLogo = getImage(review.mediaLogo.companyLogo);
               let datePosted = review.datePosted;
               return (
