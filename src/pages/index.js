@@ -22,13 +22,7 @@ export default function IndexPage({ data }) {
     allContentfulContactPage: { nodes },
   } = data;
 
-  const [sanDiegoContact, newYorkContact] = nodes;
-
   const image = getImage(heroImage);
-
-  // const options = homepagePageOptions();
-
-  console.log("test", sanDiegoContact, newYorkContact);
 
   return (
     <div>
@@ -105,16 +99,17 @@ export default function IndexPage({ data }) {
             locationCardTitle,
             locationLatLon,
             locationNearestTransportation,
-            contactPageDescription: { contactPageDescription },
+            contactPageDescriptionRichText,
+            offeredServices,
           } = node;
-
+          console.log("location services:", offeredServices);
           return (
             <LocationCard
               data={{
                 title: locationCardTitle,
-                description: contactPageDescription,
+                description: contactPageDescriptionRichText,
                 address: ContactAddress,
-                // hoursOfOperation: "Hours of Operation not provided",
+                offeredServices,
                 transportation: locationNearestTransportation,
                 location: locationLatLon,
                 phoneNumber: phoneNumber,
@@ -196,8 +191,14 @@ export const query = graphql`
         locationNearestTransportation {
           raw
         }
-        contactPageDescription {
-          contactPageDescription
+        contactPageDescriptionRichText {
+          raw
+        }
+        offeredServices {
+          references {
+            slug
+            serviceTitle
+          }
         }
       }
     }

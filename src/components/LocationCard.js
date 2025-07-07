@@ -4,11 +4,11 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import LocationCardOptions from "../helpers/LocationCardOptions";
 // import HoursOfOperation from "./LocationCardHoursOfOperation";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+import { Link } from "gatsby";
 
 const isClient = typeof window !== "undefined";
 
 export default function LocationCard({
-  data,
   data: {
     title,
     address,
@@ -20,9 +20,9 @@ export default function LocationCard({
     addressLink,
     phoneNumber,
     email,
+    offeredServices,
   },
 }) {
-  console.log("LocationCard data:", data);
   const lat = parseFloat(location.lat);
   const lng = parseFloat(location.lon);
 
@@ -38,6 +38,12 @@ export default function LocationCard({
     id: "google-map-script",
     googleMapsApiKey: `${process.env.GATSBY_GOOGLE_MAPS_API_KEY}`,
   });
+
+  console.log("location services:", title, offeredServices);
+
+  // function richTextFunction(services) {
+  //   return renderRichText(services, LocationCardOptions("offeredServices"));
+  // }
 
   return (
     <div className="flex justify-center items-center ">
@@ -72,7 +78,26 @@ export default function LocationCard({
         <div className="flex flex-col justify-between max-w-4xl h-full mx-auto">
           <div>
             <h2 className="font-serif font-bold text-2xl py-4">{title}</h2>
-            <p className="mb-6">{description}</p>
+            <p className="mb-6">
+              {renderRichText(description, LocationCardOptions())}
+            </p>
+            {offeredServices?.references && (
+              <div className="mb-6">
+                <h3 className="font-sans font-bold text-lg mb-2">
+                  Offered Services
+                </h3>
+                <ul className="list-none">
+                  {offeredServices.references.map((service, index) => (
+                    <li
+                      key={index}
+                      className="font-sans font-medium h-auto mx-2 my-1 list-none"
+                    >
+                      <Link to={service.slug}>{service.serviceTitle}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className="flex flex-col md:flex-row  xl:flex-col gap-12 justify-start items-start mb-4">
               <div>
                 <a href={addressLink} className="max-w-[250px]">

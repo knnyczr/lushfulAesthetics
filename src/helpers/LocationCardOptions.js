@@ -82,6 +82,24 @@ export default function LocationCardOptions(type, key) {
           ),
         },
       };
+    case "offeredServices":
+      return {
+        renderNode: {
+          [BLOCKS.PARAGRAPH]: (node, children) => (
+            <div className="mb-4">
+              <p className="font-sans">{children}</p>
+            </div>
+          ),
+          [BLOCKS.OL_LIST]: (node, children) => (
+            <ol className="list-none ">{children}</ol>
+          ),
+          [BLOCKS.LIST_ITEM]: (node, children) => (
+            <li className="font-sans font-medium h-auto mx-2 my-1 list-none">
+              {children}
+            </li>
+          ),
+        },
+      };
     default:
       return {
         renderNode: {

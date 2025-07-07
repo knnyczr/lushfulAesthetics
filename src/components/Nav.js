@@ -31,6 +31,8 @@ export default function Nav() {
   function closeMenu() {
     setIsOpen(false);
     setSubMenuOpen(!subMenuOpen);
+    setContactMenuOpen(false);
+    setContactMobileMenuOpen(false);
   }
 
   const {
@@ -565,12 +567,14 @@ export default function Nav() {
                           Locations
                         </h2>
                         <Link
+                          onClick={() => closeMenu()}
                           to="/contact/new-york"
                           className="text-white hover:text-main-green px-3 text-lg "
                         >
                           New York
                         </Link>
                         <Link
+                          onClick={() => closeMenu()}
                           to="/contact/san-diego"
                           className="text-white hover:text-main-green px-3 text-lg "
                         >

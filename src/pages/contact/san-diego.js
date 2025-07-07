@@ -13,7 +13,7 @@ export default function Contact({ data }) {
     metaDescription,
     ContactAddress,
     locationLatLon,
-    contactPageDescription,
+    contactPageDescriptionRichText,
     locationCardTitle,
     addressLink,
     locationNearestTransportation,
@@ -32,7 +32,7 @@ export default function Contact({ data }) {
         <LocationCard
           data={{
             title: locationCardTitle,
-            description: contactPageDescription.contactPageDescription,
+            description: contactPageDescriptionRichText,
             address: ContactAddress,
             addressLink,
             hoursOfOperation: "sanDiegoHoursOfOperation",
@@ -54,8 +54,11 @@ export const query = graphql`
       phoneNumber
       email
       locationCardTitle
-      contactPageDescription {
-        contactPageDescription
+      contactPageDescriptionRichText {
+        raw
+      }
+      offeredServices {
+        raw
       }
       locationNearestTransportation {
         raw
