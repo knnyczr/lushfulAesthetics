@@ -84,7 +84,9 @@ export default function LocationCard({
                       key={index}
                       className="font-sans font-medium h-auto mx-2 my-1 list-none"
                     >
-                      <Link to={service.slug}>{service.serviceTitle}</Link>
+                      <Link to={`/${service.slug}`}>
+                        {service.serviceTitle}
+                      </Link>
                     </li>
                   ))}
                 </ul>
