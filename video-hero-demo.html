@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoHero Component Demo - Lushful Aesthetics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b8f8e5e2c0.js" crossorigin="anonymous"></script>
+    <style>
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-sans { font-family: 'Roboto', sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gray-50">
+        <!-- VideoHero Section -->
+        <div class="relative w-full max-w-[1536px] mx-auto overflow-hidden">
+            <!-- Video Background -->
+            <div class="relative w-full h-[400px] lg:h-auto lg:aspect-[19/9] lg:max-h-[800px]">
+                <!-- Fallback with aesthetic clinic imagery simulation -->
+                <div class="w-full h-full bg-gradient-to-br from-gray-800 via-gray-700 to-gray-900 relative overflow-hidden">
+                    <!-- Simulated background pattern -->
+                    <div class="absolute inset-0 opacity-20">
+                        <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-white rounded-full opacity-10"></div>
+                        <div class="absolute top-3/4 right-1/4 w-24 h-24 bg-white rounded-full opacity-5"></div>
+                        <div class="absolute bottom-1/4 left-1/3 w-40 h-40 bg-white rounded-full opacity-8"></div>
+                    </div>
+                    <!-- Overlay for aesthetic clinic feel -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-30"></div>
+                </div>
+                
+                <!-- Dark overlay for better text readability -->
+                <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+            </div>
+
+            <!-- Text Overlay -->
+            <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+                <!-- Main Heading -->
+                <h1 class="font-serif font-bold text-white text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6">
+                    The <em class="font-serif italic">Art</em> Of
+                    <br />
+                    Aesthetic Innovation
+                </h1>
+                
+                <!-- Subtitle -->
+                <h2 class="text-white text-sm md:text-base lg:text-lg font-light tracking-wider mb-2 uppercase">
+                    SHAFER CLINIC FIFTH AVENUE BY DR. DAVID SHAFER MD, FACS
+                </h2>
+                
+                <!-- Description -->
+                <p class="text-white text-xs md:text-sm lg:text-base font-light tracking-wider mb-8 uppercase">
+                    PLASTIC SURGERY, DERMATOLOGY & MEDICAL SPA IN NYC
+                </p>
+                
+                <!-- Watch Video Button -->
+                <button
+                    onclick="handleWatchVideo()"
+                    class="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full transition-all duration-300 group"
+                    aria-label="Watch Overview Video"
+                >
+                    <i class="fas fa-play text-black text-lg md:text-xl lg:text-2xl ml-1 group-hover:scale-110 transition-transform duration-300"></i>
+                </button>
+                
+                <!-- Button Label -->
+                <span class="text-white text-sm font-light mt-4 tracking-wide">
+                    Watch Overview Video
+                </span>
+            </div>
+        </div>
+
+        <!-- Demo Content Below -->
+        <div class="py-16 px-8 text-center bg-white">
+            <h2 class="text-2xl font-serif font-bold mb-4">VideoHero Component Demonstration</h2>
+            <div class="max-w-4xl mx-auto space-y-4 text-gray-600">
+                <p>
+                    This demonstrates the new VideoHero component implementation that matches the provided design mockup.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6 mt-8">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-semibold mb-2">Features Implemented:</h3>
+                        <ul class="text-left space-y-1 text-sm">
+                            <li>• Video background support (with fallback)</li>
+                            <li>• "The Art Of Aesthetic Innovation" heading</li>
+                            <li>• Clinic branding and location info</li>
+                            <li>• "Watch Overview Video" play button</li>
+                            <li>• Responsive design for all screen sizes</li>
+                            <li>• Smooth hover animations</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="font-semibold mb-2">Design Matches:</h3>
+                        <ul class="text-left space-y-1 text-sm">
+                            <li>• Centered text layout</li>
+                            <li>• Elegant typography with Playfair Display</li>
+                            <li>• Proper text hierarchy</li>
+                            <li>• Circular play button with icon</li>
+                            <li>• Dark overlay for text readability</li>
+                            <li>• Professional aesthetic clinic styling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleWatchVideo() {
+            alert('Watch Overview Video clicked! This would open a video modal or player in the actual implementation.');
+            console.log('Watch Overview Video clicked');
+        }
+    </script>
+</body>
+</html>

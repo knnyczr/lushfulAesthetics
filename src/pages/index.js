@@ -4,6 +4,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Button from "../components/BookBtn";
 import Reviews from "../components/Reviews";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
+import VideoHero from "../components/VideoHero";
 // import homepagePageOptions from "../helpers/homepagePageOptions";
 import LocationCard from "../components/LocationCard";
 
@@ -31,19 +32,10 @@ export default function IndexPage({ data }) {
         metaDescription={metaDescription}
       />
 
-      <div className="relative w-full max-w-[1536px] mx-auto overflow-hidden">
-        <GatsbyImage
-          image={image}
-          alt={`${heroImage.description}`}
-          className="w-full object-contain h-[400px] lg:h-auto lg:aspect-[19/9] lg:max-h-[800px]"
-        />
-        <div className="absolute bottom-6 max-w-[1536px] flex flex-col justify-center items-center w-screen left-1/2 -translate-x-1/2 -translate-y-1/2 md:justify-start lg:items-start lg:-translate-y-24 lg:pl-20">
-          <h1 className="font-serif font-bold text-white text-3xl md:text-4xl lg:text-5xl text-center lg:text-left py-6 lg:py-8 w-full">
-            {slogan}
-          </h1>
-          <Button />
-        </div>
-      </div>
+      {/* New Video Hero Section */}
+      <VideoHero />
+
+      {/* Keep existing content structure */}
 
       <div className="px-4 md:px-12 lg:px-24 py-24 lg:py-36 flex flex-col justify-start md:justify-center md:items-center">
         <div className="max-w-screen-2xl font-serif font-bold text-black text-2xl md:text-3xl lg:text-4xl text-center leading-10">
