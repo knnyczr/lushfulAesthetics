@@ -2,6 +2,62 @@ const path = require("path");
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions;
+  
+  // Check if Contentful is available by trying to query
+  try {
+    const result = await graphql(`
+      {
+        __schema {
+          types {
+            name
+          }
+        }
+      }
+    `);
+    
+    // Check if any Contentful types exist
+    const hasContentful = result.data.__schema.types.some(type => 
+      type.name.startsWith('Contentful')
+    );
+    
+    if (!hasContentful) {
+      console.log('Contentful not available - skipping dynamic page creation');
+      // Just create redirects without Contentful dependency
+      createRedirect({
+        fromPath: `/facial-aesthetic-services/botox`,
+        toPath: `/facial-injectable-services/botox`,
+      });
+      createRedirect({
+        fromPath: `/facial-aesthetic-services/fillers/cheek-filler`,
+        toPath: `/facial-injectable-services/cheek-filler`,
+      });
+      createRedirect({
+        fromPath: `/facial-aesthetic-services/fillers/lip-filler`,
+        toPath: `/facial-injectable-services/lip-filler`,
+      });
+      createRedirect({
+        fromPath: `/facial-aesthetic-services/fillers/jawline-filler`,
+        toPath: `/facial-injectable-services/jawline-filler`,
+      });
+      createRedirect({
+        fromPath: `/facial-aesthetic-services/fillers/chin-filler`,
+        toPath: `/facial-injectable-services/chin-filler`,
+      });
+      createRedirect({
+        fromPath: `/facial-aesthetic-services/fillers/nasolabiel-fold-filler`,
+        toPath: `/facial-injectable-services/nasolabial-fold-filler`,
+      });
+      createRedirect({
+        fromPath: `/facial-aesthetic-services/prp/under-eye-prp`,
+        toPath: `/facial-injectable-services/prp/under-eye-prp`,
+      });
+      return;
+    }
+  } catch (error) {
+    console.log('Contentful not available - skipping dynamic page creation');
+    return;
+  }
+
   const servicePageTemplate = path.resolve(`./src/templates/servicePage.js`);
   const generalFAQsTemplate = path.resolve(`./src/templates/generalFAQs.js`);
   const privacyPolicyTemplate = path.resolve(
@@ -70,6 +126,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `);
+  
   allContentfulServicePage.edges.forEach((page) => {
     createPage({
       path: `/${page.node.slug}/`,
