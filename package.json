@@ -47,6 +47,7 @@
     "gatsby-plugin-sharp": "^4.17.0",
     "gatsby-source-contentful": "^7.15.0",
     "gatsby-source-filesystem": "^4.17.0",
+    "gatsby-source-google-places": "^1.0.3",
     "gatsby-transformer-sharp": "^4.17.0",
     "gbimage-bridge": "^0.2.2",
     "lodash": "^4.17.21",
