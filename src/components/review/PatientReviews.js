@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 import hardcodedReviews from "../../data/hardcoded-reviews.json";
 import {
@@ -29,6 +29,18 @@ export default function PatientReviews({ childrenGooglePlacesReview = [] }) {
   const [allReviews, setAllReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const reviewsHeaderRef = useRef(null);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    // Scroll to the reviews header
+    if (reviewsHeaderRef.current) {
+      reviewsHeaderRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
 
   useEffect(() => {
     const loadReviews = async () => {
@@ -101,7 +113,10 @@ export default function PatientReviews({ childrenGooglePlacesReview = [] }) {
 
   return (
     <>
-      <div className="font-sans uppercase text-[20px] lg:text-2xl mb-2 lg:mb-4">
+      <div
+        ref={reviewsHeaderRef}
+        className="font-sans uppercase text-[20px] lg:text-2xl mb-2 lg:mb-4 scroll-mt-48"
+      >
         Patient Reviews
       </div>
       <div className="h-0.5 bg-black"></div>
@@ -225,7 +240,7 @@ export default function PatientReviews({ childrenGooglePlacesReview = [] }) {
               return (
                 <button
                   key={page}
-                  onClick={() => setCurrentPage(page)}
+                  onClick={() => handlePageChange(page)}
                   className={`px-4 py-2 uppercase text-sm tracking-wide ${
                     isActive
                       ? "bg-main-green text-white"
