@@ -256,6 +256,8 @@ export const query = graphql`
         author_name
         text
         rating
+        time
+        relative_time_description
       }
     }
     contentfulPressPage {

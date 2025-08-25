@@ -53,6 +53,7 @@ export default async function handler(req, res) {
       rating: review.rating,
       text: review.text,
       relative_time_description: review.relative_time_description,
+      time: review.time, // Unix timestamp
     }));
 
     return res.status(200).json({ reviews });
