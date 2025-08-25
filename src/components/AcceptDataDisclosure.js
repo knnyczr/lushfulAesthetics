@@ -43,7 +43,7 @@ export default function AcceptDataDisclosure({ setUser }) {
     },
   };
   return (
-    <div className="fixed inset-x-0 bottom-10 flex justify-center mx-auto">
+    <div className="fixed inset-x-0 bottom-10 flex justify-center mx-auto z-30">
       <div className="w-full max-w-[1536px] flex justify-center mx-auto">
         <div
           style={{

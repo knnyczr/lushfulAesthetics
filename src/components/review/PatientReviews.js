@@ -22,6 +22,21 @@ const getRandomBg = () => {
   return colors[Math.floor(Math.random() * colors.length)];
 };
 
+const getFirstNameOrInitial = (fullName) => {
+  if (!fullName) return "?";
+
+  // Split the name by spaces and get the first part
+  const firstName = fullName.trim().split(" ")[0];
+
+  // If the first name is just one character (already an initial), return it
+  if (firstName.length === 1) {
+    return firstName.toUpperCase();
+  }
+
+  // Return the first name
+  return firstName;
+};
+
 export default function PatientReviews({ childrenGooglePlacesReview = [] }) {
   const REVIEWS_PER_PAGE = 8; // Updated from 4 to 10
   const MAX_REVIEWS = 200; // Increased to accommodate all hardcoded + Google reviews
@@ -137,11 +152,6 @@ export default function PatientReviews({ childrenGooglePlacesReview = [] }) {
                     <span key={i}>★</span>
                   ))}
                 </div>
-                {/* {review.time && (
-                  <div className="text-gray-500 text-sm">
-                    {formatReviewDate(review.time)}
-                  </div>
-                )} */}
               </div>
               <p className="text-gray-700 text-base my-3 whitespace-pre-line">
                 {review.text}
@@ -154,7 +164,7 @@ export default function PatientReviews({ childrenGooglePlacesReview = [] }) {
                 </div>
                 <div className="flex-1">
                   <p className="font-semibold text-gray-800">
-                    {review.author_name}
+                    {getFirstNameOrInitial(review.author_name)}
                   </p>
                 </div>
                 <Link
