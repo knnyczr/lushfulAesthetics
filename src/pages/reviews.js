@@ -1,8 +1,6 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image";
-
-import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { StaticImage } from "gatsby-plugin-image";
 import PatientReviews from "../components/review/PatientReviews";
 import {
   faTiktok,
@@ -15,22 +13,7 @@ import FeaturedReviews from "../components/review/FeaturedReviews";
 
 export default function Reviews({ data }) {
   const {
-    contentfulHomePage: { reviews },
-    contentfulReviewsPage: {
-      pageTitle,
-      reviewerName,
-      reviewerName2,
-      reviewerName3,
-      reviewerName4,
-      reviewContent,
-      reviewContent2,
-      reviewContent3,
-      reviewContent4,
-      heroimage,
-      metaTitle,
-      metaDescription,
-      featuredAestheticServices,
-    },
+    contentfulReviewsPage: { featuredAestheticServices },
     googlePlacesPlace: { childrenGooglePlacesReview },
 
     contentfulFooterContent: {
@@ -54,7 +37,7 @@ export default function Reviews({ data }) {
 
       {/* page content here */}
       <div className="grid grid-cols-1 lg:grid-cols-3 max-w-[1536px]  pt-8 mx-auto ">
-        <div className="  lg:pr-16 lg:col-span-2 py-4 px-4 pt-4 pb-12 md:flex-1 md:px-12 lg:px-24 2xl:pl-0">
+        <div className="  lg:pr-16 lg:col-span-2 py-4 px-4 pt-4 md:flex-1 md:px-12 lg:px-24 2xl:pl-0">
           {" "}
           <PatientReviews
             childrenGooglePlacesReview={childrenGooglePlacesReview}
@@ -167,7 +150,6 @@ export default function Reviews({ data }) {
       </div>
 
       {/* Featured Aesthetic Services */}
-
       <div className="flex flex-col justify-between items-start md:items-center mx-auto max-w-[1536px] lg:mt-16 w-full py-8 px-4 pb-12 md:px-12 lg:px-24">
         <div className="font-sans uppercase text-[20px] lg:text-2xl mb-6 lg:mb-12">
           Discover Our Featured Aesthetic Services
@@ -263,47 +245,11 @@ export const query = graphql`
     contentfulPressPage {
       email
     }
-    contentfulHomePage {
-      reviews {
-        headline
-        articleLink
-        mediaLogo {
-          companyName
-          companyLogo {
-            publicUrl
-            gatsbyImageData(width: 200, quality: 90)
-          }
-        }
-        bgImage {
-          gatsbyImageData(layout: CONSTRAINED, quality: 100)
-          file {
-            url
-          }
-        }
-      }
-    }
     contentfulFooterContent {
       socialInstagram
       socialTiktok
       socialTwitter
       youtube
-    }
-    contentfulBlogHomepage {
-      featuredPost {
-        heroImage {
-          id
-          title
-          url
-        }
-        category {
-          categoryTitle
-          slug
-        }
-        datePosted
-        intro
-        title
-        slug
-      }
     }
   }
 `;

@@ -4,7 +4,6 @@ import hardcodedReviews from "../../data/hardcoded-reviews.json";
 import {
   fetchLatestGoogleReviews,
   mergeReviews,
-  formatReviewDate,
 } from "../../utils/fetchGoogleReviews";
 import { Link } from "gatsby";
 
