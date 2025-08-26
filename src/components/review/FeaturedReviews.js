@@ -39,7 +39,7 @@ export default function FeaturedReviews({ data }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % total);
-    }, 5000); // 5 seconds
+    }, 135000); // 13.5 seconds
 
     return () => clearInterval(interval); // Cleanup on unmount or update
   }, [total]);
