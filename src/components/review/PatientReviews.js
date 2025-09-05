@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import hardcodedReviews from "../../data/hardcoded-reviews.json";
 import {
   fetchLatestGoogleReviews,
   mergeReviews,
-} from "../../utils/fetchGoogleReviews";
+} from "../../api/fetchGoogleReviews";
 import { Link } from "gatsby";
 
 const getRandomBg = () => {
@@ -36,7 +35,10 @@ const getFirstNameOrInitial = (fullName) => {
   return firstName;
 };
 
-export default function PatientReviews({ childrenGooglePlacesReview = [] }) {
+export default function PatientReviews({
+  childrenGooglePlacesReview = [],
+  savedGoogleReviews = [],
+}) {
   const REVIEWS_PER_PAGE = 8; // Updated from 4 to 10
   const MAX_REVIEWS = 200; // Increased to accommodate all hardcoded + Google reviews
 
@@ -59,13 +61,29 @@ export default function PatientReviews({ childrenGooglePlacesReview = [] }) {
   useEffect(() => {
     const loadReviews = async () => {
       try {
+        // Parse Contentful reviews from JSON
+        let contentfulReviews = [];
+        if (savedGoogleReviews && Array.isArray(savedGoogleReviews)) {
+          savedGoogleReviews.forEach((reviewItem, index) => {
+            if (reviewItem?.internal?.content) {
+              try {
+                const parsedReview = JSON.parse(reviewItem.internal.content);
+                contentfulReviews.push(parsedReview);
+              } catch (parseError) {
+                console.warn(
+                  `Error parsing Contentful review ${index}:`,
+                  parseError
+                );
+              }
+            }
+          });
+        }
+
         // Fetch latest Google reviews from API
         const latestGoogleReviews = await fetchLatestGoogleReviews();
-        console.log("Latest Google reviews from API:", latestGoogleReviews);
 
-        // Merge hardcoded reviews with static Google reviews and latest API reviews
+        // Combine static Google reviews from GraphQL with latest API reviews
         const staticGoogleReviews = childrenGooglePlacesReview || [];
-        console.log("Static Google reviews from Gatsby:", staticGoogleReviews);
         const allGoogleReviews = [
           ...latestGoogleReviews,
           ...staticGoogleReviews,
@@ -81,9 +99,9 @@ export default function PatientReviews({ childrenGooglePlacesReview = [] }) {
             )
         );
 
-        // Merge with hardcoded reviews
+        // Merge Contentful reviews with Google reviews
         const mergedReviews = mergeReviews(
-          hardcodedReviews,
+          contentfulReviews,
           uniqueGoogleReviews
         );
 
@@ -91,18 +109,15 @@ export default function PatientReviews({ childrenGooglePlacesReview = [] }) {
       } catch (error) {
         console.warn("Error loading reviews:", error);
         // Fallback to just using static reviews if API fails
-        const mergedReviews = mergeReviews(
-          hardcodedReviews,
-          childrenGooglePlacesReview
-        );
-        setAllReviews(mergedReviews);
+        const fallbackReviews = childrenGooglePlacesReview || [];
+        setAllReviews(fallbackReviews);
       } finally {
         setIsLoading(false);
       }
     };
 
     loadReviews();
-  }, [childrenGooglePlacesReview]);
+  }, [childrenGooglePlacesReview, savedGoogleReviews]);
 
   const limitedReviews = allReviews.slice(0, MAX_REVIEWS);
   const totalPages = Math.ceil(limitedReviews.length / REVIEWS_PER_PAGE);

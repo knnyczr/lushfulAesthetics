@@ -49,7 +49,7 @@ module.exports = {
     {
       resolve: `gatsby-source-google-places`,
       options: {
-        placeIds: ["ChIJ1cIlk0JZwokRQOqE6XMWUL8"], // must be a string inside an array
+        placeIds: process.env.GOOGLE_PLACE_ID, // must be a string inside an array
         apiKey: process.env.GOOGLE_PLACES_API_KEY, // or replace with your actual key
       },
     },

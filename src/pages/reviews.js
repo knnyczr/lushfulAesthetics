@@ -13,9 +13,9 @@ import FeaturedReviews from "../components/review/FeaturedReviews";
 
 export default function Reviews({ data }) {
   const {
-    contentfulReviewsPage: { featuredAestheticServices },
+    contentfulReviewsPage: { featuredAestheticServices, savedGoogleReviews },
     googlePlacesPlace: { childrenGooglePlacesReview },
-
+    contentfulContactPage: { ContactAddress },
     contentfulFooterContent: {
       socialInstagram,
       socialTiktok,
@@ -27,6 +27,11 @@ export default function Reviews({ data }) {
   } = data;
 
   const reviewsPageData = data.contentfulReviewsPage;
+
+  const formattedAddress = ContactAddress.replace(
+    "New York, NY 10017",
+    "<br>New York, NY 10017"
+  );
 
   return (
     <>
@@ -41,6 +46,7 @@ export default function Reviews({ data }) {
           {" "}
           <PatientReviews
             childrenGooglePlacesReview={childrenGooglePlacesReview}
+            savedGoogleReviews={savedGoogleReviews}
           />
         </div>
 
@@ -60,8 +66,7 @@ export default function Reviews({ data }) {
                   className="w-full h-auto object-contain"
                 />
               </div>
-              {/* Here is the link where I got the Business ID from: */}
-              {/* https://developers.google.com/maps/documentation/places/web-service/place-id */}
+
               <a
                 href="https://search.google.com/local/writereview?placeid=ChIJ1cIlk0JZwokRQOqE6XMWUL8"
                 target="_blank"
@@ -139,10 +144,7 @@ export default function Reviews({ data }) {
                 <a href={`mailto:${email}`}>{email}</a>
               </div>
               <div className="max-w-xs">
-                <p>
-                  18 E 41st St 14th Floor,
-                  <br /> New York, NY 10017
-                </p>
+                <p dangerouslySetInnerHTML={{ __html: formattedAddress }} />
               </div>
             </div>
           </div>
@@ -232,6 +234,11 @@ export const query = graphql`
         serviceTitle
         slug
       }
+      savedGoogleReviews {
+        internal {
+          content
+        }
+      }
     }
     googlePlacesPlace {
       childrenGooglePlacesReview {
@@ -250,6 +257,9 @@ export const query = graphql`
       socialTiktok
       socialTwitter
       youtube
+    }
+    contentfulContactPage(id: { eq: "27aafb18-969b-5d82-81ba-317faf01a80e" }) {
+      ContactAddress
     }
   }
 `;
