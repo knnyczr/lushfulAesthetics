@@ -79,8 +79,11 @@ export default function PatientReviews({
           });
         }
 
-        // Fetch latest Google reviews from API
-        const latestGoogleReviews = await fetchLatestGoogleReviews();
+        // Only fetch latest Google reviews from API in browser environment
+        let latestGoogleReviews = [];
+        if (typeof window !== "undefined") {
+          latestGoogleReviews = await fetchLatestGoogleReviews();
+        }
 
         // Combine static Google reviews from GraphQL with latest API reviews
         const staticGoogleReviews = childrenGooglePlacesReview || [];
