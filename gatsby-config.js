@@ -45,11 +45,16 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
-    `gatsby-plugin-lodash`,
-    // "gatsby-plugin-advanced-sitemap",
 
     {
-      resolve: `gatsby-plugin-advanced-sitemap-webrication`,
+      resolve: `gatsby-source-google-places`,
+      options: {
+        placeIds: [process.env.GOOGLE_PLACE_ID],
+        apiKey: process.env.GOOGLE_PLACES_API_KEY,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-advanced-sitemap-v5`,
       options: {
         createLinkInHead: true,
         addUncaughtPages: true,
@@ -73,22 +78,6 @@ module.exports = {
                 }
               }
             }
-      
-            # allContentfulFooterContent {
-            #   edges {
-            #     node {
-            #       privacyPolicySlug
-            #     }
-            #   }
-            # }
-
-            # allContentfulFooterContent {
-            #   edges {
-            #     node {
-            #       hipaaSlug
-            #     }
-            #   }
-            # }
 
             allContentfulBlogCategory {
               edges {
@@ -128,7 +117,7 @@ module.exports = {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: "https://www.lushfulaesthetics.com/",
-        sitemap: "https://www.lushfulaesthetics.com/sitemap.xml/",
+        sitemap: "https://www.lushfulaesthetics.com/sitemap.xml",
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },

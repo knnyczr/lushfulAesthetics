@@ -209,34 +209,8 @@ export const query = graphql`
       newYorkDescriptiveText {
         raw
       }
-      newYorkAddress
-      newYorkHoursOfOperation {
-        raw
-      }
-      newYorkNearestTransportation {
-        raw
-      }
-      sanDiegoTitle
-      sanDiegoDescriptiveText {
-        raw
-      }
-      sanDiegoAddress
-      sanDiegoHoursOfOperation {
-        raw
-      }
-      sanDiegoNearestTransportation {
-        raw
-      }
-      newYorkLocationLatLon {
-        lat
-        lon
-      }
-      sanDiegoLocationLatLon {
-        lat
-        lon
-      }
+
       nycGoogleAddressLink
-      sanDiegoGoogleAddressLink
     }
   }
 `;
