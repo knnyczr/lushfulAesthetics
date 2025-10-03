@@ -2,12 +2,14 @@ import React from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 export default function HeroImage({ heroImage, pageTitle }) {
-  const image = getImage(heroImage.gatsbyImageData);
+  const local = heroImage?.localFile?.childImageSharp?.gatsbyImageData;
+  const remote = heroImage?.gatsbyImageData;
+  const image = getImage(local || remote);
 
   return (
     <>
       <div className="relative flex justify-between items-center mx-auto max-w-[1536px] ">
-        {heroImage && (
+        {image && (
           <GatsbyImage
             image={image}
             alt={heroImage.description}

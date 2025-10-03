@@ -2,21 +2,24 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+const useS3Source =
+  String(process.env.USE_S3_SOURCE || "").toLowerCase() === "true";
+
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  accessToken:
+    process.env.CONTENTFUL_ACCESS_TOKEN || process.env.CONTENTFUL_CDA,
+  // If you set CONTENTFUL_ENV explicitly, respect it; otherwise auto-pick.
+  environment:
+    process.env.CONTENTFUL_ENV || (useS3Source ? "schema" : "master"),
 };
 
-// if you want to use the preview API please define
-// CONTENTFUL_HOST in your environment config
-// the `host` property should map to `preview.contentful.com`
-// https://www.contentful.com/developers/docs/references/content-preview-api/#/reference/spaces/space/get-a-space/console/js
+// Optional: enable Preview API when you intentionally set CONTENTFUL_HOST
 if (process.env.CONTENTFUL_HOST) {
-  contentfulConfig.host = process.env.CONTENTFUL_HOST;
+  contentfulConfig.host = process.env.CONTENTFUL_HOST; // e.g., preview.contentful.com
 }
 
 const { spaceId, accessToken } = contentfulConfig;
-
 if (!spaceId || !accessToken) {
   throw new Error(
     "Contentful spaceId and the access token need to be provided."
@@ -30,10 +33,6 @@ module.exports = {
     siteUrl: `https://www.lushfulaesthetics.com/`,
     description: `Lushful Aesthetics by Injector Chris`,
   },
-  // TODO: creates re-hydration error
-  // flags: {
-  //   DEV_SSR: true,
-  // },
   plugins: [
     {
       resolve: "gatsby-source-contentful",
