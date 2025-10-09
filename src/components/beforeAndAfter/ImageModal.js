@@ -5,8 +5,7 @@ import {
   faArrowRight,
   faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
-import { GatsbyImage } from "gatsby-plugin-image";
-import { useContentfulImage } from "gatsby-source-contentful/hooks";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { useSwipeable } from "react-swipeable";
 
 export default function ImageModal({
@@ -18,26 +17,15 @@ export default function ImageModal({
   totalImages,
 }) {
   const currentImagePair = imagePairs[currentIndex];
-  const dynamicImageBefore = useContentfulImage({
-    image: {
-      url:
-        currentImagePair.before.gatsbyImageData.images.sources[0].srcSet ||
-        currentImagePair.before.gatsbyImageData.images.fallback.srcSet,
-      width: 3000,
-      height: 3000,
-      backgroundPosition: "top",
-    },
-  });
-  const dynamicImageAfter = useContentfulImage({
-    image: {
-      url:
-        currentImagePair.after.gatsbyImageData.images.sources[0].srcSet ||
-        currentImagePair.after.gatsbyImageData.images.fallback.srcSet,
-      width: 3000,
-      height: 3000,
-      backgroundPosition: "top",
-    },
-  });
+  const beforeLocal =
+    currentImagePair?.before?.localFile?.childImageSharp?.gatsbyImageData;
+  const beforeRemote = currentImagePair?.before?.gatsbyImageData;
+  const dynamicImageBefore = getImage(beforeLocal || beforeRemote);
+
+  const afterLocal =
+    currentImagePair?.after?.localFile?.childImageSharp?.gatsbyImageData;
+  const afterRemote = currentImagePair?.after?.gatsbyImageData;
+  const dynamicImageAfter = getImage(afterLocal || afterRemote);
 
   const beforeDescription = currentImagePair.beforeImageDescription;
   const afterDescription = currentImagePair.afterImageDescription;
@@ -136,19 +124,23 @@ export default function ImageModal({
 
           {/* Before Image */}
           <div className="w-1/2 relative">
-            <GatsbyImage
-              image={dynamicImageBefore}
-              className="w-full h-full object-cover aspect-[3/4]"
-              alt={currentImagePair.before.title}
-            />
+            {dynamicImageBefore && (
+              <GatsbyImage
+                image={dynamicImageBefore}
+                className="w-full h-full object-cover aspect-[3/4]"
+                alt={currentImagePair.before.title}
+              />
+            )}
           </div>
           {/* After Image */}
           <div className="w-1/2 relative">
-            <GatsbyImage
-              image={dynamicImageAfter}
-              className="w-full h-full object-cover aspect-[3/4]"
-              alt={currentImagePair.after.title}
-            />
+            {dynamicImageAfter && (
+              <GatsbyImage
+                image={dynamicImageAfter}
+                className="w-full h-full object-cover aspect-[3/4]"
+                alt={currentImagePair.after.title}
+              />
+            )}
           </div>
           {/* Next Button */}
 

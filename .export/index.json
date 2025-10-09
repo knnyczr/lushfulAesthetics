@@ -1,0 +1,130 @@
+{
+  "types": [
+    {
+      "type": "ContentfulReviewsPage",
+      "count": 1,
+      "path": "types/ContentfulReviewsPage/index.json"
+    },
+    {
+      "type": "ContentfulContactPage",
+      "count": 3,
+      "path": "types/ContentfulContactPage/index.json"
+    },
+    {
+      "type": "ContentfulAboutUs",
+      "count": 1,
+      "path": "types/ContentfulAboutUs/index.json"
+    },
+    {
+      "type": "ContentfulServicePage",
+      "count": 36,
+      "path": "types/ContentfulServicePage/index.json"
+    },
+    {
+      "type": "ContentfulPressPage",
+      "count": 1,
+      "path": "types/ContentfulPressPage/index.json"
+    },
+    {
+      "type": "ContentfulPressReviewCard",
+      "count": 0,
+      "path": "types/ContentfulPressReviewCard/index.json"
+    },
+    {
+      "type": "ContentfulHomePage",
+      "count": 1,
+      "path": "types/ContentfulHomePage/index.json"
+    },
+    {
+      "type": "ContentfulReviewCard",
+      "count": 54,
+      "path": "types/ContentfulReviewCard/index.json"
+    },
+    {
+      "type": "ContentfulAgeAndEmailCapturePopup",
+      "count": 1,
+      "path": "types/ContentfulAgeAndEmailCapturePopup/index.json"
+    },
+    {
+      "type": "ContentfulMenu",
+      "count": 1,
+      "path": "types/ContentfulMenu/index.json"
+    },
+    {
+      "type": "ContentfulPromoOffer",
+      "count": 3,
+      "path": "types/ContentfulPromoOffer/index.json"
+    },
+    {
+      "type": "ContentfulBeforeAfterPairs",
+      "count": 62,
+      "path": "types/ContentfulBeforeAfterPairs/index.json"
+    },
+    {
+      "type": "ContentfulFinancingPage",
+      "count": 1,
+      "path": "types/ContentfulFinancingPage/index.json"
+    },
+    {
+      "type": "ContentfulFooterContent",
+      "count": 1,
+      "path": "types/ContentfulFooterContent/index.json"
+    },
+    {
+      "type": "ContentfulBlogCategory",
+      "count": 3,
+      "path": "types/ContentfulBlogCategory/index.json"
+    },
+    {
+      "type": "ContentfulEmployee",
+      "count": 0,
+      "path": "types/ContentfulEmployee/index.json"
+    },
+    {
+      "type": "ContentfulMediaLogos",
+      "count": 41,
+      "path": "types/ContentfulMediaLogos/index.json"
+    },
+    {
+      "type": "ContentfulFaq",
+      "count": 460,
+      "path": "types/ContentfulFaq/index.json"
+    },
+    {
+      "type": "ContentfulBlogPost",
+      "count": 41,
+      "path": "types/ContentfulBlogPost/index.json"
+    },
+    {
+      "type": "ContentfulPackagePage",
+      "count": 1,
+      "path": "types/ContentfulPackagePage/index.json"
+    },
+    {
+      "type": "ContentfulBlogHomepage",
+      "count": 1,
+      "path": "types/ContentfulBlogHomepage/index.json"
+    },
+    {
+      "type": "ContentfulGeneralFaqPage",
+      "count": 1,
+      "path": "types/ContentfulGeneralFaqPage/index.json"
+    },
+    {
+      "type": "ContentfulServicePageArticleLinks",
+      "count": 45,
+      "path": "types/ContentfulServicePageArticleLinks/index.json"
+    },
+    {
+      "type": "ContentfulAestheticPackages",
+      "count": 7,
+      "path": "types/ContentfulAestheticPackages/index.json"
+    },
+    {
+      "type": "ContentfulSlugDictionary",
+      "count": 10,
+      "path": "types/ContentfulSlugDictionary/index.json"
+    }
+  ],
+  "generatedAt": "2025-10-03T18:50:16.430Z"
+}

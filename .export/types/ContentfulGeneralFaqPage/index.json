@@ -1,0 +1,106 @@
+[
+  {
+    "id": "5Yht1V3F9cp0bJiuwMRJN6",
+    "entryTitleDoesNotAffectCode": "General FAQs",
+    "heroImage": {
+      "id": "gDcklQ9lZDLFNJgqzlsmx",
+      "url": "https://images.ctfassets.net/eh73f2j8s7u9/gDcklQ9lZDLFNJgqzlsmx/d26c9915e17ece615510027e3d3625db/AdobeStock_159506421.jpeg",
+      "description": "decorative review card image"
+    },
+    "slug": "general-faqs",
+    "faqList": [
+      {
+        "question": "What is the cancellation policy?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"unordered-list\",\"data\":{},\"content\":[{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Notice Requirement\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\": Cancel or reschedule your appointment with at least \",\"marks\":[],\"data\":{}},{\"nodeType\":\"text\",\"value\":\"72 hours' notice \",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\"to avoid a fee. Deposit policies vary by location, see below.\",\"marks\":[],\"data\":{}}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"How to Cancel/Reschedule\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\": Use our online scheduler to cancel or reschedule up to \",\"marks\":[],\"data\":{}},{\"nodeType\":\"text\",\"value\":\"72 hours before\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\" your appointment time.\",\"marks\":[],\"data\":{}}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Late Cancellation Fee\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\":\",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"unordered-list\",\"data\":{},\"content\":[{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"A general late cancellation fee of $250.\",\"marks\":[],\"data\":{}}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"For Laser Hair Removal, 50% of the procedure cost is charged.\",\"marks\":[],\"data\":{}}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"For Patients on packages, you forfeit the session of your package.\",\"marks\":[],\"data\":{}}]}]}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"No-Show Fee\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\": Full price of the service(s) scheduled or loss of a session of your package.\",\"marks\":[],\"data\":{}}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Late Arrival\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\": Arriving more than 10 minutes late may result in rescheduling and a late cancellation fee.\",\"marks\":[],\"data\":{}}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Deposit\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\":\",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"unordered-list\",\"data\":{},\"content\":[{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Are \",\"marks\":[],\"data\":{}},{\"nodeType\":\"text\",\"value\":\"Non-refundable\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\". Late cancellations, no-shows, or rescheduling more than once results in the \",\"marks\":[],\"data\":{}},{\"nodeType\":\"text\",\"value\":\"loss of the non-refundable deposit\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\".\",\"marks\":[],\"data\":{}}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"New York: \",\"marks\":[],\"data\":{}},{\"nodeType\":\"text\",\"value\":\"72 hours required \",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\"to reschedule to maintain your deposit.\",\"marks\":[],\"data\":{}}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"San Diego: \",\"marks\":[],\"data\":{}},{\"nodeType\":\"text\",\"value\":\"1 week required \",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\"to reschedule to maintain your deposit.\",\"marks\":[],\"data\":{}}]}]}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Communication\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\":\",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"unordered-list\",\"data\":{},\"content\":[{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Confirmation/reminder emails and texts are sent 5 days before the appointment.\",\"marks\":[],\"data\":{}}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Opting out of communications makes it your responsibility to remember and confirm your appointment times.\",\"marks\":[],\"data\":{}}]}]}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Urgent Changes\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\": Contact us ASAP by texting/calling 917-277-3398 if you can't make your appointment. DMs and emails are not accepted for cancellations.\",\"marks\":[],\"data\":{}}]}]},{\"nodeType\":\"list-item\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Pattern of Cancellations/No-Shows\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\": Repeat offenders may be required to provide a deposit before booking future appointments; this is managed on a case-by-case basis.\",\"marks\":[],\"data\":{}}]}]}]},{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "question": "How to schedule an appointment?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"All appointments at our NYC medspa are scheduled online. A procedure deposit is required. You can schedule your appointment by selecting “BOOK NOW” on our website. For consultations, \",\"marks\":[],\"data\":{}},{\"nodeType\":\"hyperlink\",\"data\":{\"uri\":\"https://www.lushfulaesthetics.com/contact/\"},\"content\":[{\"nodeType\":\"text\",\"value\":\"please call the office\",\"marks\":[{\"type\":\"underline\"}],\"data\":{}}]},{\"nodeType\":\"text\",\"value\":\".\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "question": "How to manage my appointment and see the remaining sessions on my package?",
+        "answer": {
+          "raw": "{\"data\":{},\"content\":[{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"You can log in to your Patient profile \",\"nodeType\":\"text\"},{\"data\":{\"uri\":\"https://blvd.app/@lushful-aesthetics/login\"},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"here\",\"nodeType\":\"text\"}],\"nodeType\":\"hyperlink\"},{\"data\":{},\"marks\":[],\"value\":\" to see your appointment information and history, vouchers for your packages, and reschedule or cancel your appointment. \",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"}],\"nodeType\":\"document\"}"
+        }
+      },
+      {
+        "question": "I’m located outside the U.S. How can I contact Lushful Aesthetics?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Texting:\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\" Please message us via WhatsApp at +1 646-400-4810. \",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Calling:\",\"marks\":[{\"type\":\"bold\"}],\"data\":{}},{\"nodeType\":\"text\",\"value\":\" For voice conversations, we prefer you call our business line at +1 917-277-3398. Standard international calling rates may apply based on your carrier.\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "question": "How do I get to the San Diego office?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Our clinic in La Jolla, San Diego is located at \",\"marks\":[],\"data\":{}},{\"nodeType\":\"text\",\"value\":\"1150 Silverado St\",\"marks\":[],\"data\":{}},{\"nodeType\":\"text\",\"value\":\", Suite 308. Street parking is available but limited, so we recommend researching parking in the area before your appointment.\",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "question": "Do you offer consultations?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"We offer consultations in person or virtually. Please call our office to schedule. Consultations have a $250 fee that is required at the time of booking. The fee is non-refundable but you can apply this fee to any procedure you receive with us on a future appointment.\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "question": "What cosmetic procedures are covered by insurance?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Generally, cosmetic procedures that are purely aesthetic are not covered by insurance. However, certain treatments can have medical justifications that might qualify them for insurance coverage. We recommend consulting with your insurance provider to understand which treatments can be covered based on your specific policy. For cosmetic procedures that are not covered, our medspa in NYC offers financing options to help manage the costs.\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "question": "Do you have Before & After photos?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"We have before and after content on several of our service pages. You can visit our Instagram \",\"marks\":[],\"data\":{}},{\"nodeType\":\"hyperlink\",\"data\":{\"uri\":\"https://www.instagram.com/lushfulaesthetics?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==\"},\"content\":[{\"nodeType\":\"text\",\"value\":\"@LushfulAesthetics\",\"marks\":[{\"type\":\"underline\"}],\"data\":{}}]},{\"nodeType\":\"text\",\"value\":\" for additional before and after images and videos. \",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"\\nFor uncensored content visit our Twitter \",\"marks\":[],\"data\":{}},{\"nodeType\":\"hyperlink\",\"data\":{\"uri\":\"https://x.com/LushfulAesth\"},\"content\":[{\"nodeType\":\"text\",\"value\":\"@LushfulAesth\",\"marks\":[{\"type\":\"underline\"}],\"data\":{}}]},{\"nodeType\":\"text\",\"value\":\" and our \",\"marks\":[],\"data\":{}},{\"nodeType\":\"hyperlink\",\"data\":{\"uri\":\"https://www.youtube.com/channel/UCh6HankCyOK9CgsS-uvTjGg\"},\"content\":[{\"nodeType\":\"text\",\"value\":\"YouTube Channel\",\"marks\":[{\"type\":\"underline\"}],\"data\":{}}]},{\"nodeType\":\"text\",\"value\":\".\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "question": "How do I get to the NYC office?",
+        "answer": {
+          "raw": "{\"data\":{},\"content\":[{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"Our medspa in NYC is located near Bryant Park at \",\"nodeType\":\"text\"},{\"data\":{\"uri\":\"https://maps.app.goo.gl/zP1QdPTKGB2R9v7s7\"},\"content\":[{\"data\":{},\"marks\":[{\"type\":\"underline\"}],\"value\":\"18 E 41 Street\",\"nodeType\":\"text\"}],\"nodeType\":\"hyperlink\"},{\"data\":{},\"marks\":[],\"value\":\" on the 14th Floor. The nearest subway stations are Bryant Park on the 7 line and Grand Central Terminal on the 4,5,6 and 7 trains. Street parking is extremely limited, so we recommend researching parking garages in the area before your appointment if you intend to drive.\",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"},{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"\",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"}],\"nodeType\":\"document\"}"
+        }
+      },
+      {
+        "question": "What financing options are available?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"We partner with \",\"marks\":[],\"data\":{}},{\"nodeType\":\"hyperlink\",\"data\":{\"uri\":\"https://withcherry.com/patients/\"},\"content\":[{\"nodeType\":\"text\",\"value\":\"Cherry Financing\",\"marks\":[{\"type\":\"underline\"}],\"data\":{}}]},{\"nodeType\":\"text\",\"value\":\" and \",\"marks\":[],\"data\":{}},{\"nodeType\":\"hyperlink\",\"data\":{\"uri\":\"https://patientfi.com/for-patients/\"},\"content\":[{\"nodeType\":\"text\",\"value\":\"PatientFi\",\"marks\":[{\"type\":\"underline\"}],\"data\":{}}]},{\"nodeType\":\"text\",\"value\":\" to help you pay off your procedure in monthly installments. You can learn more about Cherry and PatientFi on our \",\"marks\":[],\"data\":{}},{\"nodeType\":\"hyperlink\",\"data\":{\"uri\":\"https://www.lushfulaesthetics.com/financing/\"},\"content\":[{\"nodeType\":\"text\",\"value\":\"financing page\",\"marks\":[{\"type\":\"underline\"}],\"data\":{}}]},{\"nodeType\":\"text\",\"value\":\". We do not accept CareCredit.\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "question": "What is the procedure deposit?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"A non-refundable deposit is required for all appointments at the time of scheduling. This deposit is applied to the cost of your treatment. If you need to reschedule, the deposit will cover your treatment cost for one change, as long as it's done in line with our cancellation policy. \",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"However, if you cancel late, don't show up, or reschedule more than once, you will lose your deposit. As a small business, frequent reschedulings and late cancellations greatly affect our ability to provide the best service to all our clients.\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "question": "Should I eat before my appointment?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"We recommend that all patients eat at least a light snack before any procedure. This helps maintain your comfort and ensures you remain steady during the treatment, especially since some cosmetic procedures might cause light-headedness.\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "question": "What should I expect when I arrive for my appointment?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"We are located at 18 E 41 Street on the 14th floor. When you arrive, proceed to the 14th floor and sign in on the iPad for \\\"Lushful Aesthetics\\\", or with the receptionist if one is present. Make yourself comfortable in the waiting area and a member of our team will greet you at the time of your appointment. Arriving over 10 minutes late for your appointment may result in a rescheduling and late cancellation fee.\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "question": "Can someone else pay for me?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Lushful Aesthetics does not accept deposits or payments from third parties on behalf of a patient except in the form of cash or a Lushful Aesthetics gift card. Please note that the name on the card used for payments must match the name on your appointment or you must provide proof of ownership of this card at the time of checkout. Deposits made using a card with a different name will be automatically refunded and the appointment will be canceled. Patients must provide proof of identity at the time of checkout.\",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"We implement this policy to prevent fraudulent transactions and ensure that the cardholder authorizes the payment.\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "question": "Have a press inquiry?",
+        "answer": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Please contact our PR team at lushful@solcomms.co for any press inquiries related to our cosmetic procedures at our NYC medspa.\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      }
+    ],
+    "metaTitle": "FAQs For NYC Medspa Cosmetic Procedures | Lushful Aesthetics",
+    "metaDescription": "Learn more about our NYC MedSpa’s cosmetic procedures, with information on scheduling, payments, deposits, office location, cancellation policies, and more."
+  }
+]

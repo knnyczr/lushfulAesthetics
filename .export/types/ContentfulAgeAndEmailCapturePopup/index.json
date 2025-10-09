@@ -1,0 +1,18 @@
+[
+  {
+    "id": "684GyIyE4nYQLd6VRjTfHd",
+    "verifyAgeTitle": "Are you 18 or over?",
+    "verifyAgeBodyContent": "Before and after images may contain sensitive content that is not suitable for minors. By entering your name and email address you agree that you are over 18 years old.",
+    "verifyAgeDisclaimer": {
+      "raw": "{\"data\":{},\"content\":[{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"At Lushful Aesthetics, your security is always top of mind. We will never sell your information. By entering your email you agree to be added to our marketing list, from which you may opt-out at any time by unsubscribing in email or by contacting us at \",\"nodeType\":\"text\"},{\"data\":{\"uri\":\"mailto:hello@lushfulaesthetics.com\"},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"hello@lushfulaesthetics.com\",\"nodeType\":\"text\"}],\"nodeType\":\"hyperlink\"},{\"data\":{},\"marks\":[],\"value\":\".\",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"}],\"nodeType\":\"document\"}"
+    },
+    "verifyAgeWcookieTitle": "Are you 18 or over?",
+    "verifyAgeWcookieContent": "Before and after images may contain sensitive content that is not suitable for minors. ",
+    "verifyAgeWcookieDisclaimer": "By clicking here you consent that you are over 18 years old.",
+    "emailCaptureTitle": "Stay In Touch!",
+    "emailCaptureContent": "Join our mailing list to be notified whenever we have promotions.",
+    "emailCaptureDisclaimer": {
+      "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"At Lushful Aesthetics, your security is always top of mind. We will never sell your information. By entering your email you agree to be added to our marketing list, from which you may opt-out at any time by unsubscribing in email or by contacting us at \",\"marks\":[],\"data\":{}},{\"nodeType\":\"hyperlink\",\"data\":{\"uri\":\"mailto:hello@lushfulaesthetics.com\"},\"content\":[{\"nodeType\":\"text\",\"value\":\"hello@lushfulaesthetics.com\",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"text\",\"value\":\".\",\"marks\":[],\"data\":{}}]}]}"
+    }
+  }
+]

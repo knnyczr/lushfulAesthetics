@@ -1,5 +1,4 @@
-import { GatsbyImage } from "gatsby-plugin-image";
-import { useContentfulImage } from "gatsby-source-contentful/hooks";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
 
 export default function ImageWithOverlay({
@@ -12,20 +11,13 @@ export default function ImageWithOverlay({
   const overlayClass =
     type === "Before" ? "justify-end pr-6" : "justify-start pl-6";
 
-  const dynamicImage = useContentfulImage({
-    image: {
-      url:
-        src.gatsbyImageData.images.sources[0].srcSet ||
-        src.gatsbyImageData.images.fallback.srcSet,
-      width: 3000,
-      height: 3000,
-      backgroundPosition: "top",
-    },
-  });
+  const local = src?.localFile?.childImageSharp?.gatsbyImageData;
+  const remote = src?.gatsbyImageData;
+  const image = getImage(local || remote);
 
   return (
     <div className="relative w-1/2">
-      <GatsbyImage image={dynamicImage} alt={alt} />
+      {image && <GatsbyImage image={image} alt={alt} />}
       <div
         className={`absolute w-full h-full top-0 left-0 flex items-end ${overlayClass} text-white font-medium pb-6 ${
           shouldBlur
