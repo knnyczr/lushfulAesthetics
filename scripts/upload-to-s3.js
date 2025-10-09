@@ -40,11 +40,11 @@ const {
   HeadObjectCommand,
 } = require("@aws-sdk/client-s3");
 
-const AWS_REGION = process.env.AWS_REGION;
-const S3_BUCKET = process.env.S3_BUCKET;
+const AWS_REGION = process.env.LUSHFUL_AWS_REGION;
+const S3_BUCKET = process.env.LUSHFUL_S3_BUCKET;
 
 if (!AWS_REGION || !S3_BUCKET) {
-  console.error("Missing AWS_REGION or S3_BUCKET env");
+  console.error("Missing LUSHFUL_AWS_REGION or LUSHFUL_S3_BUCKET env");
   process.exit(1);
 }
 

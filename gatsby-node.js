@@ -3,8 +3,8 @@ const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 const { createRemoteFileNode } = require("gatsby-source-filesystem");
 
 const useS3Source = String(process.env.USE_S3_SOURCE).toLowerCase() === "true";
-const AWS_REGION = process.env.AWS_REGION;
-const S3_BUCKET = process.env.S3_BUCKET;
+const AWS_REGION = process.env.LUSHFUL_AWS_REGION;
+const S3_BUCKET = process.env.LUSHFUL_S3_BUCKET;
 const S3_PREFIX_OVERRIDE = process.env.S3_PREFIX; // optional manual rollback/override
 const DEFAULT_LOCALE = process.env.CONTENTFUL_LOCALE || "en-US";
 
@@ -119,7 +119,7 @@ exports.sourceNodes = async (api) => {
 
   if (!AWS_REGION || !S3_BUCKET) {
     reporter.panicOnBuild(
-      "USE_S3_SOURCE is true but AWS_REGION or S3_BUCKET is missing in environment"
+      "USE_S3_SOURCE is true but LUSHFUL_AWS_REGION or LUSHFUL_S3_BUCKET is missing in environment"
     );
     return;
   }
