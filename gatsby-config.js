@@ -2,8 +2,7 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-const useS3Source =
-  String(process.env.USE_S3_SOURCE || "").toLowerCase() === "true";
+const useS3Source = /^(1|true|yes)$/i.test(process.env.USE_S3_SOURCE || "");
 
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,

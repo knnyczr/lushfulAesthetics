@@ -2,7 +2,7 @@ const path = require("path");
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 const { createRemoteFileNode } = require("gatsby-source-filesystem");
 
-const useS3Source = String(process.env.USE_S3_SOURCE).toLowerCase() === "true";
+const useS3Source = /^(1|true|yes)$/i.test(process.env.USE_S3_SOURCE || "");
 const AWS_REGION = process.env.LUSHFUL_AWS_REGION;
 // Support both prefixed and unprefixed env var names on Netlify
 const S3_BUCKET = process.env.LUSHFUL_S3_BUCKET || process.env.S3_BUCKET;
@@ -111,6 +111,20 @@ exports.sourceNodes = async (api) => {
   const { createNode } = actions;
 
   if (!useS3Source) {
+    return;
+  }
+
+  // If gatsby-source-contentful plugin is active in this build, skip S3 to avoid type conflicts
+  const sitePlugins = (getNodesByType && getNodesByType("SitePlugin")) || [];
+  const hasContentfulPlugin = sitePlugins.some(
+    (p) =>
+      p?.name === "gatsby-source-contentful" ||
+      p?.resolve?.includes("gatsby-source-contentful")
+  );
+  if (hasContentfulPlugin) {
+    reporter.warn(
+      "Detected gatsby-source-contentful plugin active. Skipping S3 source to avoid type ownership conflicts."
+    );
     return;
   }
 
