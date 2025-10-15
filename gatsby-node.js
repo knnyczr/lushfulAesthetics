@@ -2,9 +2,15 @@ const path = require("path");
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 const { createRemoteFileNode } = require("gatsby-source-filesystem");
 
-const useS3Source = String(process.env.USE_S3_SOURCE).toLowerCase() === "true";
+const useS3Source = /^(1|true|yes)$/i.test(process.env.USE_S3_SOURCE || "");
 const AWS_REGION = process.env.LUSHFUL_AWS_REGION;
-const S3_BUCKET = process.env.LUSHFUL_S3_BUCKET;
+// Support both prefixed and unprefixed env var names on Netlify
+const S3_BUCKET = process.env.LUSHFUL_S3_BUCKET || process.env.S3_BUCKET;
+const AWS_ACCESS_KEY_ID =
+  process.env.LUSHFUL_AWS_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID;
+const AWS_SECRET_ACCESS_KEY =
+  process.env.LUSHFUL_AWS_SECRET_ACCESS_KEY ||
+  process.env.AWS_SECRET_ACCESS_KEY;
 const S3_PREFIX_OVERRIDE = process.env.S3_PREFIX; // optional manual rollback/override
 const DEFAULT_LOCALE = process.env.CONTENTFUL_LOCALE || "en-US";
 
@@ -108,6 +114,20 @@ exports.sourceNodes = async (api) => {
     return;
   }
 
+  // If gatsby-source-contentful plugin is active in this build, skip S3 to avoid type conflicts
+  const sitePlugins = (getNodesByType && getNodesByType("SitePlugin")) || [];
+  const hasContentfulPlugin = sitePlugins.some(
+    (p) =>
+      p?.name === "gatsby-source-contentful" ||
+      p?.resolve?.includes("gatsby-source-contentful")
+  );
+  if (hasContentfulPlugin) {
+    reporter.warn(
+      "Detected gatsby-source-contentful plugin active. Skipping S3 source to avoid type ownership conflicts."
+    );
+    return;
+  }
+
   // Safety guard: if Contentful plugin already created nodes, skip S3 sourcing to avoid type ownership conflicts
   const preExistingAssets = getNodesByType && getNodesByType("ContentfulAsset");
   if (preExistingAssets && preExistingAssets.length > 0) {
@@ -124,7 +144,16 @@ exports.sourceNodes = async (api) => {
     return;
   }
 
-  const s3 = new S3Client({ region: AWS_REGION });
+  const s3 = new S3Client({
+    region: AWS_REGION,
+    credentials:
+      AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY
+        ? {
+            accessKeyId: AWS_ACCESS_KEY_ID,
+            secretAccessKey: AWS_SECRET_ACCESS_KEY,
+          }
+        : undefined,
+  });
 
   try {
     // 1) Determine snapshot prefix: S3_PREFIX override or active.json
