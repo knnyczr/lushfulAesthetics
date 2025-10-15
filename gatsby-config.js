@@ -9,9 +9,9 @@ const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   accessToken:
     process.env.CONTENTFUL_ACCESS_TOKEN || process.env.CONTENTFUL_CDA,
-  // If you set CONTENTFUL_ENV explicitly, respect it; otherwise auto-pick.
-  environment:
-    process.env.CONTENTFUL_ENV || (useS3Source ? "schema" : "master"),
+  // If USE_S3_SOURCE is true, force 'schema' environment to keep Contentful empty
+  // so our S3 snapshot can source the content without type ownership conflicts.
+  environment: useS3Source ? "schema" : process.env.CONTENTFUL_ENV || "master",
 };
 
 // Optional: enable Preview API when you intentionally set CONTENTFUL_HOST

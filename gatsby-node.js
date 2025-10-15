@@ -4,7 +4,13 @@ const { createRemoteFileNode } = require("gatsby-source-filesystem");
 
 const useS3Source = String(process.env.USE_S3_SOURCE).toLowerCase() === "true";
 const AWS_REGION = process.env.LUSHFUL_AWS_REGION;
-const S3_BUCKET = process.env.LUSHFUL_S3_BUCKET;
+// Support both prefixed and unprefixed env var names on Netlify
+const S3_BUCKET = process.env.LUSHFUL_S3_BUCKET || process.env.S3_BUCKET;
+const AWS_ACCESS_KEY_ID =
+  process.env.LUSHFUL_AWS_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID;
+const AWS_SECRET_ACCESS_KEY =
+  process.env.LUSHFUL_AWS_SECRET_ACCESS_KEY ||
+  process.env.AWS_SECRET_ACCESS_KEY;
 const S3_PREFIX_OVERRIDE = process.env.S3_PREFIX; // optional manual rollback/override
 const DEFAULT_LOCALE = process.env.CONTENTFUL_LOCALE || "en-US";
 
@@ -124,7 +130,16 @@ exports.sourceNodes = async (api) => {
     return;
   }
 
-  const s3 = new S3Client({ region: AWS_REGION });
+  const s3 = new S3Client({
+    region: AWS_REGION,
+    credentials:
+      AWS_ACCESS_KEY_ID && AWS_SECRET_ACCESS_KEY
+        ? {
+            accessKeyId: AWS_ACCESS_KEY_ID,
+            secretAccessKey: AWS_SECRET_ACCESS_KEY,
+          }
+        : undefined,
+  });
 
   try {
     // 1) Determine snapshot prefix: S3_PREFIX override or active.json
