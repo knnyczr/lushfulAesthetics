@@ -28,7 +28,7 @@ export default function Contact({ data }) {
       />
       <div className="sm:px-0 d:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-center items-center h-auto min-h-[50rem]">
         <h1 className="pb-16 px-2 uppercase text-3xl text-center md:text-4xl lg:text-5xl text-black font-serif font-semibold">
-          Contact Us at Our La Jolla, San Diego Aesthetic Clinic
+          Contact Us at Our Hillcrest, San Diego Aesthetic Clinic
         </h1>
         <LocationCard
           data={{
