@@ -46,13 +46,14 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
 
-    {
-      resolve: `gatsby-source-google-places`,
-      options: {
-        placeIds: [process.env.GOOGLE_PLACE_ID],
-        apiKey: process.env.GOOGLE_PLACES_API_KEY,
-      },
-    },
+    // Temporarily disabled due to invalid/expired API key
+    // {
+    //   resolve: `gatsby-source-google-places`,
+    //   options: {
+    //     placeIds: [process.env.GOOGLE_PLACE_ID],
+    //     apiKey: process.env.GOOGLE_PLACES_API_KEY,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-advanced-sitemap-v5`,
       options: {
