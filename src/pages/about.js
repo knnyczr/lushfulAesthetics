@@ -2,6 +2,7 @@ import { graphql } from "gatsby";
 import React from "react";
 import HeroImage from "../components/HeroImage";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
+import { SafeRichText } from "../components/SafeRichText";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { BLOCKS } from "@contentful/rich-text-types";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
@@ -42,7 +43,8 @@ export default function AboutUs({ data }) {
           <div className="mt-6 px-4 sm:px-6 md:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-center md:items-center bg-main-green">
             <h2 className="pb-8 text-2xl lg:text-3xl font-semibold font-serif text-left">{`About Lushful Aesthetics`}</h2>
             <div className="max-w-screen-lg pb-8 lg:pb-16 lg:text-lg md:text-center">
-              {renderRichText(aboutLushfulAesthetics)}
+              {/* {renderRichText(aboutLushfulAesthetics)} */}
+              <SafeRichText field={aboutLushfulAesthetics} />
             </div>
           </div>
 
@@ -52,7 +54,8 @@ export default function AboutUs({ data }) {
                 {meetInjectorChrisTitle}
               </h3>
               <div className="max-w-screen-lg pb-2 w-full lg:pb-16 lg:text-lg justify-center items-start ">
-                {renderRichText(meetInjectorChris, options)}
+                {/* {renderRichText(meetInjectorChris, options)} */}
+                <SafeRichText field={meetInjectorChris} options={options} />
               </div>
             </div>
             <div className="pb-8 h-auto w-min-max lg:w-96 mx-4 my-4  md:mr-12 md:mt-12 lg:mr-24 lg:mt-24">
@@ -75,7 +78,11 @@ export default function AboutUs({ data }) {
                     {employee.meetEmployeeTitle}
                   </h3>
                   <div className="max-w-screen-lg pb-2 w-full lg:pb-16 lg:text-lg justify-center items-start ">
-                    {renderRichText(employee.aboutEmployee, options)}
+                    {/* {renderRichText(employee.aboutEmployee, options)} */}
+                    <SafeRichText
+                      field={employee.aboutEmployee}
+                      options={options}
+                    />
                   </div>
                 </div>
                 <div className="pb-8 h-auto w-min-max lg:w-96 mx-4 my-4  md:mr-12 md:mt-12 lg:mr-24 lg:mt-24">

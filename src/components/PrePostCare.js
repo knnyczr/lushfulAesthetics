@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { useContentfulImage } from "gatsby-source-contentful/hooks";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
+import { SafeRichText } from "./SafeRichText";
 
 export default function PrePostCare({ preCare, postCare, heroImage }) {
   const [pre, setPre] = useState(true);
@@ -78,9 +79,18 @@ export default function PrePostCare({ preCare, postCare, heroImage }) {
           </div>
 
           <div className="my-4 text-white text-md">
-            {pre
+            {/* {pre
               ? renderRichText(preCare, options)
-              : renderRichText(postCare, options)}
+              : renderRichText(postCare, options)} */}
+            {pre ? (
+              <div>
+                <SafeRichText field={preCare} options={options} />
+              </div>
+            ) : (
+              <div>
+                <SafeRichText field={postCare} options={options} />
+              </div>
+            )}
           </div>
         </div>
 

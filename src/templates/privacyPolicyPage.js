@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { BLOCKS, MARKS, INLINES } from "@contentful/rich-text-types";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
+import { SafeRichText } from "../components/SafeRichText";
 
 export { Head } from "../components/Layout";
 
@@ -68,7 +69,8 @@ export default function PrivacyPolicy({
         metaTitle={privacyPolicyMetaTitle}
         metaDescription={privacyPolicyMetaDescription}
       />
-      {renderRichText(privacyPolicyContent, options)}
+      {/* {renderRichText(privacyPolicyContent, options)} */}
+      <SafeRichText field={privacyPolicyContent} options={options} />
     </>
   );
 }
