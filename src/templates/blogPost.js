@@ -26,9 +26,10 @@ export default function BlogPost({ data }) {
 
   const options = {
     renderMark: {
-      [MARKS.BOLD]: (text) => (
-        <span className="font-sans font-bold lg:text-lg">{text}</span>
-      ),
+      [MARKS.BOLD]: (text) => {
+        if (typeof text !== "string") return text;
+        return <span className="font-sans font-bold lg:text-lg">{text}</span>;
+      },
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node, children) => {
