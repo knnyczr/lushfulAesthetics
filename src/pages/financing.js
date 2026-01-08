@@ -6,6 +6,7 @@ import ApplyBtn from "../components/ApplyBtn";
 
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
+import { SafeRichText } from "../components/SafeRichText";
 
 export { Head } from "../components/Layout";
 
@@ -77,7 +78,8 @@ export default function Financing({ data }) {
           <div>
             <div className="px-4 sm:px-6 d:px-12 lg:px-24 py-16 lg:py-24 flex flex-col justify-start md:justify-center md:items-center ">
               <div className="max-w-screen-lg pb-8 lg:pb-16 text-lg lg:text-2xl text-center">
-                {renderRichText(financingIntro)}
+                {/* {renderRichText(financingIntro)} */}
+                <SafeRichText field={financingIntro} />
               </div>
               <div className="flex flex-col md:flex-row gap-4 lg:gap-8 justify-center mx-auto w-2/3">
                 <ApplyBtn url={applyForCherryLink} text={"Apply with cherry"} />
@@ -87,7 +89,11 @@ export default function Financing({ data }) {
               <h4 className="text-white pb-8 uppercase text-lg font-semibold">
                 REASONS WHY PATIENTS LOVE financing with us
               </h4>
-              {renderRichText(reasonsWhyPatientsLoveCherry, options)}
+              {/* {renderRichText(reasonsWhyPatientsLoveCherry, options)} */}
+              <SafeRichText
+                field={reasonsWhyPatientsLoveCherry}
+                options={options}
+              />
             </div>
 
             <div className="px-4 py-16 sm:px-6 md:px-12 lg:px-24 2xl:px-0 flex flex-col lg:flex-row mx-auto justify-center gap-8  max-w-[1536px] h-full">
@@ -98,7 +104,11 @@ export default function Financing({ data }) {
                   </h4>
                   <hr className=" border-black" />
                   <div className="pt-4 lg:pt-8 lg:text-lg [&>*]:mb-6 nth-child-2:mb-0">
-                    {renderRichText(howDoesCherryWork, howDoesItworkOptions)}
+                    {/* {renderRichText(howDoesCherryWork, howDoesItworkOptions)} */}
+                    <SafeRichText
+                      field={howDoesCherryWork}
+                      options={howDoesItworkOptions}
+                    />
                   </div>
                   <div>
                     <ApplyBtn

@@ -7,6 +7,7 @@ import { formatDate } from "../hooks/format-date";
 import Categories from "../components/blog/Categories";
 import CategoryFeaturedServices from "../components/blog/CategoryFeaturedServices";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
+import { SafeRichText } from "../components/SafeRichText";
 
 export default function BlogPost({ data }) {
   const {
@@ -140,7 +141,10 @@ export default function BlogPost({ data }) {
               <p className="font-bold">{intro}</p>
             </div>
             <div className="h-[0.0625rem] bg-black my-4 lg:my-6" />
-            <div> {renderRichText(article, options)}</div>
+            <div>
+              {/* {renderRichText(article, options)} */}
+              <SafeRichText field={article} options={options} />
+            </div>
           </div>
           <div className="flex flex-none px-4 sm:px-6 md:px-12 2xl:pr-0 flex-col md:flex-none md:w-4/12">
             <div className="py-4 order-3 md:order-last">

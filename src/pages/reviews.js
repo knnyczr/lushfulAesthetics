@@ -14,7 +14,7 @@ import FeaturedReviews from "../components/review/FeaturedReviews";
 export default function Reviews({ data }) {
   const {
     contentfulReviewsPage: { featuredAestheticServices, savedGoogleReviews },
-    googlePlacesPlace: { childrenGooglePlacesReview },
+    // googlePlacesPlace: { childrenGooglePlacesReview }, // Disabled: google-places plugin is off
     contentfulContactPage: { ContactAddress },
     contentfulFooterContent: {
       socialInstagram,
@@ -45,7 +45,7 @@ export default function Reviews({ data }) {
         <div className="  lg:pr-16 lg:col-span-2 py-4 px-4 pt-4 md:flex-1 md:px-12 lg:px-24 2xl:pl-0">
           {" "}
           <PatientReviews
-            childrenGooglePlacesReview={childrenGooglePlacesReview}
+            childrenGooglePlacesReview={[]}
             savedGoogleReviews={savedGoogleReviews}
           />
         </div>
@@ -240,15 +240,16 @@ export const query = graphql`
         }
       }
     }
-    googlePlacesPlace {
-      childrenGooglePlacesReview {
-        author_name
-        text
-        rating
-        time
-        relative_time_description
-      }
-    }
+    # googlePlacesPlace disabled: google-places plugin is off
+    # googlePlacesPlace {
+    #   childrenGooglePlacesReview {
+    #     author_name
+    #     text
+    #     rating
+    #     time
+    #     relative_time_description
+    #   }
+    # }
     contentfulPressPage {
       email
     }

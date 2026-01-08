@@ -2,6 +2,7 @@ import React from "react";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { SafeRichText } from "./SafeRichText";
 
 export default function CustomAccordion({ question, answer, index }) {
   return (
@@ -20,7 +21,8 @@ export default function CustomAccordion({ question, answer, index }) {
                 </span>
               </summary>
               <span className="mt-6 px-6 text-base">
-                {renderRichText(answer)}
+                {/* {renderRichText(answer)} */}
+                <SafeRichText field={answer} />
               </span>
             </details>
             <hr className="mt-8 border-black" />

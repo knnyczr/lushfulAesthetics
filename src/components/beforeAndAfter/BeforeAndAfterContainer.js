@@ -6,6 +6,7 @@ import { Context } from "../Context";
 import beforeAndAfterContainerOptions from "../../helpers/beforeAndAfterContainerOptions";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import AnchorLinkComponent from "../AnchorLinkComponent";
+import { SafeRichText } from "../SafeRichText";
 
 export default function BeforeAndAfterContainer({
   serviceTitle,
@@ -127,7 +128,11 @@ export default function BeforeAndAfterContainer({
         </div>
         {beforeAfterServiceDescriptionRichText && (
           <p className="mb-4">
-            {renderRichText(beforeAfterServiceDescriptionRichText, options)}
+            {/* {renderRichText(beforeAfterServiceDescriptionRichText, options)} */}
+            <SafeRichText
+              field={beforeAfterServiceDescriptionRichText}
+              options={options}
+            />
           </p>
         )}
         {beforeAndAfters && (

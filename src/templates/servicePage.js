@@ -11,6 +11,7 @@ import { useSiteMetadata } from "../hooks/use-site-metadata";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import HelmetWithMetaDesc from "../components/HelmetWithMeta";
 import AgeAndEmailCaptureModal from "../components/beforeAndAfter/AgeAndEmailCaptureModal";
+import { SafeRichText } from "../components/SafeRichText";
 
 export { Head } from "../components/Layout";
 
@@ -80,8 +81,10 @@ export default function ServicePage({ data }) {
         onVerifyAge={handleVerifyAge}
         shouldVerifyAge={isVerifyAgePopupOpen.flags.shouldVerifyAge}
         shouldCaptureEmail={isVerifyAgePopupOpen.flags.shouldCaptureEmail}
-        intro={renderRichText(intro, options)}
-        pricing={renderRichText(pricing, options)}
+        // intro={renderRichText(intro, options)}
+        intro={<SafeRichText field={intro} options={options} />}
+        // pricing={renderRichText(pricing, options)}
+        pricing={<SafeRichText field={pricing} options={options} />}
         subheadingOne={subheadingOne}
         slug={slug}
         pricingHeading={pricingHeading}
@@ -92,7 +95,8 @@ export default function ServicePage({ data }) {
       )}
       <OurApproach
         subheadingTwo={subheadingTwo}
-        ourApproach={renderRichText(ourApproach, options)}
+        // ourApproach={renderRichText(ourApproach, options)}
+        ourApproach={<SafeRichText field={ourApproach} options={options} />}
       />
       <PrePostCare
         preCare={preCare}

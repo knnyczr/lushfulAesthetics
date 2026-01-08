@@ -9,6 +9,7 @@ import {
   faXTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { SafeRichText } from "./SafeRichText";
 
 export default function Footer() {
   const {
@@ -154,7 +155,8 @@ export default function Footer() {
           </div>
           <hr className="my-6 border-white" />
           <div className="bg-main-green md:text-lg flex flex-row justify-between text-white font-serif ">
-            {renderRichText(disclosure)}
+            {/* {renderRichText(disclosure)} */}
+            <SafeRichText field={disclosure} />
           </div>
           <hr className="my-6 border-white" />
 
