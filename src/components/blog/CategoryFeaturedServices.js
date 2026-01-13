@@ -23,15 +23,14 @@ export default function CategoryFeaturedServices({ featuredServices }) {
                   }}
                 />
                 <h2 className="uppercase font-sans text-xl font-medium">
-                  here
+                  {service.serviceTitle}
                 </h2>
                 <p className="">
-                  {/* {renderRichText(service.intro)[0].props.children[0].slice(
+                  {renderRichText(service.intro)[0].props.children[0].slice(
                     0,
                     70
                   )}
-                  ... */}
-                  here
+                  ... here
                 </p>
               </Link>
             </div>
