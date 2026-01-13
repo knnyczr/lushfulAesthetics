@@ -55,8 +55,7 @@ export default function CategoryFeaturedServices({ featuredServices }) {
                   {service.serviceTitle}
                 </h2>
                 <p className="">
-                   {getPlainTextFromRichText(service.intro).slice(0, 70)}
-                                    ...
+                   {getPlainTextFromRichText(service.intro).slice(0, 70)}...
                 </p>
               </Link>
             </div>
