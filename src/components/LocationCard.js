@@ -4,6 +4,7 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import LocationCardOptions from "../helpers/LocationCardOptions";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import { Link } from "gatsby";
+import { SafeRichText } from "./SafeRichText";
 
 const isClient = typeof window !== "undefined";
 
@@ -71,7 +72,11 @@ export default function LocationCard({
           <div>
             <h2 className="font-serif font-bold text-2xl py-4">{title}</h2>
             <p className="mb-6">
-              {renderRichText(description, LocationCardOptions())}
+              {/* {renderRichText(description, LocationCardOptions())} */}
+              <SafeRichText
+                field={description}
+                options={LocationCardOptions()}
+              />
             </p>
             {offeredServices?.references && (
               <div className="mb-6">

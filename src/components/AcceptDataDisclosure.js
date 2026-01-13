@@ -1,9 +1,10 @@
 import { graphql, useStaticQuery } from "gatsby";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
+// import { renderRichText } from "gatsby-source-contentful/rich-text";
 import React from "react";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import servicePageOptions from "../helpers/servicePageOptions";
 import { BLOCKS, INLINES } from "@contentful/rich-text-types";
+import { SafeRichText } from "./SafeRichText";
 
 export default function AcceptDataDisclosure({ setUser }) {
   const {
@@ -52,7 +53,8 @@ export default function AcceptDataDisclosure({ setUser }) {
           className="2xl:w-full w-11/12 bg-white rounded-md pt-6 pb-4 px-6 md:px-16 md:py-6 flex flex-col md:flex-row items-center"
         >
           <div className="text-xs flex mb-4 md:mb-0">
-            {renderRichText(dataCaptureDisclosure, options)}
+            {/* {SafeRichText(dataCaptureDisclosure, options)} */}
+            <SafeRichText field={dataCaptureDisclosure} options={options} />
           </div>
           <div className="w-full text-center md:text-left md:w-3/5 md:ml-5">
             <button

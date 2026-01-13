@@ -10,6 +10,7 @@ import servicePageOptions from "../../helpers/servicePageOptions";
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import nameFilter from "../../helpers/nameFilter";
 import isEmail from "../../helpers/isEmail";
+import { SafeRichText } from "../SafeRichText";
 
 export default function AgeAndEmailCaptureModal({
   heroImage,
@@ -262,13 +263,21 @@ export default function AgeAndEmailCaptureModal({
                 ) : (
                   // no cookie, check age
                   <div className="text-center text-white text-xs">
-                    {renderRichText(verifyAgeDisclaimer, options)}
+                    {/* {renderRichText(verifyAgeDisclaimer, options)} */}
+                    <SafeRichText
+                      field={verifyAgeDisclaimer}
+                      options={options}
+                    />
                   </div>
                 )
               ) : (
                 // no need to verify age, capture email disclaimer
                 <div className="text-center text-white text-xs">
-                  {renderRichText(emailCaptureDisclaimer, options)}
+                  {/* {renderRichText(emailCaptureDisclaimer, options)} */}
+                  <SafeRichText
+                    field={emailCaptureDisclaimer}
+                    options={options}
+                  />
                 </div>
               )}
             </div>
