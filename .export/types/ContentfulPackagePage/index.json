@@ -1,0 +1,58 @@
+[
+  {
+    "id": "3rF2Usxl0mGvtysbIMG1gV",
+    "trainingPageTitle": "Training",
+    "slug": "training",
+    "pageMetaDescription": "Peer to peer injectables training with InjectorChris on some of his most sought after aesthetic treatments, and learn how you can run your own Medspa. ",
+    "heroImage": {
+      "id": "5qtTJu3TrHIrosiYNtv3Z7",
+      "url": "https://images.ctfassets.net/eh73f2j8s7u9/5qtTJu3TrHIrosiYNtv3Z7/7dd17cbed32c7ab43aedae9bacc95d2b/AdobeStock_574927416.jpeg",
+      "description": "Three men of different complexions with clear natural skin"
+    },
+    "trainingsList": [
+      {
+        "trainingTitle": "Global Optimization with Xeomin®",
+        "trainingPrice": "$2500",
+        "description": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Duration: 2 hours\",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Two Models\",\"marks\":[],\"data\":{}}]}]}"
+        },
+        "includesTheseTrainings": {
+          "raw": "{\"data\":{},\"content\":[{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"Learn how to utilize Xeomin to neuromodulate the face with a global optimization approach. Areas that will be covered include: Frontalis, Glabellar, Orbicularis Oculi, Nasalis, Temples, and a Micro-Droplet Technique Under the Eye. A thorough approach to analyzing all the muscles of the upper third of the face to get your patients the best outcomes. The training session can be tailored to beginners or those with moderate experience.\",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"}],\"nodeType\":\"document\"}"
+        }
+      },
+      {
+        "trainingTitle": "Male Jawline + Cheek Filler",
+        "trainingPrice": "$5000",
+        "description": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Duration: 2 hours\",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"One Model\",\"marks\":[],\"data\":{}}]}]}"
+        },
+        "includesTheseTrainings": {
+          "raw": "{\"data\":{},\"content\":[{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"Utilizing Radiesse® you’ll learn how to sculpt and contour the male face to create natural yet dynamic and impactful results. Chris will demonstrate and guide you through how to utilize a 22G cannula to inject the entire jawline with 4-7 syringes of Radiesse and also utilize a 22G cannula to enhance the cheeks to create a masculine chiseled effect. This is the perfect training course to learn how to approach the male patient. Appropriate for moderate to advanced injectors. \",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"}],\"nodeType\":\"document\"}"
+        }
+      },
+      {
+        "trainingTitle": "Male Lip Augmentation",
+        "trainingPrice": "$2500",
+        "description": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Duration: 2 hours\",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Two Models\",\"marks\":[],\"data\":{}}]}]}"
+        },
+        "includesTheseTrainings": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"During this course you will learn how to define, volumize and contour male lips. The approach can be quite different than treating women and it’s important to understand what men are looking for. Most men can benefit from lip augmentation, but they want to have conservative results that still maintain the natural masculine proportions of their face. \",\"marks\":[],\"data\":{}}]},{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"\",\"marks\":[],\"data\":{}}]}]}"
+        }
+      },
+      {
+        "trainingTitle": "Lushful Instant BBL",
+        "trainingPrice": "$5000",
+        "description": {
+          "raw": "{\"data\":{},\"content\":[{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"Duration: 2 hours\",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"},{\"data\":{},\"content\":[{\"data\":{},\"marks\":[],\"value\":\"One Model\",\"nodeType\":\"text\"}],\"nodeType\":\"paragraph\"}],\"nodeType\":\"document\"}"
+        },
+        "includesTheseTrainings": {
+          "raw": "{\"nodeType\":\"document\",\"data\":{},\"content\":[{\"nodeType\":\"paragraph\",\"data\":{},\"content\":[{\"nodeType\":\"text\",\"value\":\"Learn how to inject a high volume amount of Radiesse to volumize, contour, and sculpt the buttocks. Chris will teach you his assessment, approach, and injection technique to utilize 60 syringes of Radiesse to give your patient the perfect butt, with just one treatment. Say good-bye to the days of multiple 20 syringe Instant BBLs. This approach will help grow your practice, while having highly satisfied patients. \",\"marks\":[],\"data\":{}}]}]}"
+        }
+      }
+    ],
+    "registerLink": "https://forms.gle/66hXCMtmoquzujSa8",
+    "metaTitle": "Lushful Aesthetics | Training",
+    "metaDescription": "Peer to peer injectables training with InjectorChris on some of his most sought after aesthetic treatments, and learn how you can run your own Medspa. "
+  }
+]

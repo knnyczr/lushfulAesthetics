@@ -15,9 +15,16 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "snapshot": "node scripts/export-contentful.js && node scripts/upload-to-s3.js",
+    "dev:s3": "USE_S3_SOURCE=true gatsby develop",
+    "build:s3": "USE_S3_SOURCE=true gatsby build",
+    "local:step1": "bash scripts/step1_env_and_snapshot.sh",
+    "local:step2": "bash scripts/step2_build_and_serve.sh",
+    "local:step3": "bash scripts/step3_dev_smoke.sh"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.899.0",
     "@contentful/rich-text-html-renderer": "^15.13.1",
     "@emailjs/browser": "^3.7.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",

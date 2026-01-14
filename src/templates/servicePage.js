@@ -186,6 +186,11 @@ export const pageQuery = graphql`
       slug
       heroImage {
         gatsbyImageData(layout: FULL_WIDTH, quality: 90)
+        localFile {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH, quality: 90)
+          }
+        }
         description
       }
       faqRef {
@@ -245,11 +250,21 @@ export const pageQuery = graphql`
         before {
           id
           gatsbyImageData
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 90)
+            }
+          }
           title
         }
         after {
           id
           gatsbyImageData
+          localFile {
+            childImageSharp {
+              gatsbyImageData(quality: 90)
+            }
+          }
           title
         }
       }
